@@ -5,7 +5,7 @@ export const PhonesPage: FC = () => {
   return (
       <div>
         <h1>Phones page</h1>
-        <Link to="/">Main</Link>
+        <Link to="/">Home page</Link>
       </div>
   );
 };
