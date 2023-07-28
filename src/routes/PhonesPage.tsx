@@ -7,7 +7,7 @@ export const PhonesPage: FC = () => {
       <div>
         <h1>Phones page</h1>
         <Card />
-        <Link to="/">Home Page</Link>
+        <Link to="/">Home page</Link>
       </div>
   );
 };
