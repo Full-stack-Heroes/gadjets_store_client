@@ -1,0 +1,121 @@
+.card {
+  display: flex;
+  width: 270px;
+  padding: 32px;
+  flex-direction: column;
+
+  gap: 8px;
+  background-color: white;
+
+  border-radius: 8px;
+  border: 1px solid var(--gray-elements, #e2e6e9);
+  box-shadow: 0 2 16 0 rgba(0, 0, 0, 0.1);
+}
+
+.card__product-image {
+  height: 200px;
+  margin: 0 auto 24px;
+}
+
+.card__product-name {
+  margin-bottom: 4px;
+
+  font-style: normal;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 600;
+
+  color: var(--main-color);
+}
+
+.card__product-code {
+  font-size: 22px;
+  position: relative;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 140%;
+  margin-bottom: 16px;
+
+  color: var(--secondary-color);
+}
+
+.card__product-code::after {
+  position: absolute;
+  display: block;
+  margin-top: 8px;
+  content: "";
+  width: 205px;
+  height: 1px;
+  background-color: #e2e6e9;
+  border-radius: 8px;
+}
+
+.card__product--characteristic {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.card__product-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+
+  color: var(--secondary-color);
+}
+
+.card__product-price-cost {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 18px;
+
+  color: var(--main-color);
+}
+
+.card__product--buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.card__product-buy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1 0 0;
+  height: 40px;
+
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+
+  border-radius: 48px;
+  border: 1px solid transparent;
+
+  background: #4219d0;
+  color: #fff;
+
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.card__product-like {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 48px;
+  background-color: #fff;
+  border: 1px solid #e2e6e9;
+  cursor: pointer;
+}
+
+.card__product-buy:hover {
+  border: 1px solid var(--accent-color);
+
+  background-color: #fff;
+  color: var(--accent-color);
+}
