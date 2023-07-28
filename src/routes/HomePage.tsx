@@ -3,11 +3,9 @@ import { Link } from 'react-router-dom';
 
 export const HomePage: FC = () => {
   return (
-    <>
-      <main>
+      <div>
         <h1>Home page</h1>
         <Link to="/phones">Phones</Link>
-      </main>
-    </>
+      </div>
   );
 };
