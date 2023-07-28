@@ -1,17 +1,31 @@
 import './App.scss';
-import { createBrowserRouter } from 'react-router-dom';
-import Home from './routes/Home';
-import Phones from './routes/Phones';
+import { Navigate, createBrowserRouter } from 'react-router-dom';
+import { HomePage } from './routes/HomePage';
+import { PhonesPage } from './routes/PhonesPage';
+import { Layout } from './routes/Layout';
 
 export const App = createBrowserRouter([
   {
     path: '/',
-    element: <Home />,
+    element: <Layout />,
+    children: [
+      {
+        index: true,
+        element: <HomePage />,
+      },
+
+      {
+        path: 'home',
+        element: <Navigate to="/" replace />,
+      },
+
+      {
+        path: 'phones',
+        element: <PhonesPage />,
+      },
+    ],
   },
-  {
-    path: 'phones',
-    element: <Phones />,
-  },
+
 ]);
 
 export default App;
