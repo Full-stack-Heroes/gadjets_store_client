@@ -1,13 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
+import cn from 'classnames';
 import './card.scss';
 import heart from '../../assets/icons/Heart.svg';
+import filledheart from '../../assets/icons/Heart_Filled.svg';
 
 export const Card: React.FC = () => {
+  const [bought, setBought] = useState(false);
+  const [favourite, setFavourite] = useState(false);
+  const buttonText = bought ? 'added' : 'add to cart';
+  const buttonHeart = favourite ? filledheart : heart;
+
   return (
-    <div className="card" data-qa="card">
+    <div className="card">
       <img
         src="./images/iphone.png"
-        alt="APPLE A1419 iMac 27&quot; Retina 5K Monoblock (MNED2UA/A)"
         className="card__product-image"
       />
 
@@ -15,40 +21,44 @@ export const Card: React.FC = () => {
         Apple iPhone Xs 64GB Silver (iMT9G2FSA)
       </h2>
 
-      <p className="card__product-code">
+      <p className="card__product-price">
         $999
       </p>
 
-      <div className="card__product--characteristic">
-        <p className="card__product-price">
+      <div className="card__product--characteristics">
+        <p className="characteristic--left">
           <span>Screen:</span>
-          <span className="card__product-price-cost">5.8'' OLED</span>
+          <span className="characteristic--right">5.8'' OLED</span>
         </p>
 
-        <p className="card__product-price">
+        <p className="characteristic--left">
           <span>Capacity:</span>
-          <span className="card__product-price-cost">64 GB</span>
+          <span className="characteristic--right">64 GB</span>
         </p>
 
-        <p className="card__product-price">
+        <p className="characteristic--left">
           <span>RAM:</span>
-          <span className="card__product-price-cost">4 GB</span>
+          <span className="characteristic--right">4 GB</span>
         </p>
       </div>
 
       <div className="card__product--buttons">
         <button
-          className="card__product-buy"
-          data-qa="hover"
+          className={cn('button--add', {
+            'button--add--active': bought,
+          })}
+          onClick={() => setBought(!bought)}
         >
-          Add to cart
+          {buttonText}
         </button>
 
         <button
-          className="card__product-like"
-          data-qa="hover"
+          className={cn('button--like', {
+            'button--like--active': favourite,
+          })}
+          onClick={() => setFavourite(!favourite)}
         >
-          <img src={heart} />
+          <img src={buttonHeart} />
         </button>
       </div>
     </div>
