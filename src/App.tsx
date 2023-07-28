@@ -1,32 +1,17 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
 import './App.scss';
+import { createBrowserRouter } from 'react-router-dom';
+import Home from './routes/Home';
+import Phones from './routes/Phones';
 
-function App() {
-  const [count, setCount] = useState(0);
-
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Full-stack Heroes</h1>
-      <div className="card">
-        <button onClick={() => setCount((counter) => counter + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code>
-        </p>
-      </div>
-    </>
-  );
-}
+export const App = createBrowserRouter([
+  {
+    path: '/',
+    element: <Home />,
+  },
+  {
+    path: 'phones',
+    element: <Phones />,
+  },
+]);
 
 export default App;
