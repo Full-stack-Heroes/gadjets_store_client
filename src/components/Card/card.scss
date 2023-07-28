@@ -18,11 +18,11 @@
 
   &__product-name {
     margin-bottom: 4px;
-  
+
     font-size: 14px;
     line-height: 21px;
     font-weight: 600;
-  
+
     color: rgba(15, 15, 17, 1);
   }
 
@@ -33,14 +33,14 @@
     font-weight: 800;
     line-height: 140%;
     margin-bottom: 16px;
-  
+
     color: rgba(15, 15, 17, 1);
 
     &::after {
       position: absolute;
       display: block;
       margin-top: 8px;
-      content: "";
+      content: '';
       width: 205px;
       height: 1px;
       background-color: #e2e6e9;
@@ -64,7 +64,7 @@
     font-weight: 600;
     font-size: 12px;
     line-height: 15px;
-  
+
     color: rgba(137, 147, 154, 1);
   }
 
@@ -73,7 +73,7 @@
     font-weight: 700;
     font-size: 12px;
     line-height: 15px;
-  
+
     color: rgba(15, 15, 17, 1);
   }
 
@@ -88,18 +88,18 @@
     align-items: center;
     flex: 1 0 0;
     height: 40px;
-  
+
     font-weight: 700;
     font-size: 14px;
     line-height: 21px;
     text-transform: uppercase;
-  
+
     border: none;
     border-radius: 48px;
-  
+
     background: #4219d0;
     color: #fff;
-  
+
     text-decoration: none;
     cursor: pointer;
     transition: 0.3s;
@@ -112,11 +112,11 @@
       transition: 0.3s;
       background-color: #fff;
       color: #4219d0;
-      border: 1px solid #E2E6E9;
+      border: 1px solid #e2e6e9;
       box-shadow: none;
     }
   }
-  
+
   .button--like {
     display: flex;
     align-items: center;

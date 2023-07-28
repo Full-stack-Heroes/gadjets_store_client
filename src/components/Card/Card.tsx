@@ -12,23 +12,18 @@ export const Card: React.FC = () => {
 
   return (
     <div className="card">
-      <img
-        src="./images/iphone.png"
-        className="card__product-image"
-      />
+      <img src="./images/iphone.png" className="card__product-image" />
 
       <h2 className="card__product-name">
         Apple iPhone Xs 64GB Silver (iMT9G2FSA)
       </h2>
 
-      <p className="card__product-price">
-        $999
-      </p>
+      <p className="card__product-price">$999</p>
 
       <div className="card__product--characteristics">
         <p className="characteristic--left">
           <span>Screen:</span>
-          <span className="characteristic--right">5.8'' OLED</span>
+          <span className="characteristic--right">5.8&apos;&apos; OLED</span>
         </p>
 
         <p className="characteristic--left">
@@ -47,8 +42,7 @@ export const Card: React.FC = () => {
           className={cn('button--add', {
             'button--add--active': bought,
           })}
-          onClick={() => setBought(!bought)}
-        >
+          onClick={() => setBought(!bought)}>
           {buttonText}
         </button>
 
@@ -56,8 +50,7 @@ export const Card: React.FC = () => {
           className={cn('button--like', {
             'button--like--active': favourite,
           })}
-          onClick={() => setFavourite(!favourite)}
-        >
+          onClick={() => setFavourite(!favourite)}>
           <img src={buttonHeart} />
         </button>
       </div>

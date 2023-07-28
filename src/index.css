@@ -4,7 +4,22 @@
   box-sizing: border-box;
 }
 
-html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, img, ul, ol, li {
+html,
+body,
+div,
+span,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+img,
+ul,
+ol,
+li {
   margin: 0;
   padding: 0;
   border: 0;
@@ -13,10 +28,13 @@ html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, img, ul, ol, li {
   vertical-align: baseline;
 }
 
-ul, ol {
+ul,
+ol {
   list-style: none;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
