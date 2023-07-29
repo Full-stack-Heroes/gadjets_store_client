@@ -17,12 +17,13 @@
     border: 1px solid #e2e6e9;
     color: #0f0f11;
 
-    cursor: pointer;
-
     text-align: center;
     font-size: 14px;
     font-weight: 600;
     line-height: 21px;
+
+    cursor: pointer;
+    transition: 0.3s;
 
     &--last {
       margin-right: 0;
