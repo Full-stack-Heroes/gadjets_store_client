@@ -3,22 +3,25 @@
   grid-template-columns: repeat(4, 270px);
   column-gap: 16px;
   justify-content: center;
+  padding: 32px;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 1199px) {
   .cards__container {
-    grid-template-columns: repeat(3, 1fr); /* Distribute available space among 3 columns */
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 779px) {
   .cards__container {
-    grid-template-columns: repeat(2, 1fr); /* Distribute available space among 2 columns */
+    grid-template-columns: repeat(2, 1fr);
+    padding: 24px;
   }
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 639px) {
   .cards__container {
     grid-template-columns: 1fr;
+    padding: 16px;
   }
 }
