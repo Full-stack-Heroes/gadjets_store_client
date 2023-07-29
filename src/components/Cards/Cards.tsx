@@ -18,5 +18,5 @@ export const Cards: React.FC = () => {
       <Card />
       <Card />
     </div>
-  )
-}
+  );
+};

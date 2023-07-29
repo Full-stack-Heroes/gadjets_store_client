@@ -21,10 +21,7 @@ export const Card: React.FC = () => {
 
   return (
     <div className="card">
-      <img
-        src={phone}
-        className="card__product-image"
-      />
+      <img src={phone} className="card__product-image" />
 
       <h2 className="card__product-name">
         Apple iPhone Xs 64GB Silver (iMT9G2FSA)
@@ -54,9 +51,7 @@ export const Card: React.FC = () => {
           className={cn('button--add', {
             'button--add--active': productAdded,
           })}
-          onClick={() => handleProductAdded()}
-        >
-
+          onClick={() => handleProductAdded()}>
           {buttonText}
         </button>
 
@@ -64,8 +59,7 @@ export const Card: React.FC = () => {
           className={cn('button--like', {
             'button--like--active': productLiked,
           })}
-          onClick={() => handleProductLiked()}
-        >
+          onClick={() => handleProductLiked()}>
           <img src={buttonHeart} />
         </button>
       </div>

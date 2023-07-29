@@ -1,3 +1,51 @@
 .header {
-  color: green;
+  width: 100%;
+  height: 64px;
+  border-bottom: 1px solid #e2e6e9;
+}
+
+.container {
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  padding-left: 24px;
+}
+
+.header__logo {
+  width: 70px;
+}
+
+.nav {
+  display: flex;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+}
+
+.header__service {
+  display: flex;
+}
+
+.service_btn {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  border-left: 1px solid #e2e6e9;
+}
+
+.service_btn_img {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.service_btn_img:hover {
+  transform: scale(1.25);
 }
