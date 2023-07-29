@@ -1,7 +1,9 @@
 .card {
   display: flex;
-  width: 270px;
   padding: 32px;
+  width: 100%;
+  margin-right: 16px;
+  margin-bottom: 40px;
   flex-direction: column;
 
   gap: 8px;
@@ -18,11 +20,11 @@
 
   &__product-name {
     margin-bottom: 4px;
-  
+
     font-size: 14px;
     line-height: 21px;
     font-weight: 600;
-  
+
     color: rgba(15, 15, 17, 1);
   }
 
@@ -33,7 +35,7 @@
     font-weight: 800;
     line-height: 140%;
     margin-bottom: 16px;
-  
+
     color: rgba(15, 15, 17, 1);
 
     &::after {
@@ -41,7 +43,7 @@
       display: block;
       margin-top: 8px;
       content: "";
-      width: 205px;
+      width: 100%;
       height: 1px;
       background-color: #e2e6e9;
       border-radius: 8px;
@@ -64,7 +66,7 @@
     font-weight: 600;
     font-size: 12px;
     line-height: 15px;
-  
+
     color: rgba(137, 147, 154, 1);
   }
 
@@ -73,7 +75,7 @@
     font-weight: 700;
     font-size: 12px;
     line-height: 15px;
-  
+
     color: rgba(15, 15, 17, 1);
   }
 
@@ -88,18 +90,18 @@
     align-items: center;
     flex: 1 0 0;
     height: 40px;
-  
+
     font-weight: 700;
     font-size: 14px;
     line-height: 21px;
     text-transform: uppercase;
-  
+
     border: none;
     border-radius: 48px;
-  
+
     background: #4219d0;
     color: #fff;
-  
+
     text-decoration: none;
     cursor: pointer;
     transition: 0.3s;
@@ -116,7 +118,7 @@
       box-shadow: none;
     }
   }
-  
+
   .button--like {
     display: flex;
     align-items: center;
