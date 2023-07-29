@@ -5,16 +5,18 @@ import cn from 'classnames';
 import './pagination.scss';
 
 export const Pagination: React.FC = () => {
+  //tests pages and values, will change later
   const items = [1, 2, 3, 4, 5];
-  const [currentPage, setCurrentPage] = useState(1);
 
-  // const itemsPerPage = 1;
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 1;
+  const pageCount = Math.ceil(items.length / itemsPerPage);
+
   // const pagesVisited = currentPage * itemsPerPage;
-  // const pageCount = Math.ceil(items.length / itemsPerPage);
   // const displayItems = items.slice(pagesVisited, pagesVisited + itemsPerPage);
 
   const isFirstPage = currentPage === 1;
-  const isLastPage = currentPage === items.length;
+  const isLastPage = currentPage === pageCount;
 
   const handlePageChange = (item: number) => {
     setCurrentPage(item);
@@ -39,9 +41,14 @@ export const Pagination: React.FC = () => {
   return (
     <ul className="pagination">
       <li
-        className={cn('pagination__number pagination__arrow--left', {
-          'pagination__number--disabled': isFirstPage,
-        })}
+        className={cn(
+          'pagination__number',
+          'pagination__arrow',
+          'pagination__arrow--left',
+          {
+            'pagination__number--disabled': isFirstPage,
+          },
+        )}
         onClick={() => handleMoveToPreviousPage()}>
         {isFirstPage ? (
           <img src={arrow} alt="Arrow Left" />
@@ -65,9 +72,14 @@ export const Pagination: React.FC = () => {
         );
       })}
       <li
-        className={cn('pagination__number pagination__arrow--right', {
-          'pagination__number--disabled': isLastPage,
-        })}
+        className={cn(
+          'pagination__number',
+          'pagination__arrow',
+          'pagination__arrow--right ',
+          {
+            'pagination__number--disabled': isLastPage,
+          },
+        )}
         onClick={() => handleMoveToNextPage()}>
         {isLastPage ? (
           <img src={arrow} alt="Arrow Right" />

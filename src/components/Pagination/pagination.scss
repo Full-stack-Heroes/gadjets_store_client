@@ -3,25 +3,19 @@
   box-sizing: border-box;
   justify-content: center;
   height: 32px;
-  flex-shrink: 0;
-
+  user-select: none;
   list-style: none;
-
-  &__arrow {
-    &--right {
-      transform: rotate(180deg);
-    }
-  }
 
   &__number {
     display: flex;
     align-items: center;
+    justify-content: center;
     padding: 20px;
-    margin: 8px;
+    width: 32px;
+    margin-right: 8px;
 
     border-radius: 48px;
     border: 1px solid #e2e6e9;
-    background-color: #e2e6e9;
     color: #0f0f11;
 
     cursor: pointer;
@@ -43,6 +37,19 @@
 
     &:hover:not(.pagination__number--disabled) {
       border: 1px solid #0f0f11;
+    }
+  }
+
+  &__arrow {
+    border-color: #b4bdc3;
+    &--right {
+      margin-left: 16px;
+
+      transform: rotate(180deg);
+    }
+
+    &--left {
+      margin-right: 16px;
     }
   }
 }
