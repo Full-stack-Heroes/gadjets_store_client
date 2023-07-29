@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 import { FC } from 'react';
-import { Card } from '../components/Card/Card.tsx';
+import { Cards } from '../components/Cards/Cards';
 
 export const PhonesPage: FC = () => {
   return (
-    <div>
-      <h1>Phones page</h1>
-      <Card />
-      <Link to="/">Home page</Link>
-    </div>
+      <div>
+        <h1>Phones page</h1>
+        <Cards />
+        <Link to="/">Home page</Link>
+      </div>
   );
 };

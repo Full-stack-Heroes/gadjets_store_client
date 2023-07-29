@@ -3,16 +3,28 @@ import cn from 'classnames';
 import './card.scss';
 import heart from '../../assets/icons/Heart.svg';
 import filledheart from '../../assets/icons/Heart_Filled.svg';
+import phone from '../../assets/6c05b192e9d229d5e415bad59e64ac49.png';
 
 export const Card: React.FC = () => {
-  const [bought, setBought] = useState(false);
-  const [favourite, setFavourite] = useState(false);
-  const buttonText = bought ? 'added' : 'add to cart';
-  const buttonHeart = favourite ? filledheart : heart;
+  const [productAdded, setProductAdded] = useState(false);
+  const [productLiked, setProductLiked] = useState(false);
+  const buttonText = productAdded ? 'added' : 'add to cart';
+  const buttonHeart = productLiked ? filledheart : heart;
+
+  const handleProductAdded = () => {
+    setProductAdded(!productAdded);
+  };
+
+  const handleProductLiked = () => {
+    setProductLiked(!productLiked);
+  };
 
   return (
     <div className="card">
-      <img src="./images/iphone.png" className="card__product-image" />
+      <img
+        src={phone}
+        className="card__product-image"
+      />
 
       <h2 className="card__product-name">
         Apple iPhone Xs 64GB Silver (iMT9G2FSA)
@@ -40,17 +52,20 @@ export const Card: React.FC = () => {
       <div className="card__product--buttons">
         <button
           className={cn('button--add', {
-            'button--add--active': bought,
+            'button--add--active': productAdded,
           })}
-          onClick={() => setBought(!bought)}>
+          onClick={() => handleProductAdded()}
+        >
+
           {buttonText}
         </button>
 
         <button
           className={cn('button--like', {
-            'button--like--active': favourite,
+            'button--like--active': productLiked,
           })}
-          onClick={() => setFavourite(!favourite)}>
+          onClick={() => handleProductLiked()}
+        >
           <img src={buttonHeart} />
         </button>
       </div>
