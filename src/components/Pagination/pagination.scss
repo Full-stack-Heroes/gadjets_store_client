@@ -10,7 +10,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
     width: 32px;
     margin-right: 8px;
 
@@ -24,6 +23,10 @@
     font-size: 14px;
     font-weight: 600;
     line-height: 21px;
+
+    &--last {
+      margin-right: 0;
+    }
 
     &--active {
       color: #fff;
@@ -42,6 +45,7 @@
 
   &__arrow {
     border-color: #b4bdc3;
+    margin-right: 0;
     &--right {
       margin-left: 16px;
 

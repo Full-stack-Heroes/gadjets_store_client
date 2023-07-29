@@ -57,8 +57,9 @@ export const Pagination: React.FC = () => {
         )}
       </li>
 
-      {items.map((item) => {
+      {items.map((item, index) => {
         const isPageSelected = currentPage === item;
+        const isLastItem = index === items.length - 1;
 
         return (
           <li
@@ -66,6 +67,7 @@ export const Pagination: React.FC = () => {
             onClick={() => handlePageChange(item)}
             className={cn('pagination__number', {
               'pagination__number--active': isPageSelected,
+              'pagination__number--last': isLastItem,
             })}>
             {item}
           </li>
