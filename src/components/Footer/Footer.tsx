@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Footer.module.scss';
-import logo from '../../assets/icons/Logo.svg'
+import logo from '../../assets/images/Logo.svg'
 import Up from '../../assets/icons/Arrow.svg'
 
 export const Footer: FC = () => {
