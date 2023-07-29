@@ -1,9 +1,9 @@
 import './App.scss';
 import { Navigate, createBrowserRouter } from 'react-router-dom';
-import { HomePage } from './routes/HomePage';
-import { PhonesPage } from './routes/PhonesPage';
-import { Layout } from './routes/Layout';
-import { NotFoundPage } from './routes/NotFoundPage';
+import { HomePage } from './pages/HomePage';
+import { PhonesPage } from './pages/PhonesPage';
+import { Layout } from './pages/Layout';
+import { NotFoundPage } from './pages/NotFoundPage';
 
 export const App = createBrowserRouter([
   {
