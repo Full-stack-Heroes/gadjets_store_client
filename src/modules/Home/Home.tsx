@@ -6,6 +6,7 @@ export const Home: FC = () => {
   return (
     <HomeLayout>
       <HomeContent />
+      <p>hi</p>
     </HomeLayout>
   );
 };
