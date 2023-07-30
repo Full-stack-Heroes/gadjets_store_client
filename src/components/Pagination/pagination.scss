@@ -2,7 +2,7 @@
   display: flex;
   box-sizing: border-box;
   justify-content: center;
-  padding-bottom: 64px;
+  padding: 40px 0 80px;
 
   user-select: none;
   list-style: none;
@@ -49,6 +49,7 @@
   &__arrow {
     border-color: #b4bdc3;
     margin-right: 0;
+
     &--right {
       margin-left: 16px;
 
@@ -58,5 +59,23 @@
     &--left {
       margin-right: 16px;
     }
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  .pagination {
+    padding: 40px 0 80px;
+  }
+}
+
+@media screen and (max-width: 779px) {
+  .pagination {
+    padding: 40px 0 64px;
+  }
+}
+
+@media screen and (max-width: 639px) {
+  .pagination {
+    padding: 24px 0 64px;
   }
 }
