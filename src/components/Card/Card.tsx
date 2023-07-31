@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import cn from 'classnames';
-import './card.scss';
+import styles from './card.module.scss';
 import heart from '../../assets/icons/Heart.svg';
 import filledheart from '../../assets/icons/Heart_Filled.svg';
 import { Phone } from '../../types/phone';
@@ -27,44 +27,44 @@ export const Card: React.FC<Props> = ({ phone }) => {
   const { image, name, price, screen, capacity, ram } = phone;
 
   return (
-    <div className="card">
-      <img src={normalizeImage(image)} className="card__product-image" />
+    <div className={styles.card}>
+      <img src={normalizeImage(image)} className={styles.card__product_image} />
 
-      <h2 className="card__product-name">{name}</h2>
+      <h2 className={styles.card__product_name}>{name}</h2>
 
-      <p className="card__product-price">${price}</p>
+      <p className={styles.card__product_price}>${price}</p>
 
-      <div className="card__product--characteristics">
-        <p className="characteristic--left">
+      <div className={styles.card__product_characteristics}>
+        <p className={styles.characteristic_left}>
           <span>Screen:</span>
-          <span className="characteristic--right">{screen}</span>
+          <span className={styles.characteristic_right}>{screen}</span>
         </p>
 
-        <p className="characteristic--left">
+        <p className={styles.characteristic_left}>
           <span>Capacity:</span>
-          <span className="characteristic--right">
+          <span className={styles.characteristic_right}>
             {normalizeMemory(capacity)}
           </span>
         </p>
 
-        <p className="characteristic--left">
+        <p className={styles.characteristic_left}>
           <span>RAM:</span>
-          <span className="characteristic--right">{normalizeMemory(ram)}</span>
+          <span className={styles.characteristic_right}>{normalizeMemory(ram)}</span>
         </p>
       </div>
 
-      <div className="card__product--buttons">
+      <div className="styles.card__product_buttons">
         <button
-          className={cn('button--add', {
-            'button--add--active': productAdded,
+          className={cn((styles.button__add), {
+            [styles.button__add_active]: productAdded,
           })}
           onClick={() => handleProductAdded()}>
           {buttonText}
         </button>
 
         <button
-          className={cn('button--like', {
-            'button--like--active': productLiked,
+          className={cn((styles.button__like), {
+            [styles.button__like_active]: productLiked,
           })}
           onClick={() => handleProductLiked()}>
           <img src={buttonHeart} />
