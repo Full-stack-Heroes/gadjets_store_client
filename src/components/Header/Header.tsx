@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import styles from './Header.module.scss';
-import logo from '../../assets/images/logo.png';
+import logo from '../../assets/images/Logo.svg';
 import like from '../../assets/icons/Heart.svg';
 import cart from '../../assets/icons/Cart.svg';
 import { NavigationLink } from '../NavigationLink';
