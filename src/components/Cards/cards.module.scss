@@ -2,13 +2,16 @@
   display: grid;
   grid-template-columns: repeat(4, 270px);
   column-gap: 16px;
+  row-gap: 40px;
   justify-content: center;
   padding: 32px;
+  padding-bottom: 0;
 }
 
 @media screen and (max-width: 1199px) {
   .cards__container {
     grid-template-columns: repeat(3, 1fr);
+    padding-bottom: 0;
   }
 }
 
@@ -16,6 +19,7 @@
   .cards__container {
     grid-template-columns: repeat(2, 1fr);
     padding: 24px;
+    padding-bottom: 0;
   }
 }
 
@@ -23,5 +27,6 @@
   .cards__container {
     grid-template-columns: 1fr;
     padding: 16px;
+    padding-bottom: 0;
   }
 }
