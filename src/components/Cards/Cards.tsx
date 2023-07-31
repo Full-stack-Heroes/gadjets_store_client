@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Card } from '../Card/Card';
-import './cards.scss';
+import styles from './cards.module.scss';
 import { Phone } from '../../types/phone';
 import { getPhones } from '../../utils/helpers';
 
@@ -22,7 +22,7 @@ export const Cards: React.FC = () => {
   }, []);
 
   return (
-    <div className="cards__container">
+    <div className={styles.cards__container}>
       {phones.slice(3, 19).map((phone) => (
         <Card phone={phone} key={phone.id} />
       ))}

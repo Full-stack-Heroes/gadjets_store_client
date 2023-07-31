@@ -7,11 +7,7 @@ export const BurgerMenu: FC = () => {
 
   return (
     <button className={styles.service_btn}>
-      <img
-        src={menu}
-        alt="like button"
-        className={styles.service_btn_img}
-      />
+      <img src={menu} alt="like button" className={styles.service_btn_img} />
     </button>
   );
 };

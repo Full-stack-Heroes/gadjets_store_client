@@ -4,7 +4,7 @@ import styles from './CartItem.module.scss';
 import cross from '../../assets/icons/Close.svg';
 import minus from '../../assets/icons/Minus.svg';
 import plus from '../../assets/icons/Plus.svg';
-import phone from '../../assets/6c05b192e9d229d5e415bad59e64ac49.png'
+import phone from '../../assets/6c05b192e9d229d5e415bad59e64ac49.png';
 
 export const CartItem: React.FC = () => {
   const [productNumber, setProductNumber] = useState(1);
@@ -32,29 +32,23 @@ export const CartItem: React.FC = () => {
 
       <div className={styles.item__container_buttons}>
         <button
-        className={cn (styles.item__container_minus, {
-          [styles.item__container_minus_disabled] : isOneProduct,
-        })}
-        onClick={() => deleteProduct()}
-        >
+          className={cn(styles.item__container_minus, {
+            [styles.item__container_minus_disabled]: isOneProduct,
+          })}
+          onClick={() => deleteProduct()}>
           <img src={minus} alt="" />
         </button>
 
-        <span className={styles.item__container_number}>
-          {productNumber}
-        </span>
+        <span className={styles.item__container_number}>{productNumber}</span>
 
         <button
           className={styles.item__container_plus}
-          onClick={() => addProduct()}
-          >
+          onClick={() => addProduct()}>
           <img src={plus} alt="" />
         </button>
       </div>
 
-      <span className={styles.item__container_price}>
-        $999
-      </span>
+      <span className={styles.item__container_price}>$999</span>
     </div>
   );
 };
