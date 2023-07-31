@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import styles from './CartContent.module.scss';
 import { Arrow } from '../../../../components/Arrow/Arrow';
+import { CartItem } from '../../../../components/CartItem/CartItem';
 
 export const CartContent: FC = () => {
   return (
@@ -19,9 +20,9 @@ export const CartContent: FC = () => {
 
         <div className={styles.cart__container}>
           <div className={styles.cart__items}>
-            <div className={styles.cart__item}>content</div>
-            <div className={styles.cart__item}>content</div>
-            <div className={styles.cart__item}>content</div>
+            <CartItem/>
+            <CartItem/>
+            <CartItem/>
           </div>
 
           <div className={styles.cart__checkout}>checkout</div>

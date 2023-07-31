@@ -18,6 +18,12 @@
     font-weight: 700;
     color: #89939A;
 
+    cursor: pointer;
+    &:hover {
+      transition: 0.3s;
+      color: #0F0F11;
+
+    }
   }
 
   &__title {
@@ -36,27 +42,13 @@
     gap: 16px;
     padding-bottom: 56px;
 
-    flex-grow: 1;
-    max-width: 100%;
     width: 100%;
-  }
-
-  &__item {
-    display: flex;
-    justify-content: center;
-    padding: 24px;
-
-    background-color: rebeccapurple;
-    color: goldenrod;
-
-    border-radius: 16px;
-    border: 1px solid #E2E6E9;
   }
 
   &__items {
     display: flex;
+    justify-content: center;
     flex-direction: column;
-    flex: 1;
 
     gap: 16px;
     margin-bottom: 32px;
