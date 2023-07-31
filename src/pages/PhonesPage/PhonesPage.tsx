@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Phones } from '../modules/Phones';
+import { Phones } from '../../modules/Phones';
 
 export const PhonesPage: FC = () => {
   return (
