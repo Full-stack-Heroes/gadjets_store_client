@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import arrow from '../../assets/icons/Arrow.svg';
 import arrowBlack from '../../assets/icons/ArrowBlack.svg';
 import cn from 'classnames';
-import './pagination.scss';
+import styles from './pagination.module.scss';
 
 export const Pagination: React.FC = () => {
   //tests pages and values, will change later
@@ -39,14 +39,14 @@ export const Pagination: React.FC = () => {
   };
 
   return (
-    <ul className="pagination">
+    <ul className={styles.pagination}>
       <li
         className={cn(
-          'pagination__number',
-          'pagination__arrow',
-          'pagination__arrow--left',
+          styles.pagination__number,
+          styles.pagination__arrow,
+          styles.pagination__arrow_left,
           {
-            'pagination__number--disabled': isFirstPage,
+            [styles.pagination__number_disabled]: isFirstPage,
           },
         )}
         onClick={() => handleMoveToPreviousPage()}>
@@ -65,9 +65,9 @@ export const Pagination: React.FC = () => {
           <li
             key={item}
             onClick={() => handlePageChange(item)}
-            className={cn('pagination__number', {
-              'pagination__number--active': isPageSelected,
-              'pagination__number--last': isLastItem,
+            className={cn(styles.pagination__number, {
+              [styles.pagination__number_active]: isPageSelected,
+              [styles.pagination__number_last]: isLastItem,
             })}>
             {item}
           </li>
@@ -75,11 +75,11 @@ export const Pagination: React.FC = () => {
       })}
       <li
         className={cn(
-          'pagination__number',
-          'pagination__arrow',
-          'pagination__arrow--right ',
+          styles.pagination__number,
+          styles.pagination__arrow,
+          styles.pagination__arrow_right,
           {
-            'pagination__number--disabled': isLastPage,
+            [styles.pagination__number_disabled]: isLastPage,
           },
         )}
         onClick={() => handleMoveToNextPage()}>
