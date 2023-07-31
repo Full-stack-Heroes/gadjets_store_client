@@ -1,8 +1,8 @@
 import { FC } from 'react';
+import { CartItem } from '../../components/CartItem/CartItem';
+
 export const CartPage: FC = () => {
   return (
-    <div>
-      <h1>Cart</h1>
-    </div>
+    <CartItem />
   );
 };
