@@ -3,9 +3,14 @@ import cn from 'classnames';
 import './card.scss';
 import heart from '../../assets/icons/Heart.svg';
 import filledheart from '../../assets/icons/Heart_Filled.svg';
-import phone from '../../assets/6c05b192e9d229d5e415bad59e64ac49.png';
+import { Phone } from '../../types/phone';
+import { normalizeImage, normalizeMemory } from '../../utils/helpers';
 
-export const Card: React.FC = () => {
+interface Props {
+  phone: Phone;
+}
+
+export const Card: React.FC<Props> = ({ phone }) => {
   const [productAdded, setProductAdded] = useState(false);
   const [productLiked, setProductLiked] = useState(false);
   const buttonText = productAdded ? 'added' : 'add to cart';
@@ -19,30 +24,30 @@ export const Card: React.FC = () => {
     setProductLiked(!productLiked);
   };
 
+  const { image, name, price, screen, capacity, ram } = phone;
+
   return (
     <div className="card">
-      <img src={phone} className="card__product-image" />
+      <img src={normalizeImage(image)} className="card__product-image" />
 
-      <h2 className="card__product-name">
-        Apple iPhone Xs 64GB Silver (iMT9G2FSA)
-      </h2>
+      <h2 className="card__product-name">{name}</h2>
 
-      <p className="card__product-price">$999</p>
+      <p className="card__product-price">${price}</p>
 
       <div className="card__product--characteristics">
         <p className="characteristic--left">
           <span>Screen:</span>
-          <span className="characteristic--right">5.8&apos;&apos; OLED</span>
+          <span className="characteristic--right">{screen}</span>
         </p>
 
         <p className="characteristic--left">
           <span>Capacity:</span>
-          <span className="characteristic--right">64 GB</span>
+          <span className="characteristic--right">{normalizeMemory(capacity)}</span>
         </p>
 
         <p className="characteristic--left">
           <span>RAM:</span>
-          <span className="characteristic--right">4 GB</span>
+          <span className="characteristic--right">{normalizeMemory(ram)}</span>
         </p>
       </div>
 
