@@ -1,3 +1,7 @@
+$primary-color: #0f0f11;
+$elements-color: #e2e6e9;
+$icons-color: #b4bdc3;
+
 .pagination {
   display: flex;
   box-sizing: border-box;
@@ -16,8 +20,8 @@
     margin-right: 8px;
 
     border-radius: 50%;
-    border: 1px solid #e2e6e9;
-    color: #0f0f11;
+    border: 1px solid $elements-color;
+    color: $primary-color;
 
     text-align: center;
     font-size: 14px;
@@ -33,23 +37,18 @@
 
     &_active {
       color: #fff;
-      background-color: #0f0f11;
-      border: 1px solid #0f0f11;
+      background-color: $primary-color;
+      border: 1px solid $primary-color;
     }
 
-    &_disabled {
-      color: #e2e6e9;
-      cursor: auto;
-      pointer-events: none;
-    }
-
-    &:hover:not(.pagination__number--disabled) {
-      border: 1px solid #0f0f11;
+    &:hover:not(.pagination__arrow--disabled) {
+      border: 1px solid $primary-color;
     }
   }
 
   &__arrow {
-    border-color: #b4bdc3;
+    color: $primary-color;
+    border-color: $icons-color;
     margin-right: 0;
 
     &_right {
@@ -60,6 +59,11 @@
 
     &_left {
       margin-right: 16px;
+    }
+
+    &_disabled {
+      color: $icons-color;
+      border-color: $elements-color;
     }
   }
 }

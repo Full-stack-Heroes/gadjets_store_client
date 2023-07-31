@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import arrow from '../../assets/icons/Arrow.svg';
-import arrowBlack from '../../assets/icons/ArrowBlack.svg';
 import cn from 'classnames';
+
+import { Arrow } from '../Arrow/Arrow';
 import styles from './pagination.module.scss';
 
 export const Pagination: React.FC = () => {
@@ -42,19 +42,13 @@ export const Pagination: React.FC = () => {
     <ul className={styles.pagination}>
       <li
         className={cn(
-          styles.pagination__number,
-          styles.pagination__arrow,
-          styles.pagination__arrow_left,
-          {
-            [styles.pagination__number_disabled]: isFirstPage,
-          },
-        )}
+          (styles.pagination__number),
+          (styles.pagination__arrow),
+          (styles.pagination__arrow_left), {
+            [styles.pagination__arrow_disabled]: isFirstPage
+          })}
         onClick={() => handleMoveToPreviousPage()}>
-        {isFirstPage ? (
-          <img src={arrow} alt="Arrow Left" />
-        ) : (
-          <img src={arrowBlack} alt="Arrow Left" />
-        )}
+        <Arrow/>
       </li>
 
       {items.map((item, index) => {
@@ -75,19 +69,13 @@ export const Pagination: React.FC = () => {
       })}
       <li
         className={cn(
-          styles.pagination__number,
-          styles.pagination__arrow,
-          styles.pagination__arrow_right,
-          {
-            [styles.pagination__number_disabled]: isLastPage,
-          },
-        )}
+          (styles.pagination__number),
+          (styles.pagination__arrow),
+          (styles.pagination__arrow_right), {
+            [styles.pagination__arrow_disabled]: isLastPage,
+          })}
         onClick={() => handleMoveToNextPage()}>
-        {isLastPage ? (
-          <img src={arrow} alt="Arrow Right" />
-        ) : (
-          <img src={arrowBlack} alt="Arrow Right" />
-        )}
+        <Arrow/>
       </li>
     </ul>
   );
