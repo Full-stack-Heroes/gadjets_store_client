@@ -30,7 +30,9 @@ export const Card: React.FC<Props> = ({ phone }) => {
     <div className={styles.card}>
       <img src={normalizeImage(image)} className={styles.card__product_image} />
 
-      <h2 className={styles.card__product_name}>{name}</h2>
+      <h2 className={styles.card__product_name}>
+        {name}
+      </h2>
 
       <p className={styles.card__product_price}>${price}</p>
 
@@ -42,20 +44,16 @@ export const Card: React.FC<Props> = ({ phone }) => {
 
         <p className={styles.characteristic_left}>
           <span>Capacity:</span>
-          <span className={styles.characteristic_right}>
-            {normalizeMemory(capacity)}
-          </span>
+          <span className={styles.characteristic_right}>{normalizeMemory(capacity)}</span>
         </p>
 
         <p className={styles.characteristic_left}>
           <span>RAM:</span>
-          <span className={styles.characteristic_right}>
-            {normalizeMemory(ram)}
-          </span>
+          <span className={styles.characteristic_right}>{normalizeMemory(ram)}</span>
         </p>
       </div>
 
-      <div className="styles.card__product_buttons">
+      <div className={styles.card__product_buttons}>
         <button
           className={cn(styles.button__add, {
             [styles.button__add_active]: productAdded,
@@ -66,7 +64,7 @@ export const Card: React.FC<Props> = ({ phone }) => {
 
         <button
           className={cn(styles.button__like, {
-            [styles.button__like_active]: productLiked,
+            [styles.button__like_active]: productLiked, //for future animation
           })}
           onClick={() => handleProductLiked()}>
           <img src={buttonHeart} />
