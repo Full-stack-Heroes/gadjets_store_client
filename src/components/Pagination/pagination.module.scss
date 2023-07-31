@@ -27,18 +27,20 @@
     cursor: pointer;
     transition: 0.3s;
 
-    &--last {
+    &_last {
       margin-right: 0;
     }
 
-    &--active {
+    &_active {
       color: #fff;
       background-color: #0f0f11;
       border: 1px solid #0f0f11;
     }
 
-    &--disabled {
+    &_disabled {
       color: #e2e6e9;
+      cursor: auto;
+      pointer-events: none;
     }
 
     &:hover:not(.pagination__number--disabled) {
@@ -50,13 +52,13 @@
     border-color: #b4bdc3;
     margin-right: 0;
 
-    &--right {
+    &_right {
       margin-left: 16px;
 
       transform: rotate(180deg);
     }
 
-    &--left {
+    &_left {
       margin-right: 16px;
     }
   }
