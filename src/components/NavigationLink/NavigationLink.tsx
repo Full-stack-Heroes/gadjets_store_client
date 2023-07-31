@@ -8,7 +8,7 @@ interface Props {
   linkText: string;
 }
 
-export const NavigationLink: FC<Props> = ({ to, linkText}) => {
+export const NavigationLink: FC<Props> = ({ to, linkText }) => {
   return (
     <NavLink
       to={to}
