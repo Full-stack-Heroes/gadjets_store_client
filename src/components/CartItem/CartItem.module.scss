@@ -1,0 +1,79 @@
+// rgba(226, 230, 233, 1)
+
+.item__container {
+  display: flex;
+  background-color: #fff;
+  align-items: center;
+  padding: 24px;
+  justify-content: center;
+  gap: 24px;
+  width: fit-content;
+  border-radius: 16px;
+  border: 1px solid #E2E6E9;
+
+  &_close {
+    width: 16px;
+    height: 16px;
+  }
+
+  &_phone {
+    height: 80px;
+  }
+
+  &_model {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 21px;
+    color: #0F0F11;
+  }
+
+  &_buttons {
+    display: flex;
+    gap: 13px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &_minus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 1px solid rgba(180, 189, 195, 1);
+    cursor: pointer;
+
+    &_disabled {
+      cursor: auto;
+      border: 1px solid rgba(226, 230, 233, 1);
+    }
+  }
+
+  &_number {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 21px; /* 150% */
+  }
+
+  &_plus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 1px solid rgba(180, 189, 195, 1);
+    cursor: pointer;
+  }
+
+  &_price {
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 140%;
+  }
+}
+
