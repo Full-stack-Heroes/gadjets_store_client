@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import cn from 'classnames';
-import styles from './card.module.scss';
+import styles from './Card.module.scss';
 import heart from '../../assets/icons/Heart.svg';
 import filledheart from '../../assets/icons/Heart_Filled.svg';
 import { Phone } from '../../types/phone';
@@ -49,13 +49,15 @@ export const Card: React.FC<Props> = ({ phone }) => {
 
         <p className={styles.characteristic_left}>
           <span>RAM:</span>
-          <span className={styles.characteristic_right}>{normalizeMemory(ram)}</span>
+          <span className={styles.characteristic_right}>
+            {normalizeMemory(ram)}
+          </span>
         </p>
       </div>
 
       <div className="styles.card__product_buttons">
         <button
-          className={cn((styles.button__add), {
+          className={cn(styles.button__add, {
             [styles.button__add_active]: productAdded,
           })}
           onClick={() => handleProductAdded()}>
@@ -63,7 +65,7 @@ export const Card: React.FC<Props> = ({ phone }) => {
         </button>
 
         <button
-          className={cn((styles.button__like), {
+          className={cn(styles.button__like, {
             [styles.button__like_active]: productLiked,
           })}
           onClick={() => handleProductLiked()}>
