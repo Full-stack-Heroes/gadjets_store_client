@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Card } from '../Card/Card';
-import styles from './Cards.module.scss';
+import styles from './cards.module.scss';
 import { Phone } from '../../types/phone';
 import { getPhones } from '../../utils/helpers';
 
