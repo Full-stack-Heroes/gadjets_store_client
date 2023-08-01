@@ -7,16 +7,16 @@ import { Cross } from '../Cross/Cross';
 import { Minus } from '../Minus/Minus';
 
 export const CartItem: React.FC = () => {
-  const [productNumber, setProductNumber] = useState(1);
-  const isOneProduct = productNumber === 1;
+  const [productQuantity, setProductQuantity] = useState(1);
+  const isOneProduct = productQuantity === 1;
 
-  const addProduct = () => {
-    setProductNumber((productNumber) => productNumber + 1);
+  const increaseQuantity = () => {
+    setProductQuantity((productNumber) => productNumber + 1);
   };
 
-  const deleteProduct = () => {
-    if (productNumber > 1) {
-      setProductNumber((productNumber) => productNumber - 1);
+  const decreaseQuantity = () => {
+    if (productQuantity > 1) {
+      setProductQuantity((productNumber) => productNumber - 1);
     }
   };
 
@@ -40,16 +40,16 @@ export const CartItem: React.FC = () => {
             className={cn(styles.item__container_minus, {
               [styles.item__container_minus_disabled]: isOneProduct,
             })}
-            onClick={() => deleteProduct()}>
+            onClick={decreaseQuantity}>
             <Minus/>
           </button>
 
-          <span className={styles.item__container_number}>{productNumber}</span>
+          <span className={styles.item__container_number}>{productQuantity}</span>
 
           <button
             className={styles.item__container_plus}
-            onClick={() => addProduct()}>
-            <img src={plus} alt="" />
+            onClick={increaseQuantity}>
+            <img src={plus} alt="Plus" />
           </button>
         </div>
 
