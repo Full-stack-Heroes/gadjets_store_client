@@ -1,19 +1,31 @@
 // rgba(226, 230, 233, 1)
+$primary-color: #0f0f11;
+$elements-color: #e2e6e9;
+$secondary-color: #b4bdc3;
 
 .item__container {
   display: flex;
-  background-color: #fff;
   align-items: center;
-  padding: 24px;
+  flex-direction: column;
   justify-content: center;
-  gap: 24px;
+  padding: 16px;
+  gap: 16px;
   flex-grow: 1;
+
+  background-color: #fff;
   border-radius: 16px;
-  border: 1px solid #e2e6e9;
+  border: 1px solid $elements-color;
 
   &_close {
     width: 16px;
     height: 16px;
+
+    color: $secondary-color;
+
+    :hover {
+      transition: 0.3s;
+      color: $primary-color;
+    }
   }
 
   &_phone {
@@ -21,15 +33,16 @@
   }
 
   &_model {
+    max-width: 128px;
     font-size: 14px;
     font-weight: 600;
     line-height: 21px;
-    color: #0f0f11;
+    color: $primary-color;
   }
 
   &_buttons {
     display: flex;
-    gap: 13px;
+    gap: 4px;
     align-items: center;
     justify-content: center;
   }
@@ -40,14 +53,22 @@
     align-items: center;
     width: 32px;
     height: 32px;
+
     border-radius: 50%;
     background-color: #fff;
-    border: 1px solid rgba(180, 189, 195, 1);
+    border: 1px solid $secondary-color;
     cursor: pointer;
+    transition: border 0.3s;
+    transition: color 0.3s;
 
     &_disabled {
+      color: $secondary-color;
       cursor: auto;
-      border: 1px solid rgba(226, 230, 233, 1);
+      border: 1px solid $elements-color;
+    }
+
+    &:hover:not(.item__container_minus_disabled) {
+      border: 1px solid $primary-color;
     }
   }
 
@@ -55,7 +76,10 @@
     font-size: 14px;
     font-style: normal;
     font-weight: 600;
-    line-height: 21px; /* 150% */
+    line-height: 21px;
+
+    width: 32px;
+    text-align: center;
   }
 
   &_plus {
@@ -64,15 +88,64 @@
     align-items: center;
     width: 32px;
     height: 32px;
+
     border-radius: 50%;
     background-color: #fff;
-    border: 1px solid rgba(180, 189, 195, 1);
+    border: 1px solid $secondary-color;
     cursor: pointer;
+
+    transition: border 0.3s;
+    transition: color 0.3s;
+
+    &_disabled {
+      color: $secondary-color;
+      cursor: auto;
+      border: 1px solid $elements-color;
+    }
+
+    &:hover:not(.item__container_plus_disabled) {
+      border: 1px solid $primary-color;
+    }
   }
 
   &_price {
     font-size: 22px;
     font-weight: 800;
     line-height: 140%;
+  }
+}
+
+.item_phone_info{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  align-self: stretch;
+  gap: 24px;
+}
+
+.item_price_info{
+  display: flex;
+  align-self: stretch;
+  justify-content: space-around;
+  gap: 48px;
+}
+
+
+@media screen and (min-width: 640px) {
+  .item__container {
+    flex-direction: row;
+    padding: 24px;
+    gap: 24px;
+  }
+
+  .item_phone_info{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    align-self: stretch;
+  }
+
+  .item_price_info{
+    align-self: center;
   }
 }

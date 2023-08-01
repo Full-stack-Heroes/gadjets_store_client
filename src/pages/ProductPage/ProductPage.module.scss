@@ -1,0 +1,74 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px;
+}
+
+.ProductPage {
+  margin-top: 25px;
+  margin-bottom: 80px;
+
+  &__header {
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 41px;
+    letter-spacing: -0.32px;
+
+    margin-bottom: 40px;
+  }
+}
+
+.BreadCrumb {
+  margin-bottom: 40px;
+}
+
+.GoBack {
+  margin-bottom: 16px;
+}
+
+.SectionContainer {
+  display: flex;
+  flex-basis: auto;
+  gap: 64px;
+
+  margin-bottom: 80px;
+
+  &__item {
+    flex: 1 1 0px;
+    min-height: 400px;
+
+    background-color: lightgray;
+    border-radius: 8px;
+  }
+}
+
+.PhoneDetails {
+  flex-direction: row;
+}
+
+@media screen and (max-width: 1199px) {
+  .container {
+    padding: 24px;
+  }
+
+  .PhoneParameters {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 639px) {
+  .PhoneDetails {
+    flex-direction: column;
+  }
+
+  .container {
+    padding: 16px;
+  }
+
+  .ProductPage {
+    &__header {
+      font-size: 22px;
+    }
+  }
+}

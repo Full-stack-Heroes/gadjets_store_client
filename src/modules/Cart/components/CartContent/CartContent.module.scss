@@ -2,11 +2,15 @@ $primary-color: #0f0f11;
 $elements-color: #e2e6e9;
 $secondary-color: #b4bdc3;
 
+.content {
+  display: flex;
+  justify-content: center;
+}
+
 .cart {
   display: flex;
   box-sizing: border-box;
   flex-direction: column;
-
   max-width: 1200px;
   margin: 0 16px;
   transition: 0.5s;
@@ -50,22 +54,18 @@ $secondary-color: #b4bdc3;
     justify-content: flex-start;
     flex-direction: column;
     width: 100%;
-
-    gap: 16px;
     padding-bottom: 56px;
+    gap: 16px;
   }
 
   &__items {
     display: flex;
     justify-content: center;
     flex-direction: column;
-
     gap: 16px;
     margin-bottom: 32px;
   }
-
 }
-
 
 @media screen and (min-width: 640px) {
   .cart {
@@ -76,14 +76,14 @@ $secondary-color: #b4bdc3;
     }
 
     &__back_button {
-      padding: 40px 0 16px 0 ;
+      padding: 40px 0 16px 0;
     }
   }
 }
 
 @media screen and (min-width: 1200px) {
   .cart {
-    margin: 0 auto;
+    margin: 0;
 
     &__container {
       flex-direction: row;
@@ -158,4 +158,3 @@ $secondary-color: #b4bdc3;
     }
   }
 }
-
