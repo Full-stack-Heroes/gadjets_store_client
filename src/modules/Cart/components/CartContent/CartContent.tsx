@@ -23,6 +23,8 @@ export const CartContent: FC = () => {
             <CartItem/>
             <CartItem/>
             <CartItem/>
+            <CartItem/>
+            <CartItem/>
           </div>
 
           <div className={styles.cart__checkout}>checkout</div>
