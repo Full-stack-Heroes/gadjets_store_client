@@ -1,25 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import { FC, useEffect } from 'react';
+import { connect } from 'react-redux';
 import { Card } from '../Card/Card';
 import styles from './cards.module.scss';
 import { Product } from '../../types/product';
-import { getPhones } from '../../utils/helpers';
+import { fetchPhones } from '../../actions/phonesActions';
+import { RootState } from '../../store';
 
-export const Cards: React.FC = () => {
-  const [phones, setPhones] = useState<Product[]>([]);
+interface Props {
+  phones: Product[];
+  fetchPhones: () => void;
+}
 
+const Cards: FC<Props> = ({ phones, fetchPhones }) => {
   useEffect(() => {
-    try {
-      const fetchData = async () => {
-        const fetchedPhones = await getPhones();
-
-        setPhones(fetchedPhones);
-      };
-
-      fetchData();
-    } catch {
-      console.log('Error');
-    }
-  }, []);
+    fetchPhones();
+  }, [fetchPhones]);
 
   return (
     <div className={styles.cards__container}>
@@ -29,3 +24,13 @@ export const Cards: React.FC = () => {
     </div>
   );
 };
+
+const mapStateToProps = (state: RootState) => ({
+  phones: state.phones.phones,
+});
+
+const mapDispatchToProps = {
+  fetchPhones,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cards);
