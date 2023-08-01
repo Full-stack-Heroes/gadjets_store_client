@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { FC, useState } from 'react';
 import cn from 'classnames';
 import styles from './CartItem.module.scss';
 import cross from '../../assets/icons/Close.svg';
@@ -6,17 +6,27 @@ import minus from '../../assets/icons/Minus.svg';
 import plus from '../../assets/icons/Plus.svg';
 import phone from '../../assets/6c05b192e9d229d5e415bad59e64ac49.png';
 
-export const CartItem: React.FC = () => {
-  const [productNumber, setProductNumber] = useState(1);
-  const isOneProduct = productNumber === 1;
+interface CartItemProps {
+  itemPrice: number;
+  calculateTotalCost: (amount: number, price: number) => void;
+}
+
+export const CartItem: FC<CartItemProps> = ({
+  itemPrice,
+  calculateTotalCost,
+}) => {
+  const [productAmount, setProductAmount] = useState(1);
+  const isOneProduct = productAmount === 1;
 
   const addProduct = () => {
-    setProductNumber((productNumber) => productNumber + 1);
+    setProductAmount((productAmount) => productAmount + 1);
+    calculateTotalCost(1, itemPrice);
   };
 
   const deleteProduct = () => {
-    if (productNumber > 1) {
-      setProductNumber((productNumber) => productNumber - 1);
+    if (productAmount > 1) {
+      setProductAmount((productAmount) => productAmount - 1);
+      calculateTotalCost(-1, itemPrice);
     }
   };
 
@@ -39,7 +49,7 @@ export const CartItem: React.FC = () => {
           <img src={minus} alt="" />
         </button>
 
-        <span className={styles.item__container_number}>{productNumber}</span>
+        <span className={styles.item__container_number}>{productAmount}</span>
 
         <button
           className={styles.item__container_plus}
@@ -48,7 +58,7 @@ export const CartItem: React.FC = () => {
         </button>
       </div>
 
-      <span className={styles.item__container_price}>$999</span>
+      <span className={styles.item__container_price}>${itemPrice}</span>
     </div>
   );
 };

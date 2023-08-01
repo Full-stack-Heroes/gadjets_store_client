@@ -1,8 +1,16 @@
-import React, { useState } from 'react';
+import { FC, useState } from 'react';
 import cn from 'classnames';
 import styles from './TotalCost.module.scss';
 
-export const TotalCost: React.FC = () => {
+interface TotalCostProps {
+  totalItemAmount: number;
+  totalCost: number;
+}
+
+export const TotalCost: FC<TotalCostProps> = ({
+  totalItemAmount,
+  totalCost,
+}) => {
   const [isCheckoutDone, setCheckoutDone] = useState(false);
   const buttonTitle = isCheckoutDone ? 'Thanks for shopping' : 'Checkout';
 
@@ -16,16 +24,17 @@ export const TotalCost: React.FC = () => {
 
   return (
     <div className={styles.total__container}>
-      <div className={styles.total__container_cost}>$2657</div>
+      <div className={styles.total__container_cost}>${totalCost}</div>
 
-      <div className={styles.total__container_items}>Total for X items</div>
+      <div className={styles.total__container_items}>
+        Total for {totalItemAmount} items
+      </div>
 
       <button
         className={cn(styles.total__container_button, {
           [styles.total__container_button_active]: isCheckoutDone,
         })}
-        onClick={() => handleCheckout()}
-      >
+        onClick={() => handleCheckout()}>
         {buttonTitle}
       </button>
     </div>
