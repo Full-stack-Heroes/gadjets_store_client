@@ -42,9 +42,7 @@ export const Header: FC = () => {
     <header className={cn('header')}>
       <div className={cn('container')}>
         <div className={cn('links')}>
-          <Link
-            to='/'
-          >
+          <Link to='/'>
           <img
             src={logo}
             alt="Nice Gadgets logo"
