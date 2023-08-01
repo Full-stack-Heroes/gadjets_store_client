@@ -18,5 +18,4 @@ export const Minus: FC = () => (
       />
     </g>
   </svg>
-
 );

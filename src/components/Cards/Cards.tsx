@@ -32,25 +32,24 @@ const Cards: FC<Props> = ({ phones, isLoading, fetchPhones }) => {
 
   return (
     <>
-      {isLoading
-        ? (
-          <Loader />
-        ) : (
-          <>
-            <div className={styles.cards__container}>
-              {currentPhones.map((phone) => (
-                <Card product={phone} key={phone.id} />
-              ))}
-            </div>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <div className={styles.cards__container}>
+            {currentPhones.map((phone) => (
+              <Card product={phone} key={phone.id} />
+            ))}
+          </div>
 
-            <Pagination
-              phonesCount={phones.length}
-              itemsPerPage={itemsPerPage}
-              currentPage={currentPage}
-              onPageChange={handlePageChange}
-            />
-          </>
-        )}
+          <Pagination
+            phonesCount={phones.length}
+            itemsPerPage={itemsPerPage}
+            currentPage={currentPage}
+            onPageChange={handlePageChange}
+          />
+        </>
+      )}
     </>
   );
 };
