@@ -1,6 +1,6 @@
 import { client } from '../utils/fetchClient';
-import { Phone } from '../types/phone';
+import { Product } from '../types/product';
 
 export const getProducts = () => {
-  return client.get<Phone[]>('/products');
+  return client.get<Product[]>('/products');
 };
