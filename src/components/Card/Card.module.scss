@@ -10,6 +10,12 @@
   border-radius: 8px;
   border: 1px solid var(--gray-elements, #e2e6e9);
   box-shadow: 0 2 16 0 rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+
+  &:hover {
+    box-shadow: rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+  }
 
   &__product_image {
     height: 200px;
