@@ -2,6 +2,11 @@ $primary-color: #0f0f11;
 $elements-color: #e2e6e9;
 $secondary-color: #b4bdc3;
 
+.content {
+  display: flex;
+  justify-content: center;
+}
+
 .cart {
   display: flex;
   box-sizing: border-box;
@@ -75,7 +80,7 @@ $secondary-color: #b4bdc3;
 
 @media screen and (min-width: 1200px) {
   .cart {
-    margin: 0 auto;
+    margin: 0;
 
     &__container {
       flex-direction: row;

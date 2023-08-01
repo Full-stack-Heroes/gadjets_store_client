@@ -12,7 +12,7 @@ export const CartContent: FC = () => {
   return (
     <section className={styles.content}>
       <div className={styles.cart}>
-        <div
+        <span
           className={styles.cart__back_button}
           onClick={() => handleGoBack()}
         >
@@ -20,11 +20,11 @@ export const CartContent: FC = () => {
             <Arrow/>
           </div>
           Back
-        </div>
+        </span>
 
-        <div className={styles.cart__title}>
+        <h1 className={styles.cart__title}>
            Cart
-        </div>
+        </h1>
 
         <div className={styles.cart__container}>
           <div className={styles.cart__items}>
