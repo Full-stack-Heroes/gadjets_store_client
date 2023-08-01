@@ -8,13 +8,21 @@ export const setPhones = (phones: Product[]) => ({
   payload: phones,
 });
 
+const setLoading = (isLoading: boolean) => ({
+  type: 'SET_LOADING',
+  payload: isLoading,
+});
+
 export const fetchPhones = () => {
   return async (dispatch: Dispatch /* getState: () => RootState */) => {
     try {
+      dispatch(setLoading(true));
       const fetchedPhones = await getPhones();
       dispatch(setPhones(fetchedPhones));
     } catch (error) {
       console.error('Error fetching phones', error);
+    } finally {
+      dispatch(setLoading(false));
     }
   };
 };
