@@ -1,48 +1,50 @@
+$primary-color: #0f0f11;
+$elements-color: #e2e6e9;
+$secondary-color: #b4bdc3;
+
 .cart {
   display: flex;
   box-sizing: border-box;
   flex-direction: column;
+
+  max-width: 1200px;
   margin: 0 16px;
+
   &__arrow {
-    color: #0F0F11;
+    color: $primary-color;
   }
 
   &__back_button {
     display: flex;
-    // align-self: start;
-
     padding: 24px 0;
 
     font-size: 12px;
     font-weight: 700;
-    color: #89939A;
+    color: $secondary-color;
 
     cursor: pointer;
     &:hover {
       transition: 0.3s;
-      color: #0F0F11;
-
+      color: $primary-color;
     }
   }
 
   &__title {
-    // align-self: start;
     padding-bottom: 32px;
 
     font-size: 48px;
     font-weight: 800;
     line-height: 140%;
-
   }
 
   &__container {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
+    width: 100%;
+
     gap: 16px;
     padding-bottom: 56px;
-
-    width: 100%;
   }
 
   &__items {
@@ -73,7 +75,6 @@
 
 @media screen and (min-width: 1200px) {
   .cart {
-    width: 80%;
     margin: 0 auto;
 
     &__container {
