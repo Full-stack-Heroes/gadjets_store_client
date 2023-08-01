@@ -11,7 +11,7 @@ export const ProductPage:FC = () => {
   // const { productId } = useParams(); // id to fetch from products/id
 
   return (
-    <div className={`${styles.container} ${styles.ProductPage}`}>
+    <div className="container ProductPage">
       {/* TODO: Configure breadcrumb */}
       <BreadCrumbs className={styles.BreadCrumb}/>
       <GoBack className={styles.GoBack}/>
