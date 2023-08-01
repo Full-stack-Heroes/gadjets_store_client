@@ -3,14 +3,14 @@ import cn from 'classnames';
 import styles from './Card.module.scss';
 import heart from '../../assets/icons/Heart.svg';
 import filledheart from '../../assets/icons/Heart_Filled.svg';
-import { Phone } from '../../types/phone';
+import { Product } from '../../types/product';
 import { normalizeImage, normalizeMemory } from '../../utils/helpers';
 
 interface Props {
-  phone: Phone;
+  product: Product;
 }
 
-export const Card: React.FC<Props> = ({ phone }) => {
+export const Card: React.FC<Props> = ({ product }) => {
   const [productAdded, setProductAdded] = useState(false);
   const [productLiked, setProductLiked] = useState(false);
   const buttonText = productAdded ? 'added' : 'add to cart';
@@ -24,15 +24,13 @@ export const Card: React.FC<Props> = ({ phone }) => {
     setProductLiked(!productLiked);
   };
 
-  const { image, name, price, screen, capacity, ram } = phone;
+  const { image, name, price, screen, capacity, ram } = product;
 
   return (
     <div className={styles.card}>
       <img src={normalizeImage(image)} className={styles.card__product_image} />
 
-      <h2 className={styles.card__product_name}>
-        {name}
-      </h2>
+      <h2 className={styles.card__product_name}>{name}</h2>
 
       <p className={styles.card__product_price}>${price}</p>
 
@@ -44,12 +42,16 @@ export const Card: React.FC<Props> = ({ phone }) => {
 
         <p className={styles.characteristic_left}>
           <span>Capacity:</span>
-          <span className={styles.characteristic_right}>{normalizeMemory(capacity)}</span>
+          <span className={styles.characteristic_right}>
+            {normalizeMemory(capacity)}
+          </span>
         </p>
 
         <p className={styles.characteristic_left}>
           <span>RAM:</span>
-          <span className={styles.characteristic_right}>{normalizeMemory(ram)}</span>
+          <span className={styles.characteristic_right}>
+            {normalizeMemory(ram)}
+          </span>
         </p>
       </div>
 
