@@ -2,6 +2,7 @@ import { FC } from 'react';
 import styles from './CartContent.module.scss';
 import { Arrow } from '../../../../components/Arrow/Arrow';
 import { CartItem } from '../../../../components/CartItem/CartItem';
+import { TotalCost } from '../../../../components/TotalCost/TotalCost';
 
 export const CartContent: FC = () => {
   return (
@@ -24,10 +25,10 @@ export const CartContent: FC = () => {
             <CartItem/>
             <CartItem/>
             <CartItem/>
-            <CartItem/>
+            <CartItem />
           </div>
 
-          <div className={styles.cart__checkout}>checkout</div>
+          <div className={styles.cart__checkout}><TotalCost /></div>
         </div>
       </div>
     </section>
