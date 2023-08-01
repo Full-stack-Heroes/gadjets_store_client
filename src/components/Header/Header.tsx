@@ -3,7 +3,7 @@ import styles from './Header.module.scss';
 import logo from '../../assets/images/Logo.svg';
 import like from '../../assets/icons/Heart.svg';
 import cart from '../../assets/icons/Cart.svg';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { NavigationLink } from '../NavigationLink';
 import { BurgerMenuButton } from '../BurgerMenuButton';
 import classNames from 'classnames/bind';
@@ -42,13 +42,13 @@ export const Header: FC = () => {
     <header className={cn('header')}>
       <div className={cn('container')}>
         <div className={cn('links')}>
-          <Link to="/">
+          <NavLink to="/">
             <img
               src={logo}
               alt="Nice Gadgets logo"
               className={cn('header__logo')}
             />
-          </Link>
+          </NavLink>
 
           {!isMenuOpen && (
             <nav className={cn('nav')}>
@@ -61,21 +61,35 @@ export const Header: FC = () => {
         </div>
 
         <div className={cn('header__service')}>
-          <Link className={cn('service_btn')} to="/favourites">
+          <NavLink
+            to="/favourites"
+            className={({ isActive }) =>
+              cn('service_btn', {
+                active: isActive,
+              })
+            }
+          >
             <img
               src={like}
               alt="like button"
               className={cn('service_btn_img')}
             />
-          </Link>
+          </NavLink>
 
-          <Link to="/cart" className={cn('service_btn')}>
+          <NavLink
+            to="/cart"
+            className={({ isActive }) =>
+              cn('service_btn', {
+                active: isActive,
+              })
+            }
+          >
             <img
               src={cart}
               alt="like button"
               className={cn('service_btn_img')}
             />
-          </Link>
+          </NavLink>
         </div>
 
         <BurgerMenuButton
