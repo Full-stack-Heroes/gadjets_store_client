@@ -36,11 +36,21 @@
     font-size: 22px;
     position: relative;
     font-style: normal;
-    font-weight: 800;
     line-height: 140%;
     margin-bottom: 16px;
 
     color: rgba(15, 15, 17, 1);
+
+    &_discount {
+      font-weight: 800;
+      margin-right: 10px;
+    }
+
+    &_full {
+      font-weight: 400;
+      color: #89939a;
+      text-decoration: line-through;
+    }
 
     &::after {
       position: absolute;
