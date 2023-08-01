@@ -3,15 +3,9 @@ import { Link } from 'react-router-dom';
 import styles from './Footer.module.scss';
 import logo from '../../assets/images/Logo.svg';
 import Up from '../../assets/icons/Arrow.svg';
+import { scrollToTop } from '../../utils/helpers';
 
 export const Footer: FC = () => {
-  const handleScrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
-
   return (
     <footer className={styles.footer}>
       <div className={styles.footer__container}>
@@ -37,7 +31,7 @@ export const Footer: FC = () => {
 
         <div
           className={styles.footer__container__up}
-          onClick={() => handleScrollToTop()}>
+          onClick={() => scrollToTop()}>
           <span className={styles.up__text}>Back to top</span>
           <button className={styles.button__up}>
             <img src={Up} alt="go up button" />
