@@ -1,4 +1,4 @@
-import React from 'react';
+import { FC } from 'react';
 import cn from 'classnames';
 import styles from './TotalCost.module.scss';
 
@@ -8,7 +8,7 @@ type Props = {
   isCheckoutDone: boolean;
 }
 
-export const TotalCost: React.FC<Props> = ({
+export const TotalCost: FC<Props> = ({
   setCheckoutDone,
   setShowSuccess,
   isCheckoutDone,

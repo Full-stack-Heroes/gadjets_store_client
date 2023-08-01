@@ -1,4 +1,5 @@
 import { FC, useState } from 'react';
+import { Link } from 'react-router-dom';
 import like from '../../assets/icons/Heart.svg';
 import cart from '../../assets/icons/Cart.svg';
 import styles from './BurgerMenuOpened.module.scss';
@@ -30,7 +31,8 @@ export const BurgerMenuOpened: FC<BurgerMenuProps> = ({ isMenuOpen, setIsMenuOpe
       </div>
 
       <div className={cn(isMenuOpen ? 'burger__service' : '')}>
-        <button
+        <Link
+          to='/favourites'
           className={cn(
             'service__button',
             'service__like',
@@ -43,9 +45,10 @@ export const BurgerMenuOpened: FC<BurgerMenuProps> = ({ isMenuOpen, setIsMenuOpe
             alt="like button"
             className={cn('like')}
           />
-        </button>
+        </Link>
 
-        <button
+        <Link
+          to='/cart'
           className={cn(
             'service__button',
             'service__cart',
@@ -58,7 +61,7 @@ export const BurgerMenuOpened: FC<BurgerMenuProps> = ({ isMenuOpen, setIsMenuOpe
             alt="cart button"
             className={cn('cart')}
           />
-        </button>
+        </Link>
       </div>
     </div>
   );
