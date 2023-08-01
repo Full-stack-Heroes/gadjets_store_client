@@ -1,6 +1,7 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 32px;
 }
 
 .ProductPage {
@@ -19,7 +20,6 @@
 };
 
 .BreadCrumb {
-  grid-column: 1 / -1;
   margin-bottom: 40px;
 }
 
@@ -42,6 +42,38 @@
     border-radius: 8px;
   }
 }
-.SelectPhoneParams {
-  flex: 1 1 0px;
+
+.PhoneDetails {
+  flex-direction: row;
+}
+
+@media screen and (max-width: 1199px) {
+  .container {
+    padding: 24px;
+  }
+
+  .PhoneParameters {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 779px) {
+
+}
+
+@media screen and (max-width: 639px) {
+
+  .PhoneDetails {
+    flex-direction: column;
+  }
+
+  .container {
+    padding: 16px;
+  }
+
+  .ProductPage {
+    &__header {
+      font-size: 22px;
+    }
+  }
 }
