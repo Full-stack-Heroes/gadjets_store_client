@@ -5,19 +5,26 @@ $secondary-color: #b4bdc3;
 
 .item__container {
   display: flex;
-  background-color: #fff;
   align-items: center;
-  padding: 24px;
   justify-content: center;
+  padding: 24px;
   gap: 24px;
   flex-grow: 1;
+
+  background-color: #fff;
   border-radius: 16px;
   border: 1px solid $elements-color;
 
   &_close {
-    color: $secondary-color;
     width: 16px;
     height: 16px;
+
+    color: $secondary-color;
+
+    :hover {
+      transition: 0.3s;
+      color: $primary-color;
+    }
   }
 
   &_phone {
@@ -33,7 +40,7 @@ $secondary-color: #b4bdc3;
 
   &_buttons {
     display: flex;
-    gap: 13px;
+    gap: 4px;
     align-items: center;
     justify-content: center;
   }
@@ -44,15 +51,22 @@ $secondary-color: #b4bdc3;
     align-items: center;
     width: 32px;
     height: 32px;
+
     border-radius: 50%;
     background-color: #fff;
     border: 1px solid $secondary-color;
     cursor: pointer;
+    transition: border 0.3s;
+    transition: color 0.3s;
 
     &_disabled {
       color: $secondary-color;
       cursor: auto;
       border: 1px solid $elements-color;
+    }
+
+    &:hover:not(.item__container_minus_disabled) {
+      border: 1px solid $primary-color;
     }
   }
 
@@ -72,10 +86,24 @@ $secondary-color: #b4bdc3;
     align-items: center;
     width: 32px;
     height: 32px;
+
     border-radius: 50%;
     background-color: #fff;
     border: 1px solid $secondary-color;
     cursor: pointer;
+
+    transition: border 0.3s;
+    transition: color 0.3s;
+
+    &_disabled {
+      color: $secondary-color;
+      cursor: auto;
+      border: 1px solid $elements-color;
+    }
+
+    &:hover:not(.item__container_plus_disabled) {
+      border: 1px solid $primary-color;
+    }
   }
 
   &_price {
@@ -98,12 +126,30 @@ $secondary-color: #b4bdc3;
 }
 
 
+// @media screen and (min-width: 640px) {
+//   .item__container {
+//     flex-direction: row;
+//     padding: 24px;
+//     gap: 24px;
+//   }
+
+//   .item_phone_info{
+//     display: flex;
+//     align-items: center;
+//     justify-content: space-around;
+//     align-self: stretch;
+//   }
+
+//   .item_price_info{
+//     align-self: center;
+//   }
+// }
+
 @media screen and (max-width: 639px) {
   .item__container {
     flex-direction: column;
     padding: 16px;
     gap: 16px;
-    // flex-grow: 1;
 
     &_model {
       max-width: 128px;
