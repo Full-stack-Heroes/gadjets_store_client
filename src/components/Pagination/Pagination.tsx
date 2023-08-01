@@ -42,13 +42,15 @@ export const Pagination: React.FC = () => {
     <ul className={styles.pagination}>
       <li
         className={cn(
-          (styles.pagination__number),
-          (styles.pagination__arrow),
-          (styles.pagination__arrow_left), {
-            [styles.pagination__arrow_disabled]: isFirstPage
-          })}
+          styles.pagination__number,
+          styles.pagination__arrow,
+          styles.pagination__arrow_left,
+          {
+            [styles.pagination__arrow_disabled]: isFirstPage,
+          },
+        )}
         onClick={() => handleMoveToPreviousPage()}>
-        <Arrow/>
+        <Arrow />
       </li>
 
       {items.map((item, index) => {
@@ -69,13 +71,15 @@ export const Pagination: React.FC = () => {
       })}
       <li
         className={cn(
-          (styles.pagination__number),
-          (styles.pagination__arrow),
-          (styles.pagination__arrow_right), {
+          styles.pagination__number,
+          styles.pagination__arrow,
+          styles.pagination__arrow_right,
+          {
             [styles.pagination__arrow_disabled]: isLastPage,
-          })}
+          },
+        )}
         onClick={() => handleMoveToNextPage()}>
-        <Arrow/>
+        <Arrow />
       </li>
     </ul>
   );

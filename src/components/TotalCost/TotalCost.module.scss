@@ -4,7 +4,7 @@
   align-items: center;
   flex-direction: column;
   border-radius: 16px;
-  border: 1px solid #E2E6E9;
+  border: 1px solid #e2e6e9;
   padding: 24px;
   width: 420px;
   margin: 20px;
@@ -12,13 +12,13 @@
   &_cost {
     font-size: 32px;
     font-weight: 800;
-    line-height: 41px; /* 128.125% */
+    line-height: 41px;
     letter-spacing: -0.32px;
     text-align: center;
   }
 
   &_items {
-    color: #89939A;
+    color: #89939a;
     text-align: center;
     font-size: 14px;
     font-style: normal;
@@ -34,15 +34,29 @@
     justify-content: center;
     align-items: center;
     border-radius: 48px;
-    background: #4219D0;
+    background: #4219d0;
     border: none;
-    color: #FFF;
+    color: #fff;
     text-align: center;
     font-size: 14px;
     font-style: normal;
     font-weight: 700;
     line-height: 21px;
     margin-top: 48px;
+    transition: 0.3;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 0px 3px 13px 0px rgba(23, 32, 49, 0.4);
+    }
+
+    &_active {
+      transition: 0.3s;
+      background-color: #fff;
+      color: #4219d0;
+      border: 1px solid #e2e6e9;
+      box-shadow: none;
+    }
 
     &::before {
       position: absolute;

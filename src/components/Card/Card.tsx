@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import cn from 'classnames';
-import styles from './Card.module.scss'
+import styles from './Card.module.scss';
 import heart from '../../assets/icons/Heart.svg';
 import filledheart from '../../assets/icons/Heart_Filled.svg';
-import phone from '../../assets/6c05b192e9d229d5e415bad59e64ac49.png';
+import { Phone } from '../../types/phone';
+import { normalizeImage, normalizeMemory } from '../../utils/helpers';
 
-interface CardProps {
-  className?: string;
+interface Props {
+  phone: Phone;
 }
 
-export const Card: React.FC<CardProps> = ({ className }) => {
+export const Card: React.FC<Props> = ({ phone }) => {
   const [productAdded, setProductAdded] = useState(false);
   const [productLiked, setProductLiked] = useState(false);
   const buttonText = productAdded ? 'added' : 'add to cart';
@@ -23,30 +24,32 @@ export const Card: React.FC<CardProps> = ({ className }) => {
     setProductLiked(!productLiked);
   };
 
+  const { image, name, price, screen, capacity, ram } = phone;
+
   return (
-    <div className={`${styles.card} ${className}`}>
-      <img src={phone} className={styles.card__product_image} />
+    <div className={styles.card}>
+      <img src={normalizeImage(image)} className={styles.card__product_image} />
 
       <h2 className={styles.card__product_name}>
-        Apple iPhone Xs 64GB Silver (iMT9G2FSA)
+        {name}
       </h2>
 
-      <p className={styles.card__product_price}>$999</p>
+      <p className={styles.card__product_price}>${price}</p>
 
       <div className={styles.card__product_characteristics}>
         <p className={styles.characteristic_left}>
           <span>Screen:</span>
-          <span className={styles.characteristic_right}>5.8&apos;&apos; OLED</span>
+          <span className={styles.characteristic_right}>{screen}</span>
         </p>
 
         <p className={styles.characteristic_left}>
           <span>Capacity:</span>
-          <span className={styles.characteristic_right}>64 GB</span>
+          <span className={styles.characteristic_right}>{normalizeMemory(capacity)}</span>
         </p>
 
         <p className={styles.characteristic_left}>
           <span>RAM:</span>
-          <span className={styles.characteristic_right}>4 GB</span>
+          <span className={styles.characteristic_right}>{normalizeMemory(ram)}</span>
         </p>
       </div>
 
