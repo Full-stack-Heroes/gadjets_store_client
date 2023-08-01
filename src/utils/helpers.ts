@@ -19,3 +19,10 @@ export const normalizeMemory = (memory: string) => {
 
   return capacity + ' GB';
 };
+
+export const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+};
