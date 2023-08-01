@@ -6,9 +6,10 @@ $secondary-color: #b4bdc3;
 .item__container {
   display: flex;
   align-items: center;
+  flex-direction: column;
   justify-content: center;
-  padding: 24px;
-  gap: 24px;
+  padding: 16px;
+  gap: 16px;
   flex-grow: 1;
 
   background-color: #fff;
@@ -32,6 +33,7 @@ $secondary-color: #b4bdc3;
   }
 
   &_model {
+    max-width: 128px;
     font-size: 14px;
     font-weight: 600;
     line-height: 21px;
@@ -116,44 +118,24 @@ $secondary-color: #b4bdc3;
 .item_phone_info{
   display: flex;
   align-items: center;
+  justify-content: space-around;
+  align-self: stretch;
   gap: 24px;
 }
 
 .item_price_info{
   display: flex;
+  align-self: stretch;
   justify-content: space-around;
   gap: 48px;
 }
 
 
-// @media screen and (min-width: 640px) {
-//   .item__container {
-//     flex-direction: row;
-//     padding: 24px;
-//     gap: 24px;
-//   }
-
-//   .item_phone_info{
-//     display: flex;
-//     align-items: center;
-//     justify-content: space-around;
-//     align-self: stretch;
-//   }
-
-//   .item_price_info{
-//     align-self: center;
-//   }
-// }
-
-@media screen and (max-width: 639px) {
+@media screen and (min-width: 640px) {
   .item__container {
-    flex-direction: column;
-    padding: 16px;
-    gap: 16px;
-
-    &_model {
-      max-width: 128px;
-    }
+    flex-direction: row;
+    padding: 24px;
+    gap: 24px;
   }
 
   .item_phone_info{
@@ -164,10 +146,6 @@ $secondary-color: #b4bdc3;
   }
 
   .item_price_info{
-    display: flex;
-    justify-content: space-around;
-    align-self: stretch;
-    gap: 48px;
+    align-self: center;
   }
 }
-
