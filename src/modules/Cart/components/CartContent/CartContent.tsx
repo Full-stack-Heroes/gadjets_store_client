@@ -5,10 +5,17 @@ import { CartItem } from '../../../../components/CartItem/CartItem';
 import { TotalCost } from '../../../../components/TotalCost/TotalCost';
 
 export const CartContent: FC = () => {
+  const handleGoBack = () => {
+    window.history.back();
+  };
+
   return (
     <section className={styles.content}>
       <div className={styles.cart}>
-        <div className={styles.cart__back_button}>
+        <div
+          className={styles.cart__back_button}
+          onClick={() => handleGoBack()}
+        >
           <div className={styles.cart__arrow}>
             <Arrow/>
           </div>

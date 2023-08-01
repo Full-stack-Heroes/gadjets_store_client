@@ -22,17 +22,17 @@ export const Footer: FC = () => {
         </div>
 
         <div className={styles.footer__container__links}>
-          <a
-            href="https://github.com/fe-apr23-full-stack-heroes"
+          <Link
+            to="https://github.com/fe-apr23-full-stack-heroes"
             className={styles.link}>
             github
-          </a>
-          <a href="#contacts" className={styles.link}>
+          </Link>
+          <Link to="/contacts" className={styles.link}>
             contacts
-          </a>
-          <a href="#rights" className={styles.link}>
+          </Link>
+          <Link to="/rights" className={styles.link}>
             rights
-          </a>
+          </Link>
         </div>
 
         <div
