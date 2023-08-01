@@ -1,25 +1,15 @@
 import { FC } from 'react';
 import styles from './CartContent.module.scss';
-import { Arrow } from '../../../../components/Arrow/Arrow';
 import { CartItem } from '../../../../components/CartItem/CartItem';
 import { TotalCost } from '../../../../components/TotalCost/TotalCost';
+import { BackLink } from '../../../../components/BackLink/BackLink';
 
 export const CartContent: FC = () => {
-  const handleGoBack = () => {
-    window.history.back();
-  };
 
   return (
     <section className={styles.content}>
       <div className={styles.cart}>
-        <span
-          className={styles.cart__back_button}
-          onClick={() => handleGoBack()}>
-          <div className={styles.cart__arrow}>
-            <Arrow />
-          </div>
-          Back
-        </span>
+        <BackLink/>
 
         <h1 className={styles.cart__title}>Cart</h1>
 
