@@ -1,4 +1,6 @@
-export const Cross: React.FC = () => (
+import { FC } from 'react';
+
+export const Cross: FC = () => (
   <svg
     width="16"
     height="16"

@@ -1,4 +1,6 @@
-export const Minus: React.FC = () => (
+import { FC } from 'react';
+
+export const Minus: FC = () => (
   <svg
     width="16"
     height="16"
