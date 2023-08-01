@@ -1,50 +1,87 @@
-import { FC } from 'react';
+import { FC, useState, useEffect } from 'react';
 import styles from './Header.module.scss';
 import logo from '../../assets/images/Logo.svg';
 import like from '../../assets/icons/Heart.svg';
 import cart from '../../assets/icons/Cart.svg';
 import { NavigationLink } from '../NavigationLink';
-import { BurgerMenu } from '../BurgerMenu';
+import { BurgerMenuButton } from '../BurgerMenuButton';
+import classNames from 'classnames/bind';
+import { BurgerMenuOpened } from '../BurgerMenuOpened';
+
+const cn = classNames.bind(styles);
 
 export const Header: FC = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Opened burger and increasing width 640+ not hidding header elems
+  const handleWindowResize = () => {
+    if (window.innerWidth > 640 && isMenuOpen) {
+      setIsMenuOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleWindowResize);
+
+    return () => {
+      window.removeEventListener('resize', handleWindowResize);
+    };
+  }, [isMenuOpen]);
+
+  // Remove scrollbar when burger opened.
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [isMenuOpen]);
+
   return (
-    <header className={styles.header}>
-      <div className={styles.container}>
-        <div className={styles.links}>
+    <header className={cn('header')}>
+      <div className={cn('container')}>
+        <div className={cn('links')}>
           <img
             src={logo}
             alt="Nice Gadgets logo"
-            className={styles.header__logo}
+            className={cn('header__logo')}
           />
 
-          <nav className={styles.nav}>
+          {!isMenuOpen && <nav className={cn('nav')}>
             <NavigationLink to="/" linkText="Home" />
             <NavigationLink to="/phones" linkText="Phones" />
             <NavigationLink to="/tablets" linkText="Tablets" />
             <NavigationLink to="/accessories" linkText="Accessories" />
-          </nav>
+          </nav>}
         </div>
 
-        <div className={styles.header__service}>
-          <button className={styles.service_btn}>
+        <div className={cn('header__service')}>
+          <button className={cn('service_btn')}>
             <img
               src={like}
               alt="like button"
-              className={styles.service_btn_img}
+              className={cn('service_btn_img')}
             />
           </button>
 
-          <button className={styles.service_btn}>
+          <button className={cn('service_btn')}>
             <img
               src={cart}
               alt="like button"
-              className={styles.service_btn_img}
+              className={cn('service_btn_img')}
             />
           </button>
-
-          <BurgerMenu />
         </div>
+
+        <BurgerMenuButton isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen}/>
       </div>
+
+      {isMenuOpen && (
+        <BurgerMenuOpened
+          isMenuOpen={isMenuOpen}
+          setIsMenuOpen={setIsMenuOpen}
+        />
+      )}
     </header>
   );
 };

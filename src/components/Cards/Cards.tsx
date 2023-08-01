@@ -1,31 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Card } from '../Card/Card';
-import styles from './cards.module.scss';
-import { Phone } from '../../types/phone';
-import { getPhones } from '../../utils/helpers';
+import './cards.scss';
 
 export const Cards: React.FC = () => {
-  const [phones, setPhones] = useState<Phone[]>([]);
-
-  useEffect(() => {
-    try {
-      const fetchData = async () => {
-        const fetchedPhones = await getPhones();
-
-        setPhones(fetchedPhones);
-      };
-
-      fetchData();
-    } catch {
-      console.log('Error');
-    }
-  }, []);
-
   return (
-    <div className={styles.cards__container}>
-      {phones.slice(3, 19).map((phone) => (
-        <Card phone={phone} key={phone.id} />
-      ))}
+    <div className="cards__container">
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
     </div>
   );
 };

@@ -6,5 +6,9 @@ interface HomeLayoutProps {
 }
 
 export const HomeLayout: FC<HomeLayoutProps> = ({ children }) => {
-  return <div className={styles.container}>{children}</div>;
+  return (
+    <div className={styles.container}>
+      {children}
+    </div>
+  );
 };

@@ -1,16 +1,11 @@
 import React, { useState } from 'react';
 import cn from 'classnames';
-import styles from './Card.module.scss';
+import './card.scss';
 import heart from '../../assets/icons/Heart.svg';
 import filledheart from '../../assets/icons/Heart_Filled.svg';
-import { Phone } from '../../types/phone';
-import { normalizeImage, normalizeMemory } from '../../utils/helpers';
+import phone from '../../assets/6c05b192e9d229d5e415bad59e64ac49.png';
 
-interface Props {
-  phone: Phone;
-}
-
-export const Card: React.FC<Props> = ({ phone }) => {
+export const Card: React.FC = () => {
   const [productAdded, setProductAdded] = useState(false);
   const [productLiked, setProductLiked] = useState(false);
   const buttonText = productAdded ? 'added' : 'add to cart';
@@ -24,47 +19,45 @@ export const Card: React.FC<Props> = ({ phone }) => {
     setProductLiked(!productLiked);
   };
 
-  const { image, name, price, screen, capacity, ram } = phone;
-
   return (
-    <div className={styles.card}>
-      <img src={normalizeImage(image)} className={styles.card__product_image} />
+    <div className="card">
+      <img src={phone} className="card__product-image" />
 
-      <h2 className={styles.card__product_name}>
-        {name}
+      <h2 className="card__product-name">
+        Apple iPhone Xs 64GB Silver (iMT9G2FSA)
       </h2>
 
-      <p className={styles.card__product_price}>${price}</p>
+      <p className="card__product-price">$999</p>
 
-      <div className={styles.card__product_characteristics}>
-        <p className={styles.characteristic_left}>
+      <div className="card__product--characteristics">
+        <p className="characteristic--left">
           <span>Screen:</span>
-          <span className={styles.characteristic_right}>{screen}</span>
+          <span className="characteristic--right">5.8&apos;&apos; OLED</span>
         </p>
 
-        <p className={styles.characteristic_left}>
+        <p className="characteristic--left">
           <span>Capacity:</span>
-          <span className={styles.characteristic_right}>{normalizeMemory(capacity)}</span>
+          <span className="characteristic--right">64 GB</span>
         </p>
 
-        <p className={styles.characteristic_left}>
+        <p className="characteristic--left">
           <span>RAM:</span>
-          <span className={styles.characteristic_right}>{normalizeMemory(ram)}</span>
+          <span className="characteristic--right">4 GB</span>
         </p>
       </div>
 
-      <div className={styles.card__product_buttons}>
+      <div className="card__product--buttons">
         <button
-          className={cn(styles.button__add, {
-            [styles.button__add_active]: productAdded,
+          className={cn('button--add', {
+            'button--add--active': productAdded,
           })}
           onClick={() => handleProductAdded()}>
           {buttonText}
         </button>
 
         <button
-          className={cn(styles.button__like, {
-            [styles.button__like_active]: productLiked, //for future animation
+          className={cn('button--like', {
+            'button--like--active': productLiked,
           })}
           onClick={() => handleProductLiked()}>
           <img src={buttonHeart} />

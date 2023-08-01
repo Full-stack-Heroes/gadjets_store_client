@@ -1,6 +1,10 @@
 .header {
+  position: sticky;
+  top: 0;
   height: 64px;
   border-bottom: 1px solid #e2e6e9;
+  background: var(--gray-white, #FFF);
+  z-index: 10;
 
   &__logo {
     display: block;
@@ -73,7 +77,15 @@
 }
 
 @media (max-width: 639px) {
+  .container {
+    padding: 0;
+  }
+
   .service_btn {
+    display: none;
+  }
+
+  .nav {
     display: none;
   }
 }

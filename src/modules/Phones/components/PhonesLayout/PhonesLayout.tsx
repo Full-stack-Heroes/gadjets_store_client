@@ -6,5 +6,9 @@ interface PhonesLayoutProps {
 }
 
 export const PhonesLayout: FC<PhonesLayoutProps> = ({ children }) => {
-  return <div className={styles.container}>{children}</div>;
+  return (
+    <div className={styles.container}>
+      {children}
+    </div>
+  );
 };

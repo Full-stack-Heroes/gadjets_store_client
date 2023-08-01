@@ -47,7 +47,7 @@ export const App = createBrowserRouter([
       },
       {
         path: 'contacts',
-        element: <ContactsPage />,
+        element: <ContactsPage/>,
       },
       {
         path: 'rights',
