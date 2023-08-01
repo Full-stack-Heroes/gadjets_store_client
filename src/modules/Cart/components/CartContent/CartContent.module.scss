@@ -9,6 +9,14 @@ $secondary-color: #b4bdc3;
 
   max-width: 1200px;
   margin: 0 16px;
+  transition: 0.5s;
+
+  &Active {
+    transition: 0.5s;
+    filter: blur(20px);
+    pointer-events: none;
+    user-select: none;
+  }
 
   &__arrow {
     color: $primary-color;
@@ -80,6 +88,73 @@ $secondary-color: #b4bdc3;
     &__container {
       flex-direction: row;
       padding-bottom: 80px;
+    }
+  }
+}
+
+.PopupContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 50px;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+  background-color: white;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.5s;
+
+  &_Active {
+    top: 50%;
+    visibility: visible;
+    opacity: 1;
+    transition: 0.5s;
+  }
+
+  &Image {
+    width: 32px;
+  }
+
+  &Thanks {
+    font-size: 32px;
+    font-weight: 700;
+  }
+
+  &Message {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+
+  &Button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 100%;
+
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 21px;
+    text-transform: uppercase;
+
+    border: none;
+    border-radius: 48px;
+
+    background: #4219d0;
+    color: #fff;
+
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      box-shadow: 0px 3px 13px 0px rgba(23, 32, 49, 0.4);
     }
   }
 }

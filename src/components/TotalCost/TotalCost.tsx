@@ -1,9 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import cn from 'classnames';
 import styles from './TotalCost.module.scss';
 
-export const TotalCost: React.FC = () => {
-  const [isCheckoutDone, setCheckoutDone] = useState(false);
+type Props = {
+  setCheckoutDone: (val: boolean) => void;
+  setShowSuccess: (cal: boolean) => void;
+  isCheckoutDone: boolean;
+}
+
+export const TotalCost: React.FC<Props> = ({
+  setCheckoutDone,
+  setShowSuccess,
+  isCheckoutDone,
+}) => {
   const buttonTitle = isCheckoutDone ? 'Thanks for shopping' : 'Checkout';
 
   const handleCheckout = () => {
@@ -11,6 +20,7 @@ export const TotalCost: React.FC = () => {
       window.location.href = '/';
     } else {
       setCheckoutDone(true);
+      setShowSuccess(true);
     }
   };
 
