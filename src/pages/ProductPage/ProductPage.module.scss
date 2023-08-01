@@ -1,0 +1,47 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.ProductPage {
+  margin-top: 25px;
+  margin-bottom: 80px;
+
+  &__header {
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 41px;
+    letter-spacing: -0.32px;
+
+    margin-bottom: 40px;
+  }
+};
+
+.BreadCrumb {
+  grid-column: 1 / -1;
+  margin-bottom: 40px;
+}
+
+.GoBack {
+  margin-bottom: 16px;
+}
+
+.SectionContainer {
+  display: flex;
+  flex-basis: auto;
+  gap: 64px;
+
+  margin-bottom: 80px;
+
+  &__item {
+    flex: 1 1 0px;
+    min-height: 400px;
+
+    background-color: lightgray;
+    border-radius: 8px;
+  }
+}
+.SelectPhoneParams {
+  flex: 1 1 0px;
+}
