@@ -21,9 +21,7 @@ export const CartContent: FC = () => {
           Back
         </span>
 
-        <h1 className={styles.cart__title}>
-           Cart
-        </h1>
+        <h1 className={styles.cart__title}>Cart</h1>
 
         <div className={styles.cart__container}>
           <div className={styles.cart__items}>

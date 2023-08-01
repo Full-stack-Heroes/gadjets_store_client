@@ -18,5 +18,4 @@ export const Cross: FC = () => (
       />
     </g>
   </svg>
-
 );

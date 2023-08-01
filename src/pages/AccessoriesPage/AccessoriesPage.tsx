@@ -1,9 +1,10 @@
 import { FC } from 'react';
+import ProductsPage from '../ProductsPage/ProductsPage';
 
 export const AccessoriesPage: FC = () => {
   return (
-    <div>
-      <p>Accessories</p>
-    </div>
+    <ProductsPage
+      endpoint={'accessories'}
+    />
   );
 };

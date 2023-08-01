@@ -1,10 +1,10 @@
 import { FC } from 'react';
-import { Phones } from '../../modules/Phones';
+import ProductsPage from '../ProductsPage/ProductsPage';
 
 export const PhonesPage: FC = () => {
   return (
-    <div>
-      <Phones />
-    </div>
+    <ProductsPage
+      endpoint={'phones'}
+    />
   );
 };

@@ -115,7 +115,7 @@ $secondary-color: #b4bdc3;
   }
 }
 
-.item_phone_info{
+.item_phone_info {
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -123,13 +123,12 @@ $secondary-color: #b4bdc3;
   gap: 24px;
 }
 
-.item_price_info{
+.item_price_info {
   display: flex;
   align-self: stretch;
   justify-content: space-around;
   gap: 48px;
 }
-
 
 @media screen and (min-width: 640px) {
   .item__container {
@@ -138,14 +137,14 @@ $secondary-color: #b4bdc3;
     gap: 24px;
   }
 
-  .item_phone_info{
+  .item_phone_info {
     display: flex;
     align-items: center;
     justify-content: space-around;
     align-self: stretch;
   }
 
-  .item_price_info{
+  .item_price_info {
     align-self: center;
   }
 }

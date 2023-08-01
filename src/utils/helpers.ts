@@ -1,13 +1,3 @@
-import { getProducts } from '../api/phones';
-
-export const getPhones = async () => {
-  const products = await getProducts();
-
-  const phones = products.filter((product) => product.category === 'phones');
-
-  return phones;
-};
-
 export const normalizeImage = (img: string) => {
   const imgLink = img.slice(0, -4);
 

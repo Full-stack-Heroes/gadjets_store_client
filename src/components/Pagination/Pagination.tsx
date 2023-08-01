@@ -60,22 +60,24 @@ export const Pagination: FC<Props> = ({
         <Arrow />
       </li>
 
-      {Array.from({ length: pageCount }, (_, index) => index + 1).map((page) => {
-        const isPageSelected = currentPage === page;
-        const isLastItem = page === pageCount;
+      {Array.from({ length: pageCount }, (_, index) => index + 1).map(
+        (page) => {
+          const isPageSelected = currentPage === page;
+          const isLastItem = page === pageCount;
 
-        return (
-          <li
-            key={page}
-            onClick={() => handleChangePage(page)}
-            className={cn(styles.pagination__number, {
-              [styles.pagination__number_active]: isPageSelected,
-              [styles.pagination__number_last]: isLastItem,
-            })}>
-            {page}
-          </li>
-        );
-      })}
+          return (
+            <li
+              key={page}
+              onClick={() => handleChangePage(page)}
+              className={cn(styles.pagination__number, {
+                [styles.pagination__number_active]: isPageSelected,
+                [styles.pagination__number_last]: isLastItem,
+              })}>
+              {page}
+            </li>
+          );
+        },
+      )}
       <li
         className={cn(
           styles.pagination__number,
