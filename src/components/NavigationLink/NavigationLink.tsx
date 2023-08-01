@@ -9,7 +9,11 @@ export interface NavigationLinkProps {
   onClick?: (event: MouseEvent<HTMLAnchorElement>) => void;
 }
 
-export const NavigationLink: FC<NavigationLinkProps> = ({ to, linkText, onClick }) => {
+export const NavigationLink: FC<NavigationLinkProps> = ({
+  to,
+  linkText,
+  onClick,
+}) => {
   return (
     <NavLink
       to={to}
@@ -18,8 +22,7 @@ export const NavigationLink: FC<NavigationLinkProps> = ({ to, linkText, onClick 
           [styles.active]: isActive,
         })
       }
-      onClick={onClick}
-    >
+      onClick={onClick}>
       {linkText}
     </NavLink>
   );

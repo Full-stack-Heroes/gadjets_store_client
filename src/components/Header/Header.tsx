@@ -42,27 +42,26 @@ export const Header: FC = () => {
     <header className={cn('header')}>
       <div className={cn('container')}>
         <div className={cn('links')}>
-          <Link to='/'>
-          <img
-            src={logo}
-            alt="Nice Gadgets logo"
-            className={cn('header__logo')}
-          />
+          <Link to="/">
+            <img
+              src={logo}
+              alt="Nice Gadgets logo"
+              className={cn('header__logo')}
+            />
           </Link>
 
-          {!isMenuOpen && <nav className={cn('nav')}>
-            <NavigationLink to="/" linkText="Home" />
-            <NavigationLink to="/phones" linkText="Phones" />
-            <NavigationLink to="/tablets" linkText="Tablets" />
-            <NavigationLink to="/accessories" linkText="Accessories" />
-          </nav>}
+          {!isMenuOpen && (
+            <nav className={cn('nav')}>
+              <NavigationLink to="/" linkText="Home" />
+              <NavigationLink to="/phones" linkText="Phones" />
+              <NavigationLink to="/tablets" linkText="Tablets" />
+              <NavigationLink to="/accessories" linkText="Accessories" />
+            </nav>
+          )}
         </div>
 
         <div className={cn('header__service')}>
-          <Link
-            className={cn('service_btn')}
-            to='/favourites'
-          >
+          <Link className={cn('service_btn')} to="/favourites">
             <img
               src={like}
               alt="like button"
@@ -70,10 +69,7 @@ export const Header: FC = () => {
             />
           </Link>
 
-          <Link
-            to='/cart'
-            className={cn('service_btn')}
-          >
+          <Link to="/cart" className={cn('service_btn')}>
             <img
               src={cart}
               alt="like button"
@@ -82,7 +78,10 @@ export const Header: FC = () => {
           </Link>
         </div>
 
-        <BurgerMenuButton isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen}/>
+        <BurgerMenuButton
+          isMenuOpen={isMenuOpen}
+          setIsMenuOpen={setIsMenuOpen}
+        />
       </div>
 
       {isMenuOpen && (
