@@ -12,7 +12,7 @@
   &_cost {
     font-size: 32px;
     font-weight: 800;
-    line-height: 41px; /* 128.125% */
+    line-height: 41px;
     letter-spacing: -0.32px;
     text-align: center;
   }
@@ -43,6 +43,20 @@
     font-weight: 700;
     line-height: 21px;
     margin-top: 48px;
+    transition: 0.3;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 0px 3px 13px 0px rgba(23, 32, 49, 0.4);
+    }
+
+    &_active {
+      transition: 0.3s;
+      background-color: #fff;
+      color: #4219d0;
+      border: 1px solid #e2e6e9;
+      box-shadow: none;
+    }
 
     &::before {
       position: absolute;
