@@ -1,33 +1,34 @@
-import React, { useState } from 'react';
+import { FC } from 'react';
 import cn from 'classnames';
-
+import { scrollToTop } from '../../utils/helpers';
 import { Arrow } from '../Arrow/Arrow';
 import styles from './pagination.module.scss';
 
-export const Pagination: React.FC = () => {
-  //tests pages and values, will change later
-  const items = [1, 2, 3, 4, 5];
+interface Props {
+  phonesCount: number;
+  itemsPerPage: number;
+  currentPage: number;
+  onPageChange: (page: number) => void;
+}
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 1;
-  const pageCount = Math.ceil(items.length / itemsPerPage);
-
-  // const pagesVisited = currentPage * itemsPerPage;
-  // const displayItems = items.slice(pagesVisited, pagesVisited + itemsPerPage);
+export const Pagination: FC<Props> = ({
+  phonesCount,
+  itemsPerPage,
+  currentPage,
+  onPageChange,
+}) => {
+  const pageCount = Math.ceil(phonesCount / itemsPerPage);
 
   const isFirstPage = currentPage === 1;
   const isLastPage = currentPage === pageCount;
-
-  const handlePageChange = (item: number) => {
-    setCurrentPage(item);
-  };
 
   const handleMoveToPreviousPage = () => {
     if (isFirstPage) {
       return;
     }
 
-    setCurrentPage((prevState) => prevState - 1);
+    onPageChange(currentPage - 1);
+    scrollToTop();
   };
 
   const handleMoveToNextPage = () => {
@@ -35,7 +36,13 @@ export const Pagination: React.FC = () => {
       return;
     }
 
-    setCurrentPage((prevState) => prevState + 1);
+    onPageChange(currentPage + 1);
+    scrollToTop();
+  };
+
+  const handleChangePage = (page: number) => {
+    onPageChange(page);
+    scrollToTop();
   };
 
   return (
@@ -53,19 +60,19 @@ export const Pagination: React.FC = () => {
         <Arrow />
       </li>
 
-      {items.map((item, index) => {
-        const isPageSelected = currentPage === item;
-        const isLastItem = index === items.length - 1;
+      {Array.from({ length: pageCount }, (_, index) => index + 1).map((page) => {
+        const isPageSelected = currentPage === page;
+        const isLastItem = page === pageCount;
 
         return (
           <li
-            key={item}
-            onClick={() => handlePageChange(item)}
+            key={page}
+            onClick={() => handleChangePage(page)}
             className={cn(styles.pagination__number, {
               [styles.pagination__number_active]: isPageSelected,
               [styles.pagination__number_last]: isLastItem,
             })}>
-            {item}
+            {page}
           </li>
         );
       })}
