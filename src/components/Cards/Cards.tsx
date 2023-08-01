@@ -1,26 +1,18 @@
-import { FC, useEffect, useState } from 'react';
-import { connect } from 'react-redux';
+import { FC, useState } from 'react';
 import { Card } from '../Card/Card';
 import styles from './cards.module.scss';
 import { Product } from '../../types/product';
-import { fetchPhones } from '../../actions/phonesActions';
-import { RootState } from '../../store';
 import { Pagination } from '../Pagination';
 import { Loader } from '../Loader';
 
 interface Props {
-  phones: Product[];
+  products: Product[];
   isLoading: boolean;
-  fetchPhones: () => void;
 }
 
-const Cards: FC<Props> = ({ phones, isLoading, fetchPhones }) => {
+export const Cards: FC<Props> = ({ products, isLoading }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 16;
-
-  useEffect(() => {
-    fetchPhones();
-  }, [fetchPhones]);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -28,7 +20,7 @@ const Cards: FC<Props> = ({ phones, isLoading, fetchPhones }) => {
 
   const indexOfLastPhone = currentPage * itemsPerPage;
   const indexOfFirstPhone = indexOfLastPhone - itemsPerPage;
-  const currentPhones = phones.slice(indexOfFirstPhone, indexOfLastPhone);
+  const currentPhones = products.slice(indexOfFirstPhone, indexOfLastPhone);
 
   return (
     <>
@@ -43,7 +35,7 @@ const Cards: FC<Props> = ({ phones, isLoading, fetchPhones }) => {
           </div>
 
           <Pagination
-            phonesCount={phones.length}
+            phonesCount={products.length}
             itemsPerPage={itemsPerPage}
             currentPage={currentPage}
             onPageChange={handlePageChange}
@@ -53,14 +45,3 @@ const Cards: FC<Props> = ({ phones, isLoading, fetchPhones }) => {
     </>
   );
 };
-
-const mapStateToProps = (state: RootState) => ({
-  phones: state.phones.phones,
-  isLoading: state.phones.isLoading,
-});
-
-const mapDispatchToProps = {
-  fetchPhones,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Cards);

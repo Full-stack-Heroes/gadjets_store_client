@@ -6,10 +6,10 @@ import {
   AnyAction,
 } from 'redux';
 import thunk, { ThunkDispatch } from 'redux-thunk';
-import phonesReducer from './reducers/phonesReducer';
+import productsReducer from './reducers/productsReducer';
 
 const rootReducer = combineReducers({
-  phones: phonesReducer,
+  products: productsReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
