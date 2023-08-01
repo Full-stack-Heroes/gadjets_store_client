@@ -7,7 +7,10 @@ import { BurgerMenuProps } from '../../types/BurgerMenuProps';
 
 const cn = classNames.bind(styles);
 
-export const BurgerMenuButton: FC<BurgerMenuProps> = ({ isMenuOpen, setIsMenuOpen }) => {
+export const BurgerMenuButton: FC<BurgerMenuProps> = ({
+  isMenuOpen,
+  setIsMenuOpen,
+}) => {
   const handleMenuClick = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -15,8 +18,7 @@ export const BurgerMenuButton: FC<BurgerMenuProps> = ({ isMenuOpen, setIsMenuOpe
   return (
     <button
       className={cn('service_btn', { 'service_btn-active': isMenuOpen })}
-      onClick={handleMenuClick}
-    >
+      onClick={handleMenuClick}>
       <img
         src={isMenuOpen ? close : menu}
         alt={isMenuOpen ? 'close button' : 'menu button'}

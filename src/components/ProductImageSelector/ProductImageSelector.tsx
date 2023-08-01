@@ -3,12 +3,12 @@ import styles from './ProductImageSelector.module.scss';
 import cn from 'classnames';
 
 interface Props {
-  className?: string,
+  className?: string;
 }
 
-export const ProductImageSelector:FC<Props> = ({ className }) => {
+export const ProductImageSelector: FC<Props> = ({ className }) => {
   return (
-    <div className={cn(styles.ProductImageSelector, className)} >
+    <div className={cn(styles.ProductImageSelector, className)}>
       Product image selector
     </div>
   );

@@ -5,10 +5,10 @@ import { FC } from 'react';
 import cn from 'classnames';
 
 interface Props {
-  className?: string
+  className?: string;
 }
 
-export const GoBack:FC<Props> = ({ className }) => {
+export const GoBack: FC<Props> = ({ className }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
@@ -19,8 +19,7 @@ export const GoBack:FC<Props> = ({ className }) => {
     <Link
       className={cn(styles.GoBack, className)}
       onClick={handleClick}
-      to={'.'}
-    >
+      to={'.'}>
       <Arrow /> Back
     </Link>
   );

@@ -55,9 +55,7 @@ $secondary-color: #b4bdc3;
     gap: 16px;
     margin-bottom: 32px;
   }
-
 }
-
 
 @media screen and (min-width: 640px) {
   .cart {
@@ -68,7 +66,7 @@ $secondary-color: #b4bdc3;
     }
 
     &__back_button {
-      padding: 40px 0 16px 0 ;
+      padding: 40px 0 16px 0;
     }
   }
 }
@@ -83,4 +81,3 @@ $secondary-color: #b4bdc3;
     }
   }
 }
-

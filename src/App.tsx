@@ -32,7 +32,7 @@ export const App = createBrowserRouter([
       },
       {
         path: 'phones/:productId',
-        element: <ProductPage />
+        element: <ProductPage />,
       },
       {
         path: 'tablets',

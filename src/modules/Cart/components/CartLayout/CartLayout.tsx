@@ -6,9 +6,5 @@ interface CartLayoutProps {
 }
 
 export const CartLayout: FC<CartLayoutProps> = ({ children }) => {
-  return (
-    <div className={styles.container}>
-      {children}
-    </div>
-  );
+  return <div className={styles.container}>{children}</div>;
 };

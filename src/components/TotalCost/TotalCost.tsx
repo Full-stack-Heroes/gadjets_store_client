@@ -24,8 +24,7 @@ export const TotalCost: React.FC = () => {
         className={cn(styles.total__container_button, {
           [styles.total__container_button_active]: isCheckoutDone,
         })}
-        onClick={() => handleCheckout()}
-      >
+        onClick={() => handleCheckout()}>
         {buttonTitle}
       </button>
     </div>
