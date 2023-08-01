@@ -12,16 +12,18 @@ export const CartContent: FC = () => {
   return (
     <section className={styles.content}>
       <div className={styles.cart}>
-        <div
+        <span
           className={styles.cart__back_button}
           onClick={() => handleGoBack()}>
           <div className={styles.cart__arrow}>
             <Arrow />
           </div>
           Back
-        </div>
+        </span>
 
-        <div className={styles.cart__title}>Cart</div>
+        <h1 className={styles.cart__title}>
+           Cart
+        </h1>
 
         <div className={styles.cart__container}>
           <div className={styles.cart__items}>

@@ -1,4 +1,6 @@
-export const Arrow: React.FC = () => (
+import { FC } from 'react';
+
+export const Arrow: FC = () => (
   <svg
     width="16"
     height="16"
