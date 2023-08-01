@@ -12,17 +12,19 @@ interface Props {
   fetchProducts: (endpoint: string) => void;
 }
 
-export const ProductsPage: FC<Props> = ({ endpoint, products, isLoading, fetchProducts }) => {
+export const ProductsPage: FC<Props> = ({
+  endpoint,
+  products,
+  isLoading,
+  fetchProducts,
+}) => {
   useEffect(() => {
     fetchProducts(endpoint);
   }, [fetchProducts]);
 
   return (
     <div>
-      <Cards
-        products={products}
-        isLoading={isLoading}
-      />
+      <Cards products={products} isLoading={isLoading} />
     </div>
   );
 };

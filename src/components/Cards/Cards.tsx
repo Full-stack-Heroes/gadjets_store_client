@@ -24,25 +24,24 @@ export const Cards: FC<Props> = ({ products, isLoading }) => {
 
   return (
     <>
-      {isLoading
-        ? (
-          <Loader />
-        ) : (
-          <>
-            <div className={styles.cards__container}>
-              {currentPhones.map((phone) => (
-                <Card product={phone} key={phone.id} />
-              ))}
-            </div>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <div className={styles.cards__container}>
+            {currentPhones.map((phone) => (
+              <Card product={phone} key={phone.id} />
+            ))}
+          </div>
 
-            <Pagination
-              phonesCount={products.length}
-              itemsPerPage={itemsPerPage}
-              currentPage={currentPage}
-              onPageChange={handlePageChange}
-            />
-          </>
-        )}
+          <Pagination
+            phonesCount={products.length}
+            itemsPerPage={itemsPerPage}
+            currentPage={currentPage}
+            onPageChange={handlePageChange}
+          />
+        </>
+      )}
     </>
   );
 };
