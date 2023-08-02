@@ -19,13 +19,13 @@ export const Footer: FC = () => {
           <Link
             to="https://github.com/fe-apr23-full-stack-heroes"
             className={styles.link}>
-              github
+            github
           </Link>
           <Link to="/contacts" className={styles.link}>
-              contacts
+            contacts
           </Link>
           <Link to="/rights" className={styles.link}>
-              rights
+            rights
           </Link>
         </div>
 
