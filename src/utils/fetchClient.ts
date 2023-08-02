@@ -1,4 +1,4 @@
-const BASE_URL = 'https://gadjets-store-apu.onrender.com';
+const BASE_URL = 'https://https://gadjets-store-apu.onrender.com';
 
 function wait(delay: number) {
   return new Promise((resolve) => {
