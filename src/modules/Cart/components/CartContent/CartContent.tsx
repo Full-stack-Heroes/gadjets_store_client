@@ -13,7 +13,7 @@ export const CartContent: FC = () => {
 
   const handleModalClose = () => {
     setModalActive(false);
-  }
+  };
 
   useEffect(() => {
     if (showSuccess) {
@@ -29,7 +29,7 @@ export const CartContent: FC = () => {
     <section
       className={styles.content}
     >
-      <div className={cn (styles.cart, {
+      <div className={cn(styles.cart, {
         [styles.cartActive]: modalActive,
       })}>
         <div
@@ -65,28 +65,28 @@ export const CartContent: FC = () => {
       </div>
 
       {showSuccess && (
-          <div className={cn (styles.PopupContainer, {
-            [styles.PopupContainer_Active]: modalActive,
-          })}>
+        <div className={cn(styles.PopupContainer, {
+          [styles.PopupContainer_Active]: modalActive,
+        })}>
 
-            <img src={heart} className={styles.PopupContainerImage} />
+          <img src={heart} className={styles.PopupContainerImage} />
 
-            <h2 className={styles.PopupContainerThanks}>Thank You!</h2>
+          <h2 className={styles.PopupContainerThanks}>Thank You!</h2>
 
-            <p
-              className={styles.PopupContainerMessage}
-            >
-              Your order was successfully applied!
-            </p>
+          <p
+            className={styles.PopupContainerMessage}
+          >
+            Your order was successfully applied!
+          </p>
 
-            <button
-              className={styles.PopupContainerButton}
-              onClick={() => handleModalClose()}
-            >
-              Continue
-            </button>
-          </div>
-        )}
+          <button
+            className={styles.PopupContainerButton}
+            onClick={() => handleModalClose()}
+          >
+            Continue
+          </button>
+        </div>
+      )}
     </section>
   );
 };
