@@ -33,42 +33,37 @@ export const ProductPage: FC = () => {
 
   return (
     <>
-      {isLoading
-        ? (
-          <Loader />
-        ) : (
-          <div className={cn(styles.container, styles.ProductPage)}>
-            {/* TODO: Configure breadcrumb */}
-            <BreadCrumbs className={styles.BreadCrumb} />
-            <BackLink />
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <div className={cn(styles.container, styles.ProductPage)}>
+          {/* TODO: Configure breadcrumb */}
+          <BreadCrumbs className={styles.BreadCrumb} />
+          <BackLink />
 
-            <h1 className={styles.ProductPage__header}>
-              {productInfo.name}
-            </h1>
+          <h1 className={styles.ProductPage__header}>{productInfo.name}</h1>
 
-            <div className={cn(styles.SectionContainer, styles.PhoneDetails)}>
-              <ProductImageSelector className={styles.SectionContainer__item} />
+          <div className={cn(styles.SectionContainer, styles.PhoneDetails)}>
+            <ProductImageSelector className={styles.SectionContainer__item} />
 
-              <SelectPhoneParams className={styles.SectionContainer__item} />
-            </div>
-
-            <div className={cn(styles.SectionContainer, styles.PhoneParameters)}>
-              <div className={styles.SectionContainer__item}>description</div>
-
-              <div className={styles.SectionContainer__item}>
-                <h2 className={styles.SectionContainer__header}>Tech specs</h2>
-                <div className={styles.HeaderBreak}></div>
-
-                <ProductTechSpecs
-                  specs={getSpecsFromProductData(productInfo)}
-                />
-              </div>
-            </div>
-
-            <h1 className={styles.ProductPage__header}>You may also like</h1>
-            <div>Carousel</div>
+            <SelectPhoneParams className={styles.SectionContainer__item} />
           </div>
-        )}
+
+          <div className={cn(styles.SectionContainer, styles.PhoneParameters)}>
+            <div className={styles.SectionContainer__item}>description</div>
+
+            <div className={styles.SectionContainer__item}>
+              <h2 className={styles.SectionContainer__header}>Tech specs</h2>
+              <div className={styles.HeaderBreak}></div>
+
+              <ProductTechSpecs specs={getSpecsFromProductData(productInfo)} />
+            </div>
+          </div>
+
+          <h1 className={styles.ProductPage__header}>You may also like</h1>
+          <div>Carousel</div>
+        </div>
+      )}
     </>
   );
 };

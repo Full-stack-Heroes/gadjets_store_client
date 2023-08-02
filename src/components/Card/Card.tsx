@@ -25,16 +25,8 @@ export const Card: React.FC<Props> = ({ product }) => {
     setProductLiked(!productLiked);
   };
 
-  const {
-    itemId,
-    image,
-    name,
-    fullPrice,
-    price,
-    screen,
-    capacity,
-    ram,
-  } = product;
+  const { itemId, image, name, fullPrice, price, screen, capacity, ram } =
+    product;
   const productPageLink = window.location.href + '/' + itemId;
 
   return (

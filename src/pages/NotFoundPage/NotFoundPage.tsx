@@ -5,8 +5,8 @@ import { NotFound } from '../../components/NotFound';
 
 export const NotFoundPage: FC = () => (
   <div>
-    <Header/>
-    <NotFound/>
-    <Footer/>
+    <Header />
+    <NotFound />
+    <Footer />
   </div>
 );

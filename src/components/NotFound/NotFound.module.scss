@@ -9,26 +9,28 @@
   }
 
   &Title {
-    color: #0F0F11;
+    margin-bottom: 40px;
     text-align: center;
+    color: #0f0f11;
     font-size: 6rem;
     font-style: normal;
     font-weight: 800;
     line-height: 41px;
     letter-spacing: -0.32px;
-    margin-bottom: 40px;
 
     background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    animation: gradient 10s ease infinite, colorChange 10s linear infinite alternate;
+    animation:
+    gradient 10s ease infinite,
+    colorChange 10s linear infinite alternate;
   }
 
   &Content {
     text-align: center;
-    color: #89939A;
 
+    color: #89939a;
     font-size: 14px;
     font-style: normal;
     font-weight: 600;
@@ -43,6 +45,7 @@
     height: 48px;
     justify-content: center;
     align-items: center;
+
     text-align: center;
     font-size: 14px;
     font-style: normal;
@@ -71,7 +74,8 @@
 }
 
 @keyframes colorChange {
-  0%, 100% {
+  0%,
+  100% {
     color: #ee7752;
   }
   25% {
