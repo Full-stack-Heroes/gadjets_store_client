@@ -6,16 +6,18 @@ $icons-color: #b4bdc3;
 .home {
   display: flex;
   flex-direction: column;
-  margin-bottom: 64px;
+  margin: 0 16px 64px;
+  gap: 57px;
+  max-width: 1200px;
 
   &Title {
     color: $primary-color;
     font-style: normal;
     font-weight: 800;
-    margin: 0 16px 24px;
+    margin-bottom: 24px;
 
     &Main {
-      margin: 24px 16px;
+      margin: 24px 0 ;
       font-size: 32px;
       font-weight: 800;
       line-height: 41px;
@@ -30,31 +32,31 @@ $icons-color: #b4bdc3;
   }
 
   &MainSlider {
-    width: 320px;
+    min-width: 320px;
+    max-width: 1100px;
     height: 400px;
     background-color: $primary-color;
-    margin-bottom: 57px;
-  }
-
-  &SliderWrapper {
-    margin: 0 16px;
   }
 
   &NewModelsSlider {
-    background-color: $primary-color;
+    background-color: green;
     width: 300px;
     height: 439px;
-    margin-bottom: 57px;
   }
 
   &HotPrices {
     background-color: $primary-color;
-    width: 300px;
+    min-width: 300px;
     height: 439px;
   }
 
+  &Categories {
+    display: flex;
+    flex-direction: column;
+  }
+
   &CategoryItemWrapper {
-    margin:  0 16px 32px;
+    margin-bottom: 32px;
   }
 
   &CategoryItem {
@@ -62,7 +64,7 @@ $icons-color: #b4bdc3;
     height: 288px;
     margin-bottom: 24px;
     border-radius: 8px;
-    background: #6D6474;
+    background: #6d6474;
 
     &Title {
       margin-bottom: 4px;
@@ -81,5 +83,53 @@ $icons-color: #b4bdc3;
       font-weight: 600;
       line-height: 21px;
     }
+  }
+}
+
+@media screen and (min-width: 640px) {
+  .home {
+    margin: 0 24px 64px;
+    gap: 64px;
+    align-items: center;
+
+    &Title {
+      &Main {
+        margin: 32px 0 ;
+      }
+    }
+
+    &Categories {
+      flex-direction: row;
+      gap: 16px;
+    }
+    &CategoryItem {
+      width: 187px;
+      height: 187px;
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .home {
+    margin: 0 32px 80px;
+    gap: 80px;
+
+    &Title {
+      &Main {
+        margin: 56px 0 ;
+      }
+    }
+
+    &CategoryItem {
+      width: 368px;
+      height: 368px;
+    }
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .home {
+    margin: 0 auto 64px;
+    gap: 64px;
   }
 }

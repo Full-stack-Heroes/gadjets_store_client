@@ -8,9 +8,7 @@ export const NotFound: FC = () => {
   return (
     <div className={cn('notFoundContainer')}>
       <div className={cn('notFoundWrapper')}>
-        <h1 className={cn('notFoundTitle')}>
-          404
-        </h1>
+        <h1 className={cn('notFoundTitle')}>404</h1>
 
         <p className={cn('notFoundContent')}>
           Sorry, we can’t find the page you’re looking for.
