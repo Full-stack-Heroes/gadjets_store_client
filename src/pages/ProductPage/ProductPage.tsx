@@ -19,10 +19,11 @@ export const ProductPage: FC = () => {
   const [productInfo, setProductInfo] = useState<ProductDetails | null>(null);
   const [testProducts, setTestProducts] = useState<Product[]>();
   const isLoading = !productInfo;
+  const locationToProduct = location.pathname;
 
   const fetchData = useCallback(async () => {
     try {
-      const fetchedData = await getProductData(location.pathname);
+      const fetchedData = await getProductData(locationToProduct);
       const products = await getProducts('phones');
 
       setProductInfo(fetchedData);
@@ -30,11 +31,12 @@ export const ProductPage: FC = () => {
     } catch (error) {
       console.log('Error while fetching');
     }
-  }, []);
+  }, [location.pathname]);
 
   useEffect(() => {
+    setProductInfo(null);
     fetchData();
-  }, []);
+  }, [location.pathname]);
 
   return (
     <>
@@ -69,8 +71,7 @@ export const ProductPage: FC = () => {
                 />
               </div>
             </div>
-
-            <h1 className={styles.ProductPage__header}>You may also like</h1>
+            
             {testProducts && <CartCarousel products={testProducts}/>}
           </div>
         )}

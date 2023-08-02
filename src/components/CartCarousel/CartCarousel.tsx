@@ -20,12 +20,17 @@ const responsive = {
     slidesToSlide: 2
   },
   tablet: {
-    breakpoint: { max: 1199, min: 640 },
+    breakpoint: { max: 1199, min: 860 },
+    items: 3,
+    slidesToSlide: 1
+  },
+  tabletSmall: {
+    breakpoint: { max: 859, min: 641 },
     items: 2,
     slidesToSlide: 1
   },
   mobile: {
-    breakpoint: { max: 639, min: 320 },
+    breakpoint: { max: 640, min: 320 },
     items: 1,
     slidesToSlide: 1
   }
@@ -33,13 +38,17 @@ const responsive = {
 
 export const CartCarousel:FC<Props> = ({ products }) => {
   return (
-    <Carousel
-      itemClass={cn('Cards')}
-      responsive={responsive}
-    >
-      {products.map(product => (
-        <Card product={product} key={product.id}/>
-      ))}
-    </Carousel>
+    <div>
+      <h2 className={cn('Header')}>You may also like</h2>
+
+      <Carousel
+        itemClass={cn('Cards')}
+        responsive={responsive}
+      >
+        {products.map(product => (
+          <Card product={product} key={product.id}/>
+        ))}
+      </Carousel>
+    </div>
   );
 };

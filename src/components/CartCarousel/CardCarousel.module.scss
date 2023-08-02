@@ -1,4 +1,21 @@
-.Cards {
+// .Cards {
+//   padding-right: 16px;
+// }
+
+.react-multi-carousel-list:last-child {
+  padding-right: 0;
+}
+
+.Cards  {
   padding-right: 16px;
 }
 
+.Header {
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 41px;
+  letter-spacing: -0.32px;
+
+  margin-bottom: 40px;
+}
