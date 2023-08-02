@@ -1,23 +1,24 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import like from '../../assets/icons/Heart.svg';
 import cart from '../../assets/icons/Cart.svg';
 import styles from './BurgerMenuOpened.module.scss';
-import { BurgerMenuProps } from '../../types/BurgerMenuProps';
+import { Link } from 'react-router-dom';
 import { NavigationLink } from '../NavigationLink';
 import classNames from 'classnames/bind';
 
 const cn = classNames.bind(styles);
 
+interface BurgerMenuProps {
+  isMenuOpen: boolean;
+  setIsMenuOpen: (isOpen: boolean) => void;
+}
+
 export const BurgerMenuOpened: FC<BurgerMenuProps> = ({
   isMenuOpen,
   setIsMenuOpen,
 }) => {
-  const [isCartActive, setIsCartActive] = useState(false);
-  const [isLikeActive, setIsLikeActive] = useState(false);
 
-  const handleServiceButtonClick = (buttonType: 'cart' | 'like') => {
-    setIsCartActive(buttonType === 'cart');
-    setIsLikeActive(buttonType === 'like');
+  const handleMenuClose = () => {
     setIsMenuOpen(false);
   };
 
@@ -28,42 +29,46 @@ export const BurgerMenuOpened: FC<BurgerMenuProps> = ({
           <NavigationLink
             to="/"
             linkText="Home"
-            onClick={() => setIsMenuOpen(false)}
+            onClick={handleMenuClose}
           />
           <NavigationLink
             to="/phones"
             linkText="Phones"
-            onClick={() => setIsMenuOpen(false)}
+            onClick={handleMenuClose}
           />
           <NavigationLink
             to="/tablets"
             linkText="Tablets"
-            onClick={() => setIsMenuOpen(false)}
+            onClick={handleMenuClose}
           />
           <NavigationLink
             to="/accessories"
             linkText="Accessories"
-            onClick={() => setIsMenuOpen(false)}
+            onClick={handleMenuClose}
           />
         </nav>
       </div>
 
       <div className={cn(isMenuOpen ? 'burger__service' : '')}>
-        <button
+        <Link
+          to="/favourites"
           className={cn('service__button', 'service__like', {
-            'service__button-active': isLikeActive,
+            'service__button-active': isMenuOpen,
           })}
-          onClick={() => handleServiceButtonClick('like')}>
+          onClick={handleMenuClose}
+        >
           <img src={like} alt="like button" className={cn('like')} />
-        </button>
+        </Link>
 
-        <button
+        <Link
+          to="/cart"
           className={cn('service__button', 'service__cart', {
-            'service__button-active': isCartActive,
+            'service__button-active': isMenuOpen,
           })}
-          onClick={() => handleServiceButtonClick('cart')}>
+          onClick={handleMenuClose}
+        >
           <img src={cart} alt="cart button" className={cn('cart')} />
-        </button>
+        </Link>
       </div>
     </div>
   );
