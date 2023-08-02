@@ -36,3 +36,5 @@ export const getSpecsFromProductData = (
     cell,
   };
 };
+
+export const generateId = () => Math.floor(Math.random() * 10001);
