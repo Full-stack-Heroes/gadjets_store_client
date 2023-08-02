@@ -5,7 +5,7 @@ import classNames from 'classnames';
 
 interface Props {
   specs: productSpecs;
-  className: string;
+  className?: string;
 }
 
 const normalizeValue = (value: string | string[]) => {
