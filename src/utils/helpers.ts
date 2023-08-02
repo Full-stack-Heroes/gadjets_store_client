@@ -21,9 +21,10 @@ export const scrollToTop = () => {
 };
 
 export const getSpecsFromProductData = (
-  productData: ProductDetails
+  productData: ProductDetails,
 ): productSpecs => {
-  const { screen, resolution, processor, ram, camera, zoom, cell } = productData;
+  const { screen, resolution, processor, ram, camera, zoom, cell } =
+    productData;
 
   return {
     screen,
@@ -32,6 +33,8 @@ export const getSpecsFromProductData = (
     ram,
     camera,
     zoom,
-    cell
+    cell,
   };
 };
+
+export const generateId = () => Math.floor(Math.random() * 10001);

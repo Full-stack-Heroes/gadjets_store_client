@@ -1,7 +1,9 @@
 import { FC } from 'react';
 import { productSpecs } from '../../types/productSpecs';
 import styles from './ProductTechSpecs.module.scss';
-import classNames from 'classnames';
+import classNames from 'classnames/bind';
+
+const cn = classNames.bind(styles);
 
 interface Props {
   specs: productSpecs;
@@ -18,11 +20,9 @@ const normalizeValue = (value: string | string[]) => {
   }
 };
 
-export const ProductTechSpecs:FC<Props> = ({ specs, className }) => {
-
+export const ProductTechSpecs: FC<Props> = ({ specs, className }) => {
   return (
-    <ul className={classNames(styles.ListOfSpecs, className)}>
-
+    <ul className={cn('ListOfSpecs', className)}>
       {Object.entries(specs).map(([key, value]) => {
         if (!value) {
           return false;
@@ -31,13 +31,10 @@ export const ProductTechSpecs:FC<Props> = ({ specs, className }) => {
         return (
           <li className={styles.ListItem} key={key}>
             <span className={styles.SpecsName}>{key}</span>
-            <span className={styles.SpecsParams}>
-              {normalizeValue(value)}
-            </span>
+            <span className={styles.SpecsParams}>{normalizeValue(value)}</span>
           </li>
         );
       })}
-
     </ul>
   );
 };

@@ -1,7 +1,7 @@
 @import '../../assets/colors/colors';
 
 .Actions {
-  max-width: 320px;
+  min-width: 290px;
 
   &__header {
     margin-bottom: 8px;
@@ -64,22 +64,7 @@
       width: 30px;
       height: 30px;
       color: $white;
-    }
-
-    &--beige {
-      background-color: #fcdbc1;
-    }
-
-    &--gray {
-      background-color: #5f7170;
-    }
-
-    &--black {
-      background-color: #4c4c4c;
-    }
-
-    &--white {
-      margin-right: 0;
+      background-color: $white;
     }
 
     &--active {
@@ -143,7 +128,7 @@
 
     &Crossed {
       font-size: 22px;
-      line-height: 28.12px;
+      line-height: 28px;
       font-weight: 500;
       color: $secondary;
       text-decoration: line-through;

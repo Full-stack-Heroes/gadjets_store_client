@@ -3,14 +3,34 @@ import styles from './Action.module.scss';
 import classNames from 'classnames/bind';
 import heart from '../../assets/icons/Heart.svg';
 import filledheart from '../../assets/icons/Heart_Filled.svg';
+import { generateId, normalizeMemory } from '../../utils/helpers';
+import { ProductDetails } from '../../types/productDetails';
 
 const cn = classNames.bind(styles);
 
-export const Actions: FC = () => {
+interface Props {
+  className: string | undefined;
+  product: ProductDetails;
+}
+
+export const Actions: FC<Props> = ({ className, product }) => {
   const [productAdded, setProductAdded] = useState(false);
   const [productLiked, setProductLiked] = useState(false);
   const buttonText = productAdded ? 'added' : 'add to cart';
   const buttonHeart = productLiked ? filledheart : heart;
+
+  const {
+    capacity,
+    capacityAvailable,
+    priceRegular,
+    priceDiscount,
+    colorsAvailable,
+    color,
+    screen,
+    resolution,
+    processor,
+    ram,
+  } = product;
 
   const handleProductAdded = () => {
     setProductAdded(!productAdded);
@@ -21,47 +41,41 @@ export const Actions: FC = () => {
   };
 
   return (
-    <div className={cn('Actions')}>
+    <div className={cn('Actions', className)}>
       <div className={cn('Actions__colors')}>
         <div className={cn('Actions__headerId')}>
           <span className={cn('Actions__header')}>Available colors</span>
 
-          <span className={cn('Actions__itemId')}>ID: 802390</span>
+          {/* <span className={cn('Actions__itemId')}>ID: 1</span> */}
         </div>
 
-        <a
-          className={cn(
-            'Actions__color',
-            'Actions__color--beige',
-            'Actions__color--active',
-          )}></a>
-        <a className={cn('Actions__color', 'Actions__color--gray')}></a>
-        <a className={cn('Actions__color', 'Actions__color--black')}></a>
-        <a className={cn('Actions__color', 'Actions__color--white')}></a>
+        {colorsAvailable.map((colorAv) => (
+          <a
+            className={cn('Actions__color', {
+              'Actions__color--active': color === colorAv,
+            })}
+            key={generateId()}></a>
+        ))}
       </div>
 
       <div className={cn('Actions__capacity')}>
         <p className={cn('Actions__header')}>Select capacity</p>
 
-        <button
-          className={cn(
-            'Actions__capacityButton',
-            'Actions__capacityButton--active',
-          )}>
-          64 GB
-        </button>
-        <button className={cn('Actions__capacityButton')}>256 GB</button>
-        <button
-          className={cn(
-            'Actions__capacityButton',
-            'Actions__capacityButton--last',
-          )}>
-          512 GB
-        </button>
+        {capacityAvailable.map((capacityAv) => (
+          <button
+            className={cn('Actions__capacityButton', {
+              'Actions__capacityButton--active': capacity === capacityAv,
+            })}
+            key={generateId()}>
+            {normalizeMemory(capacityAv)}
+          </button>
+        ))}
       </div>
 
-      <span className={cn('Actions__price')}>$799</span>
-      <span className={cn('Actions__priceCrossed')}>$1199</span>
+      <span className={cn('Actions__price')}>${priceDiscount}</span>
+      {priceDiscount && (
+        <span className={cn('Actions__priceCrossed')}>${priceRegular}</span>
+      )}
 
       <div className={cn('Actions__productButtons')}>
         <button
@@ -84,26 +98,28 @@ export const Actions: FC = () => {
       <div className={cn('Actions__characteristics')}>
         <p className={cn('Actions__characteristicsLeft')}>
           <span>Screen</span>
-          <span className={cn('Actions__characteristicsRight')}>
-            {'6.5" OLED'}
-          </span>
+          <span className={cn('Actions__characteristicsRight')}>{screen}</span>
         </p>
 
         <p className={cn('Actions__characteristicsLeft')}>
           <span>Resolution</span>
-          <span className={cn('Actions__characteristicsRight')}>2688x1242</span>
+          <span className={cn('Actions__characteristicsRight')}>
+            {resolution}
+          </span>
         </p>
 
         <p className={cn('Actions__characteristicsLeft')}>
           <span>Processor</span>
           <span className={cn('Actions__characteristicsRight')}>
-            Apple A12 Bionic
+            {processor}
           </span>
         </p>
 
         <p className={cn('Actions__characteristicsLeft')}>
           <span>RAM</span>
-          <span className={cn('Actions__characteristicsRight')}>3 GB</span>
+          <span className={cn('Actions__characteristicsRight')}>
+            {normalizeMemory(ram)}
+          </span>
         </p>
       </div>
     </div>
