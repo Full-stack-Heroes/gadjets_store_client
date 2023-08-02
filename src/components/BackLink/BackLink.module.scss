@@ -1,0 +1,28 @@
+$primary-color: #0f0f11;
+$elements-color: #e2e6e9;
+$secondary-color: #b4bdc3;
+
+.arrow {
+  color: $primary-color;
+}
+
+.back_button {
+  display: flex;
+  padding: 24px 0;
+
+  font-size: 12px;
+  font-weight: 700;
+  color: $secondary-color;
+
+  cursor: pointer;
+  &:hover {
+    transition: 0.3s;
+    color: $primary-color;
+  }
+}
+
+@media screen and (min-width: 640px) {
+  .back_button {
+      padding: 40px 0 16px 0;
+    }
+}

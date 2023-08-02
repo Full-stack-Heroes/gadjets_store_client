@@ -5,6 +5,7 @@ import heart from '../../../../assets/icons/Heart.svg';
 import { Arrow } from '../../../../components/Arrow/Arrow';
 import { CartItem } from '../../../../components/CartItem/CartItem';
 import { TotalCost } from '../../../../components/TotalCost/TotalCost';
+import { BackLink } from '../../../../components/BackLink/BackLink';
 
 export const CartContent: FC = () => {
   const [isCheckoutDone, setCheckoutDone] = useState<boolean>(false);
@@ -41,9 +42,7 @@ export const CartContent: FC = () => {
           Back
         </div>
 
-        <h1 className={styles.cart__title}>
-           Cart
-        </h1>
+        <h1 className={styles.cart__title}>Cart</h1>
 
         <div className={styles.cart__container}>
           <div className={styles.cart__items}>

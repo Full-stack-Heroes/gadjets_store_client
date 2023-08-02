@@ -22,25 +22,6 @@ $secondary-color: #b4bdc3;
     user-select: none;
   }
 
-  &__arrow {
-    color: $primary-color;
-  }
-
-  &__back_button {
-    display: flex;
-    padding: 24px 0;
-
-    font-size: 12px;
-    font-weight: 700;
-    color: $secondary-color;
-
-    cursor: pointer;
-    &:hover {
-      transition: 0.3s;
-      color: $primary-color;
-    }
-  }
-
   &__title {
     padding-bottom: 32px;
 

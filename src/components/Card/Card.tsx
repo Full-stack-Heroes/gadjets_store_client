@@ -24,7 +24,7 @@ export const Card: React.FC<Props> = ({ product }) => {
     setProductLiked(!productLiked);
   };
 
-  const { image, name, price, screen, capacity, ram } = product;
+  const { image, name, fullPrice, price, screen, capacity, ram } = product;
 
   return (
     <div className={styles.card}>
@@ -32,7 +32,10 @@ export const Card: React.FC<Props> = ({ product }) => {
 
       <h2 className={styles.card__product_name}>{name}</h2>
 
-      <p className={styles.card__product_price}>${price}</p>
+      <p className={styles.card__product_price}>
+        <span className={styles.card__product_price_discount}>${price}</span>
+        <span className={styles.card__product_price_full}>${fullPrice}</span>
+      </p>
 
       <div className={styles.card__product_characteristics}>
         <p className={styles.characteristic_left}>
