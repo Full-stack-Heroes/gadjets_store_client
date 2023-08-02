@@ -22,5 +22,3 @@ export const About: FC<Props> = ({ product }) => {
     </div>
   );
 };
-
-export const generateId = () => Math.floor(Math.random() * 10001);
