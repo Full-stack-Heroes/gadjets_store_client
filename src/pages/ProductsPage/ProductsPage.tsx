@@ -11,7 +11,6 @@ interface Props {
   isLoading: boolean;
   fetchProducts: (endpoint: string) => void;
 }
-
 export const ProductsPage: FC<Props> = ({
   endpoint,
   products,
@@ -20,7 +19,7 @@ export const ProductsPage: FC<Props> = ({
 }) => {
   useEffect(() => {
     fetchProducts(endpoint);
-  }, [fetchProducts]);
+  }, []);
 
   return (
     <div>
