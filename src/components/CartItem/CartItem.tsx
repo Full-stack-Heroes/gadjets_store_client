@@ -23,8 +23,8 @@ export const CartItem: React.FC = () => {
   return (
     <div className={styles.item__container}>
       <div className={styles.item_phone_info}>
-        <div className={styles.item__container_close} >
-          <Cross/>
+        <div className={styles.item__container_close}>
+          <Cross />
         </div>
 
         <img src={phone} className={styles.item__container_phone} />
@@ -41,10 +41,12 @@ export const CartItem: React.FC = () => {
               [styles.item__container_minus_disabled]: isOneProduct,
             })}
             onClick={decreaseQuantity}>
-            <Minus/>
+            <Minus />
           </button>
 
-          <span className={styles.item__container_number}>{productQuantity}</span>
+          <span className={styles.item__container_number}>
+            {productQuantity}
+          </span>
 
           <button
             className={styles.item__container_plus}
