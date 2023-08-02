@@ -7,7 +7,6 @@ import menu from '../../assets/icons/Menu.svg';
 import close from '../../assets/icons/Close.svg';
 import { NavLink } from 'react-router-dom';
 import { NavigationLink } from '../NavigationLink';
-// import { BurgerMenuButton } from '../BurgerMenuButton';
 import classNames from 'classnames/bind';
 import { BurgerMenuOpened } from '../BurgerMenuOpened';
 
