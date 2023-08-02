@@ -9,14 +9,14 @@ export const HomeContent: FC = () => {
     <div className={cn('home')}>
       <div className={cn('homeMainSliderWrapper')}>
         <h1 className={cn('homeTitle', 'homeTitleMain')}>
-        Welcome to Nice Gadgets store!
+          Welcome to Nice Gadgets store!
         </h1>
         <div className={cn('homeMainSlider')}></div>
       </div>
 
       <div className={cn('homeNewModelsWrapper')}>
         <h2 className={cn('homeTitle', 'homeTitleSecondary')}>
-        Brand new models
+          Brand new models
         </h2>
         <div className={cn('homeSliderWrapper')}>
           <div className={cn('homeNewModelsSlider')}></div>
@@ -25,7 +25,7 @@ export const HomeContent: FC = () => {
 
       <div className={cn('homeCategoriesWrapper')}>
         <h2 className={cn('homeTitle', 'homeTitleSecondary')}>
-        Shop by category
+          Shop by category
         </h2>
 
         <div className={cn('homeCategories')}>
@@ -55,7 +55,6 @@ export const HomeContent: FC = () => {
           <div className={cn('homeHotPrices')}></div>
         </div>
       </div>
-
     </div>
   );
 };
