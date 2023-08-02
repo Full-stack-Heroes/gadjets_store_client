@@ -39,8 +39,16 @@ export const App = createBrowserRouter([
         element: <TabletsPage />,
       },
       {
+        path: 'tablets/:productId',
+        element: <ProductPage />,
+      },
+      {
         path: 'accessories',
         element: <AccessoriesPage />,
+      },
+      {
+        path: 'accessories/:productId',
+        element: <ProductPage />,
       },
       {
         path: 'cart',
