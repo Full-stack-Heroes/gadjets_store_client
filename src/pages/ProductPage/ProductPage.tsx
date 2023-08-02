@@ -1,4 +1,4 @@
-import { FC, useCallback, useEffect, useMemo, useState } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
 import styles from './ProductPage.module.scss';
 import { BreadCrumbs } from '../../components/BreadCrumbs';
 import { ProductImageSelector } from '../../components/ProductImageSelector';
@@ -43,7 +43,7 @@ export const ProductPage: FC = () => {
             <GoBack className={styles.GoBack} />
 
             <h1 className={styles.ProductPage__header}>
-              Apple iPhone 11 Pro Max 64GB Gold
+              {productInfo.name}
             </h1>
 
             <div className={cn(styles.SectionContainer, styles.PhoneDetails)}>
@@ -55,6 +55,7 @@ export const ProductPage: FC = () => {
             <div className={cn(styles.SectionContainer, styles.PhoneParameters)}>
               <div className={styles.SectionContainer__item}>description</div>
               <ProductTechSpecs
+                className={styles.SectionContainer__item}
                 specs={getSpecsFromProductData(productInfo)}
               />
             </div>

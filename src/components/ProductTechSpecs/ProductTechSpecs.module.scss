@@ -1,0 +1,27 @@
+.ListOfSpecs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ListItem {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.SpecsName {
+  text-transform: capitalize;
+  color: #89939A;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 21px;
+}
+
+.SpecsParams {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 21px;
+}
