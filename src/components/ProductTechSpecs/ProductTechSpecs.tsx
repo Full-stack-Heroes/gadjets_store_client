@@ -23,14 +23,20 @@ export const ProductTechSpecs:FC<Props> = ({ specs, className }) => {
   return (
     <ul className={classNames(styles.ListOfSpecs, className)}>
 
-      {Object.entries(specs).map(([key, value]) => (
-        <li className={styles.ListItem} key={key}>
-          <span className={styles.SpecsName}>{key}</span>
-          <span className={styles.SpecsParams}>
-            {normalizeValue(value)}
-          </span>
-        </li>
-      ))}
+      {Object.entries(specs).map(([key, value]) => {
+        if (!value) {
+          return false;
+        }
+
+        return (
+          <li className={styles.ListItem} key={key}>
+            <span className={styles.SpecsName}>{key}</span>
+            <span className={styles.SpecsParams}>
+              {normalizeValue(value)}
+            </span>
+          </li>
+        );
+      })}
 
     </ul>
   );
