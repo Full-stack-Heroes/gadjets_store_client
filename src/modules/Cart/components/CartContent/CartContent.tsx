@@ -39,7 +39,7 @@ export const CartContent: FC = () => {
             <Arrow />
           </div>
           Back
-        </span>
+        </div>
 
         <h1 className={styles.cart__title}>
            Cart

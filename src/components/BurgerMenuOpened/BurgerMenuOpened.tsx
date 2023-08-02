@@ -1,6 +1,5 @@
 import { FC, useState } from 'react';
 import like from '../../assets/icons/Heart.svg';
-import cart from '../../assets/icons/Cart.svg';
 import styles from './BurgerMenuOpened.module.scss';
 import { BurgerMenuProps } from '../../types/BurgerMenuProps';
 import { NavigationLink } from '../NavigationLink';
@@ -12,11 +11,9 @@ export const BurgerMenuOpened: FC<BurgerMenuProps> = ({
   isMenuOpen,
   setIsMenuOpen,
 }) => {
-  const [isCartActive, setIsCartActive] = useState(false);
   const [isLikeActive, setIsLikeActive] = useState(false);
 
   const handleServiceButtonClick = (buttonType: 'cart' | 'like') => {
-    setIsCartActive(buttonType === 'cart');
     setIsLikeActive(buttonType === 'like');
     setIsMenuOpen(false);
   };
