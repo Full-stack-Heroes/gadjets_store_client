@@ -1,3 +1,85 @@
-.content {
-  color: purple;
+$primary-color: #0f0f11;
+$secondary-color: #89939a;
+$elements-color: #e2e6e9;
+$icons-color: #b4bdc3;
+
+.home {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 64px;
+
+  &Title {
+    color: $primary-color;
+    font-style: normal;
+    font-weight: 800;
+    margin: 0 16px 24px;
+
+    &Main {
+      margin: 24px 16px;
+      font-size: 32px;
+      font-weight: 800;
+      line-height: 41px;
+      letter-spacing: -0.32px;
+    }
+
+    &Secondary {
+      text-align: left;
+      font-size: 22px;
+      line-height: 140%;
+    }
+  }
+
+  &MainSlider {
+    width: 320px;
+    height: 400px;
+    background-color: $primary-color;
+    margin-bottom: 57px;
+  }
+
+  &SliderWrapper {
+    margin: 0 16px;
+  }
+
+  &NewModelsSlider {
+    background-color: $primary-color;
+    width: 300px;
+    height: 439px;
+    margin-bottom: 57px;
+  }
+
+  &HotPrices {
+    background-color: $primary-color;
+    width: 300px;
+    height: 439px;
+  }
+
+  &CategoryItemWrapper {
+    margin:  0 16px 32px;
+  }
+
+  &CategoryItem {
+    width: 288px;
+    height: 288px;
+    margin-bottom: 24px;
+    border-radius: 8px;
+    background: #6D6474;
+
+    &Title {
+      margin-bottom: 4px;
+      color: $primary-color;
+      font-size: 20px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+    }
+
+    &Description {
+      color: $secondary-color;
+
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 21px;
+    }
+  }
 }
