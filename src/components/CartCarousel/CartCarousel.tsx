@@ -10,10 +10,6 @@ import Up from '../../assets/icons/Arrow.svg';
 
 const cn = classNames.bind(styles);
 
-interface Props {
-  products: Product[]
-}
-
 const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1200 },
@@ -78,11 +74,16 @@ const ButtonGroup:FC = (
   );
 };
 
-export const CartCarousel:FC<Props> = ({ products }) => {
+interface Props {
+  products: Product[]
+  title: string;
+}
+
+export const CartCarousel:FC<Props> = ({ products, title }) => {
   return (
     <div className={cn('CarouselContainer')}>
       <div className={cn('HeaderContainer')}>
-        <h2 className={cn('Header')}>You may also like</h2>
+        <h2 className={cn('Header')}>{title}</h2>
 
         <div className={cn('NavButtons')}>
 
