@@ -1,6 +1,8 @@
 @import '../../assets/colors/colors';
 
 .Actions {
+  max-width: 320px;
+
   &__header {
     margin-bottom: 8px;
 
@@ -14,7 +16,7 @@
     }
   }
 
-  &__ItemId {
+  &__itemId {
     font-size: 12px;
     font-weight: 700;
     color: $icons;
@@ -41,15 +43,28 @@
   }
 
   &__color {
+    position: relative;
     display: inline-block;
-    width: 32px;
-    height: 32px;
+    width: 26px;
+    height: 26px;
     margin: 0 8px 24px 0;
-
-    border: 1px solid $icons;
     border-radius: 50%;
 
     cursor: pointer;
+
+    &::after {
+      position: absolute;
+
+      left: -2px;
+      top: -2px;
+
+      content: '';
+      border: 1px solid $elements;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      color: $white;
+    }
 
     &--beige {
       background-color: #fcdbc1;
@@ -68,7 +83,9 @@
     }
 
     &--active {
-      border-color: $primary;
+      &::after {
+        border-color: $primary;
+      }
     }
   }
 
