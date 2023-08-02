@@ -1,5 +1,4 @@
 import { FC, useState } from 'react';
-import { Link } from 'react-router-dom';
 import like from '../../assets/icons/Heart.svg';
 import cart from '../../assets/icons/Cart.svg';
 import styles from './BurgerMenuOpened.module.scss';
@@ -9,7 +8,10 @@ import classNames from 'classnames/bind';
 
 const cn = classNames.bind(styles);
 
-export const BurgerMenuOpened: FC<BurgerMenuProps> = ({ isMenuOpen, setIsMenuOpen }) => {
+export const BurgerMenuOpened: FC<BurgerMenuProps> = ({
+  isMenuOpen,
+  setIsMenuOpen,
+}) => {
   const [isCartActive, setIsCartActive] = useState(false);
   const [isLikeActive, setIsLikeActive] = useState(false);
 
@@ -23,16 +25,31 @@ export const BurgerMenuOpened: FC<BurgerMenuProps> = ({ isMenuOpen, setIsMenuOpe
     <div className={cn(isMenuOpen ? 'burger' : '')}>
       <div className={cn('burger__links')}>
         <nav className={cn(isMenuOpen ? 'burger__nav' : '')}>
-          <NavigationLink to="/" linkText="Home" onClick={() => setIsMenuOpen(false)} />
-          <NavigationLink to="/phones" linkText="Phones" onClick={() => setIsMenuOpen(false)} />
-          <NavigationLink to="/tablets" linkText="Tablets" onClick={() => setIsMenuOpen(false)} />
-          <NavigationLink to="/accessories" linkText="Accessories" onClick={() => setIsMenuOpen(false)} />
+          <NavigationLink
+            to="/"
+            linkText="Home"
+            onClick={() => setIsMenuOpen(false)}
+          />
+          <NavigationLink
+            to="/phones"
+            linkText="Phones"
+            onClick={() => setIsMenuOpen(false)}
+          />
+          <NavigationLink
+            to="/tablets"
+            linkText="Tablets"
+            onClick={() => setIsMenuOpen(false)}
+          />
+          <NavigationLink
+            to="/accessories"
+            linkText="Accessories"
+            onClick={() => setIsMenuOpen(false)}
+          />
         </nav>
       </div>
 
       <div className={cn(isMenuOpen ? 'burger__service' : '')}>
-        <Link
-          to='/favourites'
+        <button
           className={cn(
             'service__button',
             'service__like',
@@ -45,23 +62,7 @@ export const BurgerMenuOpened: FC<BurgerMenuProps> = ({ isMenuOpen, setIsMenuOpe
             alt="like button"
             className={cn('like')}
           />
-        </Link>
-
-        <Link
-          to='/cart'
-          className={cn(
-            'service__button',
-            'service__cart',
-            { 'service__button-active': isCartActive }
-          )}
-          onClick={() => handleServiceButtonClick('cart')}
-        >
-          <img
-            src={cart}
-            alt="cart button"
-            className={cn('cart')}
-          />
-        </Link>
+        </button>
       </div>
     </div>
   );

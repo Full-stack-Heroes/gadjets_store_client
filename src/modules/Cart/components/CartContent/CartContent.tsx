@@ -34,24 +34,23 @@ export const CartContent: FC = () => {
       })}>
         <div
           className={styles.cart__back_button}
-          onClick={() => handleGoBack()}
-        >
+          onClick={() => handleGoBack()}>
           <div className={styles.cart__arrow}>
-            <Arrow/>
+            <Arrow />
           </div>
           Back
-        </div>
+        </span>
 
-        <div className={styles.cart__title}>
+        <h1 className={styles.cart__title}>
            Cart
-        </div>
+        </h1>
 
         <div className={styles.cart__container}>
           <div className={styles.cart__items}>
-            <CartItem/>
-            <CartItem/>
-            <CartItem/>
-            <CartItem/>
+            <CartItem />
+            <CartItem />
+            <CartItem />
+            <CartItem />
             <CartItem />
           </div>
 
