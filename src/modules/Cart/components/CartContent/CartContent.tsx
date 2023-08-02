@@ -2,9 +2,9 @@ import { FC, useState, useEffect } from 'react';
 import cn from 'classnames';
 import styles from './CartContent.module.scss';
 import heart from '../../../../assets/icons/Heart.svg';
-import { Arrow } from '../../../../components/Arrow/Arrow';
 import { CartItem } from '../../../../components/CartItem/CartItem';
 import { TotalCost } from '../../../../components/TotalCost/TotalCost';
+import { BackLink } from '../../../../components/BackLink/BackLink';
 
 export const CartContent: FC = () => {
   const [isCheckoutDone, setCheckoutDone] = useState<boolean>(false);
@@ -21,10 +21,6 @@ export const CartContent: FC = () => {
     }
   }, [showSuccess]);
 
-  const handleGoBack = () => {
-    window.history.back();
-  };
-
   return (
     <section
       className={styles.content}
@@ -32,14 +28,7 @@ export const CartContent: FC = () => {
       <div className={cn(styles.cart, {
         [styles.cartActive]: modalActive,
       })}>
-        <div
-          className={styles.cart__back_button}
-          onClick={() => handleGoBack()}>
-          <div className={styles.cart__arrow}>
-            <Arrow />
-          </div>
-          Back
-        </div>
+        <BackLink />
 
         <h1 className={styles.cart__title}>Cart</h1>
 
