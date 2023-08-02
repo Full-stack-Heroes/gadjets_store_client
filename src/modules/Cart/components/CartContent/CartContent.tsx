@@ -5,11 +5,10 @@ import { TotalCost } from '../../../../components/TotalCost/TotalCost';
 import { BackLink } from '../../../../components/BackLink/BackLink';
 
 export const CartContent: FC = () => {
-
   return (
     <section className={styles.content}>
       <div className={styles.cart}>
-        <BackLink/>
+        <BackLink />
 
         <h1 className={styles.cart__title}>Cart</h1>
 

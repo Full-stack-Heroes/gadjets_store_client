@@ -1,10 +1,12 @@
 import { FC } from 'react';
-import { Link } from 'react-router-dom';
+import { Header } from '../../components/Header';
+import { Footer } from '../../components/Footer';
+import { NotFound } from '../../components/NotFound';
 
 export const NotFoundPage: FC = () => (
   <div>
-    <h1>Oops!</h1>
-    <p>Sorry, we can’t find the page you’re looking for.</p>
-    <Link to="/">Home page</Link>
+    <Header/>
+    <NotFound/>
+    <Footer/>
   </div>
 );
