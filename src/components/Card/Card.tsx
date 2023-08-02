@@ -5,6 +5,7 @@ import heart from '../../assets/icons/Heart.svg';
 import filledheart from '../../assets/icons/Heart_Filled.svg';
 import { Product } from '../../types/product';
 import { normalizeImage, normalizeMemory } from '../../utils/helpers';
+import { Link } from 'react-router-dom';
 
 interface Props {
   product: Product;
@@ -24,13 +25,30 @@ export const Card: React.FC<Props> = ({ product }) => {
     setProductLiked(!productLiked);
   };
 
-  const { image, name, fullPrice, price, screen, capacity, ram } = product;
+  const {
+    itemId,
+    image,
+    name,
+    fullPrice,
+    price,
+    screen,
+    capacity,
+    ram,
+  } = product;
+  const productPageLink = window.location.href + '/' + itemId;
 
   return (
     <div className={styles.card}>
-      <img src={normalizeImage(image)} className={styles.card__product_image} />
+      <Link className={styles.card_link} to={productPageLink}>
+        <img
+          src={normalizeImage(image)}
+          className={styles.card__product_image}
+        />
+      </Link>
 
-      <h2 className={styles.card__product_name}>{name}</h2>
+      <Link to={productPageLink} className={styles.card__product_name}>
+        {name}
+      </Link>
 
       <p className={styles.card__product_price}>
         <span className={styles.card__product_price_discount}>${price}</span>
