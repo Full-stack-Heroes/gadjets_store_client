@@ -1,11 +1,12 @@
 import { FC } from 'react';
 import { Product } from '../../types/product';
 
-import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import styles from './CardCarousel.module.scss';
 import { Card } from '../Card/Card';
 import classNames from 'classnames/bind';
+import Carousel, { ButtonGroupProps } from 'react-multi-carousel';
+import Up from '../../assets/icons/Arrow.svg';
 
 const cn = classNames.bind(styles);
 
@@ -36,14 +37,64 @@ const responsive = {
   }
 };
 
+const ButtonGroup:FC = (
+  { next, previous, carouselState }
+  : ButtonGroupProps) => {
+  const currentSlide = carouselState?.currentSlide ?? 0;
+  const isInitialSlide = currentSlide === 0;
+
+  const handlePrevClick = () => {
+    if (previous) {
+      previous();
+    }
+  };
+
+  const handleNextClick = () => {
+    if (next) {
+      next();
+    }
+  };
+
+  return (
+    <div className={cn('carousel-button-group')}>
+      <button
+        className={cn('Button', 'Button--left', {
+          'Button--disabled': isInitialSlide,
+        })}
+        aria-label="Go left"
+        onClick={handlePrevClick}
+      >
+        <img src={Up} />
+      </button>
+
+      <button
+        className={cn('Button', 'Button--right')}
+        aria-label="Go right"
+        onClick={handleNextClick}
+      >
+        <img src={Up} />
+      </button>
+    </div>
+  );
+};
+
 export const CartCarousel:FC<Props> = ({ products }) => {
   return (
-    <div>
-      <h2 className={cn('Header')}>You may also like</h2>
+    <div className={cn('CarouselContainer')}>
+      <div className={cn('HeaderContainer')}>
+        <h2 className={cn('Header')}>You may also like</h2>
+
+        <div className={cn('NavButtons')}>
+
+        </div>
+      </div>
 
       <Carousel
         itemClass={cn('Cards')}
         responsive={responsive}
+        customButtonGroup={<ButtonGroup />}
+        arrows={false}
+        renderButtonGroupOutside={true}
       >
         {products.map(product => (
           <Card product={product} key={product.id}/>
