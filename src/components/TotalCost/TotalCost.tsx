@@ -1,13 +1,20 @@
-import React, { useState } from 'react';
+import { FC } from 'react';
 import cn from 'classnames';
 import styles from './TotalCost.module.scss';
 
-interface Props {
+type Props = {
+  setCheckoutDone: (val: boolean) => void;
+  setShowSuccess: (cal: boolean) => void;
+  isCheckoutDone: boolean;
   totalCost: number;
 }
 
-export const TotalCost: React.FC<Props> = ({ totalCost }) => {
-  const [isCheckoutDone, setCheckoutDone] = useState(false);
+export const TotalCost: FC<Props> = ({
+  setCheckoutDone,
+  setShowSuccess,
+  isCheckoutDone,
+  totalCost,
+}) => {
   const buttonTitle = isCheckoutDone ? 'Thanks for shopping' : 'Checkout';
 
   const handleCheckout = () => {
@@ -15,6 +22,7 @@ export const TotalCost: React.FC<Props> = ({ totalCost }) => {
       window.location.href = '/';
     } else {
       setCheckoutDone(true);
+      setShowSuccess(true);
     }
   };
 
