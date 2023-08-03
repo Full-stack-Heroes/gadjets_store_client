@@ -6,6 +6,8 @@ import filledheart from '../../assets/icons/Heart_Filled.svg';
 import { Product } from '../../types/product';
 import { normalizeImage, normalizeMemory } from '../../utils/helpers';
 import { Link, useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../actions/cartActions';
 
 interface Props {
   product: Product;
@@ -18,8 +20,11 @@ export const Card: React.FC<Props> = ({ product }) => {
   const buttonText = productAdded ? 'added' : 'add to cart';
   const buttonHeart = productLiked ? filledheart : heart;
 
+  const dispatch = useDispatch();
+
   const handleProductAdded = () => {
     setProductAdded(!productAdded);
+    dispatch(addToCart(product));
   };
 
   const handleProductLiked = () => {

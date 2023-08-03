@@ -67,8 +67,7 @@ export const Header: FC = () => {
               cn('service_btn', {
                 active: isActive,
               })
-            }
-          >
+            }>
             <img
               src={like}
               alt="like button"
@@ -82,8 +81,7 @@ export const Header: FC = () => {
               cn('service_btn', {
                 active: isActive,
               })
-            }
-          >
+            }>
             <img
               src={cart}
               alt="like button"
