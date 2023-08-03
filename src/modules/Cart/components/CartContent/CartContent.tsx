@@ -28,6 +28,7 @@ export const CartContent: FC = () => {
     <section className={styles.content}>
       <div className={styles.cart}>
         <BackLink />
+        <BackLink />
 
         <h1 className={styles.cart__title}>Cart</h1>
 

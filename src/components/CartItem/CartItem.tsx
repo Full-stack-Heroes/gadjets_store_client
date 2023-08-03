@@ -13,7 +13,10 @@ interface Props {
   handleRemoveFromCart: (itemId: number) => void;
 }
 
-export const CartItem: React.FC<Props> = ({ product, handleRemoveFromCart }) => {
+export const CartItem: React.FC<Props> = ({
+  product,
+  handleRemoveFromCart,
+}) => {
   const [productQuantity, setProductQuantity] = useState(1);
   const isOneProduct = productQuantity === 1;
 
@@ -38,14 +41,15 @@ export const CartItem: React.FC<Props> = ({ product, handleRemoveFromCart }) => 
     <div key={id} className={styles.item__container}>
       <div className={styles.item_phone_info}>
         <div className={styles.item__container_close}>
-          <Cross itemId={id} handleRemoveFromCart={handleRemoveFromCart}/>
+          <Cross itemId={id} handleRemoveFromCart={handleRemoveFromCart} />
         </div>
 
-        <img src={normalizeImage(image)} className={styles.item__container_phone} />
+        <img
+          src={normalizeImage(image)}
+          className={styles.item__container_phone}
+        />
 
-        <p className={styles.item__container_model}>
-          {name}
-        </p>
+        <p className={styles.item__container_model}>{name}</p>
       </div>
 
       <div className={styles.item_price_info}>
@@ -69,7 +73,9 @@ export const CartItem: React.FC<Props> = ({ product, handleRemoveFromCart }) => 
           </button>
         </div>
 
-        <span className={styles.item__container_price}>${totalProdactPrice}</span>
+        <span className={styles.item__container_price}>
+          ${totalProdactPrice}
+        </span>
       </div>
     </div>
   );
