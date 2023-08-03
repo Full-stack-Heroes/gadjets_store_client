@@ -25,16 +25,12 @@
   &__product_image {
     height: 200px;
     margin: 0 auto 24px;
-<<<<<<< HEAD
-=======
     cursor: pointer;
     transition: transform 0.2s ease-in;
 
     &:hover {
       transform: scale(1.05);
     }
-
->>>>>>> 460116c97b9b02453b7a497c44960a850efaf442
   }
 
   &__product_name {
