@@ -3,9 +3,10 @@ import styles from './Header.module.scss';
 import logo from '../../assets/images/Logo.svg';
 import like from '../../assets/icons/Heart.svg';
 import cart from '../../assets/icons/Cart.svg';
+import menu from '../../assets/icons/Menu.svg';
+import close from '../../assets/icons/Close.svg';
 import { NavLink } from 'react-router-dom';
 import { NavigationLink } from '../NavigationLink';
-import { BurgerMenuButton } from '../BurgerMenuButton';
 import classNames from 'classnames/bind';
 import { BurgerMenuOpened } from '../BurgerMenuOpened';
 
@@ -14,22 +15,6 @@ const cn = classNames.bind(styles);
 export const Header: FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Opened burger and increasing width 640+ not hidding header elems
-  const handleWindowResize = () => {
-    if (window.innerWidth > 640 && isMenuOpen) {
-      setIsMenuOpen(false);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener('resize', handleWindowResize);
-
-    return () => {
-      window.removeEventListener('resize', handleWindowResize);
-    };
-  }, [isMenuOpen]);
-
-  // Remove scrollbar when burger opened.
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -37,6 +22,10 @@ export const Header: FC = () => {
       document.body.style.overflow = 'auto';
     }
   }, [isMenuOpen]);
+
+  const handleMenuClick = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   return (
     <header className={cn('header')}>
@@ -90,10 +79,15 @@ export const Header: FC = () => {
           </NavLink>
         </div>
 
-        <BurgerMenuButton
-          isMenuOpen={isMenuOpen}
-          setIsMenuOpen={setIsMenuOpen}
-        />
+        <button
+          className={cn('burger_btn', { 'burger_btn-active': isMenuOpen })}
+          onClick={handleMenuClick}>
+          <img
+            src={isMenuOpen ? close : menu}
+            alt={isMenuOpen ? 'close button' : 'menu button'}
+            className={cn('burger_btn_img')}
+          />
+        </button>
       </div>
 
       {isMenuOpen && (
