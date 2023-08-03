@@ -11,6 +11,12 @@
   border: 1px solid var(--gray-elements, #e2e6e9);
   transition: 0.3s;
 
+  &_link {
+    display: flex;
+    height: 200px;
+    margin: 0 auto 24px;
+  }
+
   &:hover {
     box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.1);
     cursor: pointer;
@@ -19,6 +25,16 @@
   &__product_image {
     height: 200px;
     margin: 0 auto 24px;
+<<<<<<< HEAD
+=======
+    cursor: pointer;
+    transition: transform 0.2s ease-in;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+
+>>>>>>> 460116c97b9b02453b7a497c44960a850efaf442
   }
 
   &__product_name {
@@ -27,8 +43,12 @@
     font-size: 14px;
     line-height: 21px;
     font-weight: 600;
-
+    text-decoration: none;
     color: rgba(15, 15, 17, 1);
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 
   &__product_price {

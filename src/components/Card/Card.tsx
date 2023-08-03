@@ -5,6 +5,9 @@ import heart from '../../assets/icons/Heart.svg';
 import filledheart from '../../assets/icons/Heart_Filled.svg';
 import { Product } from '../../types/product';
 import { normalizeImage, normalizeMemory } from '../../utils/helpers';
+import { Link, useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../actions/cartActions';
 
 interface Props {
   product: Product;
@@ -13,24 +16,48 @@ interface Props {
 export const Card: React.FC<Props> = ({ product }) => {
   const [productAdded, setProductAdded] = useState(false);
   const [productLiked, setProductLiked] = useState(false);
+  const location = useLocation();
   const buttonText = productAdded ? 'added' : 'add to cart';
   const buttonHeart = productLiked ? filledheart : heart;
 
+  const dispatch = useDispatch();
+
   const handleProductAdded = () => {
     setProductAdded(!productAdded);
+    dispatch(addToCart(product));
   };
 
   const handleProductLiked = () => {
     setProductLiked(!productLiked);
   };
 
-  const { image, name, fullPrice, price, screen, capacity, ram } = product;
+  const {
+    itemId,
+    image,
+    name,
+    fullPrice,
+    price,
+    screen,
+    capacity,
+    ram,
+  } = product;
+
+  const category = location.pathname.split('/')[1];
+
+  const productPageLink = `/${category}/${itemId}`;
 
   return (
     <div className={styles.card}>
-      <img src={normalizeImage(image)} className={styles.card__product_image} />
+      <Link className={styles.card_link} to={productPageLink}>
+        <img
+          src={normalizeImage(image)}
+          className={styles.card__product_image}
+        />
+      </Link>
 
-      <h2 className={styles.card__product_name}>{name}</h2>
+      <Link to={productPageLink} className={styles.card__product_name}>
+        {name}
+      </Link>
 
       <p className={styles.card__product_price}>
         <span className={styles.card__product_price_discount}>${price}</span>

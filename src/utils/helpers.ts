@@ -1,3 +1,6 @@
+import { ProductDetails } from '../types/productDetails';
+import { productSpecs } from '../types/productSpecs';
+
 export const normalizeImage = (img: string) => {
   const imgLink = img.slice(0, -4);
 
@@ -16,3 +19,22 @@ export const scrollToTop = () => {
     behavior: 'smooth',
   });
 };
+
+export const getSpecsFromProductData = (
+  productData: ProductDetails,
+): productSpecs => {
+  const { screen, resolution, processor, ram, camera, zoom, cell } =
+    productData;
+
+  return {
+    screen,
+    resolution,
+    processor,
+    ram,
+    camera,
+    zoom,
+    cell,
+  };
+};
+
+export const generateId = () => Math.floor(Math.random() * 10001);

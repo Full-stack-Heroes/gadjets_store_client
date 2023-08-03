@@ -1,0 +1,43 @@
+
+$primary-color: #0f0f11;
+
+.CategoriesWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 32px;
+  margin-bottom: 57px;
+}
+
+.Title {
+  color: $primary-color;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 140%;
+  margin-bottom: 24px;
+}
+
+
+@media screen and (min-width: 640px) {
+  .CategoriesWrapper {
+    flex-direction: row;
+    gap: 16px;
+    margin-bottom: 64px;
+  }
+
+  .Title{
+    color: $primary-color;
+
+    font-size: 32px;
+    line-height: 41px;
+    letter-spacing: -0.32px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .CategoriesWrapper {
+    margin-bottom: 80px;
+  }
+}

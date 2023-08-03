@@ -5,11 +5,29 @@ import heart from '../../../../assets/icons/Heart.svg';
 import { CartItem } from '../../../../components/CartItem/CartItem';
 import { TotalCost } from '../../../../components/TotalCost/TotalCost';
 import { BackLink } from '../../../../components/BackLink/BackLink';
+import { Product } from '../../../../types/product';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../../../store';
+import { removeFromCart } from '../../../../actions/cartActions';
 
 export const CartContent: FC = () => {
   const [isCheckoutDone, setCheckoutDone] = useState<boolean>(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [modalActive, setModalActive] = useState(false);
+  const cartItems = useSelector((state: RootState) => state.cart.cartItems);
+  const dispatch = useDispatch();
+
+  const totalCost = cartItems.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0,
+  );
+
+  const handleRemoveFromCart = (itemId: number) => {
+    dispatch(removeFromCart(itemId));
+  };
+
+  const order = JSON.parse(localStorage.getItem('order') as string);
+  console.log(order);
 
   const handleModalClose = () => {
     setModalActive(false);
@@ -34,11 +52,13 @@ export const CartContent: FC = () => {
 
         <div className={styles.cart__container}>
           <div className={styles.cart__items}>
-            <CartItem />
-            <CartItem />
-            <CartItem />
-            <CartItem />
-            <CartItem />
+            {cartItems.map((item: Product) => (
+              <CartItem
+                key={item.id}
+                product={item}
+                handleRemoveFromCart={handleRemoveFromCart}
+              />
+            ))}
           </div>
 
           <div className={styles.cart__checkout}>
@@ -46,6 +66,7 @@ export const CartContent: FC = () => {
               setCheckoutDone={setCheckoutDone}
               setShowSuccess={setShowSuccess}
               isCheckoutDone={isCheckoutDone}
+              totalCost={totalCost}
             />
           </div>
         </div>

@@ -4,7 +4,7 @@ import ProductsPage from '../../../../pages/ProductsPage/ProductsPage';
 export const PhonesContent: FC = () => {
   return (
     <>
-      <ProductsPage endpoint={'phones'}/>
+      <ProductsPage endpoint={'phones'} />
     </>
   );
 };
