@@ -6,15 +6,19 @@ import filledheart from '../../assets/icons/Heart_Filled.svg';
 import { Product } from '../../types/product';
 import { normalizeImage, normalizeMemory } from '../../utils/helpers';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../../actions/cartActions';
+import { RootState } from '../../store';
 
 interface Props {
   product: Product;
 }
 
 export const Card: React.FC<Props> = ({ product }) => {
-  const [productAdded, setProductAdded] = useState(false);
+  const products = useSelector((state: RootState) => state.cart.cartItems as Product[]);
+  const isProductInCart = products.some((item: Product) => item.itemId === product.itemId);
+
+  const [productAdded, setProductAdded] = useState(isProductInCart);
   const [productLiked, setProductLiked] = useState(false);
   const buttonText = productAdded ? 'added' : 'add to cart';
   const buttonHeart = productLiked ? filledheart : heart;
