@@ -8,9 +8,7 @@ export const BackLink: FC = () => {
   };
 
   return (
-    <span
-      className={styles.back_button}
-      onClick={() => handleGoBack()}>
+    <span className={styles.back_button} onClick={() => handleGoBack()}>
       <div className={styles.arrow}>
         <Arrow />
       </div>
