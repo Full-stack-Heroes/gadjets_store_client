@@ -8,12 +8,17 @@
 
 @media (max-width: 639px) {
   .burger {
+    overflow: hidden;
     position: relative;
+    transition: 1s;
     top: 1px;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     left: 0;
-    background: var(--gray-white, $white);
+    z-index: 1;
+    // transform: translate(-100%);
+    transition: all 1s;
+    background-color: #fff;
 
     &__links {
       padding-top: 32px;
@@ -45,6 +50,11 @@
       align-items: center;
       background: $white;
     }
+
+    &_opened {
+      transition: 1s;
+      transform: translate(1);
+    }
   }
 
   .service {
@@ -52,7 +62,7 @@
       border: none;
       background: $white;
       width: 50%;
-      height: 64px;
+      height: 100%;
       transition: transform 0.3s ease-in-out;
       display: flex;
       align-items: center;

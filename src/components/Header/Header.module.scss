@@ -94,9 +94,34 @@
   }
 }
 
+
+.burger_btn {
+  width: 48px;
+  display: none;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  border-left: 1px solid $elements;
+
+  &_img {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  &-active {
+    background-color: $white;
+  }
+
+  &:hover .burger_btn_img {
+    transform: scale(1.1);
+  }
+}
+
 @media (max-width: 639px) {
   .container {
     padding: 0;
+    overflow: hidden;
   }
 
   .service_btn {
@@ -105,5 +130,11 @@
 
   .nav {
     display: none;
+  }
+
+  .burger_btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
