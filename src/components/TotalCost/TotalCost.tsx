@@ -1,15 +1,22 @@
-import React, { useState } from 'react';
+import { FC } from 'react';
 import cn from 'classnames';
 import styles from './TotalCost.module.scss';
 import { useDispatch } from 'react-redux';
 import { removeAllFromCart } from '../../actions/cartActions';
 
-interface Props {
+type Props = {
+  setCheckoutDone: (val: boolean) => void;
+  setShowSuccess: (cal: boolean) => void;
+  isCheckoutDone: boolean;
   totalCost: number;
 }
 
-export const TotalCost: React.FC<Props> = ({ totalCost }) => {
-  const [isCheckoutDone, setCheckoutDone] = useState(false);
+export const TotalCost: FC<Props> = ({
+  setCheckoutDone,
+  setShowSuccess,
+  isCheckoutDone,
+  totalCost,
+}) => {
   const buttonTitle = isCheckoutDone ? 'Thanks for shopping' : 'Checkout';
 
   const dispatch = useDispatch();
@@ -24,6 +31,7 @@ export const TotalCost: React.FC<Props> = ({ totalCost }) => {
       handleRemoveAllFromCart();
     } else {
       setCheckoutDone(true);
+      setShowSuccess(true);
     }
   };
 

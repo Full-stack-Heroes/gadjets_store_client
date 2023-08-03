@@ -9,7 +9,9 @@ export const normalizeImage = (img: string) => {
 
 export const normalizeMemory = (memory: string) => {
   const capacity = memory.slice(0, -2);
-
+  if (parseInt(capacity) < 32) {
+    return capacity + ' TB';
+  }
   return capacity + ' GB';
 };
 

@@ -30,7 +30,10 @@ export const Cards: FC<Props> = ({ products, isLoading }) => {
         <>
           <div className={styles.cards__container}>
             {currentPhones.map((phone) => (
-              <Card product={phone} key={phone.id} />
+              <Card
+                product={phone}
+                key={phone.id}
+              />
             ))}
           </div>
 
