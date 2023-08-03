@@ -23,8 +23,7 @@ export const scrollToTop = () => {
 export const getSpecsFromProductData = (
   productData: ProductDetails,
 ): productSpecs => {
-  const { screen, resolution, processor, ram, camera, zoom, cell } =
-    productData;
+  const { screen, resolution, processor, ram, camera, zoom, cell } = productData;
 
   return {
     screen,

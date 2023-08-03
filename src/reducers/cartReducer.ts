@@ -76,6 +76,12 @@ const cartReducer = (state = initialState, action: CartAction): CartState => {
         ...state,
         cartItems: updCartItems,
       };
+    case CartActionTypes.REMOVE_ALL_FROM_CART:
+      saveCartItemsToLocalStorage([]);
+      return {
+        ...state,
+        cartItems: [],
+      };
     default:
       return state;
   }

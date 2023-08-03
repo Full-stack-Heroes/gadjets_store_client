@@ -5,7 +5,7 @@ import heart from '../../assets/icons/Heart.svg';
 import filledheart from '../../assets/icons/Heart_Filled.svg';
 import { Product } from '../../types/product';
 import { normalizeImage, normalizeMemory } from '../../utils/helpers';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../../actions/cartActions';
 
@@ -16,7 +16,6 @@ interface Props {
 export const Card: React.FC<Props> = ({ product }) => {
   const [productAdded, setProductAdded] = useState(false);
   const [productLiked, setProductLiked] = useState(false);
-  const location = useLocation();
   const buttonText = productAdded ? 'added' : 'add to cart';
   const buttonHeart = productLiked ? filledheart : heart;
 
@@ -35,14 +34,13 @@ export const Card: React.FC<Props> = ({ product }) => {
     itemId,
     image,
     name,
+    category,
     fullPrice,
     price,
     screen,
     capacity,
     ram,
   } = product;
-
-  const category = location.pathname.split('/')[1];
 
   const productPageLink = `/${category}/${itemId}`;
 
