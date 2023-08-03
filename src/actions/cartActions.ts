@@ -4,6 +4,7 @@ export enum CartActionTypes {
   ADD_TO_CART = 'ADD_TO_CART',
   REMOVE_FROM_CART = 'REMOVE_FROM_CART',
   UPDATE_QUANTITY = 'UPDATE_QUANTITY',
+  REMOVE_ALL_FROM_CART = 'REMOVE_ALL_FROM_CART',
 }
 
 interface AddToCartAction {
@@ -22,6 +23,10 @@ interface UpdateQuantityAction {
     itemId: number;
     quantity: number;
   };
+}
+
+interface RemoveAllFromCartAction {
+  type: CartActionTypes.REMOVE_ALL_FROM_CART;
 }
 
 export const addToCart = (product: Product): AddToCartAction => ({
@@ -45,7 +50,12 @@ export const updateQuantity = (
   },
 });
 
+export const removeAllFromCart = (): RemoveAllFromCartAction => ({
+  type: CartActionTypes.REMOVE_ALL_FROM_CART,
+});
+
 export type CartAction =
   | AddToCartAction
   | RemoveFromCartAction
-  | UpdateQuantityAction;
+  | UpdateQuantityAction
+  | RemoveAllFromCartAction

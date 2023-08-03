@@ -26,9 +26,6 @@ export const CartContent: FC = () => {
     dispatch(removeFromCart(itemId));
   };
 
-  const order = JSON.parse(localStorage.getItem('order') as string);
-  console.log(order);
-
   const handleModalClose = () => {
     setModalActive(false);
   };
