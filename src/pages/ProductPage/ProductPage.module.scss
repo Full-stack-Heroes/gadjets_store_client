@@ -29,13 +29,12 @@
 
 .SectionContainer {
   display: flex;
-  flex-basis: auto;
   gap: 64px;
 
   margin-bottom: 80px;
 
   &__item {
-    flex: 1 1 0px;
+    flex: 1 1 0;
     min-height: 400px;
 
     border-radius: 8px;
