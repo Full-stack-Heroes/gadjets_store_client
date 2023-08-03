@@ -18,7 +18,7 @@ const responsive = {
   },
   tablet: {
     breakpoint: { max: 1199, min: 860 },
-    items: 3,
+    items: 2,
     slidesToSlide: 1
   },
   tabletSmall: {
@@ -28,8 +28,9 @@ const responsive = {
   },
   mobile: {
     breakpoint: { max: 640, min: 320 },
-    items: 1,
-    slidesToSlide: 1
+    items: 2,
+    slidesToSlide: 1,
+    partialVisibilityGutter: 30,
   }
 };
 
@@ -96,6 +97,7 @@ export const CartCarousel:FC<Props> = ({ products, title }) => {
         customButtonGroup={<ButtonGroup />}
         arrows={false}
         renderButtonGroupOutside={true}
+        partialVisible={true}
       >
         {products.map(product => (
           <Card product={product} key={product.id}/>

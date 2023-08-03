@@ -9,7 +9,7 @@ import { Loader } from '../../components/Loader';
 import { getSpecsFromProductData } from '../../utils/helpers';
 import { ProductTechSpecs } from '../../components/ProductTechSpecs/ProductTechSpecs';
 import { BackLink } from '../../components/BackLink/BackLink';
-import { CartCarousel } from '../../components/CartCarousel/CartCarousel';
+import { CartCarousel } from '../../components/CardCarousel/CardCarousel';
 import { Product } from '../../types/product';
 import { Actions } from '../../components/Actions';
 import { About } from '../../components/About';
