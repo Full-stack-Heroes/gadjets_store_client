@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import like from '../../assets/icons/Heart.svg';
+import cart from '../../assets/icons/Cart.svg';
 import styles from './BurgerMenuOpened.module.scss';
 import { Link } from 'react-router-dom';
 import { NavigationLink } from '../NavigationLink';
