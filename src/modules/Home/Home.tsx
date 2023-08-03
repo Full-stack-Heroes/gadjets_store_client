@@ -1,11 +1,13 @@
 import { FC } from 'react';
 import { HomeLayout } from './components/HomeLayout';
-import { HomeContent } from './components/HomeContent';
+import { WelcomeTitle } from './components/WelcomeTitle';
+import { PromoSlider } from './components/PromoSlider';
 
 export const Home: FC = () => {
   return (
     <HomeLayout>
-      <HomeContent />
+      <WelcomeTitle />
+      <PromoSlider />
     </HomeLayout>
   );
 };

@@ -1,0 +1,42 @@
+@import '../../../../assets/colors/colors';
+@import '../../../../assets/grid/gridStyles.scss';
+
+.welcome {
+  &__container {
+    @include global-grid-container;
+    padding-top: 24px;
+
+
+    @include onTablet {
+      padding-top: 32px;
+    }
+
+    @include onDesktop {
+      padding-top: 56px;
+    }
+  }
+
+  &__article {
+    grid-column: 1 / -1;
+    text-align: left;
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 41px;
+    letter-spacing: -0.01em;
+    color: $primary;
+
+    @include onTablet {
+      grid-column: 1 / 8;
+
+      font-size: 48px;
+      line-height: 56px;
+    }
+
+    @include onDesktop {
+      grid-column: 1 / 18;
+
+      font-size: 48px;
+      line-height: 56px;
+    }
+  }
+}
