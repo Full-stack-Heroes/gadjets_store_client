@@ -49,43 +49,6 @@ $icons-color: #b4bdc3;
     min-width: 300px;
     height: 439px;
   }
-
-  &Categories {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  &CategoryItemWrapper {
-    margin-bottom: 32px;
-  }
-
-  &CategoryItem {
-    width: 288px;
-    height: 288px;
-    margin-bottom: 24px;
-    border-radius: 8px;
-    background: #6d6474;
-
-    &Title {
-      margin-bottom: 4px;
-      color: $primary-color;
-      font-size: 20px;
-      font-style: normal;
-      font-weight: 700;
-      line-height: normal;
-    }
-
-    &Description {
-      color: $secondary-color;
-
-      font-size: 14px;
-      font-style: normal;
-      font-weight: 600;
-      line-height: 21px;
-    }
-  }
 }
 
 @media screen and (min-width: 640px) {

@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import classNames from 'classnames/bind';
 import styles from './HomeContent.module.scss';
+import { Categories } from '../../../../components/Categories/Categories';
 
 export const HomeContent: FC = () => {
   const cn = classNames.bind(styles);
@@ -23,31 +24,7 @@ export const HomeContent: FC = () => {
         </div>
       </div>
 
-      <div className={cn('homeCategoriesWrapper')}>
-        <h2 className={cn('homeTitle', 'homeTitleSecondary')}>
-          Shop by category
-        </h2>
-
-        <div className={cn('homeCategories')}>
-          <div className={cn('homeCategoryItemWrapper')}>
-            <div className={cn('homeCategoryItem')}></div>
-            <h4 className={cn('homeCategoryItemTitle')}>Mobile phones</h4>
-            <h4 className={cn('homeCategoryItemDescription')}>95 models</h4>
-          </div>
-
-          <div className={cn('homeCategoryItemWrapper')}>
-            <div className={cn('homeCategoryItem')}></div>
-            <h4 className={cn('homeCategoryItemTitle')}>Tablets</h4>
-            <h4 className={cn('homeCategoryItemDescription')}>24 models</h4>
-          </div>
-
-          <div className={cn('homeCategoryItemWrapper')}>
-            <div className={cn('homeCategoryItem')}></div>
-            <h4 className={cn('homeCategoryItemTitle')}>Accessories</h4>
-            <h4 className={cn('homeCategoryItemDescription')}>100 models</h4>
-          </div>
-        </div>
-      </div>
+      <Categories/>
 
       <div className={cn('homeHotPricesWrapper')}>
         <h2 className={cn('homeTitle', 'homeTitleSecondary')}>Hot prices</h2>
