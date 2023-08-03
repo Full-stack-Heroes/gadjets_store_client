@@ -2,7 +2,7 @@ import { FC, useCallback, useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import styles from './HomeContent.module.scss';
 import { Categories } from '../../../../components/Categories/Categories';
-import { CartCarousel } from '../../../../components/CardCarousel/CardCarousel';
+import { CardCarousel } from '../../../../components/CardCarousel/CardCarousel';
 import { getProducts } from '../../../../api/products';
 import { Product } from '../../../../types/product';
 
@@ -42,26 +42,18 @@ export const HomeContent: FC = () => {
 
       <div className={cn('container', 'ProductPage')}>
         {newProducts && (
-          <CartCarousel
+          <CardCarousel
             products={newProducts}
             title="New models"
           />
         )}
       </div>
-      {/* <div className={cn('homeNewModelsWrapper')}>
-        <h2 className={cn('homeTitle', 'homeTitleSecondary')}>
-          Brand new models
-        </h2>
-        <div className={cn('homeSliderWrapper')}>
-          <div className={cn('homeNewModelsSlider')}></div>
-        </div>
-      </div> */}
 
       <Categories/>
 
       <div className={cn('container', 'ProductPage')}>
         {discountedProducts && (
-          <CartCarousel
+          <CardCarousel
             products={discountedProducts}
             title="Hot prices"
           />
