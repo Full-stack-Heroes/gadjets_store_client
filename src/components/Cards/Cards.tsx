@@ -12,7 +12,7 @@ interface Props {
 
 export const Cards: FC<Props> = ({ products, isLoading }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 16;
+  const itemsPerPage = 100;
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
