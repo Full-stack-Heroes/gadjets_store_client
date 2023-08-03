@@ -1,7 +1,7 @@
-import { AnyAction, Dispatch } from 'redux';
+import { AnyAction } from 'redux';
 import { Product } from '../types/product';
 import { getProducts } from '../api/products';
-import { ThunkAction } from 'redux-thunk';
+import { ThunkDispatch } from 'redux-thunk';
 import { RootState } from '../store';
 
 enum ProductActionTypes {
@@ -19,8 +19,6 @@ interface SetLoadingAction {
   payload: boolean;
 }
 
-type ProductAction = SetProductsAction | SetLoadingAction;
-
 export const setProducts = (products: Product[]): SetProductsAction => ({
   type: ProductActionTypes.SET_PRODUCTS,
   payload: products,
@@ -31,8 +29,9 @@ export const setLoading = (isLoading: boolean): SetLoadingAction => ({
   payload: isLoading,
 });
 
-export const fetchProducts = (endpoint: string): ThunkAction<void, RootState, null, AnyAction> => {
-  return async (dispatch: Dispatch<ProductAction | AnyAction>) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const fetchProducts = (endpoint: string): any => {
+  return async (dispatch: ThunkDispatch<RootState, void, AnyAction>) => {
     try {
       dispatch(setLoading(true));
       const fetchedProducts = await getProducts(endpoint);
