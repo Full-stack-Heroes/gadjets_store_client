@@ -20,17 +20,18 @@ const cn = classNames.bind(styles);
 export const ProductPage: FC = () => {
   const location = useLocation();
   const [productInfo, setProductInfo] = useState<ProductDetails | null>(null);
-  const [testProducts, setTestProducts] = useState<Product[]>(); //Temporary before endpoing /recomendation/id
+  const [recommendedProducts, setRecommendedProducts] = useState<Product[]>(); //Temporary before endpoing /recomendation/id
   const isLoading = !productInfo;
-  const locationToProduct = location.pathname;
+  const locationToProduct = location.pathname.slice(1);
 
   const fetchData = useCallback(async () => {
     try {
       const fetchedData = await getProductData(locationToProduct);
-      const products = await getProducts('phones');
+      const products = await getProducts(`${locationToProduct}/recommended`);
 
       setProductInfo(fetchedData);
-      setTestProducts(products);
+      setRecommendedProducts(products);
+      console.log(products);
     } catch (error) {
       console.log('Error while fetching');
     }
@@ -76,9 +77,9 @@ export const ProductPage: FC = () => {
             </div>
           </div>
 
-          {testProducts && (
+          {recommendedProducts && (
             <CardCarousel
-              products={testProducts}
+              products={recommendedProducts}
               title="You may also like"
             />
           )}

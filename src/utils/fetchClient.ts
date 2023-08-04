@@ -1,5 +1,4 @@
-// const BASE_URL = 'https://gadjets-store-apu.onrender.com';
-const BASE_URL = 'http://localhost:3000';
+export const BASE_URL = 'https://gadjets-store-apu.onrender.com';
 
 function wait(delay: number) {
   return new Promise((resolve) => {
