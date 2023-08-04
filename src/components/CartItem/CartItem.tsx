@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux';
 import { updateQuantity } from '../../actions/cartActions';
 interface Props {
   product: Product;
-  handleRemoveFromCart: (itemId: number) => void;
+  handleRemoveFromCart: (itemId: string) => void;
 }
 
 export const CartItem: React.FC<Props> = ({
@@ -34,14 +34,14 @@ export const CartItem: React.FC<Props> = ({
     }
   };
 
-  const { image, name, price, id } = product;
+  const { image, name, price, itemId, id } = product;
   const totalProdactPrice = price * productQuantity;
 
   return (
     <div key={id} className={styles.item__container}>
       <div className={styles.item_phone_info}>
         <div className={styles.item__container_close}>
-          <Cross itemId={id} handleRemoveFromCart={handleRemoveFromCart} />
+          <Cross itemId={itemId} handleRemoveFromCart={handleRemoveFromCart} />
         </div>
 
         <img
