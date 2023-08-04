@@ -1,14 +1,14 @@
 /* eslint-disable indent */
 import { AnyAction } from 'redux';
-import { Product } from '../types/product';
+import { productWithCounter } from '../types/productWithCounter';
 
 interface ProductState {
-  products: Product[];
+  products: productWithCounter;
   isLoading: boolean;
 }
 
 const initialState: ProductState = {
-  products: [],
+  products: {count: 0, rows: []},
   isLoading: false,
 };
 

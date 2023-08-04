@@ -12,6 +12,8 @@ export const ProductsPage: FC<Props> = ({ endpoint }) => {
   const products = useSelector((state: RootState) => state.products.products);
   const isLoading = useSelector((state: RootState) => state.products.isLoading);
 
+  console.log(isLoading, products);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -19,6 +21,8 @@ export const ProductsPage: FC<Props> = ({ endpoint }) => {
   }, []);
 
   return (
-    <Cards products={products} isLoading={isLoading} />
+    <>
+      <Cards products={products.rows} isLoading={isLoading} />
+    </>
   );
 };
