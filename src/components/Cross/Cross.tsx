@@ -2,8 +2,8 @@ import { FC } from 'react';
 import './Cross.scss';
 
 interface Props {
-  handleRemoveFromCart: (itemId: number) => void;
-  itemId: number;
+  handleRemoveFromCart: (itemId: string) => void;
+  itemId: string;
 }
 
 export const Cross: FC<Props> = ({ handleRemoveFromCart, itemId }) => {

@@ -59,7 +59,7 @@ const cartReducer = (state = initialState, action: CartAction): CartState => {
     case CartActionTypes.REMOVE_FROM_CART:
       const productIdToRemove = action.payload;
       const updatedCartItems = state.cartItems.filter(
-        (item) => item.id !== productIdToRemove,
+        (item) => item.itemId !== productIdToRemove,
       );
       saveCartItemsToLocalStorage(updatedCartItems);
       return {
