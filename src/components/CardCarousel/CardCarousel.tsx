@@ -13,12 +13,12 @@ const cn = classNames.bind(styles);
 const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1200 },
-    items: 4,
+    items: 3.95,
     slidesToSlide: 2
   },
   tablet: {
     breakpoint: { max: 1199, min: 860 },
-    items: 3,
+    items: 2.97,
     slidesToSlide: 1
   },
   tabletSmall: {
@@ -28,7 +28,7 @@ const responsive = {
   },
   mobile: {
     breakpoint: { max: 640, min: 320 },
-    items: 1,
+    items: 0.97,
     slidesToSlide: 1
   }
 };
@@ -79,7 +79,7 @@ interface Props {
   title: string;
 }
 
-export const CartCarousel:FC<Props> = ({ products, title }) => {
+export const CardCarousel:FC<Props> = ({ products, title }) => {
   return (
     <div className={cn('CarouselContainer')}>
       <div className={cn('HeaderContainer')}>
@@ -96,6 +96,7 @@ export const CartCarousel:FC<Props> = ({ products, title }) => {
         customButtonGroup={<ButtonGroup />}
         arrows={false}
         renderButtonGroupOutside={true}
+        partialVisible={true}
       >
         {products.map(product => (
           <Card product={product} key={product.id}/>

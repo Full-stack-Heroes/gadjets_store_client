@@ -1,14 +1,20 @@
 import { FC, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import cn from 'classnames';
 import styles from './CartContent.module.scss';
-import heart from '../../../../assets/icons/Heart.svg';
+import cart from '../../../../assets/icons/fastCart2.png';
+import popup from '../../../../assets/icons/Buy.png';
+import cross from '../../../../assets/icons/Close.svg';
 import { CartItem } from '../../../../components/CartItem/CartItem';
 import { TotalCost } from '../../../../components/TotalCost/TotalCost';
 import { BackLink } from '../../../../components/BackLink/BackLink';
 import { Product } from '../../../../types/product';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../../../store';
-import { removeFromCart } from '../../../../actions/cartActions';
+import {
+  removeFromCart,
+  removeAllFromCart,
+} from '../../../../actions/cartActions';
 
 export const CartContent: FC = () => {
   const [isCheckoutDone, setCheckoutDone] = useState<boolean>(false);
@@ -16,6 +22,10 @@ export const CartContent: FC = () => {
   const [modalActive, setModalActive] = useState(false);
   const cartItems = useSelector((state: RootState) => state.cart.cartItems);
   const dispatch = useDispatch();
+
+  const handleRemoveAllFromCart = () => {
+    dispatch(removeAllFromCart());
+  };
 
   const totalCost = cartItems.reduce(
     (total, item) => total + item.price * item.quantity,
@@ -28,6 +38,7 @@ export const CartContent: FC = () => {
 
   const handleModalClose = () => {
     setModalActive(false);
+    handleRemoveAllFromCart();
   };
 
   useEffect(() => {
@@ -36,13 +47,12 @@ export const CartContent: FC = () => {
     }
   }, [showSuccess]);
 
-  return (
-    <section
-      className={styles.content}
-    >
-      <div className={cn(styles.cart, {
-        [styles.cartActive]: modalActive,
-      })}>
+  return cartItems.length ? (
+    <section className={styles.content}>
+      <div
+        className={cn(styles.cart, {
+          [styles.cartActive]: modalActive,
+        })}>
         <BackLink />
 
         <h1 className={styles.cart__title}>Cart</h1>
@@ -64,34 +74,59 @@ export const CartContent: FC = () => {
               setShowSuccess={setShowSuccess}
               isCheckoutDone={isCheckoutDone}
               totalCost={totalCost}
+              items={cartItems.length}
             />
           </div>
         </div>
       </div>
 
       {showSuccess && (
-        <div className={cn(styles.PopupContainer, {
-          [styles.PopupContainer_Active]: modalActive,
-        })}>
-
-          <img src={heart} className={styles.PopupContainerImage} />
+        <div
+          className={cn(styles.PopupContainer, {
+            [styles.PopupContainer_Active]: modalActive,
+          })}>
+          <img
+            src={cross}
+            className={styles.PopupContainerClose}
+            onClick={() => handleModalClose()}
+          />
+          <img src={popup} className={styles.PopupContainerImage} />
 
           <h2 className={styles.PopupContainerThanks}>Thank You!</h2>
 
-          <p
-            className={styles.PopupContainerMessage}
-          >
+          <p className={styles.PopupContainerMessage}>
             Your order was successfully applied!
           </p>
 
-          <button
+          <Link
+            to="/"
             className={styles.PopupContainerButton}
             onClick={() => handleModalClose()}
           >
             Continue
-          </button>
+          </Link>
         </div>
       )}
     </section>
+  ) : (
+    <div className={styles.emptyContainer}>
+      <img src={cart} alt="" />
+      <h2
+        className={styles.emptyContainerText}
+      >
+        Noting here yet :(
+      </h2>
+      <h2
+        className={styles.emptyContainerBottomText}
+      >
+        Let&apos;s better watch what we have
+      </h2>
+      <Link
+        to="/"
+        className={styles.emptyContainerButton}
+      >
+        Go to find something!
+      </Link>
+    </div>
   );
 };
