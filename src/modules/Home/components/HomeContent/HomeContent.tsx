@@ -35,10 +35,10 @@ export const HomeContent: FC = () => {
   }, []);
   return (<>
     { <div className={cn('home')}>
-      <div className={cn('homeMainSliderWrapper')}>
-        <h1 className={cn('homeTitle', 'homeTitleMain')}>
+      <h1 className={cn('homeTitle', 'titleH1', 'title')}>
           Welcome to Nice Gadgets store!
-        </h1>
+      </h1>
+      <div className={cn('homeMainSliderWrapper')}>
         <div className={cn('homeMainSlider')}></div>
       </div>
 

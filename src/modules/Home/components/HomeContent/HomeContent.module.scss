@@ -1,7 +1,5 @@
-$primary-color: #0f0f11;
-$secondary-color: #89939a;
-$elements-color: #e2e6e9;
-$icons-color: #b4bdc3;
+@import '../../../../components/styles/Colors.module.scss';
+@import '../../../../components/styles/Typography.scss';
 
 .home {
   display: flex;
@@ -11,24 +9,9 @@ $icons-color: #b4bdc3;
   max-width: 1200px;
 
   &Title {
-    color: $primary-color;
-    font-style: normal;
-    font-weight: 800;
-    margin-bottom: 24px;
-
-    &Main {
-      margin: 24px 0;
-      font-size: 32px;
-      font-weight: 800;
-      line-height: 41px;
-      letter-spacing: -0.32px;
-    }
-
-    &Secondary {
-      text-align: left;
-      font-size: 22px;
-      line-height: 140%;
-    }
+    width: 100%;
+    margin-top: 24px;
+    text-align: left;
   }
 
   &MainSlider {
@@ -51,9 +34,7 @@ $icons-color: #b4bdc3;
     align-items: center;
 
     &Title {
-      &Main {
-        margin: 32px 0;
-      }
+      margin: 32px 0;
     }
 
     &Categories {
@@ -73,9 +54,8 @@ $icons-color: #b4bdc3;
     gap: 80px;
 
     &Title {
-      &Main {
-        margin: 56px 0;
-      }
+      margin-top: 56px;
+      padding-left: 30px;
     }
 
     &SliderContainer {

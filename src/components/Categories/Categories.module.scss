@@ -1,11 +1,12 @@
 
-$primary-color: #0f0f11;
+@import '../../components/styles/Colors.module.scss';
 
 .CategoriesWrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   gap: 32px;
 }
 
@@ -26,8 +27,6 @@ $primary-color: #0f0f11;
   }
 
   .Title{
-    color: $primary-color;
-
     font-size: 32px;
     line-height: 41px;
     letter-spacing: -0.32px;
