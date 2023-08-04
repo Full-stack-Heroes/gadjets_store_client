@@ -28,8 +28,6 @@ export const Actions: FC<Props> = ({ className, product }) => {
 
   const dispatch = useDispatch();
 
-  const currentProduct = products.find((item: Product) => item.itemId === product.id);
-
   const {
     capacity,
     capacityAvailable,
@@ -45,7 +43,7 @@ export const Actions: FC<Props> = ({ className, product }) => {
 
   const handleProductAdded = () => {
     if (!productAdded) {
-      dispatch(addToCart(currentProduct as Product));
+      dispatch(addToCart(product.productItemInfo));
     } else {
       dispatch(removeFromCart(product.id));
     }

@@ -1,3 +1,5 @@
+import { Product } from './product';
+
 export interface ProductDetails {
   id: string;
   namespaceId: string;
@@ -17,6 +19,7 @@ export interface ProductDetails {
   camera?: string;
   zoom?: string;
   cell: string[];
+  productItemInfo: Product;
 }
 
 interface Description {
