@@ -12,5 +12,5 @@ export const getProductsWithCounter = (endpoint: string) => {
 };
 
 export const getProductData = (endpoint: string) => {
-  return client.get<ProductDetails>(endpoint);
+  return client.get<ProductDetails>(`/${endpoint}`);
 };
