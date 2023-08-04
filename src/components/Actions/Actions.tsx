@@ -5,6 +5,10 @@ import heart from '../../assets/icons/Heart.svg';
 import filledheart from '../../assets/icons/Heart_Filled.svg';
 import { generateId, normalizeMemory } from '../../utils/helpers';
 import { ProductDetails } from '../../types/productDetails';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../store';
+import { Product } from '../../types/product';
+import { addToCart, removeFromCart } from '../../actions/cartActions';
 
 const cn = classNames.bind(styles);
 
@@ -14,10 +18,15 @@ interface Props {
 }
 
 export const Actions: FC<Props> = ({ className, product }) => {
-  const [productAdded, setProductAdded] = useState(false);
+  const products = useSelector((state: RootState) => state.cart.cartItems as Product[]);
+  const isProductInCart = products.some((item: Product) => item.itemId === product.id);
+
+  const [productAdded, setProductAdded] = useState(isProductInCart);
   const [productLiked, setProductLiked] = useState(false);
   const buttonText = productAdded ? 'added' : 'add to cart';
   const buttonHeart = productLiked ? filledheart : heart;
+
+  const dispatch = useDispatch();
 
   const {
     capacity,
@@ -33,6 +42,12 @@ export const Actions: FC<Props> = ({ className, product }) => {
   } = product;
 
   const handleProductAdded = () => {
+    if (!productAdded) {
+      dispatch(addToCart(product.productItemInfo));
+    } else {
+      dispatch(removeFromCart(product.id));
+    }
+
     setProductAdded(!productAdded);
   };
 

@@ -14,6 +14,10 @@
     margin: 0 24px;
   }
 
+  &__logo:hover {
+    animation: wave 2s infinite linear;
+  }
+
   &__service {
     display: flex;
   }
@@ -159,5 +163,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+}
+
+@keyframes wave {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-4px);
+  }
+  75% {
+    transform: translateY(4px);
   }
 }

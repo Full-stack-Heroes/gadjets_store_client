@@ -3,8 +3,6 @@
   grid-template-columns: repeat(4, 270px);
   column-gap: 16px;
   row-gap: 40px;
-  justify-content: center;
-  padding: 32px;
   padding-bottom: 0;
   background-color: rgba(250, 251, 252, 1);
 }
@@ -19,7 +17,6 @@
 @media screen and (max-width: 779px) {
   .cards__container {
     grid-template-columns: repeat(2, 1fr);
-    padding: 24px;
     padding-bottom: 0;
   }
 }
@@ -27,7 +24,6 @@
 @media screen and (max-width: 639px) {
   .cards__container {
     grid-template-columns: 1fr;
-    padding: 16px;
     padding-bottom: 0;
   }
 }

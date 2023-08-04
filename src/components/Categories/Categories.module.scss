@@ -1,13 +1,12 @@
 
-$primary-color: #0f0f11;
+@import '../../components/styles/Colors.module.scss';
 
 .CategoriesWrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 32px;
-  margin-bottom: 57px;
+  display: grid;
+  width: 100%;
+  grid-template-rows: repeat(3, 1fr);
+  grid-gap: 32px;
+  justify-items: center;
 }
 
 .Title {
@@ -22,22 +21,13 @@ $primary-color: #0f0f11;
 
 @media screen and (min-width: 640px) {
   .CategoriesWrapper {
-    flex-direction: row;
-    gap: 16px;
-    margin-bottom: 64px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: none;
   }
 
   .Title{
-    color: $primary-color;
-
     font-size: 32px;
     line-height: 41px;
     letter-spacing: -0.32px;
-  }
-}
-
-@media screen and (min-width: 1200px) {
-  .CategoriesWrapper {
-    margin-bottom: 80px;
   }
 }

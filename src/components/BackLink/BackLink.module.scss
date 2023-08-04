@@ -1,6 +1,4 @@
-$primary-color: #0f0f11;
-$elements-color: #e2e6e9;
-$secondary-color: #b4bdc3;
+@import '../../components/styles/Colors.module.scss';
 
 .arrow {
   color: $primary-color;
@@ -12,7 +10,7 @@ $secondary-color: #b4bdc3;
   width: 10%;
 
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 600;
   color: $secondary-color;
 
   cursor: pointer;

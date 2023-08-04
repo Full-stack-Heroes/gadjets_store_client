@@ -24,7 +24,7 @@ export const Footer: FC = () => {
           <Link to="/contacts" className={styles.link}>
             contacts
           </Link>
-          <Link to="/rights" className={styles.link}>
+          <Link to="https://creativecommons.org/licenses/by/4.0/" className={styles.link}>
             rights
           </Link>
         </div>
