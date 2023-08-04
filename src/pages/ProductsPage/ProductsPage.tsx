@@ -21,8 +21,10 @@ export const ProductsPage: FC<Props> = ({ endpoint }) => {
   }, []);
 
   return (
-    <>
-      <Cards products={products.rows} isLoading={isLoading} />
-    </>
+    <Cards
+      ammount={products.count}
+      products={products.rows}
+      isLoading={isLoading}
+    />
   );
 };

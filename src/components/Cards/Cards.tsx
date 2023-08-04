@@ -8,9 +8,10 @@ import { Loader } from '../Loader';
 interface Props {
   products: Product[];
   isLoading: boolean;
+  ammount: number;
 }
 
-export const Cards: FC<Props> = ({ products, isLoading }) => {
+export const Cards: FC<Props> = ({ products, isLoading, ammount }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 100;
 
@@ -27,7 +28,9 @@ export const Cards: FC<Props> = ({ products, isLoading }) => {
       {isLoading ? (
         <Loader />
       ) : (
-        <>
+        <div className={styles.page__container}>
+          <h1>Ammount: {ammount}</h1>
+
           <div className={styles.cards__container}>
             {currentPhones.map((phone) => (
               <Card
@@ -43,7 +46,7 @@ export const Cards: FC<Props> = ({ products, isLoading }) => {
             currentPage={currentPage}
             onPageChange={handlePageChange}
           />
-        </>
+        </div>
       )}
     </>
   );
