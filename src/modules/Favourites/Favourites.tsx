@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Cards } from '../../components/Cards/Cards';
+import { Cards } from '../../components/CategoriesCards/Cards';
 import { BackLink } from '../../components/BackLink/BackLink';
 import styles from '../../modules/Cart/Cart.module.scss';
 import { useSelector } from 'react-redux';
