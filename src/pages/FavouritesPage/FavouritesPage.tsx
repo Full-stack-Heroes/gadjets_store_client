@@ -1,8 +1,8 @@
 import { FC } from 'react';
+import { Favourites } from '../../modules/Favourites/Favourites';
+
 export const FavouritesPage: FC = () => {
   return (
-    <div>
-      <h1>Favourites Page</h1>
-    </div>
+    <Favourites />
   );
 };
