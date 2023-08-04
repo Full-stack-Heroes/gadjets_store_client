@@ -4,10 +4,10 @@ import styles from './Card.module.scss';
 import heart from '../../assets/icons/Heart.svg';
 import filledheart from '../../assets/icons/Heart_Filled.svg';
 import { Product } from '../../types/product';
-import { normalizeImage, normalizeMemory } from '../../utils/helpers';
+import { normalizeImage, normalizeMemory, normalizeRam } from '../../utils/helpers';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart } from '../../actions/cartActions';
+import { addToCart, removeFromCart } from '../../actions/cartActions';
 import { RootState } from '../../store';
 
 interface Props {
@@ -26,8 +26,13 @@ export const Card: React.FC<Props> = ({ product }) => {
   const dispatch = useDispatch();
 
   const handleProductAdded = () => {
+    if (!productAdded) {
+      dispatch(addToCart(product));
+    } else {
+      dispatch(removeFromCart(product.itemId));
+    }
+
     setProductAdded(!productAdded);
-    dispatch(addToCart(product));
   };
 
   const handleProductLiked = () => {
@@ -82,7 +87,7 @@ export const Card: React.FC<Props> = ({ product }) => {
         <p className={styles.characteristic_left}>
           <span>RAM:</span>
           <span className={styles.characteristic_right}>
-            {normalizeMemory(ram)}
+            {normalizeRam(ram)}
           </span>
         </p>
       </div>

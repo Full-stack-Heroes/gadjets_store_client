@@ -15,6 +15,10 @@ export const normalizeMemory = (memory: string) => {
   return capacity + ' GB';
 };
 
+export const normalizeRam = (ram: string) => {
+  return ram.slice(0, -2) + ' ' + 'GB';
+};
+
 export const scrollToTop = () => {
   window.scrollTo({
     top: 0,
