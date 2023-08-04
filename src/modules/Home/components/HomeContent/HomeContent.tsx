@@ -5,6 +5,7 @@ import { Categories } from '../../../../components/Categories/Categories';
 import { CardCarousel } from '../../../../components/CardCarousel/CardCarousel';
 import { getProducts } from '../../../../api/products';
 import { Product } from '../../../../types/product';
+import { Loader } from '../../../../components/Loader/Loader';
 
 export const HomeContent: FC = () => {
   const cn = classNames.bind(styles);
@@ -30,9 +31,8 @@ export const HomeContent: FC = () => {
   useEffect(() => {
     fetchData();
   }, []);
-
-  return (
-    <div className={cn('home')}>
+  return (<>
+    { <div className={cn('home')}>
       <div className={cn('homeMainSliderWrapper')}>
         <h1 className={cn('homeTitle', 'homeTitleMain')}>
           Welcome to Nice Gadgets store!
@@ -40,8 +40,8 @@ export const HomeContent: FC = () => {
         <div className={cn('homeMainSlider')}></div>
       </div>
 
-      <div className={cn('container', 'ProductPage')}>
-        {newProducts && (
+      <div className={cn('homeSliderContainer')}>
+        {!newProducts ? <Loader/> : (
           <CardCarousel
             products={newProducts}
             title="New models"
@@ -51,21 +51,15 @@ export const HomeContent: FC = () => {
 
       <Categories/>
 
-      <div className={cn('container', 'ProductPage')}>
-        {discountedProducts && (
+      <div className={cn('homeSliderContainer')}>
+        {!discountedProducts ? <Loader/> :(
           <CardCarousel
             products={discountedProducts}
             title="Hot prices"
           />
         )}
       </div>
-
-      <div className={cn('homeHotPricesWrapper')}>
-        <h2 className={cn('homeTitle', 'homeTitleSecondary')}>Hot prices</h2>
-        <div className={cn('homeSliderWrapper')}>
-          <div className={cn('homeHotPrices')}></div>
-        </div>
-      </div>
     </div>
-  );
+    };
+  </>);
 };
