@@ -12,7 +12,7 @@ export const HomeContent: FC = () => {
   const [newProducts, setNewProducts] = useState<Product[]>();
   const locationToProduct = {
     discounted: 'products/discount',
-    new: 'phones/new',
+    new: 'products/new',
   };
 
   const fetchData = useCallback(async () => {
