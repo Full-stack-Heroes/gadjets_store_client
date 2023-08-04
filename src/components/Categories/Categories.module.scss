@@ -7,7 +7,6 @@ $primary-color: #0f0f11;
   justify-content: center;
   align-items: center;
   gap: 32px;
-  margin-bottom: 57px;
 }
 
 .Title {
@@ -24,7 +23,6 @@ $primary-color: #0f0f11;
   .CategoriesWrapper {
     flex-direction: row;
     gap: 16px;
-    margin-bottom: 64px;
   }
 
   .Title{
@@ -36,8 +34,3 @@ $primary-color: #0f0f11;
   }
 }
 
-@media screen and (min-width: 1200px) {
-  .CategoriesWrapper {
-    margin-bottom: 80px;
-  }
-}

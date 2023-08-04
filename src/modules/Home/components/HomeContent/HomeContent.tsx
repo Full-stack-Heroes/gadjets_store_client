@@ -18,11 +18,13 @@ export const HomeContent: FC = () => {
 
   const fetchData = useCallback(async () => {
     try {
-      const discProducts = await getProducts(locationToProduct.discounted);
-      const nProducts = await getProducts(locationToProduct.new);
+      const [discountedProductsData, newProductsData] = await Promise.all([
+        getProducts(locationToProduct.discounted),
+        getProducts(locationToProduct.new)
+      ]);
 
-      setDiscountedProducts(discProducts);
-      setNewProducts(nProducts);
+      setDiscountedProducts(discountedProductsData);
+      setNewProducts(newProductsData);
     } catch (error) {
       console.log('Error while fetching');
     }
@@ -60,6 +62,6 @@ export const HomeContent: FC = () => {
         )}
       </div>
     </div>
-    };
+    }
   </>);
 };

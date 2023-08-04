@@ -30,15 +30,13 @@ const responsive = {
   },
   largeMobile: {
     breakpoint: { max: 640, min: 400 },
-    items: 2,
-    slidesToSlide: 1,
-    partialVisibilityGutter: 5,
+    items: 1.5,
+    slidesToSlide: 5,
   },
   mobile: {
     breakpoint: { max: 400, min: 320 },
-    items: 1,
+    items: 1.1,
     slidesToSlide: 1,
-    partialVisibilityGutter: 60,
   }
 };
 
