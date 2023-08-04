@@ -9,7 +9,7 @@ import { Loader } from '../../components/Loader';
 import { getSpecsFromProductData } from '../../utils/helpers';
 import { ProductTechSpecs } from '../../components/ProductTechSpecs/ProductTechSpecs';
 import { BackLink } from '../../components/BackLink/BackLink';
-import { CartCarousel } from '../../components/CartCarousel/CartCarousel';
+import { CardCarousel } from '../../components/CardCarousel/CardCarousel';
 import { Product } from '../../types/product';
 import { Actions } from '../../components/Actions';
 import { About } from '../../components/About';
@@ -77,7 +77,7 @@ export const ProductPage: FC = () => {
           </div>
 
           {testProducts && (
-            <CartCarousel
+            <CardCarousel
               products={testProducts}
               title="You may also like"
             />
