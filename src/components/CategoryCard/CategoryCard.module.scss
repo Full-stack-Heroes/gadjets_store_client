@@ -1,10 +1,10 @@
-$primary-color: #0f0f11;
-$secondary-color: #89939a;
+@import '../../components/styles/Colors.module.scss';
 
 .card {
   &Image{
-    width: 288px;
-    height: 288px;
+    object-fit: cover;
+    width: 100%;
+    height: 85%;
     margin-bottom: 12px;
     border-radius: 10px;
     transition: transform 0.3s;
@@ -41,8 +41,9 @@ $secondary-color: #89939a;
 @media screen and (min-width: 640px) {
   .card{
     &Image{
-      width: 187px;
-      height: 187px;
+      object-fit: cover;
+      width: 100%;
+      height: 85%;
     }
   }
 }
@@ -51,8 +52,8 @@ $secondary-color: #89939a;
 @media screen and (min-width: 1200px) {
   .card{
     &Image{
-      width: 368px;
-      height: 368px;
+      width: 358px;
+      height: 358px;
     }
   }
 }

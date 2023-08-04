@@ -1,6 +1,5 @@
-$primary-color: #0f0f11;
-$elements-color: #e2e6e9;
-$secondary-color: #b4bdc3;
+@import '../../../../components/styles/Colors.module.scss';
+@import '../../../../components/styles/Typography.scss';
 
 .content {
   display: flex;
@@ -32,7 +31,6 @@ $secondary-color: #b4bdc3;
 
   &__container {
     display: flex;
-    justify-content: flex-start;
     flex-direction: column;
     width: 100%;
     padding-bottom: 56px;
@@ -63,6 +61,7 @@ $secondary-color: #b4bdc3;
 }
 
 @media screen and (min-width: 1200px) {
+
   .cart {
     margin: 0;
 
@@ -131,7 +130,6 @@ $secondary-color: #b4bdc3;
     font-weight: 700;
     font-size: 14px;
     line-height: 21px;
-    text-transform: uppercase;
 
     border: none;
     border-radius: 48px;
@@ -154,7 +152,7 @@ $secondary-color: #b4bdc3;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
 
   &Button {
     display: flex;
@@ -183,13 +181,11 @@ $secondary-color: #b4bdc3;
     }
   }
 
-  &Text {
-    font-size: 24px;
-    font-weight: 600;
-  }
 
   &BottomText {
-    font-size: 22px;
+    align-items: center;
+    color: $secondary-color;
+    font-size: 18px;
     font-weight: 500;
   }
 }

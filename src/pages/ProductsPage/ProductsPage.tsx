@@ -2,7 +2,7 @@ import styles from './ProductsPage.module.scss';
 import { FC, useEffect } from 'react';
 import { fetchProducts } from '../../actions/productsActions';
 import { RootState } from '../../store';
-import { Cards } from '../../components/Cards/Cards';
+import { Cards } from '../../components/CategoriesCards/Cards';
 import { useSelector, useDispatch } from 'react-redux';
 import { Pagination } from '../../components/Pagination';
 import { useLocation, useSearchParams } from 'react-router-dom';
@@ -38,7 +38,7 @@ export const ProductsPage: FC<Props> = ({ endpoint }) => {
 
     <div className={styles.page__container}>
       <Cards
-        ammount={products.count}
+        amount={products.count}
         products={products.rows}
         isLoading={isLoading}
       />

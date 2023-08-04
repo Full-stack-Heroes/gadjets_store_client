@@ -7,17 +7,17 @@ import { Loader } from '../Loader';
 interface Props {
   products: Product[];
   isLoading: boolean;
-  ammount: number;
+  amount: number;
 }
 
-export const Cards: FC<Props> = ({ products, isLoading, ammount }) => {
+export const Cards: FC<Props> = ({ products, isLoading, amount }) => {
   return (
     <>
       {isLoading ? (
         <Loader />
       ) : (
         <>
-          <h1>Ammount: {ammount}</h1>
+          <h1>Amount: {amount}</h1>
 
           <div className={styles.cards__container}>
             {products.map((phone) => (

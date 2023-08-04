@@ -19,6 +19,10 @@
       flex: 1;
     }
 
+    &__logo:hover {
+      animation: wave 2s infinite linear;
+    }
+
     &__links {
       display: flex;
       align-items: center;
@@ -95,5 +99,17 @@
       gap: 16px;
       align-self: stretch;
     }
+  }
+}
+
+@keyframes wave {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-4px);
+  }
+  75% {
+    transform: translateY(4px);
   }
 }

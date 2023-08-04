@@ -1,0 +1,36 @@
+@import './Colors.module.scss';
+
+.title {
+  color: $primary-color;
+  font-style: normal;
+  font-weight: 800;
+
+  &H1 {
+    font-size: 32px;
+    line-height: 41px;
+    letter-spacing: -0.32px;
+  }
+
+  &H2 {
+    font-size: 22px;
+    line-height: 30.8px;
+  }
+}
+
+
+
+@media screen and (min-width: 640px) {
+  .title {
+    &H1 {
+      font-size: 48px;
+      line-height: 56px;
+      letter-spacing: -0.48px;
+    }
+
+    &H2 {
+      font-size: 32px;
+      line-height: 41px;
+      letter-spacing: -0.32px;
+    }
+  }
+}
