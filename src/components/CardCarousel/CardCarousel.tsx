@@ -96,6 +96,7 @@ export const CardCarousel:FC<Props> = ({ products, title }) => {
         customButtonGroup={<ButtonGroup />}
         arrows={false}
         renderButtonGroupOutside={true}
+        partialVisible={true}
       >
         {products.map(product => (
           <Card product={product} key={product.id}/>
