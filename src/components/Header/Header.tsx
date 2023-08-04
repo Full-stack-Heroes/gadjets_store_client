@@ -83,8 +83,10 @@ export const Header: FC = () => {
               alt="like button"
               className={cn('service_btn_img')}
             />
+          </NavLink>
+          <div className={cn('countContainer')}>
             {products.length > 0 && (
-              <div className="container">
+              <div className={cn('numberOfItems', 'container')}>
                 <div className="cart__products_counter">
                   <span className="cart__products_counter-text">
                     {products.length < 100 ? products.length : '99+'}
@@ -92,7 +94,7 @@ export const Header: FC = () => {
                 </div>
               </div>
             )}
-          </NavLink>
+          </div>
         </div>
 
         <button
