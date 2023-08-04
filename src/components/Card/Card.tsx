@@ -29,7 +29,7 @@ export const Card: React.FC<Props> = ({ product }) => {
     if (!productAdded) {
       dispatch(addToCart(product));
     } else {
-      dispatch(removeFromCart(product.id));
+      dispatch(removeFromCart(product.id)); // remove from cart
     }
 
     setProductAdded(!productAdded);

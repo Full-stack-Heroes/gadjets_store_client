@@ -55,6 +55,29 @@
   }
 }
 
+.cart__products_counter {
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: purple;
+  border: 1px solid white;
+  border-radius: 50%;
+
+  &-text {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 15px;
+  }
+}
+
 .active {
   position: relative;
   color: $primary;
@@ -94,7 +117,6 @@
     }
   }
 }
-
 
 .burger_btn {
   width: 48px;

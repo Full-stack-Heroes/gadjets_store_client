@@ -9,10 +9,17 @@ import { NavLink } from 'react-router-dom';
 import { NavigationLink } from '../NavigationLink';
 import classNames from 'classnames/bind';
 import { BurgerMenuOpened } from '../BurgerMenuOpened';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import { Product } from '../../types/product';
 
 const cn = classNames.bind(styles);
 
 export const Header: FC = () => {
+  const products = useSelector(
+    (state: RootState) => state.cart.cartItems as Product[],
+  );
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -76,6 +83,15 @@ export const Header: FC = () => {
               alt="like button"
               className={cn('service_btn_img')}
             />
+            {products.length > 0 && (
+              <div className="container">
+                <div className="cart__products_counter">
+                  <span className="cart__products_counter-text">
+                    {products.length < 100 ? products.length : '99+'}
+                  </span>
+                </div>
+              </div>
+            )}
           </NavLink>
         </div>
 
