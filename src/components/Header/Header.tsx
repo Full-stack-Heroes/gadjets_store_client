@@ -20,6 +20,10 @@ export const Header: FC = () => {
     (state: RootState) => state.cart.cartItems as Product[],
   );
 
+  const likedProducts = useSelector(
+    (state: RootState) => state.favorites.favoriteItems as Product[],
+  );
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -69,6 +73,13 @@ export const Header: FC = () => {
               alt="like button"
               className={cn('service_btn_img')}
             />
+            {likedProducts.length > 0 && (
+              <div className="cart__products_counter">
+                <span className="cart__products_counter-text">
+                  {likedProducts.length < 100 ? likedProducts.length : '99+'}
+                </span>
+              </div>
+            )}
           </NavLink>
 
           <NavLink
@@ -84,12 +95,10 @@ export const Header: FC = () => {
               className={cn('service_btn_img')}
             />
             {products.length > 0 && (
-              <div className="container">
-                <div className="cart__products_counter">
-                  <span className="cart__products_counter-text">
-                    {products.length < 100 ? products.length : '99+'}
-                  </span>
-                </div>
+              <div className="cart__products_counter">
+                <span className="cart__products_counter-text">
+                  {products.length < 100 ? products.length : '99+'}
+                </span>
               </div>
             )}
           </NavLink>

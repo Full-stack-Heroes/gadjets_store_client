@@ -7,7 +7,7 @@ import { Loader } from '../Loader';
 
 interface Props {
   products: Product[];
-  isLoading: boolean;
+  isLoading?: boolean;
 }
 
 export const Cards: FC<Props> = ({ products, isLoading }) => {
