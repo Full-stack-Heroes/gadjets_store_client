@@ -3,18 +3,24 @@ import styles from './Action.module.scss';
 import classNames from 'classnames/bind';
 import heart from '../../assets/icons/Heart.svg';
 import filledheart from '../../assets/icons/Heart_Filled.svg';
-import { generateId, normalizeMemory } from '../../utils/helpers';
+import { generateId, linkByCapacity, linkByColor, normalizeMemory } from '../../utils/helpers';
 import { ProductDetails } from '../../types/productDetails';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store';
 import { Product } from '../../types/product';
 import { addToCart, removeFromCart } from '../../actions/cartActions';
+import { Link } from 'react-router-dom';
+import { productColors } from '../styles/productColors';
 
 const cn = classNames.bind(styles);
 
 interface Props {
   className: string | undefined;
   product: ProductDetails;
+}
+
+interface CustomStyleProps extends React.CSSProperties {
+  '--after-background-color'?: string;
 }
 
 export const Actions: FC<Props> = ({ className, product }) => {
@@ -65,11 +71,13 @@ export const Actions: FC<Props> = ({ className, product }) => {
         </div>
 
         {colorsAvailable.map((colorAv) => (
-          <a
+          <Link
+            to={linkByColor(colorAv)}
             className={cn('Actions__color', {
               'Actions__color--active': color === colorAv,
             })}
-            key={generateId()}></a>
+            style={{ '--after-background-color': String(productColors[colorAv]) } as CustomStyleProps}
+            key={generateId()}></Link>
         ))}
       </div>
 
@@ -77,13 +85,14 @@ export const Actions: FC<Props> = ({ className, product }) => {
         <p className={cn('Actions__header')}>Select capacity</p>
 
         {capacityAvailable.map((capacityAv) => (
-          <button
+          <Link
+            to={linkByCapacity(capacityAv)}
             className={cn('Actions__capacityButton', {
               'Actions__capacityButton--active': capacity === capacityAv,
             })}
             key={generateId()}>
             {normalizeMemory(capacityAv)}
-          </button>
+          </Link>
         ))}
       </div>
 

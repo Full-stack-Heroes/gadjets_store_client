@@ -50,6 +50,8 @@
     margin: 0 8px 24px 0;
     border-radius: 50%;
 
+    --after-background-color: transparent;
+
     cursor: pointer;
 
     &::after {
@@ -59,12 +61,12 @@
       top: -2px;
 
       content: '';
-      border: 1px solid $elements;
+      border: 2px solid whitesmoke;
       border-radius: 50%;
       width: 30px;
       height: 30px;
       color: $white;
-      background-color: $white;
+      background-color: var(--after-background-color);
     }
 
     &--active {
@@ -93,6 +95,9 @@
   }
 
   &__capacityButton {
+    text-decoration: none;
+    color: black;
+
     display: inline-block;
     margin: 0 8px 24px 0;
     padding: 8px;

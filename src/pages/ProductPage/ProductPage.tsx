@@ -36,6 +36,7 @@ export const ProductPage: FC = () => {
       console.log('Error while fetching');
     }
   }, [location.pathname]);
+  console.log(location.pathname);
 
   useEffect(() => {
     setProductInfo(null);
@@ -55,7 +56,7 @@ export const ProductPage: FC = () => {
           <h1 className={cn('ProductPage__header')}>{productInfo.name}</h1>
 
           <div className={cn('SectionContainer', 'PhoneDetails')}>
-            <ProductImageSelector className={cn('SectionContainer__item')} />
+            <ProductImageSelector product={productInfo} className={cn('SectionContainer__item')} />
             <Actions
               className={'SectionContainer__item'}
               product={productInfo}
