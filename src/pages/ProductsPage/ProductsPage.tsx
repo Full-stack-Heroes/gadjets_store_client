@@ -1,3 +1,4 @@
+import styles from './ProductsPage.module.scss';
 import { FC, useEffect } from 'react';
 import { fetchProducts } from '../../actions/productsActions';
 import { RootState } from '../../store';
@@ -35,7 +36,7 @@ export const ProductsPage: FC<Props> = ({ endpoint }) => {
 
   return (
 
-    <>
+    <div className={styles.page__container}>
       <Cards
         ammount={products.count}
         products={products.rows}
@@ -48,6 +49,6 @@ export const ProductsPage: FC<Props> = ({ endpoint }) => {
         currentPage={page}
         onPageChange={handlePageChange}
       />
-    </>
+    </div>
   );
 };

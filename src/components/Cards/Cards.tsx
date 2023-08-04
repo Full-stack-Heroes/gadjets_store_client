@@ -16,7 +16,7 @@ export const Cards: FC<Props> = ({ products, isLoading, ammount }) => {
       {isLoading ? (
         <Loader />
       ) : (
-        <div className={styles.page__container}>
+        <>
           <h1>Ammount: {ammount}</h1>
 
           <div className={styles.cards__container}>
@@ -27,7 +27,7 @@ export const Cards: FC<Props> = ({ products, isLoading, ammount }) => {
               />
             ))}
           </div>
-        </div>
+        </>
       )}
     </>
   );
