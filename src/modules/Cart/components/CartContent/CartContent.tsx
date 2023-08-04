@@ -32,7 +32,7 @@ export const CartContent: FC = () => {
     0,
   );
 
-  const handleRemoveFromCart = (itemId: number) => {
+  const handleRemoveFromCart = (itemId: string) => {
     dispatch(removeFromCart(itemId));
   };
 

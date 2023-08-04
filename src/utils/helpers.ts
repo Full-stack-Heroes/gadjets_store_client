@@ -1,10 +1,9 @@
 import { ProductDetails } from '../types/productDetails';
 import { productSpecs } from '../types/productSpecs';
+import { BASE_URL } from './fetchClient';
 
 export const normalizeImage = (img: string) => {
-  const imgLink = img.slice(0, -4);
-
-  return 'https://gadjets-store-apu.onrender.com/' + imgLink + 'jpg';
+  return BASE_URL + `/${img}`;
 };
 
 export const normalizeMemory = (memory: string) => {
@@ -13,6 +12,10 @@ export const normalizeMemory = (memory: string) => {
     return capacity + ' TB';
   }
   return capacity + ' GB';
+};
+
+export const normalizeRam = (ram: string) => {
+  return ram.slice(0, -2) + ' ' + 'GB';
 };
 
 export const scrollToTop = () => {
