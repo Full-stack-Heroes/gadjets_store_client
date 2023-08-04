@@ -1,10 +1,11 @@
 import { ProductDetails } from '../types/productDetails';
 import { productSpecs } from '../types/productSpecs';
+import { BASE_URL } from './fetchClient';
 
 export const normalizeImage = (img: string) => {
   const imgLink = img.slice(0, -4);
 
-  return 'https://gadjets-store-apu.onrender.com/' + imgLink + 'jpg';
+  return BASE_URL + `/${imgLink}` + 'jpg';
 };
 
 export const normalizeMemory = (memory: string) => {
