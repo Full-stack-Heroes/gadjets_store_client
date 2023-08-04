@@ -1,0 +1,14 @@
+.page__container {
+  max-width: 1200px;
+  padding: 32px;
+  margin: 0 auto;
+
+  @media screen and (max-width: 779px) {
+    padding: 24px;
+  }
+
+  @media screen and (max-width: 639px) {
+    padding: 16px;
+  }
+}
+

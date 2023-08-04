@@ -1,8 +1,8 @@
 import { AnyAction } from 'redux';
-import { Product } from '../types/product';
-import { getProducts } from '../api/products';
+import { getProductsWithCounter } from '../api/products';
 import { ThunkDispatch } from 'redux-thunk';
 import { RootState } from '../store';
+import { productWithCounter } from '../types/productWithCounter';
 
 enum ProductActionTypes {
   SET_PRODUCTS = 'SET_PRODUCTS',
@@ -11,7 +11,7 @@ enum ProductActionTypes {
 
 interface SetProductsAction {
   type: ProductActionTypes.SET_PRODUCTS;
-  payload: Product[];
+  payload: productWithCounter;
 }
 
 interface SetLoadingAction {
@@ -19,7 +19,7 @@ interface SetLoadingAction {
   payload: boolean;
 }
 
-export const setProducts = (products: Product[]): SetProductsAction => ({
+export const setProducts = (products: productWithCounter): SetProductsAction => ({
   type: ProductActionTypes.SET_PRODUCTS,
   payload: products,
 });
@@ -34,9 +34,8 @@ export const fetchProducts = (endpoint: string): any => {
   return async (dispatch: ThunkDispatch<RootState, void, AnyAction>) => {
     try {
       dispatch(setLoading(true));
-      const fetchedProducts = await getProducts(endpoint);
+      const fetchedProducts = await getProductsWithCounter(endpoint);
       dispatch(setProducts(fetchedProducts));
-      console.log(fetchedProducts);
     } catch (error) {
       console.error('Error fetching products', error);
     } finally {
