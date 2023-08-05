@@ -3,9 +3,7 @@ import { productSpecs } from '../types/productSpecs';
 import { BASE_URL } from './fetchClient';
 
 export const normalizeImage = (img: string) => {
-  const imgLink = img.slice(0, -4);
-
-  return BASE_URL + `/${imgLink}` + 'jpg';
+  return BASE_URL + `/${img}`;
 };
 
 export const normalizeMemory = (memory: string) => {
@@ -44,3 +42,24 @@ export const getSpecsFromProductData = (
 };
 
 export const generateId = () => Math.floor(Math.random() * 10001);
+
+export const linkByCapacity = (capacity: string) => {
+  const path = location.pathname.split('-');
+
+  path[path.length - 2] = capacity.toLowerCase();
+  const newLink = path.join('-');
+
+  return newLink;
+};
+
+export const linkByColor = (color: string) => {
+  const path = location.pathname.split('-');
+
+  path[path.length - 1] = color.toLowerCase();
+
+  console.log(path);
+
+  const newLink = path.join('-');
+
+  return newLink;
+};

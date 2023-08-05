@@ -1,6 +1,6 @@
 import { FC, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import cn from 'classnames';
+import classNames from 'classnames/bind';
 import styles from './CartContent.module.scss';
 import cart from '../../../../assets/icons/fastCart2.png';
 import popup from '../../../../assets/icons/Buy.png';
@@ -47,18 +47,20 @@ export const CartContent: FC = () => {
     }
   }, [showSuccess]);
 
+  const cn = classNames.bind(styles);
+
   return cartItems.length ? (
-    <section className={styles.content}>
+    <section className={cn('content')}>
       <div
-        className={cn(styles.cart, {
-          [styles.cartActive]: modalActive,
+        className={cn('cart', {
+          'cartActive': modalActive,
         })}>
         <BackLink />
 
-        <h1 className={styles.cart__title}>Cart</h1>
+        <h1 className={cn('cart__title')}>Cart</h1>
 
-        <div className={styles.cart__container}>
-          <div className={styles.cart__items}>
+        <div className={cn('cart__container')}>
+          <div className={cn('cart__items')}>
             {cartItems.map((item: Product) => (
               <CartItem
                 key={item.id}
@@ -68,7 +70,7 @@ export const CartContent: FC = () => {
             ))}
           </div>
 
-          <div className={styles.cart__checkout}>
+          <div className={cn('cart__checkout')}>
             <TotalCost
               setCheckoutDone={setCheckoutDone}
               setShowSuccess={setShowSuccess}
@@ -82,25 +84,25 @@ export const CartContent: FC = () => {
 
       {showSuccess && (
         <div
-          className={cn(styles.PopupContainer, {
-            [styles.PopupContainer_Active]: modalActive,
-          })}>
+          className={cn(
+            ('PopupContainer'))}
+        >
           <img
             src={cross}
-            className={styles.PopupContainerClose}
+            className={cn('PopupContainerClose')}
             onClick={() => handleModalClose()}
           />
-          <img src={popup} className={styles.PopupContainerImage} />
+          <img src={popup} className={cn('PopupContainerImage')} />
 
-          <h2 className={styles.PopupContainerThanks}>Thank You!</h2>
+          <h2 className={cn('PopupContainerThanks')}>Thank You!</h2>
 
-          <p className={styles.PopupContainerMessage}>
+          <p className={cn('PopupContainerMessage')}>
             Your order was successfully applied!
           </p>
 
           <Link
             to="/"
-            className={styles.PopupContainerButton}
+            className={cn('PopupContainerButton')}
             onClick={() => handleModalClose()}
           >
             Continue
@@ -109,23 +111,23 @@ export const CartContent: FC = () => {
       )}
     </section>
   ) : (
-    <div className={styles.emptyContainer}>
+    <div className={cn('emptyContainer')}>
       <img src={cart} alt="" />
       <h2
-        className={styles.emptyContainerText}
+        className={cn('emptyContainerText', 'title', 'titleH2')}
       >
-        Noting here yet :(
+        {'Noting here yet :('}
       </h2>
       <h2
-        className={styles.emptyContainerBottomText}
+        className={cn('emptyContainerBottomText')}
       >
-        Let&apos;s better watch what we have
+        Let&apos;s better look what we have
       </h2>
       <Link
         to="/"
-        className={styles.emptyContainerButton}
+        className={cn('emptyContainerButton')}
       >
-        Go to find something!
+        find something!
       </Link>
     </div>
   );

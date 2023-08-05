@@ -5,6 +5,7 @@ import { Categories } from '../../../../components/Categories/Categories';
 import { CardCarousel } from '../../../../components/CardCarousel/CardCarousel';
 import { getProducts } from '../../../../api/products';
 import { Product } from '../../../../types/product';
+import { Loader } from '../../../../components/Loader/Loader';
 
 export const HomeContent: FC = () => {
   const cn = classNames.bind(styles);
@@ -12,16 +13,18 @@ export const HomeContent: FC = () => {
   const [newProducts, setNewProducts] = useState<Product[]>();
   const locationToProduct = {
     discounted: 'products/discount',
-    new: 'phones/new',
+    new: 'products/new',
   };
 
   const fetchData = useCallback(async () => {
     try {
-      const discProducts = await getProducts(locationToProduct.discounted);
-      const nProducts = await getProducts(locationToProduct.new);
+      const [discountedProductsData, newProductsData] = await Promise.all([
+        getProducts(locationToProduct.discounted),
+        getProducts(locationToProduct.new)
+      ]);
 
-      setDiscountedProducts(discProducts);
-      setNewProducts(nProducts);
+      setDiscountedProducts(discountedProductsData);
+      setNewProducts(newProductsData);
     } catch (error) {
       console.log('Error while fetching');
     }
@@ -30,18 +33,17 @@ export const HomeContent: FC = () => {
   useEffect(() => {
     fetchData();
   }, []);
-
-  return (
-    <div className={cn('home')}>
-      <div className={cn('homeMainSliderWrapper')}>
-        <h1 className={cn('homeTitle', 'homeTitleMain')}>
+  return (<>
+    { <div className={cn('home')}>
+      <h1 className={cn('homeTitle', 'titleH1', 'title')}>
           Welcome to Nice Gadgets store!
-        </h1>
+      </h1>
+      <div className={cn('homeMainSliderWrapper')}>
         <div className={cn('homeMainSlider')}></div>
       </div>
 
-      <div className={cn('container', 'ProductPage')}>
-        {newProducts && (
+      <div className={cn('homeSliderContainer')}>
+        {!newProducts ? <Loader/> : (
           <CardCarousel
             products={newProducts}
             title="New models"
@@ -51,21 +53,15 @@ export const HomeContent: FC = () => {
 
       <Categories/>
 
-      <div className={cn('container', 'ProductPage')}>
-        {discountedProducts && (
+      <div className={cn('homeSliderContainer')}>
+        {!discountedProducts ? <Loader/> :(
           <CardCarousel
             products={discountedProducts}
             title="Hot prices"
           />
         )}
       </div>
-
-      <div className={cn('homeHotPricesWrapper')}>
-        <h2 className={cn('homeTitle', 'homeTitleSecondary')}>Hot prices</h2>
-        <div className={cn('homeSliderWrapper')}>
-          <div className={cn('homeHotPrices')}></div>
-        </div>
-      </div>
     </div>
-  );
+    }
+  </>);
 };

@@ -8,6 +8,7 @@ import { normalizeImage, normalizeMemory, normalizeRam } from '../../utils/helpe
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeFromCart } from '../../actions/cartActions';
+import { addToFavourites, removeFromFavourites } from '../../actions/favouriteActions';
 import { RootState } from '../../store';
 
 interface Props {
@@ -16,10 +17,12 @@ interface Props {
 
 export const Card: React.FC<Props> = ({ product }) => {
   const products = useSelector((state: RootState) => state.cart.cartItems as Product[]);
+  const likedProducts = useSelector((state: RootState) => state.favorites.favoriteItems as Product[]);
   const isProductInCart = products.some((item: Product) => item.itemId === product.itemId);
+  const isProductInFavourites = likedProducts.some((item: Product) => item.itemId === product.itemId);
 
   const [productAdded, setProductAdded] = useState(isProductInCart);
-  const [productLiked, setProductLiked] = useState(false);
+  const [productLiked, setProductLiked] = useState(isProductInFavourites);
   const buttonText = productAdded ? 'added' : 'add to cart';
   const buttonHeart = productLiked ? filledheart : heart;
 
@@ -36,6 +39,12 @@ export const Card: React.FC<Props> = ({ product }) => {
   };
 
   const handleProductLiked = () => {
+    if (!productLiked) {
+      dispatch(addToFavourites(product));
+    } else {
+      dispatch(removeFromFavourites(product.id));
+    }
+
     setProductLiked(!productLiked);
   };
 

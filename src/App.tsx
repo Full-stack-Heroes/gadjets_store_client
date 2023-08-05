@@ -9,7 +9,6 @@ import { TabletsPage } from './pages/TabletsPage/TabletsPage';
 import { AccessoriesPage } from './pages/AccessoriesPage/AccessoriesPage';
 import { FavouritesPage } from './pages/FavouritesPage/FavouritesPage';
 import { ContactsPage } from './pages/ContactsPage/ContactsPage';
-import { RightsPage } from './pages/RightsPage/RightsPage';
 import { ProductPage } from './pages/ProductPage/ProductPage';
 
 export const App = createBrowserRouter([
@@ -61,10 +60,6 @@ export const App = createBrowserRouter([
       {
         path: 'contacts',
         element: <ContactsPage />,
-      },
-      {
-        path: 'rights',
-        element: <RightsPage />,
       },
     ],
   },
