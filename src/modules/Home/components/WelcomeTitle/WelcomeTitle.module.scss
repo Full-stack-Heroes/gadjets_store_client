@@ -1,11 +1,10 @@
 @import '../../../../assets/colors/colors';
-@import '../../../../assets/grid/gridStyles.scss';
+@import '../../../../assets/grid/gridGlobalStyles';
 
 .welcome {
   &__container {
     @include global-grid-container;
     padding-top: 24px;
-
 
     @include onTablet {
       padding-top: 32px;
@@ -17,6 +16,7 @@
   }
 
   &__article {
+    display: grid;
     grid-column: 1 / -1;
     text-align: left;
     font-size: 32px;
