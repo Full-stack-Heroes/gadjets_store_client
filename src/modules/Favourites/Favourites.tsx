@@ -24,7 +24,7 @@ export const Favourites: FC = () => {
             <img src={home} />
           </Link>
           <div className={styles.arrow}>
-            <Arrow fill="B4BBC2" />
+            <Arrow/>
           </div>
           <p>Favourites</p>
         </div>
