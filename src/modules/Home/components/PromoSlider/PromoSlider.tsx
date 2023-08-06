@@ -4,7 +4,7 @@ import styles from './PromoSlider.module.scss';
 import arrow from './../../../../assets/icons/Arrow.svg';
 import slideMobile from './../../../../assets/images/promo-on-mobile.png';
 import slideBig from './../../../../assets/images/promo-on-tablet-desktop.png';
-import { ImageSlider } from './ImageSlider';
+import { ImageSlider } from '../ImageSlider/ImageSlider';
 
 const cn = classNames.bind(styles);
 
