@@ -20,7 +20,7 @@ const cn = classNames.bind(styles);
 export const ProductPage: FC = () => {
   const location = useLocation();
   const [productInfo, setProductInfo] = useState<ProductDetails | null>(null);
-  const [recommendedProducts, setRecommendedProducts] = useState<Product[]>(); //Temporary before endpoing /recomendation/id
+  const [recommendedProducts, setRecommendedProducts] = useState<Product[]>();
   const isLoading = !productInfo;
   const locationToProduct = location.pathname.slice(1);
 
