@@ -4,7 +4,8 @@ import styles from './cards.module.scss';
 import { Product } from '../../types/product';
 import { Loader } from '../Loader';
 import classNames from 'classnames/bind';
-import { SelectDropdown } from '../SelectDropdown/SelectDropdown';
+import { SortBy } from './components/SortBy';
+import { ShowByPage } from './components/showByPage';
 
 const cn = classNames.bind(styles);
 
@@ -14,26 +15,14 @@ interface Props {
   amount?: number;
 }
 
-const sortByVariants = [
-  {title: 'Hello?', value: 'Test'},
-  {title: 'Hello?', value: 'Test'},
-  {title: 'Hello?', value: 'Test'},
-  {title: 'Hello?', value: 'Test'},
-  {title: 'Hello?', value: 'Test'},
-];
-
 export const Cards: FC<Props> = ({ products, isLoading, amount }) => {
   return (
     <>
-      <h1 className={cn('CardsAmmount')}>Amount: {amount}</h1>
+      <h2 className={cn('CardsAmmount')}>Amount: {amount}</h2>
 
       <div className={cn('CardsSelects')}>
-        <SelectDropdown
-          defaultValue={{title: 'test', value: 'test'}}
-          options={sortByVariants}
-          title="Sort by"
-          onChange={() => console.log('click on change')}
-        />
+        <SortBy className={cn('CardsSelectsItem')}/>
+        <ShowByPage className={cn('CardsSelectsItem')}/>
       </div>
 
       {isLoading ? (

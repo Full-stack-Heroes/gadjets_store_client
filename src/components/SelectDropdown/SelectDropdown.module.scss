@@ -22,9 +22,9 @@
 
   &Field {
     display: flex;
-    justify-content: space-between;
 
     padding: 10px 12px;
+    gap: 75px;
 
     border: 1px solid $icons-color;
     border-radius: 8px;

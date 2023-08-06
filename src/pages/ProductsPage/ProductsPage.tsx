@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Pagination } from '../../components/Pagination';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import classNames from 'classnames/bind';
+import { useQueryParamUpdater } from '../../hooks/useQueryParamUpdater';
 
 interface Props {
   endpoint: string;
@@ -17,7 +18,8 @@ export const ProductsPage: FC<Props> = ({ endpoint, title }) => {
   const cn = classNames.bind(styles);
   const products = useSelector((state: RootState) => state.products.products);
   const isLoading = useSelector((state: RootState) => state.products.isLoading);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const paramUpdater = useQueryParamUpdater();
+  const [searchParams] = useSearchParams();
   const { search } = useLocation();
 
   const itemsPerPage = +(searchParams.get('limit') || 12);
@@ -26,15 +28,15 @@ export const ProductsPage: FC<Props> = ({ endpoint, title }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const searchQuery = search || '?page=1';
+    if (!searchParams.get('page')) {
+      paramUpdater('page', '1');
+    }
 
-    dispatch(fetchProducts(`${endpoint}${searchQuery}`));
+    dispatch(fetchProducts(`${endpoint}${search}`));
   }, [search]);
 
-  const handlePageChange = (page: number) => {
-    const params = new URLSearchParams(searchParams);
-    params.set('page', page.toString());
-    setSearchParams(params);
+  const handlePageChange = (pageNumber: number) => {
+    paramUpdater('page', pageNumber.toString());
   };
 
   return (

@@ -1,6 +1,6 @@
 import styles from './SelectDropdown.module.scss';
 import classNames from 'classnames/bind';
-import { FC, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { Arrow } from '../Arrow/Arrow';
 
 interface Props {
@@ -22,16 +22,38 @@ export const SelectDropdown:FC<Props> = (
 ) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentSelected, setCurrentSelected] = useState(defaultValue);
+  const rootRef = useRef<HTMLDivElement>(null);
 
   const handleToggleDropdownMenu = () => {
     setIsOpen(prev => !prev);
   };
+
+  const handleOptionClick = (option: Option) => {
+    onChange(option.value);
+    setCurrentSelected(option);
+    setIsOpen(false);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (rootRef.current && !rootRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener('click', handleClickOutside);
+
+    return () => {
+      window.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className={cn('SelectContainer')}>
       <span className={cn('SelectContainerTitle')}>{title}</span>
 
       <div
+        ref={rootRef}
         className={cn('SelectField', {
           'SelectFieldActive': isOpen,
         })}
@@ -50,7 +72,7 @@ export const SelectDropdown:FC<Props> = (
             <li
               className={cn('OptionsItem')}
               key={option.title}
-              onClick={() => onChange(option.value)}
+              onClick={() => handleOptionClick(option)}
             >{option.title}</li>
           ))}
         </ul>
