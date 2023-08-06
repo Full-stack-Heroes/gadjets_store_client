@@ -3,6 +3,10 @@
 .container__slider {
   overflow: hidden;
   width: 100%;
+
+  @include onTablet {
+    border-radius: 8px;
+  }
 }
 
 .slider {
