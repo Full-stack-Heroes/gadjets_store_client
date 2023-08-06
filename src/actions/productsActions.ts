@@ -1,24 +1,41 @@
-import { Dispatch } from 'redux';
-import { Product } from '../types/product';
-import { getProducts } from '../api/products';
+import { AnyAction } from 'redux';
+import { getProductsWithCounter } from '../api/products';
+import { ThunkDispatch } from 'redux-thunk';
+import { RootState } from '../store';
+import { productWithCounter } from '../types/productWithCounter';
 
-export const setProducts = (products: Product[]) => ({
-  type: 'SET_PRODUCTS',
+enum ProductActionTypes {
+  SET_PRODUCTS = 'SET_PRODUCTS',
+  SET_LOADING = 'SET_LOADING',
+}
+
+interface SetProductsAction {
+  type: ProductActionTypes.SET_PRODUCTS;
+  payload: productWithCounter;
+}
+
+interface SetLoadingAction {
+  type: ProductActionTypes.SET_LOADING;
+  payload: boolean;
+}
+
+export const setProducts = (products: productWithCounter): SetProductsAction => ({
+  type: ProductActionTypes.SET_PRODUCTS,
   payload: products,
 });
 
-const setLoading = (isLoading: boolean) => ({
-  type: 'SET_LOADING',
+export const setLoading = (isLoading: boolean): SetLoadingAction => ({
+  type: ProductActionTypes.SET_LOADING,
   payload: isLoading,
 });
 
-export const fetchProducts = (endpoint: string) => {
-  return async (dispatch: Dispatch) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const fetchProducts = (endpoint: string): any => {
+  return async (dispatch: ThunkDispatch<RootState, void, AnyAction>) => {
     try {
       dispatch(setLoading(true));
-      const fetchedProducts = await getProducts(endpoint);
+      const fetchedProducts = await getProductsWithCounter(endpoint);
       dispatch(setProducts(fetchedProducts));
-      console.log(fetchedProducts);
     } catch (error) {
       console.error('Error fetching products', error);
     } finally {

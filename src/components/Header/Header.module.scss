@@ -14,6 +14,10 @@
     margin: 0 24px;
   }
 
+  &__logo:hover {
+    animation: wave 2s infinite linear;
+  }
+
   &__service {
     display: flex;
   }
@@ -55,6 +59,29 @@
   }
 }
 
+.cart__products_counter {
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: purple;
+  border: 1px solid white;
+  border-radius: 50%;
+
+  &-text {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 15px;
+  }
+}
+
 .active {
   position: relative;
   color: $primary;
@@ -89,14 +116,39 @@
     width: 48px;
 
     &_img {
+      position: relative;
       width: 16px;
     }
+  }
+}
+
+.burger_btn {
+  width: 48px;
+  display: none;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  border-left: 1px solid $elements;
+
+  &_img {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  &-active {
+    background-color: $white;
+  }
+
+  &:hover .burger_btn_img {
+    transform: scale(1.1);
   }
 }
 
 @media (max-width: 639px) {
   .container {
     padding: 0;
+    overflow: hidden;
   }
 
   .service_btn {
@@ -105,5 +157,23 @@
 
   .nav {
     display: none;
+  }
+
+  .burger_btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@keyframes wave {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-4px);
+  }
+  75% {
+    transform: translateY(4px);
   }
 }

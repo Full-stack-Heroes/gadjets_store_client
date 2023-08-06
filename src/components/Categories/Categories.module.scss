@@ -1,0 +1,33 @@
+
+@import '../../components/styles/Colors.module.scss';
+
+.CategoriesWrapper {
+  display: grid;
+  width: 100%;
+  grid-template-rows: repeat(3, 1fr);
+  grid-gap: 32px;
+  justify-items: center;
+}
+
+.Title {
+  color: $primary-color;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 140%;
+  margin-bottom: 24px;
+}
+
+
+@media screen and (min-width: 640px) {
+  .CategoriesWrapper {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: none;
+  }
+
+  .Title{
+    font-size: 32px;
+    line-height: 41px;
+    letter-spacing: -0.32px;
+  }
+}
