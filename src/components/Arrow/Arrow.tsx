@@ -1,11 +1,15 @@
 import { FC } from 'react';
 
-export const Arrow: FC = () => (
+type Props = {
+  fill: string;
+}
+
+export const Arrow: FC<Props> = ({ fill }) => (
   <svg
     width="16"
     height="16"
     viewBox="0 0 16 16"
-    fill="none"
+    fill={fill}
     xmlns="http://www.w3.org/2000/svg">
     <g id="Icons/Chevron (Arrow Left)">
       <path
