@@ -56,7 +56,7 @@ export const ProductPage: FC = () => {
           <h1 className={cn('ProductPage__header')}>{productInfo.name}</h1>
 
           <div className={cn('SectionContainer', 'PhoneDetails')}>
-            <ProductImageSelector product={productInfo} className={cn('SectionContainer__item')} />
+            <ProductImageSelector images={productInfo.images} className={cn('SectionContainer__item')} />
             <Actions
               className={'SectionContainer__item'}
               product={productInfo}
