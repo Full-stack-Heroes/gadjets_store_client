@@ -3,7 +3,7 @@ import styles from './Action.module.scss';
 import classNames from 'classnames/bind';
 import heart from '../../assets/icons/Heart.svg';
 import filledheart from '../../assets/icons/Heart_Filled.svg';
-import { generateId, linkByCapacity, linkByColor, normalizeMemory } from '../../utils/helpers';
+import { generateId, linkByCapacity, linkByColor, normalizeMemory, normalizeRam } from '../../utils/helpers';
 import { ProductDetails } from '../../types/productDetails';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store';
@@ -142,7 +142,7 @@ export const Actions: FC<Props> = ({ className, product }) => {
         <p className={cn('Actions__characteristicsLeft')}>
           <span>RAM</span>
           <span className={cn('Actions__characteristicsRight')}>
-            {normalizeMemory(ram)}
+            {normalizeRam(ram)}
           </span>
         </p>
       </div>
