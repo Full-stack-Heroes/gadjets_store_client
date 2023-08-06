@@ -50,7 +50,7 @@ export const ProductImageSelector: FC<Props> = ({ images, className }) => {
         })}
       >
         {<img
-          src={normalizeImage(images[index])}
+          src={normalizeImage(images[index!])}
           alt={'product img'}
         />}
       </button>
