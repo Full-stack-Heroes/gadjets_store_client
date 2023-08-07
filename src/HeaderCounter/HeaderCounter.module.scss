@@ -1,0 +1,29 @@
+.countContainer {
+  position: relative;
+  bottom: 10%;
+  right: 3%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 12px;
+  height: 14px;
+  padding: 7px 5px;
+  background-color: #4219D0;
+  border-radius: 48px;
+  border: 1px solid #fff;
+}
+
+.numberOfItems {
+  color: #FFF;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+@media (min-width: 639px) {
+  .countContainer {
+    right: 50%;
+    bottom: 10px;
+  }
+}

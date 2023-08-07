@@ -5,6 +5,10 @@ import styles from './BurgerMenuOpened.module.scss';
 import { Link } from 'react-router-dom';
 import { NavigationLink } from '../NavigationLink';
 import classNames from 'classnames/bind';
+import { HeaderCounter } from '../../HeaderCounter/HeaderCounter';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import { Product } from '../../types/product';
 
 const cn = classNames.bind(styles);
 
@@ -21,6 +25,10 @@ export const BurgerMenuOpened: FC<BurgerMenuProps> = ({
   const handleMenuClose = () => {
     setIsMenuOpen(false);
   };
+
+  const products = useSelector(
+    (state: RootState) => state.cart.cartItems as Product[],
+  );
 
   return (
     <div className={cn('burger', { 'burger_opened': isMenuOpen })}>
@@ -58,6 +66,7 @@ export const BurgerMenuOpened: FC<BurgerMenuProps> = ({
           onClick={handleMenuClose}
         >
           <img src={like} alt="like button" className={cn('like')} />
+          <HeaderCounter products={products}/>
         </Link>
 
         <Link
@@ -68,6 +77,7 @@ export const BurgerMenuOpened: FC<BurgerMenuProps> = ({
           onClick={handleMenuClose}
         >
           <img src={cart} alt="cart button" className={cn('cart')} />
+          <HeaderCounter products={products}/>
         </Link>
       </div>
     </div>

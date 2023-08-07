@@ -12,6 +12,7 @@ import { BurgerMenuOpened } from '../BurgerMenuOpened';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { Product } from '../../types/product';
+import { HeaderCounter } from '../../HeaderCounter/HeaderCounter';
 
 const cn = classNames.bind(styles);
 
@@ -69,6 +70,10 @@ export const Header: FC = () => {
               alt="like button"
               className={cn('service_btn_img')}
             />
+
+            <div className={cn('headerCounter')}>
+              <HeaderCounter products={ products }/>
+            </div>
           </NavLink>
 
           <NavLink
@@ -83,18 +88,10 @@ export const Header: FC = () => {
               alt="like button"
               className={cn('service_btn_img')}
             />
+            <div className={cn('headerCounter')}>
+              <HeaderCounter products={ products }/>
+            </div>
           </NavLink>
-          <div className={cn('countContainer')}>
-            {products.length > 0 && (
-              <div className={cn('numberOfItems', 'container')}>
-                <div className="cart__products_counter">
-                  <span className="cart__products_counter-text">
-                    {products.length < 100 ? products.length : '99+'}
-                  </span>
-                </div>
-              </div>
-            )}
-          </div>
         </div>
 
         <button
