@@ -30,6 +30,10 @@ export const BurgerMenuOpened: FC<BurgerMenuProps> = ({
     (state: RootState) => state.cart.cartItems as Product[],
   );
 
+  const likedProducts = useSelector(
+    (state: RootState) => state.favorites.favoriteItems as Product[],
+  );
+
   return (
     <div className={cn('burger', { 'burger_opened': isMenuOpen })}>
       <div className={cn('burger__links')}>
@@ -66,7 +70,7 @@ export const BurgerMenuOpened: FC<BurgerMenuProps> = ({
           onClick={handleMenuClose}
         >
           <img src={like} alt="like button" className={cn('like')} />
-          <HeaderCounter products={products}/>
+          <HeaderCounter products={likedProducts}/>
         </Link>
 
         <Link
