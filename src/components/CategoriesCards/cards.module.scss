@@ -4,6 +4,7 @@
 .cards__container {
   display: grid;
   grid-template-columns: repeat(4, 270px);
+  min-height: 90vw;
   column-gap: 16px;
   row-gap: 40px;
   padding-bottom: 0;
