@@ -2,14 +2,17 @@ import { FC, useEffect, useState, useRef } from 'react';
 import classNames from 'classnames/bind';
 import styles from './PromoSlider.module.scss';
 import arrow from './../../../../assets/icons/Arrow.svg';
-import slideMobile from './../../../../assets/images/promo-on-mobile.png';
-import slideBig from './../../../../assets/images/promo-on-tablet-desktop.png';
+import one from './../../../../assets/images/Promo/promo-on-mobile.png';
+import two from './../../../../assets/images/Promo/iphone-14-colours.jpg';
+import four from './../../../../assets/images/Promo/Tablets-banner_2.jpg';
+import oneBig from './../../../../assets/images/Promo/promo-on-tablet-desktop.png';
+import threeBig from './../../../../assets/images/Promo/ipad.jpg';
 import { ImageSlider } from '../ImageSlider/ImageSlider';
 
 const cn = classNames.bind(styles);
 
-const mobileSlides = [slideMobile, slideMobile, slideMobile];
-const bigSlides = [slideBig, slideBig, slideBig];
+const mobileSlides = [one, two, four];
+const bigSlides = [oneBig, two, threeBig];
 
 const getWindowWidth = () => window.innerWidth;
 
