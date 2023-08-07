@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './Action.module.scss';
 import classNames from 'classnames/bind';
 import heart from '../../assets/icons/Heart.svg';
@@ -9,15 +9,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store';
 import { Product } from '../../types/product';
 import { addToCart, removeFromCart } from '../../actions/cartActions';
-import { addToFavourites, removeFromFavourites } from '../../actions/favouriteActions';
 import { productColors } from '../styles/productColors';
+import { addToFavourites, removeFromFavourites } from '../../actions/favouriteActions';
 
 const cn = classNames.bind(styles);
 
 interface Props {
   className: string | undefined;
   product: ProductDetails;
-  onActionsChange: (path: string) => void;
+  onActionsChange: (path: string, type: string) => void;
   isChanging: boolean;
 }
 
@@ -26,18 +26,6 @@ interface CustomStyleProps extends React.CSSProperties {
 }
 
 export const Actions: FC<Props> = ({ className, product, onActionsChange, isChanging }) => {
-  const productsInCart = useSelector((state: RootState) => state.cart.cartItems as Product[]);
-  const likedProducts = useSelector((state: RootState) => state.favorites.favoriteItems as Product[]);
-  const isProductInCart = productsInCart.some((item: Product) => item.itemId === product.id);
-  const isProductInFavs = likedProducts.some((item: Product) => item.itemId === product.id);
-
-  const [productAdded, setProductAdded] = useState(isProductInCart);
-  const [productLiked, setProductLiked] = useState(isProductInFavs);
-  const buttonText = productAdded ? 'added' : 'add to cart';
-  const buttonHeart = productLiked ? filledheart : heart;
-
-  const dispatch = useDispatch();
-
   const {
     id,
     capacity,
@@ -53,29 +41,47 @@ export const Actions: FC<Props> = ({ className, product, onActionsChange, isChan
     productItemInfo,
   } = product;
 
+  const productsInCart = useSelector((state: RootState) => state.cart.cartItems as Product[]);
+  const likedProducts = useSelector((state: RootState) => state.favorites.favoriteItems as Product[]);
+
+  const dispatch = useDispatch();
+
   const [specsToChange, setSpecsToChange] = useState({
     color,
     capacity,
   });
 
+  const checkIsProductInCard = () => {
+    return productsInCart.some((item: Product) => item.itemId === product.id);
+  };
+
+  const checkIsProductLiked = () => {
+    return likedProducts.some((item: Product) => item.itemId === product.id);
+  };
+
+  const [isProductInCart, setIsProductInCart] = useState(checkIsProductInCard());
+  const [isProductLiked, setIsProductLiked] = useState(checkIsProductLiked());
+  const buttonText = isProductInCart ? 'added' : 'add to cart';
+  const buttonHeart = isProductLiked ? filledheart : heart;
+
   const handleProductAdded = () => {
-    if (!productAdded) {
+    if (!isProductInCart) {
       dispatch(addToCart(productItemInfo));
     } else {
       dispatch(removeFromCart(id));
     }
 
-    setProductAdded(!productAdded);
+    setIsProductInCart(prev => !prev);
   };
 
   const handleProductLiked = () => {
-    if (!productLiked) {
+    if (!isProductLiked) {
       dispatch(addToFavourites(productItemInfo));
     } else {
-      dispatch(removeFromFavourites(id));
+      dispatch(removeFromFavourites(Number(product.productItemInfo.id)));
     }
 
-    setProductLiked(!productLiked);
+    setIsProductLiked(prev => !prev);
   };
 
   const handleButtionActionClick = (option: string, value: string) => {
@@ -90,12 +96,17 @@ export const Actions: FC<Props> = ({ className, product, onActionsChange, isChan
     }
 
     window.history.replaceState({}, '', newUrl);
-    onActionsChange(newUrl.slice(1));
+    onActionsChange(newUrl.slice(1), option);
     setSpecsToChange((prev) => ({
       ...prev,
       [option]: value
     }));
   };
+
+  useEffect(() => {
+    setIsProductInCart(checkIsProductInCard());
+    setIsProductLiked(checkIsProductLiked());
+  }, [product]);
 
   return (
     <div className={cn('Actions', className)}>
@@ -147,22 +158,22 @@ export const Actions: FC<Props> = ({ className, product, onActionsChange, isChan
       <div className={cn('Actions__productButtons')}>
         <button
           className={cn('Button__add', {
-            ['Button__add--active']: productAdded,
+            ['Button__add--active']: isProductInCart,
             ['Button__add--disabled']: isChanging,
           })}
           onClick={() => handleProductAdded()}
-          disabled={isChanging === true}
+          disabled={isChanging}
         >
           {buttonText}
         </button>
 
         <button
           className={cn('Button__like', {
-            ['Button__like--active']: productLiked,
+            ['Button__like--active']: isProductLiked,
             ['Button__like--disabled']: isChanging,
           })}
           onClick={() => handleProductLiked()}
-          disabled={isChanging === true}
+          disabled={isChanging}
         >
           <img src={buttonHeart} />
         </button>

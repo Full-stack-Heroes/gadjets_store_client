@@ -12,7 +12,7 @@ interface AddToFavouritesAction {
 
 interface RemoveFromFavouritesAction {
   type: FavouritesActionTypes.REMOVE_FROM_FAVOURITES;
-  payload: string;
+  payload: number;
 }
 
 export const addToFavourites = (product: Product): AddToFavouritesAction => ({
@@ -20,7 +20,7 @@ export const addToFavourites = (product: Product): AddToFavouritesAction => ({
   payload: product,
 });
 
-export const removeFromFavourites = (productId: string): RemoveFromFavouritesAction => ({
+export const removeFromFavourites = (productId: number): RemoveFromFavouritesAction => ({
   type: FavouritesActionTypes.REMOVE_FROM_FAVOURITES,
   payload: productId,
 });
