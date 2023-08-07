@@ -20,27 +20,44 @@ const cn = classNames.bind(styles);
 export const ProductPage: FC = () => {
   const location = useLocation();
   const [productInfo, setProductInfo] = useState<ProductDetails | null>(null);
+  const [productImages, setProductImages] = useState<string[] | null>(null);
   const [recommendedProducts, setRecommendedProducts] = useState<Product[]>();
   const isLoading = !productInfo;
   const locationToProduct = location.pathname.slice(1);
+  const isUpdating = Boolean(!productImages);
+  console.log(productImages);
 
-  const fetchData = useCallback(async () => {
+  const fetchData = useCallback(async (path: string) => {
     try {
-      const fetchedData = await getProductData(locationToProduct);
-      const products = await getProducts(`${locationToProduct}/recommended`);
+      const fetchedData = await getProductData(path);
+      const products = await getProducts(`${path}/recommended`);
 
       setProductInfo(fetchedData);
       setRecommendedProducts(products);
-      console.log(products);
+      setProductImages(fetchedData.images);
     } catch (error) {
       console.log('Error while fetching');
     }
-  }, [location.pathname]);
-  console.log(location.pathname);
+  }, []);
+
+  const fetchOnActionsChange = useCallback(async(path: string) => {
+    setProductImages(null);
+
+    try {
+      const fetchedData = await getProductData(path);
+      const products = await getProducts(`${path}/recommended`);
+
+      setProductInfo(fetchedData);
+      setRecommendedProducts(products);
+      setProductImages(fetchedData.images);
+    } catch (error) {
+      console.log('Error while fetching');
+    }
+  }, []);
 
   useEffect(() => {
     setProductInfo(null);
-    fetchData();
+    fetchData(locationToProduct);
   }, [location.pathname]);
 
   return (
@@ -56,10 +73,12 @@ export const ProductPage: FC = () => {
           <h1 className={cn('ProductPage__header')}>{productInfo.name}</h1>
 
           <div className={cn('SectionContainer', 'PhoneDetails')}>
-            <ProductImageSelector images={productInfo.images} className={cn('SectionContainer__item')} />
+            <ProductImageSelector images={productImages} className={cn('SectionContainer__item')} />
             <Actions
               className={'SectionContainer__item'}
               product={productInfo}
+              onActionsChange={fetchOnActionsChange}
+              isChanging={isUpdating}
             />
           </div>
 

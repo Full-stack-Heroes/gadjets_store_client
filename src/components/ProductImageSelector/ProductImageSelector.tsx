@@ -4,6 +4,7 @@ import classNames from 'classnames/bind';
 import { normalizeImage } from '../../utils/helpers';
 import 'react-multi-carousel/lib/styles.css';
 import Carousel, { DotProps } from 'react-multi-carousel';
+import { Loader } from '../Loader';
 
 const cn = classNames.bind(styles);
 
@@ -36,47 +37,55 @@ const responsive = {
 };
 
 interface Props {
-  images: string[],
+  images: string[] | null,
   className: string,
 }
 
 export const ProductImageSelector: FC<Props> = ({ images, className }) => {
+  console.log(images);
+
   const CustomDot: FC = ({ active, onClick, index }: DotProps) => {
     return (
-      <button
-        onClick={onClick}
-        className={cn('custom-dot', {
-          'custom-dot--active': active
-        })}
-      >
-        {<img
-          src={normalizeImage(images[index!])}
-          alt={'product img'}
-        />}
-      </button>
+      <>
+        {images && (<button
+          onClick={onClick}
+          className={cn('custom-dot', {
+            'custom-dot--active': active
+          })}
+        >
+          {<img
+            src={normalizeImage(images[index!])}
+            alt={'product img'}
+          />}
+        </button>)}
+      </>
     );
   };
 
   return (
-    <div className={cn('ProductImageSelector', className)}>
-      <Carousel
-        showDots
-        responsive={responsive}
-        arrows={false}
-        customDot={<CustomDot />}
-        renderDotsOutside
-        dotListClass={cn('DotList')}
-        itemClass={cn('ProductImage')}
-      >
-        {images.map((image, index) => (
-          <img
-            src={normalizeImage(image)}
-            alt={`product img ${index}`}
-            key={index}
-            draggable={false}
-          />
-        ))}
-      </Carousel>
-    </div>
+    <>
+      <div className={cn('ProductImageSelector', className)}>
+        {images ? (
+          <Carousel
+            showDots
+            responsive={responsive}
+            arrows={false}
+            customDot={<CustomDot />}
+            renderDotsOutside
+            dotListClass={cn('DotList')}
+            itemClass={cn('ProductImage')}
+          >
+            {images.map((image, index) => (
+              <img
+                src={normalizeImage(image)}
+                alt={`product img ${index}`}
+                key={index}
+                draggable={false}
+              />
+            ))}
+          </Carousel>
+        ) : <Loader />}
+      </div>
+    </>
   );
 };

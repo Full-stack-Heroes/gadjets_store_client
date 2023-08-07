@@ -9,7 +9,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store';
 import { Product } from '../../types/product';
 import { addToCart, removeFromCart } from '../../actions/cartActions';
-import { Link } from 'react-router-dom';
 import { productColors } from '../styles/productColors';
 
 const cn = classNames.bind(styles);
@@ -17,15 +16,17 @@ const cn = classNames.bind(styles);
 interface Props {
   className: string | undefined;
   product: ProductDetails;
+  onActionsChange: (path: string) => void;
+  isChanging: boolean;
 }
 
 interface CustomStyleProps extends React.CSSProperties {
   '--after-background-color'?: string;
 }
 
-export const Actions: FC<Props> = ({ className, product }) => {
-  const products = useSelector((state: RootState) => state.cart.cartItems as Product[]);
-  const isProductInCart = products.some((item: Product) => item.itemId === product.id);
+export const Actions: FC<Props> = ({ className, product, onActionsChange, isChanging }) => {
+  const productsInCart = useSelector((state: RootState) => state.cart.cartItems as Product[]);
+  const isProductInCart = productsInCart.some((item: Product) => item.itemId === product.id);
 
   const [productAdded, setProductAdded] = useState(isProductInCart);
   const [productLiked, setProductLiked] = useState(false);
@@ -49,6 +50,11 @@ export const Actions: FC<Props> = ({ className, product }) => {
     productItemInfo,
   } = product;
 
+  const [specsToChange, setSpecsToChange] = useState({
+    color,
+    capacity,
+  });
+
   const handleProductAdded = () => {
     if (!productAdded) {
       dispatch(addToCart(productItemInfo));
@@ -63,24 +69,41 @@ export const Actions: FC<Props> = ({ className, product }) => {
     setProductLiked(!productLiked);
   };
 
+  const handleButtionActionClick = (option: string, value: string) => {
+    let newUrl = '';
+
+    if (option === 'color') {
+      newUrl = linkByColor(value);
+    }
+
+    if (option === 'capacity') {
+      newUrl = linkByCapacity(value);
+    }
+
+    window.history.replaceState({}, '', newUrl);
+    onActionsChange(newUrl.slice(1));
+    setSpecsToChange((prev) => ({
+      ...prev,
+      [option]: value
+    }));
+  };
+
   return (
     <div className={cn('Actions', className)}>
       <div className={cn('Actions__colors')}>
         <div className={cn('Actions__headerId')}>
           <span className={cn('Actions__header')}>Available colors</span>
-
-          {/* <span className={cn('Actions__itemId')}>ID: 1</span> */}
         </div>
 
         {colorsAvailable.map((colorAv) => (
-          <Link
-            to={linkByColor(colorAv)}
+          <button
+            onClick={() => handleButtionActionClick('color', colorAv)}
             className={cn('Actions__color', {
-              'Actions__color--active': color === colorAv,
+              'Actions__color--active': specsToChange.color === colorAv,
             })}
             style={{ '--after-background-color': String(productColors[colorAv]) } as CustomStyleProps}
             key={generateId()}>
-          </Link>
+          </button>
         ))}
       </div>
 
@@ -93,17 +116,17 @@ export const Actions: FC<Props> = ({ className, product }) => {
         </p>
 
         {capacityAvailable.map((capacityAv) => (
-          <Link
-            to={linkByCapacity(capacityAv)}
+          <button
+            onClick={() => handleButtionActionClick('capacity', capacityAv)}
             className={cn('Actions__capacityButton', {
-              'Actions__capacityButton--active': capacity === capacityAv,
+              'Actions__capacityButton--active': specsToChange.capacity === capacityAv,
             })}
             key={generateId()}>
             {productItemInfo.category === 'accessories'
               ? normalizeWatchBand(capacityAv)
               : normalizeMemory(capacityAv)
             }
-          </Link>
+          </button>
         ))}
       </div>
 
@@ -116,6 +139,7 @@ export const Actions: FC<Props> = ({ className, product }) => {
         <button
           className={cn('Button__add', {
             ['Button__add--active']: productAdded,
+            ['Button__add--disabled']: isChanging,
           })}
           onClick={() => handleProductAdded()}>
           {buttonText}
@@ -124,8 +148,11 @@ export const Actions: FC<Props> = ({ className, product }) => {
         <button
           className={cn('Button__like', {
             ['Button__like--active']: productLiked,
+            ['Button__like--disabled']: isChanging,
           })}
-          onClick={() => handleProductLiked()}>
+          onClick={() => handleProductLiked()}
+          disabled={false}
+        >
           <img src={buttonHeart} />
         </button>
       </div>
