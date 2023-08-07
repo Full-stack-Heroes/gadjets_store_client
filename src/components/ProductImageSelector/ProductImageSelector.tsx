@@ -84,7 +84,7 @@ export const ProductImageSelector: FC<Props> = ({ images, className }) => {
               />
             ))}
           </Carousel>
-        ) : <Loader />}
+        ) : <Loader className={cn('ProductImageSelectorLoader')} />}
       </div>
     </>
   );

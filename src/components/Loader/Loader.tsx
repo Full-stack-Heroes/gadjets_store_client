@@ -1,8 +1,13 @@
 import { FC } from 'react';
 import './Loader.scss';
+import cn from 'classnames';
 
-export const Loader: FC = () => (
-  <div className="Loader" data-cy="loader">
+interface Props {
+  className?: string;
+}
+
+export const Loader: FC<Props> = ({ className }) => (
+  <div className={cn('Loader', className)} data-cy="loader">
     <div className="Loader__content" />
   </div>
 );
