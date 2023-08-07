@@ -4,10 +4,11 @@ import styles from './Card.module.scss';
 import heart from '../../assets/icons/Heart.svg';
 import filledheart from '../../assets/icons/Heart_Filled.svg';
 import { Product } from '../../types/product';
-import { normalizeImage, normalizeMemory, normalizeRam } from '../../utils/helpers';
+import { normalizeImage, normalizeMemory, normalizeRam, normalizeWatchBand } from '../../utils/helpers';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeFromCart } from '../../actions/cartActions';
+import { addToFavourites, removeFromFavourites } from '../../actions/favouriteActions';
 import { RootState } from '../../store';
 
 interface Props {
@@ -16,10 +17,12 @@ interface Props {
 
 export const Card: React.FC<Props> = ({ product }) => {
   const products = useSelector((state: RootState) => state.cart.cartItems as Product[]);
+  const likedProducts = useSelector((state: RootState) => state.favorites.favoriteItems as Product[]);
   const isProductInCart = products.some((item: Product) => item.itemId === product.itemId);
+  const isProductInFavourites = likedProducts.some((item: Product) => item.itemId === product.itemId);
 
   const [productAdded, setProductAdded] = useState(isProductInCart);
-  const [productLiked, setProductLiked] = useState(false);
+  const [productLiked, setProductLiked] = useState(isProductInFavourites);
   const buttonText = productAdded ? 'added' : 'add to cart';
   const buttonHeart = productLiked ? filledheart : heart;
 
@@ -36,6 +39,12 @@ export const Card: React.FC<Props> = ({ product }) => {
   };
 
   const handleProductLiked = () => {
+    if (!productLiked) {
+      dispatch(addToFavourites(product));
+    } else {
+      dispatch(removeFromFavourites(product.id));
+    }
+
     setProductLiked(!productLiked);
   };
 
@@ -78,9 +87,16 @@ export const Card: React.FC<Props> = ({ product }) => {
         </p>
 
         <p className={styles.characteristic_left}>
-          <span>Capacity:</span>
+          <span>
+            {category === 'accessories'
+              ? 'Size:'
+              : 'Capacity:'
+            }
+          </span>
           <span className={styles.characteristic_right}>
-            {normalizeMemory(capacity)}
+            {category === 'accessories'
+              ? normalizeWatchBand(capacity)
+              : normalizeMemory(capacity)}
           </span>
         </p>
 

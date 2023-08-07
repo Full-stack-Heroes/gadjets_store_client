@@ -1,0 +1,111 @@
+@import '../../../../assets/colors/colors';
+@import '../../../../assets/grid/gridGlobalStyles';
+@import '../../../../assets/variables/mediaQueries';
+$sliderItemSize: 100%;
+
+.promo__container {
+  margin-bottom: 56px;
+
+  @include onTablet {
+    margin-bottom: 64px;
+  }
+
+  @include onDesktop {
+    margin-bottom: 80px;
+  }
+}
+
+.slider {
+  &__container {
+    display: grid;
+    grid-column: 1 / -1;
+    margin-bottom: 8px;
+    @include global-grid-container;
+    padding: 24px 0 0 0;
+    @include onTablet {
+      margin-top: 32px;
+      display: grid;
+      grid-column: 1 / -1;
+      transition: all 0.3s ease-out;
+    }
+
+    @include onDesktop {
+      margin-top: 56px;
+    }
+  }
+
+  &__arrow {
+    display: none;
+
+    @include onTablet {
+      height: 100%;
+      display: grid;
+      width: 32px;
+      border: 1px solid $icons;
+      border-radius: 48px;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+
+      &:hover {
+        transition: all 0.3s;
+        border: 1px solid $primary;
+
+        img {
+          transform: scale(1.1);
+        }
+
+      }
+
+      &:active {
+        border: 1px solid $icons;
+      }
+
+      &-left {
+        grid-column: 1 / 1;
+      }
+
+      &-right {
+        margin-left: auto;
+        transform: rotate(180deg);
+        grid-column: 12;
+
+        @include onDesktop {
+          grid-column: 24;
+        }
+      }
+    }
+  }
+
+  &__slides {
+    @include onTablet {
+      height: 100%;
+      display: grid;
+      grid-column: 2 / 12;
+      border-radius: 8px;
+    }
+    @include onDesktop {
+      grid-column: 2 / 24;
+    }
+  }
+
+  &__dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 24px;
+    margin: auto;
+    cursor: pointer;
+  }
+
+  &__dot {
+    width: 16px;
+    height: 4px;
+    background-color: $icons;
+  }
+
+  &__dot-active {
+    background-color: $primary;
+  }
+}

@@ -3,23 +3,30 @@ import styles from './Action.module.scss';
 import classNames from 'classnames/bind';
 import heart from '../../assets/icons/Heart.svg';
 import filledheart from '../../assets/icons/Heart_Filled.svg';
-import { generateId, normalizeMemory } from '../../utils/helpers';
+import { generateId, linkByCapacity, linkByColor, normalizeMemory, normalizeRam, normalizeWatchBand } from '../../utils/helpers';
 import { ProductDetails } from '../../types/productDetails';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store';
 import { Product } from '../../types/product';
 import { addToCart, removeFromCart } from '../../actions/cartActions';
+import { productColors } from '../styles/productColors';
 
 const cn = classNames.bind(styles);
 
 interface Props {
   className: string | undefined;
   product: ProductDetails;
+  onActionsChange: (path: string) => void;
+  isChanging: boolean;
 }
 
-export const Actions: FC<Props> = ({ className, product }) => {
-  const products = useSelector((state: RootState) => state.cart.cartItems as Product[]);
-  const isProductInCart = products.some((item: Product) => item.itemId === product.id);
+interface CustomStyleProps extends React.CSSProperties {
+  '--after-background-color'?: string;
+}
+
+export const Actions: FC<Props> = ({ className, product, onActionsChange, isChanging }) => {
+  const productsInCart = useSelector((state: RootState) => state.cart.cartItems as Product[]);
+  const isProductInCart = productsInCart.some((item: Product) => item.itemId === product.id);
 
   const [productAdded, setProductAdded] = useState(isProductInCart);
   const [productLiked, setProductLiked] = useState(false);
@@ -29,6 +36,7 @@ export const Actions: FC<Props> = ({ className, product }) => {
   const dispatch = useDispatch();
 
   const {
+    id,
     capacity,
     capacityAvailable,
     priceRegular,
@@ -39,13 +47,19 @@ export const Actions: FC<Props> = ({ className, product }) => {
     resolution,
     processor,
     ram,
+    productItemInfo,
   } = product;
+
+  const [specsToChange, setSpecsToChange] = useState({
+    color,
+    capacity,
+  });
 
   const handleProductAdded = () => {
     if (!productAdded) {
-      dispatch(addToCart(product.productItemInfo));
+      dispatch(addToCart(productItemInfo));
     } else {
-      dispatch(removeFromCart(product.id));
+      dispatch(removeFromCart(id));
     }
 
     setProductAdded(!productAdded);
@@ -55,34 +69,63 @@ export const Actions: FC<Props> = ({ className, product }) => {
     setProductLiked(!productLiked);
   };
 
+  const handleButtionActionClick = (option: string, value: string) => {
+    let newUrl = '';
+
+    if (option === 'color') {
+      newUrl = linkByColor(value);
+    }
+
+    if (option === 'capacity') {
+      newUrl = linkByCapacity(value);
+    }
+
+    window.history.replaceState({}, '', newUrl);
+    onActionsChange(newUrl.slice(1));
+    setSpecsToChange((prev) => ({
+      ...prev,
+      [option]: value
+    }));
+  };
+
   return (
     <div className={cn('Actions', className)}>
       <div className={cn('Actions__colors')}>
         <div className={cn('Actions__headerId')}>
           <span className={cn('Actions__header')}>Available colors</span>
-
-          {/* <span className={cn('Actions__itemId')}>ID: 1</span> */}
         </div>
 
         {colorsAvailable.map((colorAv) => (
-          <a
+          <button
+            onClick={() => handleButtionActionClick('color', colorAv)}
             className={cn('Actions__color', {
-              'Actions__color--active': color === colorAv,
+              'Actions__color--active': specsToChange.color === colorAv,
             })}
-            key={generateId()}></a>
+            style={{ '--after-background-color': String(productColors[colorAv]) } as CustomStyleProps}
+            key={generateId()}>
+          </button>
         ))}
       </div>
 
       <div className={cn('Actions__capacity')}>
-        <p className={cn('Actions__header')}>Select capacity</p>
+        <p className={cn('Actions__header')}>
+          {productItemInfo.category === 'accessories'
+            ? 'Select display size'
+            : 'Select capacity'
+          }
+        </p>
 
         {capacityAvailable.map((capacityAv) => (
           <button
+            onClick={() => handleButtionActionClick('capacity', capacityAv)}
             className={cn('Actions__capacityButton', {
-              'Actions__capacityButton--active': capacity === capacityAv,
+              'Actions__capacityButton--active': specsToChange.capacity === capacityAv,
             })}
             key={generateId()}>
-            {normalizeMemory(capacityAv)}
+            {productItemInfo.category === 'accessories'
+              ? normalizeWatchBand(capacityAv)
+              : normalizeMemory(capacityAv)
+            }
           </button>
         ))}
       </div>
@@ -96,6 +139,7 @@ export const Actions: FC<Props> = ({ className, product }) => {
         <button
           className={cn('Button__add', {
             ['Button__add--active']: productAdded,
+            ['Button__add--disabled']: isChanging,
           })}
           onClick={() => handleProductAdded()}>
           {buttonText}
@@ -104,8 +148,11 @@ export const Actions: FC<Props> = ({ className, product }) => {
         <button
           className={cn('Button__like', {
             ['Button__like--active']: productLiked,
+            ['Button__like--disabled']: isChanging,
           })}
-          onClick={() => handleProductLiked()}>
+          onClick={() => handleProductLiked()}
+          disabled={false}
+        >
           <img src={buttonHeart} />
         </button>
       </div>
@@ -133,7 +180,7 @@ export const Actions: FC<Props> = ({ className, product }) => {
         <p className={cn('Actions__characteristicsLeft')}>
           <span>RAM</span>
           <span className={cn('Actions__characteristicsRight')}>
-            {normalizeMemory(ram)}
+            {normalizeRam(ram)}
           </span>
         </p>
       </div>

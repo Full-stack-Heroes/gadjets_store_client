@@ -33,15 +33,8 @@ export const HomeContent: FC = () => {
   useEffect(() => {
     fetchData();
   }, []);
-  return (<>
-    { <div className={cn('home')}>
-      <h1 className={cn('homeTitle', 'titleH1', 'title')}>
-          Welcome to Nice Gadgets store!
-      </h1>
-      <div className={cn('homeMainSliderWrapper')}>
-        <div className={cn('homeMainSlider')}></div>
-      </div>
-
+  return (
+    <div className={cn('home')}>
       <div className={cn('homeSliderContainer')}>
         {!newProducts ? <Loader/> : (
           <CardCarousel
@@ -62,6 +55,5 @@ export const HomeContent: FC = () => {
         )}
       </div>
     </div>
-    }
-  </>);
+  );
 };

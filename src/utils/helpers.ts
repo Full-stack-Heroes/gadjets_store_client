@@ -15,7 +15,15 @@ export const normalizeMemory = (memory: string) => {
 };
 
 export const normalizeRam = (ram: string) => {
-  return ram.slice(0, -2) + ' ' + 'GB';
+  const ramCapacity = ram.slice(0, -2);
+  if (parseInt(ram) > 32) {
+    return ramCapacity + ' MB';
+  }
+  return ramCapacity + ' GB';
+};
+
+export const normalizeWatchBand = (ram: string) => {
+  return ram.slice(0, -2) + ' mm';
 };
 
 export const scrollToTop = () => {
@@ -42,3 +50,24 @@ export const getSpecsFromProductData = (
 };
 
 export const generateId = () => Math.floor(Math.random() * 10001);
+
+export const linkByCapacity = (capacity: string) => {
+  const path = location.pathname.split('-');
+
+  path[path.length - 2] = capacity.toLowerCase();
+  const newLink = path.join('-');
+
+  return newLink;
+};
+
+export const linkByColor = (color: string) => {
+  const path = location.pathname.split('-');
+
+  path[path.length - 1] = color.toLowerCase();
+
+  console.log(path);
+
+  const newLink = path.join('-');
+
+  return newLink;
+};

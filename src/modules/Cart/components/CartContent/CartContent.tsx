@@ -84,8 +84,9 @@ export const CartContent: FC = () => {
 
       {showSuccess && (
         <div
-          className={cn(
-            ('PopupContainer'))}
+          className={cn('PopupContainer', {
+            PopupContainerActive: modalActive,
+          })}
         >
           <img
             src={cross}

@@ -45,26 +45,29 @@
   &__color {
     position: relative;
     display: inline-block;
-    width: 26px;
-    height: 26px;
+    width: 24px;
+    height: 24px;
     margin: 0 8px 24px 0;
     border-radius: 50%;
+
+    --after-background-color: transparent;
+    background-color: var(--after-background-color);
 
     cursor: pointer;
 
     &::after {
       position: absolute;
 
-      left: -2px;
-      top: -2px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
 
       content: '';
-      border: 1px solid $elements;
+      border: 1px solid whitesmoke;
       border-radius: 50%;
       width: 30px;
       height: 30px;
       color: $white;
-      background-color: $white;
     }
 
     &--active {
@@ -93,6 +96,9 @@
   }
 
   &__capacityButton {
+    text-decoration: none;
+    color: black;
+
     display: inline-block;
     margin: 0 8px 24px 0;
     padding: 8px;
@@ -203,6 +209,11 @@
 
     transition: 0.3s;
   }
+
+  &--disabled {
+   background-color: $secondary;
+   opacity: 0.5;
+  }
 }
 
 .Button__like {
@@ -223,4 +234,9 @@
   &:hover {
     border-color: $primary;
   }
+
+  &--disabled {
+    background-color: $secondary;
+    opacity: 0.5;
+   }
 }

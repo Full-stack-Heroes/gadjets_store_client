@@ -1,0 +1,99 @@
+@import '../../components/styles/Colors.module.scss';
+
+.Select {
+  &Container {
+    max-width: 200px;
+    position: relative;
+
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 21px;
+
+    &Title {
+      color: $secondary-color;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+    }
+
+  }
+
+  &Field {
+    display: flex;
+
+    padding: 10px 12px;
+    gap: 75px;
+
+    border: 1px solid $icons-color;
+    border-radius: 8px;
+
+    cursor: pointer;
+    transition: border-color 0.2s ease-in-out;
+
+    &Active {
+      border-color: $primary-color;
+    }
+
+    &Current {
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+    }
+  }
+
+  &Arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transform: rotate(-90deg);
+
+    transition: transform 0.2s ease-in-out;
+  }
+
+  &ArrowOpen {
+    transform: rotate(90deg);
+  }
+}
+
+.Options {
+  &List {
+    position: absolute;
+    background-color: white;
+    color: black;
+
+    z-index: 1000;
+
+    right: 0;
+    left: 0;
+    transform: translateY(4px);
+
+    border: 1px solid $icons-color;
+    border-radius: 8px;
+
+    box-shadow: 0px 2px 15px 0px rgba(0, 0, 0, 0.05);
+
+  }
+
+  &Item {
+    padding: 10px 12px;
+
+    color: $secondary-color;
+
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 21px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    &:hover {
+      color: $primary-color;
+      background-color: $hover-and-bg-color;
+    }
+  }
+}
