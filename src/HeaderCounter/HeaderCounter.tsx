@@ -11,17 +11,19 @@ export const HeaderCounter: FC <Props> = memo(({ products }) => {
   const cn = classNames.bind(styles);
 
   return (
-    <div className={cn('countContainer')}>
+    <>
       {products.length > 0 && (
-        <div className={cn('numberOfItems', 'container')}>
-          <div className="cart__products_counter">
-            <span className="cart__products_counter-text">
-              {products.length < 100 ? products.length : '99+'}
-            </span>
+        <div className={cn('countContainer')}>
+          <div className={cn('numberOfItems', 'container')}>
+            <div className="cart__products_counter">
+              <span className="cart__products_counter-text">
+                {products.length < 100 ? products.length : '99+'}
+              </span>
+            </div>
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }
 );

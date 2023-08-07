@@ -92,15 +92,9 @@ export const Header: FC = () => {
               alt="like button"
               className={cn('service_btn_img')}
             />
-            {products.length > 0 && (
-              <div className="container">
-                <div className="cart__products_counter">
-                  <span className="cart__products_counter-text">
-                    {products.length < 100 ? products.length : '99+'}
-                  </span>
-                </div>
-              </div>
-            )}
+            <div className={cn('headerCounter')}>
+              <HeaderCounter products={ products }/>
+            </div>
           </NavLink>
         </div>
 
