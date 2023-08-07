@@ -1,13 +1,37 @@
 import classNames from 'classnames/bind';
 import styles from './Categories.module.scss';
-import { FC, memo } from 'react';
+import { FC, memo, useState, useEffect } from 'react';
 import Phones from '../../assets/images/Categories/Phones.jpg';
 import Tablets from '../../assets/images/Categories/Tablets.jpg';
 import Accessories from '../../assets/images/Categories/Accessories.jpg';
 import { CategoryCard } from '../CategoryCard';
+import { getProductsWithCounter } from '../../api/products';
+import { productWithCounter } from '../../types/productWithCounter';
 
 export const Categories: FC= memo(() => {
+  const [phonesCount, setPhonesCount] = useState(0);
+  const [tabletsCount, setTabletsCount] = useState(0);
+  const [accessoriesCount, setAccessoriesCount] = useState(0);
+
   const cn = classNames.bind(styles);
+
+  useEffect(() => {
+    const fetchCounts = async () => {
+      try {
+        const phonesCount: productWithCounter = await getProductsWithCounter('phones');
+        const tabletsCount: productWithCounter = await getProductsWithCounter('tablets');
+        const accessoriesCount: productWithCounter = await getProductsWithCounter('accessories');
+
+        setPhonesCount(phonesCount.count);
+        setTabletsCount(tabletsCount.count);
+        setAccessoriesCount(accessoriesCount.count);
+      } catch (error) {
+        console.error('Error fetching counts:', error);
+      }
+    };
+
+    fetchCounts();
+  }, []);
 
   return (
     <div className={cn('Categories')}>
@@ -20,7 +44,7 @@ export const Categories: FC= memo(() => {
           imageAlt ={'Phones'}
           categoryName = {'Phones'}
           categoryLink = {'/phones'}
-          numberOfItems ={'100'}
+          numberOfItems ={phonesCount}
         />
 
         <CategoryCard
@@ -28,7 +52,7 @@ export const Categories: FC= memo(() => {
           imageAlt ={'Tablets'}
           categoryName = {'Tablets'}
           categoryLink = {'/tablets'}
-          numberOfItems ={'100'}
+          numberOfItems ={tabletsCount}
         />
 
         <CategoryCard
@@ -36,7 +60,7 @@ export const Categories: FC= memo(() => {
           imageAlt ={'Accessories'}
           categoryName = {'Accessories'}
           categoryLink = {'/accessories'}
-          numberOfItems ={'100'}
+          numberOfItems ={accessoriesCount}
         />
       </div>
     </div>);

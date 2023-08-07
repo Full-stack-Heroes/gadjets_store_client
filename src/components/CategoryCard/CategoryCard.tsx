@@ -8,7 +8,7 @@ interface Props {
   imageAlt: string;
   categoryName: string;
   categoryLink: string;
-  numberOfItems: string;
+  numberOfItems: number;
 }
 
 export const CategoryCard: FC<Props> = memo(
