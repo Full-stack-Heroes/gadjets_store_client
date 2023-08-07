@@ -85,11 +85,12 @@ export const Actions: FC<Props> = ({ className, product }) => {
       </div>
 
       <div className={cn('Actions__capacity')}>
-        {productItemInfo.category === 'accessories' ? (
-          <p className={cn('Actions__header')}>Select watch band</p>
-        ) : (
-          <p className={cn('Actions__header')}>Select capacity</p>
-        )}
+        <p className={cn('Actions__header')}>
+          {productItemInfo.category === 'accessories'
+            ? 'Select watch band'
+            : 'Select capacity'
+          }
+        </p>
 
         {capacityAvailable.map((capacityAv) => (
           <Link
@@ -98,11 +99,10 @@ export const Actions: FC<Props> = ({ className, product }) => {
               'Actions__capacityButton--active': capacity === capacityAv,
             })}
             key={generateId()}>
-            {productItemInfo.category === 'accessories' ? (
-              normalizeWatchBand(capacityAv)
-            ) : (
-              normalizeMemory(capacityAv)
-            )}
+            {productItemInfo.category === 'accessories'
+              ? normalizeWatchBand(capacityAv)
+              : normalizeMemory(capacityAv)
+            }
           </Link>
         ))}
       </div>

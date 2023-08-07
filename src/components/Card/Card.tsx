@@ -4,7 +4,7 @@ import styles from './Card.module.scss';
 import heart from '../../assets/icons/Heart.svg';
 import filledheart from '../../assets/icons/Heart_Filled.svg';
 import { Product } from '../../types/product';
-import { normalizeImage, normalizeMemory, normalizeRam } from '../../utils/helpers';
+import { normalizeImage, normalizeMemory, normalizeRam, normalizeWatchBand } from '../../utils/helpers';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeFromCart } from '../../actions/cartActions';
@@ -87,9 +87,16 @@ export const Card: React.FC<Props> = ({ product }) => {
         </p>
 
         <p className={styles.characteristic_left}>
-          <span>Capacity:</span>
+          <span>
+            {category === 'accessories'
+              ? 'Size:'
+              : 'Capacity:'
+            }
+          </span>
           <span className={styles.characteristic_right}>
-            {normalizeMemory(capacity)}
+            {category === 'accessories'
+              ? normalizeWatchBand(capacity)
+              : normalizeMemory(capacity)}
           </span>
         </p>
 
