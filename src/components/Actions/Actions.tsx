@@ -87,7 +87,7 @@ export const Actions: FC<Props> = ({ className, product }) => {
       <div className={cn('Actions__capacity')}>
         <p className={cn('Actions__header')}>
           {productItemInfo.category === 'accessories'
-            ? 'Select watch band'
+            ? 'Select display size'
             : 'Select capacity'
           }
         </p>
