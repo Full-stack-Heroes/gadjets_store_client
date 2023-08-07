@@ -3,7 +3,7 @@ import styles from './Action.module.scss';
 import classNames from 'classnames/bind';
 import heart from '../../assets/icons/Heart.svg';
 import filledheart from '../../assets/icons/Heart_Filled.svg';
-import { generateId, linkByCapacity, linkByColor, normalizeMemory, normalizeRam } from '../../utils/helpers';
+import { generateId, linkByCapacity, linkByColor, normalizeMemory, normalizeRam, normalizeWatchBand } from '../../utils/helpers';
 import { ProductDetails } from '../../types/productDetails';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store';
@@ -35,6 +35,7 @@ export const Actions: FC<Props> = ({ className, product }) => {
   const dispatch = useDispatch();
 
   const {
+    id,
     capacity,
     capacityAvailable,
     priceRegular,
@@ -45,13 +46,14 @@ export const Actions: FC<Props> = ({ className, product }) => {
     resolution,
     processor,
     ram,
+    productItemInfo,
   } = product;
 
   const handleProductAdded = () => {
     if (!productAdded) {
-      dispatch(addToCart(product.productItemInfo));
+      dispatch(addToCart(productItemInfo));
     } else {
-      dispatch(removeFromCart(product.id));
+      dispatch(removeFromCart(id));
     }
 
     setProductAdded(!productAdded);
@@ -77,12 +79,17 @@ export const Actions: FC<Props> = ({ className, product }) => {
               'Actions__color--active': color === colorAv,
             })}
             style={{ '--after-background-color': String(productColors[colorAv]) } as CustomStyleProps}
-            key={generateId()}></Link>
+            key={generateId()}>
+          </Link>
         ))}
       </div>
 
       <div className={cn('Actions__capacity')}>
-        <p className={cn('Actions__header')}>Select capacity</p>
+        {productItemInfo.category === 'accessories' ? (
+          <p className={cn('Actions__header')}>Select watch band</p>
+        ) : (
+          <p className={cn('Actions__header')}>Select capacity</p>
+        )}
 
         {capacityAvailable.map((capacityAv) => (
           <Link
@@ -91,7 +98,11 @@ export const Actions: FC<Props> = ({ className, product }) => {
               'Actions__capacityButton--active': capacity === capacityAv,
             })}
             key={generateId()}>
-            {normalizeMemory(capacityAv)}
+            {productItemInfo.category === 'accessories' ? (
+              normalizeWatchBand(capacityAv)
+            ) : (
+              normalizeMemory(capacityAv)
+            )}
           </Link>
         ))}
       </div>
