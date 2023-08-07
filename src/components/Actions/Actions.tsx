@@ -24,8 +24,8 @@ interface CustomStyleProps extends React.CSSProperties {
 }
 
 export const Actions: FC<Props> = ({ className, product }) => {
-  const products = useSelector((state: RootState) => state.cart.cartItems as Product[]);
-  const isProductInCart = products.some((item: Product) => item.itemId === product.id);
+  const productsInCart = useSelector((state: RootState) => state.cart.cartItems as Product[]);
+  const isProductInCart = productsInCart.some((item: Product) => item.itemId === product.id);
 
   const [productAdded, setProductAdded] = useState(isProductInCart);
   const [productLiked, setProductLiked] = useState(false);
@@ -66,8 +66,6 @@ export const Actions: FC<Props> = ({ className, product }) => {
       <div className={cn('Actions__colors')}>
         <div className={cn('Actions__headerId')}>
           <span className={cn('Actions__header')}>Available colors</span>
-
-          {/* <span className={cn('Actions__itemId')}>ID: 1</span> */}
         </div>
 
         {colorsAvailable.map((colorAv) => (

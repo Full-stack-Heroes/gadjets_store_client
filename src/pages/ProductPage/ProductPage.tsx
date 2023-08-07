@@ -36,7 +36,6 @@ export const ProductPage: FC = () => {
       console.log('Error while fetching');
     }
   }, [location.pathname]);
-  console.log(location.pathname);
 
   useEffect(() => {
     setProductInfo(null);

@@ -29,10 +29,12 @@ export const ProductsPage: FC<Props> = ({ endpoint, title }) => {
 
   useEffect(() => {
     if (!searchParams.get('page')) {
-      paramUpdater('page', '1');
+      paramUpdater('page', '1', {replace: true});
     }
 
-    dispatch(fetchProducts(`${endpoint}${search}`));
+    if (search) {
+      dispatch(fetchProducts(`${endpoint}${search}`));
+    }
   }, [search]);
 
   const handlePageChange = (pageNumber: number) => {
