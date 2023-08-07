@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './Action.module.scss';
 import classNames from 'classnames/bind';
 import heart from '../../assets/icons/Heart.svg';
@@ -16,7 +16,7 @@ const cn = classNames.bind(styles);
 interface Props {
   className: string | undefined;
   product: ProductDetails;
-  onActionsChange: (path: string) => void;
+  onActionsChange: (path: string, type: string) => void;
   isChanging: boolean;
 }
 
@@ -26,12 +26,6 @@ interface CustomStyleProps extends React.CSSProperties {
 
 export const Actions: FC<Props> = ({ className, product, onActionsChange, isChanging }) => {
   const productsInCart = useSelector((state: RootState) => state.cart.cartItems as Product[]);
-  const isProductInCart = productsInCart.some((item: Product) => item.itemId === product.id);
-
-  const [productAdded, setProductAdded] = useState(isProductInCart);
-  const [productLiked, setProductLiked] = useState(false);
-  const buttonText = productAdded ? 'added' : 'add to cart';
-  const buttonHeart = productLiked ? filledheart : heart;
 
   const dispatch = useDispatch();
 
@@ -55,14 +49,23 @@ export const Actions: FC<Props> = ({ className, product, onActionsChange, isChan
     capacity,
   });
 
+  const checkIsProductInCard = () => {
+    return productsInCart.some((item: Product) => item.itemId === product.id);
+  };
+
+  const [isProductInCart, setIsProductInCart] = useState(checkIsProductInCard());
+  const [productLiked, setProductLiked] = useState(false);
+  const buttonText = isProductInCart ? 'added' : 'add to cart';
+  const buttonHeart = productLiked ? filledheart : heart;
+
   const handleProductAdded = () => {
-    if (!productAdded) {
+    if (!isProductInCart) {
       dispatch(addToCart(productItemInfo));
     } else {
       dispatch(removeFromCart(id));
     }
 
-    setProductAdded(!productAdded);
+    setIsProductInCart(prev => !prev);
   };
 
   const handleProductLiked = () => {
@@ -81,12 +84,16 @@ export const Actions: FC<Props> = ({ className, product, onActionsChange, isChan
     }
 
     window.history.replaceState({}, '', newUrl);
-    onActionsChange(newUrl.slice(1));
+    onActionsChange(newUrl.slice(1), option);
     setSpecsToChange((prev) => ({
       ...prev,
       [option]: value
     }));
   };
+
+  useEffect(() => {
+    setIsProductInCart(checkIsProductInCard);
+  }, [product]);
 
   return (
     <div className={cn('Actions', className)}>
@@ -138,10 +145,12 @@ export const Actions: FC<Props> = ({ className, product, onActionsChange, isChan
       <div className={cn('Actions__productButtons')}>
         <button
           className={cn('Button__add', {
-            ['Button__add--active']: productAdded,
+            ['Button__add--active']: isProductInCart,
             ['Button__add--disabled']: isChanging,
           })}
-          onClick={() => handleProductAdded()}>
+          onClick={() => handleProductAdded()}
+          disabled={isChanging}
+        >
           {buttonText}
         </button>
 
@@ -151,7 +160,7 @@ export const Actions: FC<Props> = ({ className, product, onActionsChange, isChan
             ['Button__like--disabled']: isChanging,
           })}
           onClick={() => handleProductLiked()}
-          disabled={false}
+          disabled={isChanging}
         >
           <img src={buttonHeart} />
         </button>
