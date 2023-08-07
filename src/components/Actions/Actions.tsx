@@ -108,11 +108,12 @@ export const Actions: FC<Props> = ({ className, product, onActionsChange, isChan
       </div>
 
       <div className={cn('Actions__capacity')}>
-        {productItemInfo.category === 'accessories' ? (
-          <p className={cn('Actions__header')}>Select watch band</p>
-        ) : (
-          <p className={cn('Actions__header')}>Select capacity</p>
-        )}
+        <p className={cn('Actions__header')}>
+          {productItemInfo.category === 'accessories'
+            ? 'Select display size'
+            : 'Select capacity'
+          }
+        </p>
 
         {capacityAvailable.map((capacityAv) => (
           <button
@@ -121,11 +122,10 @@ export const Actions: FC<Props> = ({ className, product, onActionsChange, isChan
               'Actions__capacityButton--active': specsToChange.capacity === capacityAv,
             })}
             key={generateId()}>
-            {productItemInfo.category === 'accessories' ? (
-              normalizeWatchBand(capacityAv)
-            ) : (
-              normalizeMemory(capacityAv)
-            )}
+            {productItemInfo.category === 'accessories'
+              ? normalizeWatchBand(capacityAv)
+              : normalizeMemory(capacityAv)
+            }
           </button>
         ))}
       </div>
