@@ -18,9 +18,10 @@ export const Categories: FC= memo(() => {
   useEffect(() => {
     const fetchCounts = async () => {
       try {
-        const phonesCount: productWithCounter = await getProductsWithCounter('phones');
-        const tabletsCount: productWithCounter = await getProductsWithCounter('tablets');
-        const accessoriesCount: productWithCounter = await getProductsWithCounter('accessories');
+        const phonesCount: productWithCounter = await getProductsWithCounter('phones?page=1&limit=1');
+        console.log(phonesCount);
+        const tabletsCount: productWithCounter = await getProductsWithCounter('tablets?page=1&limit=1');
+        const accessoriesCount: productWithCounter = await getProductsWithCounter('accessories?page=1&limit=1');
 
         setPhonesCount(phonesCount.count);
         setTabletsCount(tabletsCount.count);
