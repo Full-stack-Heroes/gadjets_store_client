@@ -1,4 +1,3 @@
-// export const BASE_URL = 'https://gadjets-store-apu.onrender.com';
 export const BASE_URL = 'https://gadjets-store-apu.onrender.com';
 
 function wait(delay: number) {
