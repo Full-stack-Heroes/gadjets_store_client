@@ -18,6 +18,10 @@ export const normalizeRam = (ram: string) => {
   return ram.slice(0, -2) + ' ' + 'GB';
 };
 
+export const normalizeWatchBand = (ram: string) => {
+  return ram.slice(0, -2) + ' ' + 'mm';
+};
+
 export const scrollToTop = () => {
   window.scrollTo({
     top: 0,
