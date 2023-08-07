@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store';
 import { Product } from '../../types/product';
 import { addToCart, removeFromCart } from '../../actions/cartActions';
+import { addToFavourites, removeFromFavourites } from '../../actions/favouriteActions';
 import { productColors } from '../styles/productColors';
 
 const cn = classNames.bind(styles);
@@ -26,10 +27,12 @@ interface CustomStyleProps extends React.CSSProperties {
 
 export const Actions: FC<Props> = ({ className, product, onActionsChange, isChanging }) => {
   const productsInCart = useSelector((state: RootState) => state.cart.cartItems as Product[]);
+  const likedProducts = useSelector((state: RootState) => state.favorites.favoriteItems as Product[]);
   const isProductInCart = productsInCart.some((item: Product) => item.itemId === product.id);
+  const isProductInFavs = likedProducts.some((item: Product) => item.itemId === product.id);
 
   const [productAdded, setProductAdded] = useState(isProductInCart);
-  const [productLiked, setProductLiked] = useState(false);
+  const [productLiked, setProductLiked] = useState(isProductInFavs);
   const buttonText = productAdded ? 'added' : 'add to cart';
   const buttonHeart = productLiked ? filledheart : heart;
 
@@ -66,6 +69,12 @@ export const Actions: FC<Props> = ({ className, product, onActionsChange, isChan
   };
 
   const handleProductLiked = () => {
+    if (!productLiked) {
+      dispatch(addToFavourites(productItemInfo));
+    } else {
+      dispatch(removeFromFavourites(id));
+    }
+
     setProductLiked(!productLiked);
   };
 
@@ -141,7 +150,9 @@ export const Actions: FC<Props> = ({ className, product, onActionsChange, isChan
             ['Button__add--active']: productAdded,
             ['Button__add--disabled']: isChanging,
           })}
-          onClick={() => handleProductAdded()}>
+          onClick={() => handleProductAdded()}
+          disabled={isChanging === true}
+        >
           {buttonText}
         </button>
 
@@ -151,7 +162,7 @@ export const Actions: FC<Props> = ({ className, product, onActionsChange, isChan
             ['Button__like--disabled']: isChanging,
           })}
           onClick={() => handleProductLiked()}
-          disabled={false}
+          disabled={isChanging === true}
         >
           <img src={buttonHeart} />
         </button>
