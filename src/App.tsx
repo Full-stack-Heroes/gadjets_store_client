@@ -10,11 +10,17 @@ import { AccessoriesPage } from './pages/AccessoriesPage/AccessoriesPage';
 import { FavouritesPage } from './pages/FavouritesPage/FavouritesPage';
 import { ContactsPage } from './pages/ContactsPage/ContactsPage';
 import { ProductPage } from './pages/ProductPage/ProductPage';
+import { PageToTop } from './utils/helpers';
 
 export const App = createBrowserRouter([
   {
     path: '/',
-    element: <Layout />,
+    element: (
+      <>
+        <PageToTop />
+        <Layout />
+      </>
+    ),
     errorElement: <NotFoundPage />,
     children: [
       {

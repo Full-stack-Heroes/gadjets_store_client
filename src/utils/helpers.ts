@@ -1,3 +1,5 @@
+import { FC, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { ProductDetails } from '../types/productDetails';
 import { productSpecs } from '../types/productSpecs';
 import { BASE_URL } from './fetchClient';
@@ -70,4 +72,14 @@ export const linkByColor = (color: string) => {
   const newLink = path.join('-');
 
   return newLink;
+};
+
+export const PageToTop: FC = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
 };
