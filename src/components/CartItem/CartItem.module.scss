@@ -118,6 +118,8 @@ $secondary-color: #b4bdc3;
 
 .itemLink {
   text-decoration: none;
+  display: flex;
+  gap: 20px;
 }
 
 .itemLink:hover {
