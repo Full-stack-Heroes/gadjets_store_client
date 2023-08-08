@@ -3,3 +3,8 @@
   gap: 8px;
   height: max-content;
 }
+
+.arrow {
+  display: inline-block;
+  transform: rotate(180deg);
+ }

@@ -1,6 +1,5 @@
 import { FC, useCallback, useEffect, useState } from 'react';
 import styles from './ProductPage.module.scss';
-import { BreadCrumbs } from '../../components/BreadCrumbs';
 import { ProductImageSelector } from '../../components/ProductImageSelector';
 import { useLocation } from 'react-router-dom';
 import { getProductData, getProducts } from '../../api/products';
@@ -44,15 +43,12 @@ export const ProductPage: FC = () => {
   }, [location.pathname]);
 
   return (
-    <>
+    <div className={cn('container', 'ProductPage')}>
+      <BackLink />
       {isLoading ? (
         <Loader />
       ) : (
-        <div className={cn('container', 'ProductPage')}>
-          {/* TODO: Configure breadcrumb */}
-          <BreadCrumbs className={cn('BreadCrumb')} />
-          <BackLink />
-
+        <>
           <h1 className={cn('ProductPage__header')}>{productInfo.name}</h1>
 
           <div className={cn('SectionContainer', 'PhoneDetails')}>
@@ -84,8 +80,8 @@ export const ProductPage: FC = () => {
               title="You may also like"
             />
           )}
-        </div>
+        </>
       )}
-    </>
+    </div>
   );
 };
