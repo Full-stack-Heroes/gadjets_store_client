@@ -1,3 +1,5 @@
+@import '../../assets/colors/colors';
+
 .footer {
   display: flex;
   align-items: center;
@@ -40,18 +42,24 @@
       gap: 16px;
       color: rgba(137, 147, 154, 1);
       cursor: pointer;
+      transition: color 0.3s;
     }
   }
 }
 
 .link {
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 600;
   line-height: 11px;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.48px;
   text-decoration: none;
   color: rgba(137, 147, 154, 1);
+  transition: color 0.3s;
+
+  &:hover {
+    color: $primary;
+  }
 }
 
 .button__up {
@@ -65,6 +73,13 @@
   justify-content: center;
   transform: rotate(90deg);
   cursor: pointer;
+}
+
+.footer__container__up :hover, .button__up:hover, .up__text:hover {
+  color: $primary;
+  border-color: $primary;
+  transition: color 0.3s;
+  transition: border-color 0.3s;
 }
 
 @media screen and (max-width: 639px) {
