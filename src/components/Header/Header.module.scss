@@ -1,4 +1,5 @@
 @import '../../assets/colors/colors';
+@import '../../assets/variables/mediaQueries';
 
 .header {
   position: sticky;
@@ -39,6 +40,7 @@
 }
 
 .service_btn {
+  position: relative;
   width: 64px;
   display: flex;
   justify-content: center;
@@ -47,6 +49,7 @@
   background: transparent;
   border: none;
   border-left: 1px solid $elements;
+  text-decoration: none;
 
   &_img {
     width: 20px;
@@ -156,6 +159,10 @@
   }
 
   .nav {
+    display: none;
+  }
+
+  .headerCounter {
     display: none;
   }
 

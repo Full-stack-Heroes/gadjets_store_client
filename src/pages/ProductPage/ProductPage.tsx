@@ -1,6 +1,5 @@
 import { FC, useCallback, useEffect, useState } from 'react';
 import styles from './ProductPage.module.scss';
-import { BreadCrumbs } from '../../components/BreadCrumbs';
 import { ProductImageSelector } from '../../components/ProductImageSelector';
 import { useLocation } from 'react-router-dom';
 import { getProductData, getProducts } from '../../api/products';
@@ -20,46 +19,68 @@ const cn = classNames.bind(styles);
 export const ProductPage: FC = () => {
   const location = useLocation();
   const [productInfo, setProductInfo] = useState<ProductDetails | null>(null);
+  const [productImages, setProductImages] = useState<string[] | null>(null);
   const [recommendedProducts, setRecommendedProducts] = useState<Product[]>();
   const isLoading = !productInfo;
   const locationToProduct = location.pathname.slice(1);
+  const [isUpdating, setIsUpdating] = useState(false);
+  console.log(productImages);
 
-  const fetchData = useCallback(async () => {
+  const fetchData = useCallback(async (path: string) => {
     try {
-      const fetchedData = await getProductData(locationToProduct);
-      const products = await getProducts(`${locationToProduct}/recommended`);
+      const fetchedData = await getProductData(path);
+      const products = await getProducts(`${path}/recommended`);
 
       setProductInfo(fetchedData);
       setRecommendedProducts(products);
-      console.log(products);
+      setProductImages(fetchedData.images);
     } catch (error) {
       console.log('Error while fetching');
     }
-  }, [location.pathname]);
-  console.log(location.pathname);
+  }, []);
+
+  const fetchOnActionsChange = useCallback(
+    async(path: string, type: string) => {
+      if (type === 'color') {
+        setProductImages(null);
+      }
+      setIsUpdating(true);
+
+      try {
+        const fetchedData = await getProductData(path);
+        const products = await getProducts(`${path}/recommended`);
+
+        setProductInfo(fetchedData);
+        setRecommendedProducts(products);
+        setProductImages(fetchedData.images);
+      } catch (error) {
+        console.log('Error while fetching');
+      } finally {
+        setIsUpdating(false);
+      }
+    }, []);
 
   useEffect(() => {
     setProductInfo(null);
-    fetchData();
+    fetchData(locationToProduct);
   }, [location.pathname]);
 
   return (
-    <>
+    <div className={cn('container', 'ProductPage')}>
+      <BackLink />
       {isLoading ? (
         <Loader />
       ) : (
-        <div className={cn('container', 'ProductPage')}>
-          {/* TODO: Configure breadcrumb */}
-          <BreadCrumbs className={cn('BreadCrumb')} />
-          <BackLink />
-
+        <>
           <h1 className={cn('ProductPage__header')}>{productInfo.name}</h1>
 
           <div className={cn('SectionContainer', 'PhoneDetails')}>
-            <ProductImageSelector images={productInfo.images} className={cn('SectionContainer__item')} />
+            <ProductImageSelector images={productImages} className={cn('SectionContainer__item')} />
             <Actions
               className={'SectionContainer__item'}
               product={productInfo}
+              onActionsChange={fetchOnActionsChange}
+              isChanging={isUpdating}
             />
           </div>
 
@@ -84,8 +105,8 @@ export const ProductPage: FC = () => {
               title="You may also like"
             />
           )}
-        </div>
+        </>
       )}
-    </>
+    </div>
   );
 };

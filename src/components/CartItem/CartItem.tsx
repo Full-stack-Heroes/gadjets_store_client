@@ -8,6 +8,7 @@ import { Product } from '../../types/product';
 import { normalizeImage } from '../../utils/helpers';
 import { useDispatch } from 'react-redux';
 import { updateQuantity } from '../../actions/cartActions';
+import { Link } from 'react-router-dom';
 interface Props {
   product: Product;
   handleRemoveFromCart: (itemId: string) => void;
@@ -35,7 +36,7 @@ export const CartItem: React.FC<Props> = ({
   };
 
   const { image, name, price, itemId, id } = product;
-  const totalProdactPrice = price * productQuantity;
+  const totalProductPrice = price * productQuantity;
 
   return (
     <div key={id} className={styles.item__container}>
@@ -44,12 +45,17 @@ export const CartItem: React.FC<Props> = ({
           <Cross itemId={itemId} handleRemoveFromCart={handleRemoveFromCart} />
         </div>
 
-        <img
-          src={normalizeImage(image)}
-          className={styles.item__container_phone}
-        />
+        <Link
+          to={`../${product.category}/${product.itemId}`}
+          className={styles.itemLink}
+        >
+          <img
+            src={normalizeImage(image)}
+            className={styles.item__container_phone}
+          />
 
-        <p className={styles.item__container_model}>{name}</p>
+          <p className={styles.item__container_model}>{name}</p>
+        </Link>
       </div>
 
       <div className={styles.item_price_info}>
@@ -74,7 +80,7 @@ export const CartItem: React.FC<Props> = ({
         </div>
 
         <span className={styles.item__container_price}>
-          ${totalProdactPrice}
+          ${totalProductPrice}
         </span>
       </div>
     </div>

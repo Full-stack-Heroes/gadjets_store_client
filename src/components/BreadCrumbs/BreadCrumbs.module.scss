@@ -1,5 +1,38 @@
-.BreadCrumb {
+.container {
+  max-width: 1200px;
+  width: 100%;
+  padding: 25px 32px;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.BreadCrumbs {
   display: flex;
   gap: 8px;
   height: max-content;
 }
+
+.arrow {
+  display: inline-block;
+  transform: rotate(180deg);
+  width: 16px;
+  color: #b4bdc3;
+  margin-right: 8px;
+ }
+
+ .home {
+  display: block;
+  width: 16px;
+ }
+
+ .breadcrumb {
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 600;
+  color: #89939a;
+
+  &--active {
+    color: #0f0f11;
+    text-decoration: none;
+  }
+ }

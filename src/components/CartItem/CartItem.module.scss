@@ -33,7 +33,6 @@ $secondary-color: #b4bdc3;
   }
 
   &_model {
-    max-width: 128px;
     font-size: 14px;
     font-weight: 600;
     line-height: 21px;
@@ -114,6 +113,18 @@ $secondary-color: #b4bdc3;
     line-height: 140%;
     width: 76px;
   }
+}
+
+.itemLink {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.itemLink:hover {
+  text-decoration: underline;
+  color: #0f0f11;
 }
 
 .item_phone_info {

@@ -8,6 +8,8 @@ import { Pagination } from '../../components/Pagination';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import { useQueryParamUpdater } from '../../hooks/useQueryParamUpdater';
+import { SortBy } from '../../components/CategoriesCards/components/SortBy';
+import { ShowByPage } from '../../components/CategoriesCards/components/showByPage';
 
 interface Props {
   endpoint: string;
@@ -29,10 +31,12 @@ export const ProductsPage: FC<Props> = ({ endpoint, title }) => {
 
   useEffect(() => {
     if (!searchParams.get('page')) {
-      paramUpdater('page', '1');
+      paramUpdater('page', '1', {replace: true});
     }
 
-    dispatch(fetchProducts(`${endpoint}${search}`));
+    if (search) {
+      dispatch(fetchProducts(`${endpoint}${search}`));
+    }
   }, [search]);
 
   const handlePageChange = (pageNumber: number) => {
@@ -44,8 +48,14 @@ export const ProductsPage: FC<Props> = ({ endpoint, title }) => {
     <div className={cn('page__container')}>
       <h1 className={cn('titleH1', 'title', 'ProductsPageTitle')}>{title}</h1>
 
+      <h2 className={cn('CardsAmmount')}>Amount: {products.count}</h2>
+
+      <div className={cn('CardsSelects')}>
+        <SortBy className={cn('CardsSelectsItem')}/>
+        <ShowByPage className={cn('CardsSelectsItem')}/>
+      </div>
+
       <Cards
-        amount={products.count}
         products={products.rows}
         isLoading={isLoading}
       />
