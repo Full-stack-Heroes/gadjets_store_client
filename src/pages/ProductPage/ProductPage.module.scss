@@ -2,10 +2,10 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 32px;
+  padding-top: 0;
 }
 
 .ProductPage {
-  margin-top: 25px;
   margin-bottom: 80px;
 
   &__header {
@@ -17,10 +17,6 @@
 
     margin-bottom: 40px;
   }
-}
-
-.BreadCrumb {
-  margin-bottom: 40px;
 }
 
 .GoBack {
