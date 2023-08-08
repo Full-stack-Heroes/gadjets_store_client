@@ -43,16 +43,16 @@ export const Footer: FC = () => {
           </Link>
         </div>
 
-        {isScrollPresent && (
-          <div
-            className={styles.footer__container__up}
-            onClick={() => scrollToTop()}>
-            <span className={styles.up__text}>Back to top</span>
-            <button className={styles.button__up}>
-              <img src={Up} alt="go up button" />
-            </button>
-          </div>
-        )}
+        <div
+          className={`${styles.footer__container__up} ${
+            !isScrollPresent ? styles.disabled : ''
+          }`}
+          onClick={() => scrollToTop()}>
+          <span className={styles.up__text}>Back to top</span>
+          <button className={styles.button__up}>
+            <img src={Up} alt="go up button" />
+          </button>
+        </div>
       </div>
     </footer>
   );

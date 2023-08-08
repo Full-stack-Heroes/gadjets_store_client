@@ -75,11 +75,17 @@
   cursor: pointer;
 }
 
-.footer__container__up :hover, .button__up:hover, .up__text:hover {
+.footer__container__up:hover,
+.button__up:hover,
+.up__text:hover {
   color: $primary;
   border-color: $primary;
-  transition: color 0.3s;
-  transition: border-color 0.3s;
+  transition: color 0.3s, border-color 0.3s;
+}
+
+.disabled {
+  pointer-events:none;
+  opacity: 0.3;
 }
 
 @media screen and (max-width: 639px) {
