@@ -33,7 +33,6 @@ $secondary-color: #b4bdc3;
   }
 
   &_model {
-    max-width: 128px;
     font-size: 14px;
     font-weight: 600;
     line-height: 21px;
@@ -119,6 +118,7 @@ $secondary-color: #b4bdc3;
 .itemLink {
   text-decoration: none;
   display: flex;
+  align-items: center;
   gap: 20px;
 }
 
