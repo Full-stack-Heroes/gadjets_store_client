@@ -71,3 +71,21 @@ export const linkByColor = (color: string) => {
 
   return newLink;
 };
+
+export const capitalizeWord = (word: string) => {
+  return word.charAt(0).toUpperCase() + word.slice(1);
+};
+
+export const formatProductName = (inputString: string) => {
+  const words = inputString.split('-');
+
+  const capitalizedWords = words.map((word, index) =>
+    word === 'se' || word.slice(-2) === 'gb' || word.slice(-2) === 'tb'
+      ? word.toUpperCase()
+      : index === 1 && word !== 'watch'
+        ? word.slice(0, 2).toUpperCase() + word.slice(2)
+        : capitalizeWord(word)
+  );
+
+  return capitalizedWords.join(' ').replace(/undefined/g, '');
+};
