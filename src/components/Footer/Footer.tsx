@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Footer.module.scss';
 import logo from '../../assets/images/Logo.svg';
@@ -6,6 +6,20 @@ import Up from '../../assets/icons/Arrow.svg';
 import { scrollToTop } from '../../utils/helpers';
 
 export const Footer: FC = () => {
+  const [isScrollPresent, setIsScrollPresent] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrollPresent(window.scrollY > 0);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
     <footer className={styles.footer}>
       <div className={styles.footer__container}>
@@ -30,7 +44,9 @@ export const Footer: FC = () => {
         </div>
 
         <div
-          className={styles.footer__container__up}
+          className={`${styles.footer__container__up} ${
+            !isScrollPresent ? styles.disabled : ''
+          }`}
           onClick={() => scrollToTop()}>
           <span className={styles.up__text}>Back to top</span>
           <button className={styles.button__up}>

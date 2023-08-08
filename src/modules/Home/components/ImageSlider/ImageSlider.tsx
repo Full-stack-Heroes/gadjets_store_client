@@ -16,14 +16,13 @@ export const ImageSlider: FC<ImageSliderProps> = ({ slides, currentIndex }) => {
           style={{transform: `translateX(-${100 * currentIndex}%)`}}
           className={cn('slider')}>
           {slides.map((slide, index) => (
-            <a
-              href="#"
+            <div
               key={index}
               className={cn('slider__slide')}>
               <img
                 className={cn('slider__image')}
                 src={slide}></img>
-            </a>
+            </div>
           ))}
         </div>
       </div>
