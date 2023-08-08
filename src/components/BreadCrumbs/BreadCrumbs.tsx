@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './BreadCrumbs.module.scss';
 import { Link, useLocation } from 'react-router-dom';
 import home from '../../assets/icons/Home.svg';
@@ -10,13 +10,20 @@ const cn = classNames.bind(styles);
 
 export const BreadCrumbs: FC = () => {
   const location = useLocation();
-  const breadcrumbs = location.pathname.split('/').slice(1);
+  const currentLink = location.pathname.split('/').slice(1);
+  const [breadcrumbs, setBreadcrumbs] = useState<string[]>(currentLink);
+
+  const newLocation = window.location.pathname.split('/').slice(1);
 
   breadcrumbs[0] = capitalizeWord(breadcrumbs[0]);
 
   if (breadcrumbs.length === 2) {
     breadcrumbs[1] = formatProductName(breadcrumbs[1]);
   }
+
+  useEffect(() => {
+    setBreadcrumbs(newLocation);
+  }, [currentLink, newLocation]);
 
   return (
     <div className={cn('container', 'BreadCrumbs')}>
