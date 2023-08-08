@@ -37,7 +37,7 @@ export const BurgerMenuOpened: FC<BurgerMenuProps> = ({
   return (
     <div className={cn('burger', { 'burger_opened': isMenuOpen })}>
       <div className={cn('burger__links')}>
-        <nav className={cn(isMenuOpen ? 'burger__nav' : '')}>
+        <nav className={cn('burger__nav')}>
           <NavigationLink
             to="/"
             linkText="Home"
@@ -61,7 +61,7 @@ export const BurgerMenuOpened: FC<BurgerMenuProps> = ({
         </nav>
       </div>
 
-      <div className={cn(isMenuOpen ? 'burger__service' : '')}>
+      <div className={cn('burger__service')}>
         <Link
           to="/favourites"
           className={cn('service__button', 'service__like', {
