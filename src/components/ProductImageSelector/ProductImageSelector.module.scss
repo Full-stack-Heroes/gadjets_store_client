@@ -6,10 +6,18 @@
 
   margin-left: 96px;
 
+  &Loader {
+    height: 442px;
+  }
+
   @media (max-width: 639px) {
     width: 288px;
     margin: 0 auto;
     margin-bottom: 32px;
+
+    &Loader {
+      height: 274px;
+    }
   }
 }
 

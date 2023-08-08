@@ -32,6 +32,11 @@ export const CartContent: FC = () => {
     0,
   );
 
+  const totalItems = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0,
+  );
+
   const handleRemoveFromCart = (itemId: string) => {
     dispatch(removeFromCart(itemId));
   };
@@ -76,7 +81,7 @@ export const CartContent: FC = () => {
               setShowSuccess={setShowSuccess}
               isCheckoutDone={isCheckoutDone}
               totalCost={totalCost}
-              items={cartItems.length}
+              items={totalItems}
             />
           </div>
         </div>

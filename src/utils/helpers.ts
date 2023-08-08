@@ -15,7 +15,15 @@ export const normalizeMemory = (memory: string) => {
 };
 
 export const normalizeRam = (ram: string) => {
-  return ram.slice(0, -2) + ' ' + 'GB';
+  const ramCapacity = ram.slice(0, -2);
+  if (parseInt(ram) > 32) {
+    return ramCapacity + ' MB';
+  }
+  return ramCapacity + ' GB';
+};
+
+export const normalizeWatchBand = (ram: string) => {
+  return ram.slice(0, -2) + ' mm';
 };
 
 export const scrollToTop = () => {

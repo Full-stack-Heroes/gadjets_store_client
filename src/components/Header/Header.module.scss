@@ -47,6 +47,7 @@
   background: transparent;
   border: none;
   border-left: 1px solid $elements;
+  text-decoration: none;
 
   &_img {
     width: 20px;
@@ -156,6 +157,10 @@
   }
 
   .nav {
+    display: none;
+  }
+
+  .headerCounter {
     display: none;
   }
 
