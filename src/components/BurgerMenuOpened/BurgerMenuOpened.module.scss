@@ -8,12 +8,16 @@
 
 @media (max-width: 639px) {
   .burger {
+    overflow: hidden;
     position: relative;
+    transition: 1s;
     top: 1px;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     left: 0;
-    background: var(--gray-white, $white);
+    z-index: 1;
+    transform: translate(-100%);
+    background-color: #fff;
 
     &__links {
       padding-top: 32px;
@@ -39,11 +43,15 @@
       display: flex;
       justify-content: space-around;
       position: fixed;
-      bottom: 0;
+      bottom: 48px;
       width: 100%;
       height: 64px;
       align-items: center;
       background: $white;
+    }
+
+    &_opened {
+      transform: translate(0%);
     }
   }
 
@@ -52,12 +60,12 @@
       border: none;
       background: $white;
       width: 50%;
-      height: 64px;
-      transition: transform 0.3s ease-in-out;
+      height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
+      text-decoration: none;
 
       &::after {
         position: absolute;
@@ -66,7 +74,6 @@
         display: block;
         width: 100%;
         border-bottom: 2px solid transparent;
-        transition: border-bottom 0.3s ease-in-out;
       }
 
       img {
