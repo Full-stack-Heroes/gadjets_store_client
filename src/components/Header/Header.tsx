@@ -26,6 +26,7 @@ export const Header: FC = () => {
   );
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
     if (isMenuOpen) {
@@ -38,6 +39,24 @@ export const Header: FC = () => {
   const handleMenuClick = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  const handleResize = () => {
+    setWindowWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (windowWidth > 640 && isMenuOpen) {
+      setIsMenuOpen(false);
+    }
+  }, [windowWidth, isMenuOpen]);
 
   return (
     <header className={cn('header')}>
@@ -109,12 +128,10 @@ export const Header: FC = () => {
         </button>
       </div>
 
-      {isMenuOpen && (
-        <BurgerMenuOpened
-          isMenuOpen={isMenuOpen}
-          setIsMenuOpen={setIsMenuOpen}
-        />
-      )}
+      <BurgerMenuOpened
+        isMenuOpen={isMenuOpen}
+        setIsMenuOpen={setIsMenuOpen}
+      />
     </header>
   );
 };

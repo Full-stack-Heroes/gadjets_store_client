@@ -1,3 +1,5 @@
+import { FC, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { ProductDetails } from '../types/productDetails';
 import { productSpecs } from '../types/productSpecs';
 import { BASE_URL } from './fetchClient';
@@ -71,6 +73,16 @@ export const linkByColor = (color: string) => {
 
   return newLink;
 };
+
+export const PageToTop: FC = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 export const capitalizeWord = (word: string) => {
   return word.charAt(0).toUpperCase() + word.slice(1);
