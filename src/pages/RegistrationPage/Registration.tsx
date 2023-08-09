@@ -61,7 +61,7 @@ export const Registration: FC = () => {
           <button className={styles.button}>Sign Up</button>
         </div>
         <div className={styles.log__text}>
-          <p className={styles.asd}>
+          <p>
             Have an account? &nbsp;
             <a className={styles.signup} onClick={() => handleLogIn()}>
               Log In
