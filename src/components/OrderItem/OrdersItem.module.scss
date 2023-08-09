@@ -3,12 +3,11 @@
 .Order {
   &Container {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     flex-direction: column;
     gap: 16px;
     padding: 16px;
-    flex-grow: 1;
     background-color: #fff;
     border-radius: 16px;
     border: 1px solid $elements-color;
@@ -17,6 +16,44 @@
   &Data {
     display: flex;
     flex-direction: column;
+    width: 100%;
+  }
+
+  &ServiceData {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &ArrowMobile {
+    position: relative;
+    display: inline-block;
+    padding: 10px;
+    margin: -10px;
+    color: $primary-color;
+    transform: scale(120%) rotate(-90deg)
+  }
+
+  &ArrowDesktop {
+    display: none;
+  }
+
+  &Products {
+    display: flex;
+    gap: 8px;
+  }
+
+  &ProductsCounter {
+    display: flex;
+    align-items: center;
+    width: 45px;
+    padding: 5px;
+    height: 70px;
+    font-size: 24px;
+    color: $secondary-color;
+    border: 1px solid var(--gray-elements, #E2E6E9);
+    border-radius: 16px;
+
   }
 
   &Image {
@@ -38,11 +75,31 @@
 @media screen and (min-width: 640px) {
   .Order {
     &Container {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    &Data {
+      flex-direction: column;
+      width: 30%;
+    }
+
+    &ArrowMobile {
+      display: none;
+    }
+
+    &Products {
+      display: flex;
       flex-direction: row;
+      justify-content: flex-end;
+    }
+
+    &ArrowDesktop {
+      width: 16px;
+      display: flex;
+      align-items: center;
+      color: $primary-color;
+      transform: rotate(-90deg);
     }
   }
-}
-
-@media screen and (min-width: 1200px) {
-
 }

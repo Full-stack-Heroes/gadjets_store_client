@@ -19,15 +19,14 @@ export const Orders: FC = () => {
         <OrderItem
           Id="Id 1"
           OrderDate="09 08 2023"
-          Status="Done"
+          Status="Done✅"
           Amount={10000}
-          Items={['https://content2.rozetka.com.ua/goods/images/big_tile/284913550.jpg',
-            'https://content2.rozetka.com.ua/goods/images/big_tile/284913563.jpg']}
+          Items={['https://content2.rozetka.com.ua/goods/images/big_tile/284913550.jpg']}
         />
         <OrderItem
           Id="Id 2"
           OrderDate="09 08 2023"
-          Status="Done"
+          Status="Done✅"
           Amount={10000}
           Items={['https://content2.rozetka.com.ua/goods/images/big_tile/284913568.jpg',
             'https://content2.rozetka.com.ua/goods/images/big_tile/284913561.jpg']}
@@ -35,9 +34,13 @@ export const Orders: FC = () => {
         <OrderItem
           Id="Id 3"
           OrderDate="09 08 2023"
-          Status="Done"
+          Status="Canceled❌"
           Amount={10000}
           Items={['https://content2.rozetka.com.ua/goods/images/big_tile/284913560.jpg',
+            'https://content2.rozetka.com.ua/goods/images/big_tile/284913561.jpg',
+            'https://content2.rozetka.com.ua/goods/images/big_tile/284913561.jpg',
+            'https://content2.rozetka.com.ua/goods/images/big_tile/284913561.jpg',
+            'https://content2.rozetka.com.ua/goods/images/big_tile/284913561.jpg',
             'https://content2.rozetka.com.ua/goods/images/big_tile/284913561.jpg']}
         />
       </div>
