@@ -29,7 +29,9 @@ $secondary-color: #b4bdc3;
   }
 
   &_phone {
+    object-fit: contain;
     height: 80px;
+    width: 80px;
   }
 
   &_model {

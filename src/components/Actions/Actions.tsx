@@ -18,15 +18,13 @@ const cn = classNames.bind(styles);
 interface Props {
   className: string | undefined;
   product: ProductDetails;
-  onActionsChange: (path: string, type: string) => void;
-  isChanging: boolean;
 }
 
 interface CustomStyleProps extends React.CSSProperties {
   '--after-background-color'?: string;
 }
 
-export const Actions: FC<Props> = ({ className, product, isChanging }) => {
+export const Actions: FC<Props> = ({ className, product }) => {
   const {
     id,
     capacity,
@@ -136,10 +134,8 @@ export const Actions: FC<Props> = ({ className, product, isChanging }) => {
         <button
           className={cn('Button__add', {
             ['Button__add--active']: isProductInCart,
-            ['Button__add--disabled']: isChanging,
           })}
           onClick={() => handleProductAdded()}
-          disabled={isChanging}
         >
           {buttonText}
         </button>
@@ -147,10 +143,8 @@ export const Actions: FC<Props> = ({ className, product, isChanging }) => {
         <button
           className={cn('Button__like', {
             ['Button__like--active']: isProductLiked,
-            ['Button__like--disabled']: isChanging,
           })}
           onClick={() => handleProductLiked()}
-          disabled={isChanging}
         >
           <img src={buttonHeart} />
         </button>
