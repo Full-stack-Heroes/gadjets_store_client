@@ -103,6 +103,15 @@
   }
 }
 
+.cards__container {
+  display: grid;
+  grid-template-columns: repeat(4, 270px);
+  column-gap: 16px;
+  row-gap: 40px;
+  padding-bottom: 0;
+  background-color: rgba(250, 251, 252, 1);
+}
+
 .title {
   font-size: 32px;
   line-height: 41px;

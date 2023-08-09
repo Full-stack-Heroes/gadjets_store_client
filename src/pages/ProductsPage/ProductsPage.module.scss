@@ -12,7 +12,7 @@
   padding: 32px;
   margin: 0 auto;
 
-  @media screen and (max-width: 779px) {
+  @media screen and (max-width: 1199px) {
     padding: 24px;
   }
 
@@ -21,3 +21,35 @@
   }
 }
 
+.Cards {
+  &Ammount {
+    color: $secondary-color;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 21px;
+
+    margin-bottom: 40px;
+  }
+
+  &Selects {
+    display: flex;
+    gap: 16px;
+    flex-flow: row;
+    justify-content: flex-start;
+
+    margin-bottom: 24px;
+
+    &Item {
+      max-width: 200px;
+
+      @media screen and (max-width: 639px) {
+        width: 100%;
+        flex-shrink: 1;
+      }
+    }
+  }
+  &Loader {
+    height: 50vh;
+  }
+}

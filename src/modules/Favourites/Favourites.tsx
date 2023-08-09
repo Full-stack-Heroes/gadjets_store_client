@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Cards } from '../../components/CategoriesCards/Cards';
+import { Card } from '../../components/Card/Card';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import home from '../../assets/icons/Home.svg';
@@ -24,7 +24,7 @@ export const Favourites: FC = () => {
             <img src={home} />
           </Link>
           <div className={styles.arrow}>
-            <Arrow/>
+            <Arrow />
           </div>
           <p>Favourites</p>
         </div>
@@ -40,18 +40,19 @@ export const Favourites: FC = () => {
         </div>
 
         <div className={styles.favorites__cards}>
-          <Cards products={favouritesItems} />
+          <div className={styles.cards__container}>
+            {favouritesItems.map((item) => (
+              <Card product={item} key={item.id} />
+            ))}
+          </div>
         </div>
       </div>
     </section>
   ) : (
     <div className={styles.emptyContainer}>
       <img src={heart} alt="" />
-      <h2 className={cn(
-        styles.emptyContainerText,
-        styles.title,
-        styles.titleH2,
-      )}>
+      <h2
+        className={cn(styles.emptyContainerText, styles.title, styles.titleH2)}>
         {'Noting here yet :('}
       </h2>
       <h2 className={styles.emptyContainerBottomText}>

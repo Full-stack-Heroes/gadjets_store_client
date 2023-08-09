@@ -13,6 +13,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { Product } from '../../types/product';
 import { HeaderCounter } from '../../HeaderCounter/HeaderCounter';
+import { SearchBar } from '../Search/components/SearchBar/SearchBar';
 
 const cn = classNames.bind(styles);
 
@@ -26,6 +27,7 @@ export const Header: FC = () => {
   );
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
     if (isMenuOpen) {
@@ -38,6 +40,24 @@ export const Header: FC = () => {
   const handleMenuClick = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  const handleResize = () => {
+    setWindowWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (windowWidth > 640 && isMenuOpen) {
+      setIsMenuOpen(false);
+    }
+  }, [windowWidth, isMenuOpen]);
 
   return (
     <header className={cn('header')}>
@@ -62,6 +82,8 @@ export const Header: FC = () => {
         </div>
 
         <div className={cn('header__service')}>
+          <SearchBar />
+
           <NavLink
             to="/favourites"
             className={({ isActive }) =>
@@ -96,25 +118,23 @@ export const Header: FC = () => {
               <HeaderCounter products={ products }/>
             </div>
           </NavLink>
+          <button
+            className={cn('burger_btn', { 'burger_btn-active': isMenuOpen })}
+            onClick={handleMenuClick}>
+            <img
+              src={isMenuOpen ? close : menu}
+              alt={isMenuOpen ? 'close button' : 'menu button'}
+              className={cn('burger_btn_img')}
+            />
+          </button>
         </div>
 
-        <button
-          className={cn('burger_btn', { 'burger_btn-active': isMenuOpen })}
-          onClick={handleMenuClick}>
-          <img
-            src={isMenuOpen ? close : menu}
-            alt={isMenuOpen ? 'close button' : 'menu button'}
-            className={cn('burger_btn_img')}
-          />
-        </button>
       </div>
 
-      {isMenuOpen && (
-        <BurgerMenuOpened
-          isMenuOpen={isMenuOpen}
-          setIsMenuOpen={setIsMenuOpen}
-        />
-      )}
+      <BurgerMenuOpened
+        isMenuOpen={isMenuOpen}
+        setIsMenuOpen={setIsMenuOpen}
+      />
     </header>
   );
 };

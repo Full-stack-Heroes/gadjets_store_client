@@ -1,3 +1,5 @@
+import { FC, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { ProductDetails } from '../types/productDetails';
 import { productSpecs } from '../types/productSpecs';
 import { BASE_URL } from './fetchClient';
@@ -72,6 +74,16 @@ export const linkByColor = (color: string) => {
   return newLink;
 };
 
+export const PageToTop: FC = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+};
+
 export const capitalizeWord = (word: string) => {
   return word.charAt(0).toUpperCase() + word.slice(1);
 };
@@ -88,4 +100,16 @@ export const formatProductName = (inputString: string) => {
   );
 
   return capitalizedWords.join(' ').replace(/undefined/g, '');
+};
+
+export const debounce = <T extends string[]>(
+  f: (...args: T) => void,
+  delay: number,
+) => {
+  let timerId: NodeJS.Timeout;
+
+  return (...args: T) => {
+    clearTimeout(timerId);
+    timerId = setTimeout(f, delay, ...args);
+  };
 };

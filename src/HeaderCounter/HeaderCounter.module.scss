@@ -1,7 +1,7 @@
 .countContainer {
-  position: relative;
-  bottom: 10%;
-  right: 3%;
+  position: absolute;
+  top: 25%;
+  right: 45%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,7 +23,7 @@
 
 @media (min-width: 639px) {
   .countContainer {
-    right: 50%;
-    bottom: 10px;
+    right: 20%;
+    top: 25%;
   }
 }
