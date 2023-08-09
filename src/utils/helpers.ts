@@ -101,3 +101,15 @@ export const formatProductName = (inputString: string) => {
 
   return capitalizedWords.join(' ').replace(/undefined/g, '');
 };
+
+export const debounce = <T extends string[]>(
+  f: (...args: T) => void,
+  delay: number,
+) => {
+  let timerId: NodeJS.Timeout;
+
+  return (...args: T) => {
+    clearTimeout(timerId);
+    timerId = setTimeout(f, delay, ...args);
+  };
+};

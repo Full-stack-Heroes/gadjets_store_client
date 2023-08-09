@@ -1,0 +1,26 @@
+.SearchItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+
+  &__content {
+    display: flex;
+    align-items: center;
+  }
+  &__image {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    object-fit: contain;
+  }
+  &__name {
+    font-size: 14px;
+    font-weight: 600;
+    margin-right: 10px;
+  }
+  &__price {
+    font-size: 14px;
+    font-weight: 800;
+  }
+}
