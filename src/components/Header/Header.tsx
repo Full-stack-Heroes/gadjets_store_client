@@ -13,7 +13,6 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { Product } from '../../types/product';
 import { HeaderCounter } from '../../HeaderCounter/HeaderCounter';
-import { SearchBar } from '../Search/components/SearchBar/SearchBar';
 
 const cn = classNames.bind(styles);
 
@@ -82,8 +81,6 @@ export const Header: FC = () => {
         </div>
 
         <div className={cn('header__service')}>
-          <SearchBar />
-
           <NavLink
             to="/favourites"
             className={({ isActive }) =>
@@ -118,17 +115,17 @@ export const Header: FC = () => {
               <HeaderCounter products={ products }/>
             </div>
           </NavLink>
-          <button
-            className={cn('burger_btn', { 'burger_btn-active': isMenuOpen })}
-            onClick={handleMenuClick}>
-            <img
-              src={isMenuOpen ? close : menu}
-              alt={isMenuOpen ? 'close button' : 'menu button'}
-              className={cn('burger_btn_img')}
-            />
-          </button>
         </div>
 
+        <button
+          className={cn('burger_btn', { 'burger_btn-active': isMenuOpen })}
+          onClick={handleMenuClick}>
+          <img
+            src={isMenuOpen ? close : menu}
+            alt={isMenuOpen ? 'close button' : 'menu button'}
+            className={cn('burger_btn_img')}
+          />
+        </button>
       </div>
 
       <BurgerMenuOpened
