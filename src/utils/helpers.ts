@@ -82,7 +82,7 @@ export const PageToTop: FC = () => {
   }, [pathname]);
 
   return null;
-}
+};
 
 export const capitalizeWord = (word: string) => {
   return word.charAt(0).toUpperCase() + word.slice(1);
@@ -100,4 +100,16 @@ export const formatProductName = (inputString: string) => {
   );
 
   return capitalizedWords.join(' ').replace(/undefined/g, '');
+};
+
+export const debounce = <T extends string[]>(
+  f: (...args: T) => void,
+  delay: number,
+) => {
+  let timerId: NodeJS.Timeout;
+
+  return (...args: T) => {
+    clearTimeout(timerId);
+    timerId = setTimeout(f, delay, ...args);
+  };
 };

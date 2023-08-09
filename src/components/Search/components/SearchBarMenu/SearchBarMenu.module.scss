@@ -1,0 +1,28 @@
+.SearchBarMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 639px) {
+    width: 100vh;
+  }
+}
+
+.SearchBarMenu__item {
+  cursor: pointer;
+  &:hover {
+    background-color: #f0f0f0;
+  }
+}
+
+.SearchBarMenu__itemLink {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  padding: 6px 0;
+}
