@@ -18,7 +18,7 @@ export const CartItem: React.FC<Props> = ({
   product,
   handleRemoveFromCart,
 }) => {
-  const [productQuantity, setProductQuantity] = useState(1);
+  const [productQuantity, setProductQuantity] = useState(product.quantity || 1);
   const isOneProduct = productQuantity === 1;
 
   const dispatch = useDispatch();

@@ -23,7 +23,6 @@ export const ProductPage: FC = () => {
   const [recommendedProducts, setRecommendedProducts] = useState<Product[]>();
   const isLoading = !productInfo;
   const locationToProduct = location.pathname.slice(1);
-  const [isUpdating, setIsUpdating] = useState(false);
   console.log(productImages);
 
   const fetchData = useCallback(async (path: string) => {
@@ -38,27 +37,6 @@ export const ProductPage: FC = () => {
       console.log('Error while fetching');
     }
   }, []);
-
-  const fetchOnActionsChange = useCallback(
-    async(path: string, type: string) => {
-      if (type === 'color') {
-        setProductImages(null);
-      }
-      setIsUpdating(true);
-
-      try {
-        const fetchedData = await getProductData(path);
-        const products = await getProducts(`${path}/recommended`);
-
-        setProductInfo(fetchedData);
-        setRecommendedProducts(products);
-        setProductImages(fetchedData.images);
-      } catch (error) {
-        console.log('Error while fetching');
-      } finally {
-        setIsUpdating(false);
-      }
-    }, []);
 
   useEffect(() => {
     setProductInfo(null);
@@ -79,8 +57,6 @@ export const ProductPage: FC = () => {
             <Actions
               className={'SectionContainer__item'}
               product={productInfo}
-              onActionsChange={fetchOnActionsChange}
-              isChanging={isUpdating}
             />
           </div>
 
