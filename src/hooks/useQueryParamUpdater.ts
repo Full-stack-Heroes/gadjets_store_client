@@ -10,6 +10,12 @@ export const useQueryParamUpdater = (
     options?: NavigateOptions
   ) => {
     const params = new URLSearchParams(searchParams);
+    if (paramValue === '') {
+      params.delete(paramName);
+      setSearchParams(params, options);
+      return;
+    }
+
     params.set(paramName, paramValue);
     setSearchParams(params, options);
   };
