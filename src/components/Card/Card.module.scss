@@ -22,7 +22,6 @@
   }
 
   &__product_image {
-    width: 100%;
     object-fit: cover;
     object-position: center;
     height: 200px;
@@ -31,7 +30,6 @@
     transition: transform 0.2s ease-in;
 
     @mixin onPhone {
-      width: auto;
       object-fit: contain;
     }
 
