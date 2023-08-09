@@ -12,25 +12,21 @@ export const ErrorModal: FC<{ error: string | null; onClose: () => void }> = ({
   }
 
   return (
-    error && (
-      <>
-        <div className={styles.backdrop}></div>
-        <div className={styles.errorModal}>
-          <div
-            className={cn(styles.errorModalContent, {
-              [styles.errorModalContentActive]: error, // Apply the active class based on error
-            })}>
-            <img src={errorpng} className={styles.errorModalContentImage} />
-            <h2 className={styles.errorModalContentText}>Error</h2>
-            <p className={styles.errorModalContentError}>{error}</p>
-            <button
-              onClick={onClose}
-              className={styles.errorModalContentButton}>
-              Close
-            </button>
-          </div>
+    <>
+      <div className={styles.backdrop}></div>
+      <div className={styles.errorModal}>
+        <div
+          className={cn(styles.errorModalContent, {
+            [styles.errorModalContentActive]: error,
+          })}>
+          <img src={errorpng} className={styles.errorModalContentImage} />
+          <h2 className={styles.errorModalContentText}>Error</h2>
+          <p className={styles.errorModalContentError}>{error}</p>
+          <button onClick={onClose} className={styles.errorModalContentButton}>
+            Close
+          </button>
         </div>
-      </>
-    )
+      </div>
+    </>
   );
 };
