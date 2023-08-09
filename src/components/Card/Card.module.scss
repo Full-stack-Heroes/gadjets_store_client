@@ -30,6 +30,10 @@
     cursor: pointer;
     transition: transform 0.2s ease-in;
 
+    @mixin onPhone {
+      object-fit: contain;
+    }
+
     &:hover {
       transform: scale(1.05);
     }
