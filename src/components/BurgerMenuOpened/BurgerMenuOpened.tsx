@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import like from '../../assets/icons/Heart.svg';
 import cart from '../../assets/icons/Cart.svg';
+import orders from '../../assets/icons/Orders.svg';
 import styles from './BurgerMenuOpened.module.scss';
 import { Link } from 'react-router-dom';
 import { NavigationLink } from '../NavigationLink';
@@ -62,6 +63,18 @@ export const BurgerMenuOpened: FC<BurgerMenuProps> = ({
       </div>
 
       <div className={cn('burger__service')}>
+        <Link
+          to="/orders"
+          className={cn('service__button', 'service__orders', {
+            'service__button-active': isMenuOpen,
+          })}>
+          <img
+            src={orders}
+            alt="orders button"
+            className={cn('service_btn_img')}
+          />
+        </Link>
+
         <Link
           to="/favourites"
           className={cn('service__button', 'service__like', {

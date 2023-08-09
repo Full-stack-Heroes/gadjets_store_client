@@ -11,6 +11,7 @@ import { FavouritesPage } from './pages/FavouritesPage/FavouritesPage';
 import { ContactsPage } from './pages/ContactsPage/ContactsPage';
 import { ProductPage } from './pages/ProductPage/ProductPage';
 import { PageToTop } from './utils/helpers';
+import { OrdersPage } from './pages/OrdersPage/OrdersPage';
 
 export const App = createBrowserRouter([
   {
@@ -66,6 +67,10 @@ export const App = createBrowserRouter([
       {
         path: 'contacts',
         element: <ContactsPage />,
+      },
+      {
+        path: 'orders',
+        element: <OrdersPage />,
       },
     ],
   },

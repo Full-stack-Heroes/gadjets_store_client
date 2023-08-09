@@ -3,6 +3,7 @@ import styles from './Header.module.scss';
 import logo from '../../assets/images/Logo.svg';
 import like from '../../assets/icons/Heart.svg';
 import cart from '../../assets/icons/Cart.svg';
+import orders from '../../assets/icons/Orders.svg';
 import menu from '../../assets/icons/Menu.svg';
 import close from '../../assets/icons/Close.svg';
 import { NavLink } from 'react-router-dom';
@@ -81,6 +82,20 @@ export const Header: FC = () => {
         </div>
 
         <div className={cn('header__service')}>
+          <NavLink
+            to="/orders"
+            className={({ isActive }) =>
+              cn('service_btn', {
+                active: isActive,
+              })
+            }>
+            <img
+              src={orders}
+              alt="orders button"
+              className={cn('service_btn_img')}
+            />
+          </NavLink>
+
           <NavLink
             to="/favourites"
             className={({ isActive }) =>
