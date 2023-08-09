@@ -57,6 +57,7 @@
 
   .service {
     &__button {
+      position: relative;
       border: none;
       background: $white;
       width: 50%;
