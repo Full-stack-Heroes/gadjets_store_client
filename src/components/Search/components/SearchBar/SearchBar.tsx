@@ -45,17 +45,12 @@ export const SearchBar: FC = () => {
   };
 
   useEffect(() => {
+    console.log(appliedQuery);
     if (appliedQuery.trim()) {
-      getProducts('products')
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        .then((response: any) => {
-          const products: Product[] = response.rows;
-          const normalizedQuery = appliedQuery.toLowerCase().trim();
-          const filteredProducts = products.filter((product) =>
-            product.name.toLowerCase().includes(normalizedQuery)
-          );
-          const limitedProducts = filteredProducts.slice(0, 5);
-          setProductSuggestions(limitedProducts);
+      getProducts(`products/search?searchQuery=${appliedQuery}`)
+        .then((response) => {
+          const products = response;
+          setProductSuggestions(products);
         })
         .catch((error) => {
           console.error('Error fetching products:', error);
