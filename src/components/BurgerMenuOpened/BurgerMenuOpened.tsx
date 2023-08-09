@@ -30,6 +30,10 @@ export const BurgerMenuOpened: FC<BurgerMenuProps> = ({
     (state: RootState) => state.cart.cartItems as Product[],
   );
 
+  const countCartItems: number = products.reduce((totalQuantity, product) => {
+    return totalQuantity + (product.quantity || 0);
+  }, 0);
+
   const likedProducts = useSelector(
     (state: RootState) => state.favorites.favoriteItems as Product[],
   );
@@ -70,7 +74,7 @@ export const BurgerMenuOpened: FC<BurgerMenuProps> = ({
           onClick={handleMenuClose}
         >
           <img src={like} alt="like button" className={cn('like')} />
-          <HeaderCounter products={likedProducts}/>
+          <HeaderCounter productsCount={likedProducts.length}/>
         </Link>
 
         <Link
@@ -81,7 +85,7 @@ export const BurgerMenuOpened: FC<BurgerMenuProps> = ({
           onClick={handleMenuClose}
         >
           <img src={cart} alt="cart button" className={cn('cart')} />
-          <HeaderCounter products={products}/>
+          <HeaderCounter productsCount={countCartItems}/>
         </Link>
       </div>
     </div>
