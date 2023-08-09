@@ -2,7 +2,7 @@
 
 .Select {
   &Container {
-    max-width: 200px;
+    max-width: 100%;
     position: relative;
 
     font-size: 14px;
@@ -25,12 +25,17 @@
 
     padding: 10px 12px;
     gap: 75px;
+    justify-content: space-between;
 
     border: 1px solid $icons-color;
     border-radius: 8px;
 
     cursor: pointer;
     transition: border-color 0.2s ease-in-out;
+
+    @media screen and (max-width: 639px) {
+      gap: 0px;
+    }
 
     &Active {
       border-color: $primary-color;

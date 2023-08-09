@@ -10,6 +10,7 @@ import classNames from 'classnames/bind';
 import { useQueryParamUpdater } from '../../hooks/useQueryParamUpdater';
 import { SortBy } from '../../components/CategoriesCards/components/SortBy';
 import { ShowByPage } from '../../components/CategoriesCards/components/showByPage';
+import { SortOrder } from '../../components/CategoriesCards/components/sortOrder';
 
 interface Props {
   endpoint: string;
@@ -53,6 +54,7 @@ export const ProductsPage: FC<Props> = ({ endpoint, title }) => {
       <div className={cn('CardsSelects')}>
         <SortBy className={cn('CardsSelectsItem')}/>
         <ShowByPage className={cn('CardsSelectsItem')}/>
+        <SortOrder className={cn('CardsSelectsItem')} />
       </div>
 
       <Cards
