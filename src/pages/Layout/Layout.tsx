@@ -9,7 +9,8 @@ export const Layout: FC = () => {
   const location = useLocation();
   const isBreadCrumbsVisible = location.pathname !== '/'
     && location.pathname !== '/cart'
-    && location.pathname !== '/favourites';
+    && location.pathname !== '/favourites'
+    && location.pathname !== '/orders';
 
   return (
     <>

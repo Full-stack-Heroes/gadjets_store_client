@@ -82,7 +82,7 @@ export const PageToTop: FC = () => {
   }, [pathname]);
 
   return null;
-}
+};
 
 export const capitalizeWord = (word: string) => {
   return word.charAt(0).toUpperCase() + word.slice(1);

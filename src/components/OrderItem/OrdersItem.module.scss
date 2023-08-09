@@ -1,18 +1,48 @@
-$primary-color: #0f0f11;
-$elements-color: #e2e6e9;
-$secondary-color: #b4bdc3;
+@import '../../components/styles/Colors.module.scss';
 
+.Order {
+  &Container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+    flex-grow: 1;
+    background-color: #fff;
+    border-radius: 16px;
+    border: 1px solid $elements-color;
+  }
 
-.OrderContainer {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 16px;
-  gap: 16px;
-  flex-grow: 1;
+  &Data {
+    display: flex;
+    flex-direction: column;
+  }
 
-  background-color: #fff;
-  border-radius: 16px;
-  border: 1px solid $elements-color;
+  &Image {
+    width: 45px;
+    padding: 5px;
+    height: 70px;
+  }
+
+  &ServiceData{
+    color: $secondary-color;
+    margin-bottom: 5px;
+  }
+
+  &AmountText{
+    color: $secondary-color;
+  }
+}
+
+@media screen and (min-width: 640px) {
+  .Order {
+    &Container {
+      flex-direction: row;
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+
 }

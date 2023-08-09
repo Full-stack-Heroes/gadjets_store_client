@@ -1,8 +1,8 @@
 import { FC } from 'react';
-import { OrderItem } from '../../components/OrderItem/OrderItem';
+import { Orders } from '../../modules/Orders';
 
 export const OrdersPage: FC = () => {
   return (
-    <OrderItem/>
+    <Orders/>
   );
 };
