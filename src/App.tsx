@@ -10,6 +10,8 @@ import { AccessoriesPage } from './pages/AccessoriesPage/AccessoriesPage';
 import { FavouritesPage } from './pages/FavouritesPage/FavouritesPage';
 import { ContactsPage } from './pages/ContactsPage/ContactsPage';
 import { ProductPage } from './pages/ProductPage/ProductPage';
+import { Registration } from './pages/RegistrationPage/Registration';
+import { Login } from './pages/LoginPage/Login';
 import { PageToTop } from './utils/helpers';
 
 export const App = createBrowserRouter([
@@ -66,6 +68,14 @@ export const App = createBrowserRouter([
       {
         path: 'contacts',
         element: <ContactsPage />,
+      },
+      {
+        path: 'login',
+        element: <Login />,
+      },
+      {
+        path: 'registration',
+        element: <Registration />,
       },
     ],
   },
