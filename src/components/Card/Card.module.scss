@@ -31,7 +31,7 @@
     transition: transform 0.2s ease-in;
 
     @mixin onPhone {
-      width: max-content;
+      width: auto;
       object-fit: contain;
     }
 
