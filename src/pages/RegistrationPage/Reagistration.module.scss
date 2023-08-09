@@ -1,6 +1,7 @@
 .reg__container {
   display: flex;
   justify-content: center;
+  // filter: blur(10px);
   align-items: center;
   // border-radius: 100px;
   // min-height: 100vh;
@@ -33,7 +34,6 @@
   background-image: url(../../assets/reg__image.jpg);
   background-position: center;
   background-color: #fff;
-  // filter: blur(3px);
   background-repeat: no-repeat;
   background-size: 255%;
   height: 600px;
