@@ -39,7 +39,6 @@ export const ProductPage: FC = () => {
   }, []);
 
   useEffect(() => {
-    setProductInfo(null);
     fetchData(locationToProduct);
   }, [location.pathname]);
 
