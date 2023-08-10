@@ -26,10 +26,7 @@ export const SearchBar: FC = () => {
     setSearchBarVisible(window.innerWidth > 1199);
   }, []);
 
-  const applyQuery = useCallback(
-    debounce(setAppliedQuery, 300),
-    []
-  );
+  const applyQuery = useCallback(debounce(setAppliedQuery, 300), []);
 
   const handleQueryOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;

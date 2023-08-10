@@ -16,15 +16,12 @@ export const Cards: FC<Props> = ({ products, isLoading }) => {
   return (
     <>
       {isLoading ? (
-        <Loader className={cn('CardsLoader')}/>
+        <Loader className={cn('CardsLoader')} />
       ) : (
         <>
           <div className={styles.cards__container}>
             {products.map((phone) => (
-              <Card
-                product={phone}
-                key={phone.id}
-              />
+              <Card product={phone} key={phone.id} />
             ))}
           </div>
         </>

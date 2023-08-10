@@ -33,12 +33,12 @@ const responsive = {
     breakpoint: { max: 400, min: 320 },
     items: 1,
     slidesToSlide: 1,
-  }
+  },
 };
 
 interface Props {
-  images: string[] | null,
-  className: string,
+  images: string[] | null;
+  className: string;
 }
 
 export const ProductImageSelector: FC<Props> = ({ images, className }) => {
@@ -47,17 +47,15 @@ export const ProductImageSelector: FC<Props> = ({ images, className }) => {
   const CustomDot: FC = ({ active, onClick, index }: DotProps) => {
     return (
       <>
-        {images && (<button
-          onClick={onClick}
-          className={cn('custom-dot', {
-            'custom-dot--active': active
-          })}
-        >
-          {<img
-            src={normalizeImage(images[index!])}
-            alt={'product img'}
-          />}
-        </button>)}
+        {images && (
+          <button
+            onClick={onClick}
+            className={cn('custom-dot', {
+              'custom-dot--active': active,
+            })}>
+            {<img src={normalizeImage(images[index!])} alt={'product img'} />}
+          </button>
+        )}
       </>
     );
   };
@@ -73,8 +71,7 @@ export const ProductImageSelector: FC<Props> = ({ images, className }) => {
             customDot={<CustomDot />}
             renderDotsOutside
             dotListClass={cn('DotList')}
-            itemClass={cn('ProductImage')}
-          >
+            itemClass={cn('ProductImage')}>
             {images.map((image, index) => (
               <img
                 src={normalizeImage(image)}
@@ -84,7 +81,9 @@ export const ProductImageSelector: FC<Props> = ({ images, className }) => {
               />
             ))}
           </Carousel>
-        ) : <Loader className={cn('ProductImageSelectorLoader')} />}
+        ) : (
+          <Loader className={cn('ProductImageSelectorLoader')} />
+        )}
       </div>
     </>
   );

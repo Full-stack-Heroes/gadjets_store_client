@@ -6,7 +6,7 @@ interface Props {
   productsCount: number;
 }
 
-export const HeaderCounter: FC <Props> = memo(({ productsCount }) => {
+export const HeaderCounter: FC<Props> = memo(({ productsCount }) => {
   const cn = classNames.bind(styles);
 
   return (
@@ -24,7 +24,6 @@ export const HeaderCounter: FC <Props> = memo(({ productsCount }) => {
       )}
     </>
   );
-}
-);
+});
 
 HeaderCounter.displayName = 'HeaderCounter';

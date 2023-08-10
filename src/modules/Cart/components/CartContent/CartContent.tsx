@@ -58,7 +58,7 @@ export const CartContent: FC = () => {
     <section className={cn('content')}>
       <div
         className={cn('cart', {
-          'cartActive': modalActive,
+          cartActive: modalActive,
         })}>
         <BackLink />
 
@@ -91,8 +91,7 @@ export const CartContent: FC = () => {
         <div
           className={cn('PopupContainer', {
             PopupContainerActive: modalActive,
-          })}
-        >
+          })}>
           <img
             src={cross}
             className={cn('PopupContainerClose')}
@@ -109,8 +108,7 @@ export const CartContent: FC = () => {
           <Link
             to="/"
             className={cn('PopupContainerButton')}
-            onClick={() => handleModalClose()}
-          >
+            onClick={() => handleModalClose()}>
             Continue
           </Link>
         </div>
@@ -119,20 +117,13 @@ export const CartContent: FC = () => {
   ) : (
     <div className={cn('emptyContainer')}>
       <img src={cart} alt="" />
-      <h2
-        className={cn('emptyContainerText', 'title', 'titleH2')}
-      >
+      <h2 className={cn('emptyContainerText', 'title', 'titleH2')}>
         {'Noting here yet :('}
       </h2>
-      <h2
-        className={cn('emptyContainerBottomText')}
-      >
+      <h2 className={cn('emptyContainerBottomText')}>
         Let&apos;s better look what we have
       </h2>
-      <Link
-        to="/"
-        className={cn('emptyContainerButton')}
-      >
+      <Link to="/" className={cn('emptyContainerButton')}>
         find something!
       </Link>
     </div>

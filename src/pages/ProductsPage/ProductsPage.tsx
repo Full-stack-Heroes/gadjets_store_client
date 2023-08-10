@@ -32,7 +32,7 @@ export const ProductsPage: FC<Props> = ({ endpoint, title }) => {
 
   useEffect(() => {
     if (!searchParams.get('page')) {
-      paramUpdater('page', '1', {replace: true});
+      paramUpdater('page', '1', { replace: true });
     }
 
     if (search) {
@@ -45,22 +45,18 @@ export const ProductsPage: FC<Props> = ({ endpoint, title }) => {
   };
 
   return (
-
     <div className={cn('page__container')}>
       <h1 className={cn('titleH1', 'title', 'ProductsPageTitle')}>{title}</h1>
 
       <h2 className={cn('CardsAmmount')}>Amount: {products.count}</h2>
 
       <div className={cn('CardsSelects')}>
-        <SortBy className={cn('CardsSelectsItem')}/>
-        <ShowByPage className={cn('CardsSelectsItem')}/>
+        <SortBy className={cn('CardsSelectsItem')} />
+        <ShowByPage className={cn('CardsSelectsItem')} />
         <SortOrder className={cn('CardsSelectsItem')} />
       </div>
 
-      <Cards
-        products={products.rows}
-        isLoading={isLoading}
-      />
+      <Cards products={products.rows} isLoading={isLoading} />
 
       <Pagination
         phonesCount={products.count}

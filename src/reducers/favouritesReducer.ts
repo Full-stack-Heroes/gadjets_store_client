@@ -18,7 +18,9 @@ const getFavoriteItemsFromLocalStorage = (): FavoriteItem[] => {
   return favoriteItemsJson ? JSON.parse(favoriteItemsJson) : [];
 };
 
-const saveFavoriteItemsToLocalStorage = (favoriteItems: FavoriteItem[]): void => {
+const saveFavoriteItemsToLocalStorage = (
+  favoriteItems: FavoriteItem[],
+): void => {
   localStorage.setItem('favoriteItems', JSON.stringify(favoriteItems));
 };
 
@@ -28,7 +30,7 @@ const initialState: FavoriteState = {
 
 const favoriteReducer = (
   state: FavoriteState = initialState,
-  action: FavouritesAction
+  action: FavouritesAction,
 ): FavoriteState => {
   switch (action.type) {
     case FavouritesActionTypes.ADD_TO_FAVOURITES:

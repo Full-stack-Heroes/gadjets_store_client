@@ -38,7 +38,8 @@ export const scrollToTop = () => {
 export const getSpecsFromProductData = (
   productData: ProductDetails,
 ): productSpecs => {
-  const { screen, resolution, processor, ram, camera, zoom, cell } = productData;
+  const { screen, resolution, processor, ram, camera, zoom, cell } =
+    productData;
 
   return {
     screen,
@@ -95,8 +96,8 @@ export const formatProductName = (inputString: string) => {
     word === 'se' || word.slice(-2) === 'gb' || word.slice(-2) === 'tb'
       ? word.toUpperCase()
       : index === 1 && word !== 'watch'
-        ? word.slice(0, 2).toUpperCase() + word.slice(2)
-        : capitalizeWord(word)
+      ? word.slice(0, 2).toUpperCase() + word.slice(2)
+      : capitalizeWord(word),
   );
 
   return capitalizedWords.join(' ').replace(/undefined/g, '');

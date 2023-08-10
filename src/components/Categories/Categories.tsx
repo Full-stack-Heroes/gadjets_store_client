@@ -8,7 +8,7 @@ import { CategoryCard } from '../CategoryCard';
 import { getProductsWithCounter } from '../../api/products';
 import { productWithCounter } from '../../types/productWithCounter';
 
-export const Categories: FC= memo(() => {
+export const Categories: FC = memo(() => {
   const [phonesCount, setPhonesCount] = useState(0);
   const [tabletsCount, setTabletsCount] = useState(0);
   const [accessoriesCount, setAccessoriesCount] = useState(0);
@@ -18,10 +18,15 @@ export const Categories: FC= memo(() => {
   useEffect(() => {
     const fetchCounts = async () => {
       try {
-        const phonesCount: productWithCounter = await getProductsWithCounter('phones?page=1&limit=1');
+        const phonesCount: productWithCounter = await getProductsWithCounter(
+          'phones?page=1&limit=1',
+        );
         console.log(phonesCount);
-        const tabletsCount: productWithCounter = await getProductsWithCounter('tablets?page=1&limit=1');
-        const accessoriesCount: productWithCounter = await getProductsWithCounter('accessories?page=1&limit=1');
+        const tabletsCount: productWithCounter = await getProductsWithCounter(
+          'tablets?page=1&limit=1',
+        );
+        const accessoriesCount: productWithCounter =
+          await getProductsWithCounter('accessories?page=1&limit=1');
 
         setPhonesCount(phonesCount.count);
         setTabletsCount(tabletsCount.count);
@@ -36,35 +41,34 @@ export const Categories: FC= memo(() => {
 
   return (
     <div className={cn('Categories')}>
-      <h2 className={cn('Title')}>
-          Shop by category
-      </h2>
+      <h2 className={cn('Title')}>Shop by category</h2>
       <div className={cn('CategoriesWrapper')}>
         <CategoryCard
           imageUrl={Phones}
-          imageAlt ={'Phones'}
-          categoryName = {'Phones'}
-          categoryLink = {'/phones'}
-          numberOfItems ={phonesCount}
+          imageAlt={'Phones'}
+          categoryName={'Phones'}
+          categoryLink={'/phones'}
+          numberOfItems={phonesCount}
         />
 
         <CategoryCard
           imageUrl={Tablets}
-          imageAlt ={'Tablets'}
-          categoryName = {'Tablets'}
-          categoryLink = {'/tablets'}
-          numberOfItems ={tabletsCount}
+          imageAlt={'Tablets'}
+          categoryName={'Tablets'}
+          categoryLink={'/tablets'}
+          numberOfItems={tabletsCount}
         />
 
         <CategoryCard
           imageUrl={Accessories}
-          imageAlt ={'Accessories'}
-          categoryName = {'Accessories'}
-          categoryLink = {'/accessories'}
-          numberOfItems ={accessoriesCount}
+          imageAlt={'Accessories'}
+          categoryName={'Accessories'}
+          categoryLink={'/accessories'}
+          numberOfItems={accessoriesCount}
         />
       </div>
-    </div>);
+    </div>
+  );
 });
 
 Categories.displayName = 'Categories';
