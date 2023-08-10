@@ -6,12 +6,12 @@ import { BreadCrumbs } from '../../components/BreadCrumbs';
 
 export const Layout: FC = () => {
   const location = useLocation();
-  const isBreadCrumbsVisible =
-    location.pathname !== '/' &&
-    location.pathname !== '/cart' &&
-    location.pathname !== '/registration' &&
-    location.pathname !== '/login' &&
-    location.pathname !== '/favourites';
+
+  const isBreadCrumbsVisible = location.pathname !== '/'
+    && location.pathname !== '/cart'
+    && location.pathname !== '/registration'
+    && location.pathname !== '/login'
+    && location.pathname !== '/favourites';
 
   return (
     <>

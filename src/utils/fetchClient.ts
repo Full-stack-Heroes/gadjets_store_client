@@ -10,18 +10,17 @@ function request<T>(
 ): Promise<T> {
   const token = localStorage.getItem('token');
 
-  const headers = new Headers({
-    Authorization: `Bearer ${token}`,
-  });
-
-  const options: RequestInit = { method, headers };
+  const options: RequestInit = { method };
 
   if (data) {
     options.body = JSON.stringify(data);
     options.headers = {
       'Content-Type': 'application/json; charset=UTF-8',
+      'Authorization': `Bearer ${token}`,
     };
   }
+
+  console.log(options);
 
   return fetch(BASE_URL + url, options)
     .then((response) => {
@@ -41,5 +40,5 @@ function request<T>(
 export const client = {
   get: <T>(url: string) => request<T>(url),
   post: <T>(url: string, data: any) => request<T>(url, 'POST', data),
-  delete: (url: string) => request(url, 'DELETE'),
+  delete: (url: string, data: any) => request(url, 'DELETE', data),
 };

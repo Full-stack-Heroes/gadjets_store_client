@@ -5,7 +5,8 @@ import like from '../../assets/icons/Heart.svg';
 import cart from '../../assets/icons/Cart.svg';
 import menu from '../../assets/icons/Menu.svg';
 import close from '../../assets/icons/Close.svg';
-import { NavLink } from 'react-router-dom';
+import user from '../../assets/icons/User.svg';
+import { Link, NavLink } from 'react-router-dom';
 import { NavigationLink } from '../NavigationLink';
 import classNames from 'classnames/bind';
 import { BurgerMenuOpened } from '../BurgerMenuOpened';
@@ -18,6 +19,9 @@ import { SearchBar } from '../Search/components/SearchBar/SearchBar';
 const cn = classNames.bind(styles);
 
 export const Header: FC = () => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const token = localStorage.getItem('token');
+
   const products = useSelector(
     (state: RootState) => state.cart.cartItems as Product[],
   );
@@ -43,6 +47,11 @@ export const Header: FC = () => {
 
   const handleMenuClick = () => {
     setIsMenuOpen(!isMenuOpen);
+    setIsDropdownOpen(false);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
   };
 
   const handleResize = () => {
@@ -67,7 +76,7 @@ export const Header: FC = () => {
     <header className={cn('header')}>
       <div className={cn('container')}>
         <div className={cn('links')}>
-          <NavLink to="/">
+          <NavLink to="/" onClick={() => setIsDropdownOpen(false)}>
             <img
               src={logo}
               alt="Nice Gadgets logo"
@@ -77,10 +86,26 @@ export const Header: FC = () => {
 
           {!isMenuOpen && (
             <nav className={cn('nav')}>
-              <NavigationLink to="/" linkText="Home" />
-              <NavigationLink to="/phones" linkText="Phones" />
-              <NavigationLink to="/tablets" linkText="Tablets" />
-              <NavigationLink to="/accessories" linkText="Accessories" />
+              <NavigationLink
+                to="/"
+                linkText="Home"
+                onClick={() => setIsDropdownOpen(false)}
+              />
+              <NavigationLink
+                to="/phones"
+                linkText="Phones"
+                onClick={() => setIsDropdownOpen(false)}
+              />
+              <NavigationLink
+                to="/tablets"
+                linkText="Tablets"
+                onClick={() => setIsDropdownOpen(false)}
+              />
+              <NavigationLink
+                to="/accessories"
+                linkText="Accessories"
+                onClick={() => setIsDropdownOpen(false)}
+              />
             </nav>
           )}
         </div>
@@ -90,6 +115,7 @@ export const Header: FC = () => {
 
           <NavLink
             to="/favourites"
+            onClick={() => setIsDropdownOpen(false)}
             className={({ isActive }) =>
               cn('service_btn', {
                 active: isActive,
@@ -108,6 +134,7 @@ export const Header: FC = () => {
 
           <NavLink
             to="/cart"
+            onClick={() => setIsDropdownOpen(false)}
             className={({ isActive }) =>
               cn('service_btn', {
                 active: isActive,
@@ -122,6 +149,53 @@ export const Header: FC = () => {
               <HeaderCounter productsCount={countCartItems} />
             </div>
           </NavLink>
+
+          <NavLink
+            to="#"
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            className={({ isActive }) =>
+              cn('service_btn', {
+                active: isActive,
+              })
+            }>
+            <img
+              src={user}
+              alt="user button"
+              className={cn('service_btn_img')}
+            />
+          </NavLink>
+
+          {!isMenuOpen && (
+            <NavLink
+              to="#"
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              className={({ isActive }) =>
+                cn('burger_btn', {
+                  'burger_btn-active': isActive,
+                })
+              }>
+              <img
+                src={user}
+                alt="like button"
+                className={cn('burger_btn_img')}
+              />
+            </NavLink>
+          )}
+
+          {isDropdownOpen && (
+            <div className={cn('dropdown-content')}>
+              {token ? (
+                <button onClick={() => handleLogout()}>Log Out</button>
+              ) : (
+                <>
+                  <Link to="/login">Log In</Link>
+
+                  <Link to="/Sign Un">Sign Up</Link>
+                </>
+              )}
+            </div>
+          )}
+
           <button
             className={cn('burger_btn', { 'burger_btn-active': isMenuOpen })}
             onClick={handleMenuClick}>

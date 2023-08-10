@@ -37,8 +37,8 @@ export const CartContent: FC = () => {
     0,
   );
 
-  const handleRemoveFromCart = (itemId: string) => {
-    dispatch(removeFromCart(itemId));
+  const handleRemoveFromCart = (id: number) => {
+    dispatch(removeFromCart(id));
   };
 
   const handleModalClose = () => {
