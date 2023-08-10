@@ -1,16 +1,27 @@
-.countContainer {
-  position: absolute;
-  top: 25%;
-  right: 45%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 12px;
-  height: 14px;
-  padding: 7px 5px;
-  background-color: #4219D0;
-  border-radius: 48px;
-  border: 1px solid #fff;
+@import './../../assets/variables/mediaQueries';
+
+
+@include onPhone {
+  .countContainer {
+    position: relative;
+    bottom: 7px;
+    right: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 14px;
+    width: 16px;
+    padding: 7px 5px;
+    background-color: #4219D0;
+    border-radius: 50%;
+    border: 1px solid #fff;
+  }
+}
+
+@include onTablet {
+  .countContainer {
+    left: 66%;
+  }
 }
 
 .numberOfItems {
@@ -19,11 +30,4 @@
   font-style: normal;
   font-weight: 700;
   line-height: normal;
-}
-
-@media (min-width: 639px) {
-  .countContainer {
-    right: 20%;
-    top: 25%;
-  }
 }
