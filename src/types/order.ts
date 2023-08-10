@@ -4,5 +4,5 @@ export interface Order {
   id: number;
   createdAt: string;
   status: string;
-  productsWithQuantity: Product[];
+  productsWithQuantity: Required<Product>[];
 }

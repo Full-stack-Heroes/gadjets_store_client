@@ -3,66 +3,67 @@ import styles from './Orders.module.scss';
 import classNames from 'classnames/bind';
 import { OrderItem } from '../../components/OrderItem';
 import { BackLink } from '../../components/BackLink/BackLink';
-// import { getProducts } from '../../api/products';
 import cart from '../../assets/icons/fastCart2.png';
 import { Link } from 'react-router-dom';
-import { Product } from '../../types/product';
 import { Order } from '../../types/order';
+import { getOrders } from '../../api/users';
+import { Loader } from '../../components/Loader';
 
 const cn = classNames.bind(styles);
 
 export const Orders: FC = () => {
-  const [userOrders, setUserOrders] = useState<Order[]>();
+  const [userOrders, setUserOrders] = useState<Order[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchData = useCallback(async () => {
+    setIsLoading(true);
     try {
-      // const [loadedOrders] = await(
-      //   getProducts('/orders')
-      // );
-
-      const loadedOrders: Order[] = [
-        {
-          id: 1,
-          createdAt: '2023-08-10T14:28:29.425Z',
-          status: 'In Progress',
-          productsWithQuantity: [
-            {
-              id: 85,
-              category: 'phones',
-              itemId: 'apple-iphone-12-64gb-purple',
-              name: 'Apple iPhone 12 64GB Purple',
-              fullPrice: 810,
-              price: 740,
-              screen: 6.1,
-              capacity: '64GB',
-              color: 'purple',
-              ram: '4GB',
-              year: 2020,
-              image: 'img/phones/apple-iphone-12/purple/00.webp',
-              quantity: 3,
-            },
-            {
-              id: 87,
-              category: 'phones',
-              itemId: 'apple-iphone-12-64gb-purple',
-              name: 'Apple iPhone 12 64GB Purple',
-              fullPrice: 810,
-              price: 740,
-              screen: 6.1,
-              capacity: '64GB',
-              color: 'purple',
-              ram: '4GB',
-              year: 2020,
-              image: 'img/phones/apple-iphone-12/purple/00.webp',
-              quantity: 3,
-            },
-          ],
-        },
-      ];
+      const loadedOrders: Order[] = await getOrders();
+      // const loadedOrders: Order[] = [
+      //   {
+      //     id: 1,
+      //     createdAt: '2023-08-10T14:28:29.425Z',
+      //     status: 'In Progress',
+      //     productsWithQuantity: [
+      //       {
+      //         id: 85,
+      //         category: 'phones',
+      //         itemId: 'apple-iphone-12-64gb-purple',
+      //         name: 'Apple iPhone 12 64GB Purple',
+      //         fullPrice: 810,
+      //         price: 740,
+      //         screen: 6.1,
+      //         capacity: '64GB',
+      //         color: 'purple',
+      //         ram: '4GB',
+      //         year: 2020,
+      //         image: 'img/phones/apple-iphone-12/purple/00.webp',
+      //         quantity: 3,
+      //       },
+      //       {
+      //         id: 87,
+      //         category: 'phones',
+      //         itemId: 'apple-iphone-12-64gb-purple',
+      //         name: 'Apple iPhone 12 64GB Purple',
+      //         fullPrice: 810,
+      //         price: 740,
+      //         screen: 6.1,
+      //         capacity: '64GB',
+      //         color: 'purple',
+      //         ram: '4GB',
+      //         year: 2020,
+      //         image: 'img/phones/apple-iphone-12/purple/00.webp',
+      //         quantity: 3,
+      //       },
+      //     ],
+      //   },
+      // ];
 
       setUserOrders(loadedOrders);
     } catch (error) {
       console.log('Error while fetching');
+    } finally {
+      setIsLoading(false);
     }
   }, []);
 
@@ -78,6 +79,8 @@ export const Orders: FC = () => {
           <h1 className={cn('title')}>Orders</h1>
         </div>
 
+        {isLoading && <Loader />}
+
         {userOrders ? (
           userOrders.map((order) => (
             <OrderItem
@@ -90,8 +93,8 @@ export const Orders: FC = () => {
                 .join(' ')}
               Status={order.status}
               Amount={order.productsWithQuantity.reduce(
-                (accumulator: number, product: Product) =>
-                  accumulator + +product.price,
+                (accumulator: number, product) =>
+                  accumulator + Number(product.price) * product.quantity,
                 0,
               )}
               Items={order.productsWithQuantity}

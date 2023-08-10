@@ -147,6 +147,128 @@
   }
 }
 
+.dropdown-content {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 10px;
+  row-gap: 10px;
+  top: 64px;
+  right: 0px;
+  width: 192px;
+  background: $white;
+  border-bottom: 1px solid $elements;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+
+  &--link {
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 18px;
+    color: $secondary;
+    transition: 0.3s;
+
+    &:hover {
+      transition: 0.3s;
+      color: $primary;
+    }
+  }
+}
+
+.errorModalContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  position: fixed;
+  top: 50%;
+  text-align: center;
+  left: 50%;
+  width: 600px;
+  transform: translate(-50%, -50%);
+  padding: 50px;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+  background-color: white;
+  opacity: 0;
+  transition: 0.5s;
+
+  &Active {
+    top: 50%;
+    left: 50%;
+    opacity: 1;
+    transition: 0.5s;
+  }
+
+  &Text {
+    font-size: 32px;
+    font-weight: 700;
+  }
+
+  &Error {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+
+  &Button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 100%;
+
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 21px;
+
+    border: none;
+    border-radius: 48px;
+
+    background: #4219d0;
+    color: #fff;
+
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      box-shadow: 0px 3px 13px 0px rgba(23, 32, 49, 0.4);
+    }
+  }
+}
+
+@media (max-width: 1199px) {
+  .container {
+    padding-left: 16px;
+  }
+
+
+  .header {
+    height: 48px;
+
+    &__logo {
+      width: 64px;
+      margin: 0 16px;
+    }
+  }
+
+  .dropdown-content {
+    top: 48px;
+    width: 192px;
+  }
+
+  .service_btn {
+    width: 48px;
+
+    &_img {
+      position: relative;
+      width: 16px;
+    }
+  }
+}
+
 @media (max-width: 639px) {
   .container {
     padding: 0;
@@ -155,6 +277,10 @@
 
   .service_btn {
     display: none;
+  }
+
+  .dropdown-content {
+    width: 144px;
   }
 
   .nav {
@@ -175,7 +301,6 @@
 }
 
 @keyframes wave {
-  0%,
   100% {
     transform: translateY(0);
   }

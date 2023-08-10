@@ -1,6 +1,8 @@
 import { FC } from 'react';
 import cn from 'classnames';
 import styles from './TotalCost.module.scss';
+import { useNavigate } from 'react-router-dom';
+import { createOrder } from '../../api/users';
 
 type Props = {
   setCheckoutDone: (val: boolean) => void;
@@ -18,11 +20,13 @@ export const TotalCost: FC<Props> = ({
   items,
 }) => {
   const buttonTitle = isCheckoutDone ? 'Thanks for shopping' : 'Checkout';
+  const navigate = useNavigate();
 
-  const handleCheckout = () => {
+  const handleCheckout = async () => {
     if (isCheckoutDone) {
-      window.location.href = '/';
+      navigate('/');
     } else {
+      await createOrder();
       setCheckoutDone(true);
       setShowSuccess(true);
     }

@@ -36,7 +36,6 @@ interface CustomStyleProps extends React.CSSProperties {
 
 export const Actions: FC<Props> = ({ className, product }) => {
   const {
-    id,
     capacity,
     capacityAvailable,
     priceRegular,
@@ -78,7 +77,7 @@ export const Actions: FC<Props> = ({ className, product }) => {
     if (!isProductInCart) {
       dispatch(addToCart(productItemInfo));
     } else {
-      dispatch(removeFromCart(id));
+      dispatch(removeFromCart(productItemInfo.id));
     }
 
     setIsProductInCart((prev) => !prev);

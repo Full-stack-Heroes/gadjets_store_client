@@ -29,7 +29,7 @@ export const OrderItem: FC<Props> = ({
     setIsArrowClicked((prevState) => !prevState);
   }
 
-  if (Items.length > 3) {
+  if (!isArrowClicked && Items.length > 3) {
     additionalItemsCounter = Items.length - 3;
     Items = Items.slice(0, 3);
   }
