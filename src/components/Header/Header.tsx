@@ -8,7 +8,7 @@ import menu from '../../assets/icons/Menu.svg';
 import close from '../../assets/icons/Close.svg';
 import user from '../../assets/icons/User.svg';
 import success from '../../assets/icons/success.png';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { NavigationLink } from '../NavigationLink';
 import classNames from 'classnames/bind';
 import { BurgerMenuOpened } from '../BurgerMenuOpened';
@@ -44,6 +44,8 @@ export const Header: FC = () => {
     (state: RootState) => state.favorites.favoriteItems as Product[],
   );
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -63,6 +65,7 @@ export const Header: FC = () => {
     setIsLoggedOut(true);
     setIsDropdownOpen(false);
     dispatch(removeAllFromFavourites());
+    navigate('/');
   };
 
   const handleCloseLogOut = () => {
