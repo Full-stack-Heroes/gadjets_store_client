@@ -1,5 +1,6 @@
 import { FC, ChangeEvent, useState } from 'react';
 import { registerUser, loginUser } from '../../utils/authentication';
+import { ErrorModal } from '../../components/ErrorModal/ErrorModal';
 import styles from './Reagistration.module.scss';
 
 export const Registration: FC = () => {
@@ -8,6 +9,9 @@ export const Registration: FC = () => {
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
   const [userRepeatPassword, setUserRepeatPassword] = useState('');
+  const [userLogin, setUserLogin] = useState('');
+  const [userParol, setUserParol] = useState('');
+  const [error, setError] = useState<string | null>(null);
   const [checkboxChecked, setCheckboxChecked] = useState(false);
 
   const handleSignUp = () => {
@@ -18,34 +22,43 @@ export const Registration: FC = () => {
     setCheckboxChecked(!checkboxChecked);
   };
 
+  const handleUserLoginChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setUserLogin(event.target.value.trim());
+  };
+
+  const handleUserParolChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setUserParol(event.target.value.trim());
+  };
+
   const handleRegistration = async () => {
     if (userPassword !== userRepeatPassword) {
+      setError('Passwords do not match');
       return;
     }
 
     if (userName.length < 4 || userName.length >= 32) {
-      console.error('User Name must be at least 4 characters long and less than 32');
+      setError('User Name must be at least 4 characters long and less than 32');
       return;
     }
 
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(userEmail)) {
-      console.error('Invalid email format');
+      setError('Invalid email format');
       return;
     }
 
     if (userPassword.length < 8 || userPassword.length >= 32) {
-      console.error('Password must be at least 4 characters long and less than 32');
+      setError('Password must be at least 8 characters long and less than 32');
       return;
     }
 
     if (!/[a-z]/.test(userPassword) || !/[A-Z]/.test(userPassword)) {
-      console.error('Password must contain both lowercase and uppercase letters');
+      setError('Password must contain both lowercase and uppercase letters');
       return;
     }
 
     if (!checkboxChecked) {
-      console.error('Checkbox must be checked');
+      setError('Checkbox must be checked');
       return;
     }
 
@@ -58,9 +71,15 @@ export const Registration: FC = () => {
       });
 
       console.log('User registered successfully');
+      setUserLogin(userEmail);
+      setUserParol(userPassword);
+      setUserName('');
+      setUserEmail('');
+      setUserPassword('');
+      setUserRepeatPassword('');
       setHaveAccount(true);
     } catch (error) {
-      console.error('Registration failed:', error);
+      setError(`Registration failed: ${error}`);
     }
   };
 
@@ -73,7 +92,7 @@ export const Registration: FC = () => {
 
       console.log('User logged in with token:', response);
     } catch (error) {
-      console.error('Login failed:', error);
+      setError(`Login failed: ${error}`);
     }
   };
 
@@ -89,11 +108,58 @@ export const Registration: FC = () => {
     setUserPassword(event.target.value.trim());
   };
 
-  const handleUserRepeatPasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleUserRepeatPasswordChange = (
+    event: ChangeEvent<HTMLInputElement>,
+  ) => {
     setUserRepeatPassword(event.target.value.trim());
   };
 
   return haveAccount ? (
+    <div className={styles.reg__container}>
+      <div className={styles.reg__image_container}>
+        <div className={styles.reg__image}></div>
+      </div>
+      <form className={styles.reg__form}>
+        <div className={styles.reg__line}>
+          <label>Email</label>
+          <input
+            value={userLogin}
+            onChange={(event) => handleUserLoginChange(event)}
+            className={styles.reg__input}
+            placeholder="Email address..."
+            required
+          />
+        </div>
+        <div className={styles.reg__line}>
+          <label>Password</label>
+          <input
+            value={userParol}
+            onChange={(event) => handleUserParolChange(event)}
+            className={styles.reg__input}
+            placeholder="Password..."
+            type="password"
+            required
+          />
+        </div>
+        <div className={styles.reg__buttons}>
+          <button
+            type="button"
+            className={styles.button}
+            onClick={() => handleLogin()}>
+            Log In
+          </button>
+        </div>
+        <div className={styles.log__text}>
+          <p className={styles.asd}>
+            New with us? &nbsp;
+            <a className={styles.signup} onClick={() => handleSignUp()}>
+              Sign Up
+            </a>
+          </p>
+        </div>
+      </form>
+    </div>
+  ) : (
     <div className={styles.reg__container}>
       <div className={styles.reg__image_container}>
         <div className={styles.reg__image}></div>
@@ -163,8 +229,7 @@ export const Registration: FC = () => {
           <button
             className={styles.button}
             type="button"
-            onClick={() => handleRegistration()}
-          >
+            onClick={() => handleRegistration()}>
             Sign Up
           </button>
         </div>
@@ -177,52 +242,7 @@ export const Registration: FC = () => {
           </p>
         </div>
       </form>
-    </div>
-  ) : (
-    <div className={styles.reg__container}>
-      <div className={styles.reg__image_container}>
-        <div className={styles.reg__image}></div>
-      </div>
-      <form className={styles.reg__form}>
-        <div className={styles.reg__line}>
-          <label>Email</label>
-          <input
-            value={userEmail}
-            onChange={(event) => handleUserEmailChange(event)}
-            className={styles.reg__input}
-            placeholder="Email address..."
-            required
-          />
-        </div>
-        <div className={styles.reg__line}>
-          <label>Password</label>
-          <input
-            value={userPassword}
-            onChange={(event) => handleUserPasswordChange(event)}
-            className={styles.reg__input}
-            placeholder="Password..."
-            type="password"
-            required
-          />
-        </div>
-        <div className={styles.reg__buttons}>
-          <button
-            type="button"
-            className={styles.button}
-            onClick={() => handleLogin()}
-          >
-            Log In
-          </button>
-        </div>
-        <div className={styles.log__text}>
-          <p className={styles.asd}>
-            New with us? &nbsp;
-            <a className={styles.signup} onClick={() => handleSignUp()}>
-              Sign Up
-            </a>
-          </p>
-        </div>
-      </form>
+      <ErrorModal error={error} onClose={() => setError(null)} />
     </div>
   );
 };
