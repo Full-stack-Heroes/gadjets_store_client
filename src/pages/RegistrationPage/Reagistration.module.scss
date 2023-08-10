@@ -127,3 +127,13 @@ button:hover {
   font-weight: 600;
   cursor: pointer;
 }
+
+@media screen and (max-width: 639px) {
+  .reg__image {
+    display: none;
+  }
+
+  .reg__container {
+    padding: 32px;
+  }
+}

@@ -97,7 +97,7 @@ export const LogIn: FC = () => {
                 [styles.errorModalContentActive]: isLoggedIn,
               })}>
               <img src={success} className={styles.errorModalContentImage} />
-              <h2 className={styles.errorModalContentText}>Success !</h2>
+              <h2 className={styles.errorModalContentText}>Success!</h2>
               <p className={styles.errorModalContentError}>You have successfully logged in!</p>
               <button
                 className={styles.errorModalContentButton}

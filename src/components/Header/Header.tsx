@@ -6,6 +6,7 @@ import cart from '../../assets/icons/Cart.svg';
 import menu from '../../assets/icons/Menu.svg';
 import close from '../../assets/icons/Close.svg';
 import user from '../../assets/icons/User.svg';
+import success from '../../assets/icons/success.png';
 import { Link, NavLink } from 'react-router-dom';
 import { NavigationLink } from '../NavigationLink';
 import classNames from 'classnames/bind';
@@ -22,6 +23,9 @@ const cn = classNames.bind(styles);
 
 export const Header: FC = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLoggedout, setIsLoggedOut] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const token = localStorage.getItem('token');
 
   const dispatch = useDispatch();
@@ -37,9 +41,6 @@ export const Header: FC = () => {
   const likedProducts = useSelector(
     (state: RootState) => state.favorites.favoriteItems as Product[],
   );
-
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
     if (isMenuOpen) {
@@ -57,7 +58,13 @@ export const Header: FC = () => {
   const handleLogout = () => {
     localStorage.removeItem('token');
     dispatch(removeAllFromCart());
+    setIsLoggedOut(true)
+    setIsDropdownOpen(false);
   };
+
+  const handleCloseLogOut = () => {
+    setIsLoggedOut(false);
+  }
 
   const handleResize = () => {
     setWindowWidth(window.innerWidth);
@@ -216,6 +223,25 @@ export const Header: FC = () => {
                 </>
               )}
             </div>
+          )}
+
+          {isLoggedout && (
+            <>
+            <div className={styles.backdrop}></div>
+            <div className={styles.errorModal}>
+              <div
+                className={cn(styles.errorModalContent, {
+                  [styles.errorModalContentActive]: isLoggedout,
+                })}>
+                <img src={success} className={styles.errorModalContentImage} />
+                <h2 className={styles.errorModalContentText}>Success!</h2>
+                <p className={styles.errorModalContentError}>You have successfully logged out</p>
+                <button onClick={handleCloseLogOut} className={styles.errorModalContentButton}>
+                  Continue
+                </button>
+              </div>
+            </div>
+          </>
           )}
 
           <button
