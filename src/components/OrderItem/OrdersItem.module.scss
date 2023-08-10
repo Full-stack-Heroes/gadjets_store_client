@@ -57,16 +57,22 @@
     height: 70px;
     font-size: 24px;
     color: $secondary-color;
-    border: 1px solid var(--gray-elements, #E2E6E9);
+    border: 1px solid var(--gray-elements, #e2e6e9);
     border-radius: 16px;
-
   }
 
-  &ItemFullInfo{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 16px;
+  &ItemFullInfo {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 12px;
+  }
+
+  &ItemQuantity {
+    text-align: center;
+  }
+
+  &ItemPrice {
+    text-align: center;
   }
 
   &Image {
@@ -75,12 +81,12 @@
     height: 70px;
   }
 
-  &ServiceData{
+  &ServiceData {
     color: $secondary-color;
     margin-bottom: 5px;
   }
 
-  &AmountText{
+  &AmountText {
     color: $secondary-color;
   }
 }
@@ -102,6 +108,11 @@
 
     &ArrowMobile {
       display: none;
+    }
+
+    &ItemFullInfo {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
     }
 
     &Products {

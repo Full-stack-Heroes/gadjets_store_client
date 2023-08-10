@@ -7,8 +7,8 @@ type Props = {
   setShowSuccess: (cal: boolean) => void;
   isCheckoutDone: boolean;
   totalCost: number;
-  items:number;
-}
+  items: number;
+};
 
 export const TotalCost: FC<Props> = ({
   setCheckoutDone,
@@ -32,7 +32,9 @@ export const TotalCost: FC<Props> = ({
     <div className={styles.total__container}>
       <div className={styles.total__container_cost}>${totalCost}</div>
 
-      <div className={styles.total__container_items}>Total for {items} items</div>
+      <div className={styles.total__container_items}>
+        Total for {items} items
+      </div>
 
       <button
         className={cn(styles.total__container_button, {

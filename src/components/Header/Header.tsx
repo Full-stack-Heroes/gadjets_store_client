@@ -117,7 +117,7 @@ export const Header: FC = () => {
             />
 
             <div className={cn('headerCounter')}>
-              <HeaderCounter productsCount={ likedProducts.length }/>
+              <HeaderCounter productsCount={likedProducts.length} />
             </div>
           </NavLink>
 
@@ -134,7 +134,7 @@ export const Header: FC = () => {
               className={cn('service_btn_img')}
             />
             <div className={cn('headerCounter')}>
-              <HeaderCounter productsCount={ countCartItems }/>
+              <HeaderCounter productsCount={countCartItems} />
             </div>
           </NavLink>
           <button
@@ -147,13 +147,9 @@ export const Header: FC = () => {
             />
           </button>
         </div>
-
       </div>
 
-      <BurgerMenuOpened
-        isMenuOpen={isMenuOpen}
-        setIsMenuOpen={setIsMenuOpen}
-      />
+      <BurgerMenuOpened isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
     </header>
   );
 };

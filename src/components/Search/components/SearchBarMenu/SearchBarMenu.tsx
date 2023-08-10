@@ -12,10 +12,7 @@ interface Props {
   onSelected: (product: Product) => void;
 }
 
-export const SearchBarMenu: FC<Props> = ({
-  products,
-  onSelected,
-}) => {
+export const SearchBarMenu: FC<Props> = ({ products, onSelected }) => {
   return (
     <div className={cn('SearchBarMenu')}>
       <div className={cn('SearchBarMenu__content')}>
@@ -24,8 +21,7 @@ export const SearchBarMenu: FC<Props> = ({
             <div className={cn('SearchBarMenu__item')} key={product.id}>
               <Link
                 to={`../${product.category}/${product.itemId}`}
-                className={cn('SearchBarMenu__itemLink')}
-              >
+                className={cn('SearchBarMenu__itemLink')}>
                 <SearchItem product={product} onSelected={onSelected} />
               </Link>
             </div>

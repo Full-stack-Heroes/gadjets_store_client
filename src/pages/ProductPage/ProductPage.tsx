@@ -46,13 +46,16 @@ export const ProductPage: FC = () => {
     <div className={cn('container', 'ProductPage')}>
       <BackLink />
       {isLoading ? (
-        <Loader className={cn('ProductPageLoader')}/>
+        <Loader className={cn('ProductPageLoader')} />
       ) : (
         <>
           <h1 className={cn('ProductPage__header')}>{productInfo.name}</h1>
 
           <div className={cn('SectionContainer', 'PhoneDetails')}>
-            <ProductImageSelector images={productImages} className={cn('SectionContainer__item')} />
+            <ProductImageSelector
+              images={productImages}
+              className={cn('SectionContainer__item')}
+            />
             <Actions
               className={'SectionContainer__item'}
               product={productInfo}

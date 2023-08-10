@@ -20,7 +20,7 @@ export const HomeContent: FC = () => {
     try {
       const [discountedProductsData, newProductsData] = await Promise.all([
         getProducts(locationToProduct.discounted),
-        getProducts(locationToProduct.new)
+        getProducts(locationToProduct.new),
       ]);
 
       setDiscountedProducts(discountedProductsData);
@@ -36,22 +36,20 @@ export const HomeContent: FC = () => {
   return (
     <div className={cn('home')}>
       <div className={cn('homeSliderContainer')}>
-        {!newProducts ? <Loader/> : (
-          <CardCarousel
-            products={newProducts}
-            title="New models"
-          />
+        {!newProducts ? (
+          <Loader />
+        ) : (
+          <CardCarousel products={newProducts} title="New models" />
         )}
       </div>
 
-      <Categories/>
+      <Categories />
 
       <div className={cn('homeSliderContainer')}>
-        {!discountedProducts ? <Loader/> :(
-          <CardCarousel
-            products={discountedProducts}
-            title="Hot prices"
-          />
+        {!discountedProducts ? (
+          <Loader />
+        ) : (
+          <CardCarousel products={discountedProducts} title="Hot prices" />
         )}
       </div>
     </div>

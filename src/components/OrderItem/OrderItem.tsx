@@ -56,11 +56,10 @@ export const OrderItem: FC<Props> = ({
       <div className={cn('OrderProducts')} onClick={handleClick}>
         {!isArrowClicked &&
           Items.map((item) => (
-            //TODO change key and alt after tests
             <img
               src={item.image}
-              alt="phone"
-              key={item.itemId + item.id}
+              alt={item.name}
+              key={item.itemId}
               className={cn('OrderImage')}
             />
           ))}
@@ -73,18 +72,21 @@ export const OrderItem: FC<Props> = ({
         <div className={cn('OrderItemsFullInfo')}>
           {isArrowClicked &&
             Items.map((item) => (
-              //TODO change key and alt after tests
-              <div
-                key={item.itemId + item.id}
-                className={cn('OrderItemFullInfo')}>
+              <div key={item.itemId} className={cn('OrderItemFullInfo')}>
                 <img
                   src={item.image}
-                  alt="phone"
+                  alt={item.name}
                   className={cn('OrderImage')}
                 />
                 <p>{item.name}</p>
-                <p>Quantity: {item.quantity}</p>
-                <p>Price: {item.price}</p>
+                <div className={cn('OrderItemQuantity')}>
+                  <p>Quantity: </p>
+                  <p>{item.quantity}</p>
+                </div>
+                <div className={cn('OrderItemPrice')}>
+                  <p>Price: </p>
+                  <p>{item.price}</p>
+                </div>
               </div>
             ))}
         </div>

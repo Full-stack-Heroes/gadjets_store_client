@@ -12,29 +12,20 @@ interface Props {
 }
 
 export const CategoryCard: FC<Props> = memo(
-  ({
-    imageUrl,
-    imageAlt,
-    categoryName,
-    categoryLink,
-    numberOfItems
-  }) => {
+  ({ imageUrl, imageAlt, categoryName, categoryLink, numberOfItems }) => {
     const cn = classNames.bind(styles);
 
     return (
       <div className={cn('card')}>
-        <Link className={cn('cardLink')}to={categoryLink}>
+        <Link className={cn('cardLink')} to={categoryLink}>
           <img src={imageUrl} alt={imageAlt} className={cn('cardImage')} />
 
           <h4 className={cn('cardTitle')}>{categoryName}</h4>
         </Link>
-        <h4 className={cn('cardItemsCount')}>
-          {`${numberOfItems} models`}
-        </h4>
-
+        <h4 className={cn('cardItemsCount')}>{`${numberOfItems} models`}</h4>
       </div>
     );
-  }
+  },
 );
 
 CategoryCard.displayName = 'CategoryCard';

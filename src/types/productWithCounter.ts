@@ -1,6 +1,6 @@
 import { productSpecs } from './productSpecs';
 
 export interface productWithCounter {
-  count: number,
-  rows: productSpecs[]
+  count: number;
+  rows: productSpecs[];
 }

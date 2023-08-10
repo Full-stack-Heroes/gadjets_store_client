@@ -58,4 +58,4 @@ export type CartAction =
   | AddToCartAction
   | RemoveFromCartAction
   | UpdateQuantityAction
-  | RemoveAllFromCartAction
+  | RemoveAllFromCartAction;

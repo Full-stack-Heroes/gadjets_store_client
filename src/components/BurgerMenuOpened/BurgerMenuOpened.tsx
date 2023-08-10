@@ -22,7 +22,6 @@ export const BurgerMenuOpened: FC<BurgerMenuProps> = ({
   isMenuOpen,
   setIsMenuOpen,
 }) => {
-
   const handleMenuClose = () => {
     setIsMenuOpen(false);
   };
@@ -40,14 +39,10 @@ export const BurgerMenuOpened: FC<BurgerMenuProps> = ({
   );
 
   return (
-    <div className={cn('burger', { 'burger_opened': isMenuOpen })}>
+    <div className={cn('burger', { burger_opened: isMenuOpen })}>
       <div className={cn('burger__links')}>
         <nav className={cn('burger__nav')}>
-          <NavigationLink
-            to="/"
-            linkText="Home"
-            onClick={handleMenuClose}
-          />
+          <NavigationLink to="/" linkText="Home" onClick={handleMenuClose} />
           <NavigationLink
             to="/phones"
             linkText="Phones"
@@ -84,10 +79,9 @@ export const BurgerMenuOpened: FC<BurgerMenuProps> = ({
           className={cn('service__button', 'service__like', {
             'service__button-active': isMenuOpen,
           })}
-          onClick={handleMenuClose}
-        >
+          onClick={handleMenuClose}>
           <img src={like} alt="like button" className={cn('like')} />
-          <HeaderCounter productsCount={likedProducts.length}/>
+          <HeaderCounter productsCount={likedProducts.length} />
         </Link>
 
         <Link
@@ -95,10 +89,9 @@ export const BurgerMenuOpened: FC<BurgerMenuProps> = ({
           className={cn('service__button', 'service__cart', {
             'service__button-active': isMenuOpen,
           })}
-          onClick={handleMenuClose}
-        >
+          onClick={handleMenuClose}>
           <img src={cart} alt="cart button" className={cn('cart')} />
-          <HeaderCounter productsCount={countCartItems}/>
+          <HeaderCounter productsCount={countCartItems} />
         </Link>
       </div>
     </div>

@@ -19,5 +19,5 @@ export const productColors: any = {
   gold: '#f9e5c9',
   sierrablue: '#9bb5ce',
   yellow: '#f3d060',
-  white: '#f9f6ef'
+  white: '#f9f6ef',
 };
