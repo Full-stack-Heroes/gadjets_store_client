@@ -11,7 +11,7 @@
     background-color: #fff;
     border-radius: 16px;
     border: 1px solid $elements-color;
-    overflow: auto;
+    overflow: scroll;
   }
 
   &Data {
@@ -97,14 +97,14 @@
   .Order {
     &Container {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 2fr;
+      grid-template-rows: auto;
       gap: 16px;
       overflow: hidden;
     }
 
     &Data {
       flex-direction: column;
-      width: 30%;
     }
 
     &ArrowMobile {

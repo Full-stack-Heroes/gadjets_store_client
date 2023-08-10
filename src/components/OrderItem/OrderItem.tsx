@@ -3,6 +3,7 @@ import styles from './OrdersItem.module.scss';
 import classNames from 'classnames/bind';
 import { Arrow } from '../Arrow/Arrow';
 import { Product } from '../../types/product';
+import { normalizeImage } from '../../utils/helpers';
 
 const cn = classNames.bind(styles);
 
@@ -57,9 +58,9 @@ export const OrderItem: FC<Props> = ({
         {!isArrowClicked &&
           Items.map((item) => (
             <img
-              src={item.image}
+              src={normalizeImage(item.image)}
               alt={item.name}
-              key={item.itemId}
+              key={item.id}
               className={cn('OrderImage')}
             />
           ))}
@@ -72,9 +73,9 @@ export const OrderItem: FC<Props> = ({
         <div className={cn('OrderItemsFullInfo')}>
           {isArrowClicked &&
             Items.map((item) => (
-              <div key={item.itemId} className={cn('OrderItemFullInfo')}>
+              <div key={item.id} className={cn('OrderItemFullInfo')}>
                 <img
-                  src={item.image}
+                  src={normalizeImage(item.image)}
                   alt={item.name}
                   className={cn('OrderImage')}
                 />

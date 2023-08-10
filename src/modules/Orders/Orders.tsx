@@ -1,12 +1,75 @@
-import { FC } from 'react';
+import { FC, useCallback, useEffect, useState } from 'react';
 import styles from './Orders.module.scss';
 import classNames from 'classnames/bind';
 import { OrderItem } from '../../components/OrderItem';
 import { BackLink } from '../../components/BackLink/BackLink';
+// import { getProducts } from '../../api/products';
+import cart from '../../assets/icons/fastCart2.png';
+import { Link } from 'react-router-dom';
+import { Product } from '../../types/product';
+import { Order } from '../../types/order';
 
 const cn = classNames.bind(styles);
 
 export const Orders: FC = () => {
+  const [userOrders, setUserOrders] = useState<Order[]>();
+
+  const fetchData = useCallback(async () => {
+    try {
+      // const [loadedOrders] = await(
+      //   getProducts('/orders')
+      // );
+
+      const loadedOrders: Order[] = [
+        {
+          id: 1,
+          createdAt: '2023-08-10T14:28:29.425Z',
+          status: 'In Progress',
+          productsWithQuantity: [
+            {
+              id: 85,
+              category: 'phones',
+              itemId: 'apple-iphone-12-64gb-purple',
+              name: 'Apple iPhone 12 64GB Purple',
+              fullPrice: 810,
+              price: 740,
+              screen: 6.1,
+              capacity: '64GB',
+              color: 'purple',
+              ram: '4GB',
+              year: 2020,
+              image: 'img/phones/apple-iphone-12/purple/00.webp',
+              quantity: 3,
+            },
+            {
+              id: 87,
+              category: 'phones',
+              itemId: 'apple-iphone-12-64gb-purple',
+              name: 'Apple iPhone 12 64GB Purple',
+              fullPrice: 810,
+              price: 740,
+              screen: 6.1,
+              capacity: '64GB',
+              color: 'purple',
+              ram: '4GB',
+              year: 2020,
+              image: 'img/phones/apple-iphone-12/purple/00.webp',
+              quantity: 3,
+            },
+          ],
+        },
+      ];
+
+      setUserOrders(loadedOrders);
+    } catch (error) {
+      console.log('Error while fetching');
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <section className={cn('content')}>
       <div className={cn('orders')}>
@@ -15,8 +78,41 @@ export const Orders: FC = () => {
           <h1 className={cn('title')}>Orders</h1>
         </div>
 
-        <div className={cn('ordersContainer')}> </div>
-        <OrderItem
+        {userOrders ? (
+          userOrders.map((order) => (
+            <OrderItem
+              key={order.id}
+              Id={String(order.id)}
+              OrderDate={order.createdAt
+                .split('T')[0]
+                .split('-')
+                .reverse()
+                .join(' ')}
+              Status={order.status}
+              Amount={order.productsWithQuantity.reduce(
+                (accumulator: number, product: Product) =>
+                  accumulator + +product.price,
+                0,
+              )}
+              Items={order.productsWithQuantity}
+            />
+          ))
+        ) : (
+          <div className={cn('emptyContainer')}>
+            <img src={cart} alt="" />
+            <h2 className={cn('emptyContainerText', 'title', 'titleH2')}>
+              {'Noting here yet :('}
+            </h2>
+            <h2 className={cn('emptyContainerBottomText')}>
+              Let&apos;s better look what we have
+            </h2>
+            <Link to="/" className={cn('emptyContainerButton')}>
+              find something!
+            </Link>
+          </div>
+        )}
+
+        {/* <OrderItem
           Id="Id 1"
           OrderDate="09 08 2023"
           Status="Done✅"
@@ -119,13 +215,7 @@ export const Orders: FC = () => {
               quantity: 1,
             },
           ]}
-          // Items={['',
-          // 'https://content2.rozetka.com.ua/goods/images/big_tile/284913561.jpg',
-
-          // 'https://content2.rozetka.com.ua/goods/images/big_tile/284913561.jpg',
-          // 'https://content2.rozetka.com.ua/goods/images/big_tile/284913561.jpg',
-          // 'https://content2.rozetka.com.ua/goods/images/big_tile/284913561.jpg']}
-        />
+        /> */}
       </div>
     </section>
   );
