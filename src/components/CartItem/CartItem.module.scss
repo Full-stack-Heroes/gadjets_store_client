@@ -29,7 +29,10 @@ $secondary-color: #b4bdc3;
   }
 
   &_phone {
+    object-fit: contain;
+    object-position: center;
     height: 80px;
+    width: 80px;
   }
 
   &_model {
@@ -37,6 +40,7 @@ $secondary-color: #b4bdc3;
     font-weight: 600;
     line-height: 21px;
     color: $primary-color;
+    width: 180px;
   }
 
   &_buttons {
