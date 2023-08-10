@@ -15,7 +15,6 @@ import {
   removeFromCart,
   removeAllFromCart,
 } from '../../../../actions/cartActions';
-import { getUserCart } from '../../../../api/users';
 
 export const CartContent: FC = () => {
   const [isCheckoutDone, setCheckoutDone] = useState<boolean>(false);
