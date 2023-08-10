@@ -85,15 +85,19 @@ export const Registration: FC = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await loginUser({
-        email: userEmail,
-        password: userPassword,
+      await loginUser({
+        email: userLogin,
+        password: userParol,
       });
-
-      console.log('User logged in with token:', response);
     } catch (error) {
       setError(`Login failed: ${error}`);
     }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setUserLogin('');
+    setUserParol('');
   };
 
   const handleUserNameChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -147,6 +151,12 @@ export const Registration: FC = () => {
             className={styles.button}
             onClick={() => handleLogin()}>
             Log In
+          </button>
+          <button
+            className={styles.button}
+            type="button"
+            onClick={() => handleLogout()}>
+            Log out
           </button>
         </div>
         <div className={styles.log__text}>

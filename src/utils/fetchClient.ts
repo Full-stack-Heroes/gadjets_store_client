@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://gadjets-store-apu.onrender.com';
+export const BASE_URL = 'http://localhost:3000';
 
 function wait(delay: number) {
   return new Promise((resolve) => {
@@ -7,7 +7,13 @@ function wait(delay: number) {
 }
 
 function request<T>(url: string, method: string = 'GET'): Promise<T> {
-  const options: RequestInit = { method };
+  const token = localStorage.getItem('token');
+
+  const headers = new Headers({
+    Authorization: `Bearer ${token}`
+  });
+
+  const options: RequestInit = { method, headers };
 
   return wait(300)
     .then(() => fetch(BASE_URL + url, options))
