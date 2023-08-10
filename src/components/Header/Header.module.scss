@@ -52,9 +52,13 @@
   text-decoration: none;
 
   &_img {
-    width: 20px;
-    height: 20px;
+    position: absolute;
+    left: 33%;
     transition: transform 0.3s ease-in-out;
+
+    @include onDesktop {
+      left: 40%;
+    }
   }
 
   &:hover .service_btn_img {
@@ -117,11 +121,6 @@
 
   .service_btn {
     width: 48px;
-
-    &_img {
-      position: relative;
-      width: 16px;
-    }
   }
 }
 
@@ -163,7 +162,9 @@
   }
 
   .headerCounter {
-    display: none;
+    position: absolute;
+    top: 25%;
+    right: 40%;
   }
 
   .burger_btn {
