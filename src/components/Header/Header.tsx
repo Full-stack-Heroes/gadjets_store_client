@@ -5,6 +5,7 @@ import like from '../../assets/icons/Heart.svg';
 import cart from '../../assets/icons/Cart.svg';
 import menu from '../../assets/icons/Menu.svg';
 import close from '../../assets/icons/Close.svg';
+import user from '../../assets/icons/User.svg';
 import { NavLink } from 'react-router-dom';
 import { NavigationLink } from '../NavigationLink';
 import classNames from 'classnames/bind';
@@ -102,7 +103,7 @@ export const Header: FC = () => {
             />
 
             <div className={cn('headerCounter')}>
-              <HeaderCounter productsCount={ likedProducts.length }/>
+              <HeaderCounter productsCount={likedProducts.length} />
             </div>
           </NavLink>
 
@@ -119,9 +120,30 @@ export const Header: FC = () => {
               className={cn('service_btn_img')}
             />
             <div className={cn('headerCounter')}>
-              <HeaderCounter productsCount={ countCartItems }/>
+              <HeaderCounter productsCount={countCartItems} />
             </div>
           </NavLink>
+
+          <NavLink
+            to="/registration"
+            // onClick={toggleDropdown}
+            className={({ isActive }) =>
+              cn('service_btn', {
+                active: isActive,
+              })
+            }>
+            <img
+              src={user}
+              alt="like button"
+              className={cn('service_btn_img')}
+            />
+          </NavLink>
+
+          <div className="dropdown-content">
+            Sign-in and Registration options You can add your form components or
+            links here
+          </div>
+
           <button
             className={cn('burger_btn', { 'burger_btn-active': isMenuOpen })}
             onClick={handleMenuClick}>
@@ -132,13 +154,9 @@ export const Header: FC = () => {
             />
           </button>
         </div>
-
       </div>
 
-      <BurgerMenuOpened
-        isMenuOpen={isMenuOpen}
-        setIsMenuOpen={setIsMenuOpen}
-      />
+      <BurgerMenuOpened isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
     </header>
   );
 };
