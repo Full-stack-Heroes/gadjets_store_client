@@ -5,6 +5,7 @@ import { Footer } from '../../components/Footer';
 import { BreadCrumbs } from '../../components/BreadCrumbs';
 
 export const Layout: FC = () => {
+
   const location = useLocation();
 
   const isBreadCrumbsVisible = location.pathname !== '/'

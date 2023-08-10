@@ -15,6 +15,7 @@ import {
   removeFromCart,
   removeAllFromCart,
 } from '../../../../actions/cartActions';
+import { getUserCart } from '../../../../api/users';
 
 export const CartContent: FC = () => {
   const [isCheckoutDone, setCheckoutDone] = useState<boolean>(false);
@@ -45,6 +46,8 @@ export const CartContent: FC = () => {
     setModalActive(false);
     handleRemoveAllFromCart();
   };
+
+  getUserCart().then(response => console.log(response));
 
   useEffect(() => {
     if (showSuccess) {

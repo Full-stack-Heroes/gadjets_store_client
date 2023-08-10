@@ -29,7 +29,12 @@ export const loginUser = async (credentials: Credentials) => {
       throw new Error('User not found');
     }
 
-    const { token } = dataFromServer;
+    const { token, cartData, favoritesData } = dataFromServer;
+
+    console.log(cartData);
+
+    localStorage.setItem('cartItems', JSON.stringify(cartData));
+    localStorage.setItem('favoriteItems', JSON.stringify(favoritesData));
 
     localStorage.setItem('token', token);
     console.log('User logged in with token:', token);

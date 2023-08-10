@@ -25,8 +25,8 @@ const saveCartItemsToLocalStorage = (cartItems: CartItem[]): void => {
 const saveCartItemsToDB = async(id: number, quantity: number | undefined) => {
   try {
     await addToUserCart({ id, quantity });
-  } catch {
-    console.log('Error while saving item to cart');
+  } catch (error) {
+    console.log('Error while saving item to cart', error);
   }
 };
 
@@ -99,6 +99,7 @@ const cartReducer = (state = initialState, action: CartAction): CartState => {
         item.id === itemId ? { ...item, quantity } : item,
       );
       saveCartItemsToLocalStorage(updCartItems);
+      saveCartItemsToDB(itemId, quantity);
       return {
         ...state,
         cartItems: updCartItems,

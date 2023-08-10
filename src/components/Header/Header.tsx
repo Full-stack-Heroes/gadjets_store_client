@@ -17,6 +17,7 @@ import { Product } from '../../types/product';
 import { useDispatch } from 'react-redux';
 import { HeaderCounter } from '../HeaderCounter/HeaderCounter';
 import { SearchBar } from '../Search/components/SearchBar/SearchBar';
+import { removeAllFromFavourites } from '../../actions/favouriteActions';
 
 const cn = classNames.bind(styles);
 
@@ -57,6 +58,7 @@ export const Header: FC = () => {
   const handleLogout = () => {
     localStorage.removeItem('token');
     dispatch(removeAllFromCart());
+    dispatch(removeAllFromFavourites());
   };
 
   const handleResize = () => {
