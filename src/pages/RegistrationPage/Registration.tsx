@@ -2,6 +2,8 @@ import { FC, ChangeEvent, useState } from 'react';
 import { registerUser, loginUser } from '../../utils/authentication';
 import { ErrorModal } from '../../components/ErrorModal/ErrorModal';
 import styles from './Reagistration.module.scss';
+import { useDispatch } from 'react-redux';
+import { removeAllFromCart } from '../../actions/cartActions';
 
 export const Registration: FC = () => {
   const [haveAccount, setHaveAccount] = useState(false);
@@ -13,6 +15,8 @@ export const Registration: FC = () => {
   const [userParol, setUserParol] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [checkboxChecked, setCheckboxChecked] = useState(false);
+
+  const dispatch = useDispatch();
 
   const handleSignUp = () => {
     setHaveAccount(!haveAccount);
@@ -94,6 +98,7 @@ export const Registration: FC = () => {
   };
 
   const handleLogout = () => {
+    dispatch(removeAllFromCart());
     localStorage.removeItem('token');
     setUserLogin('');
     setUserParol('');

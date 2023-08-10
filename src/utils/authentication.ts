@@ -1,4 +1,5 @@
 import { UserData, Credentials } from '../types/authentification';
+import { login } from '../api/users';
 
 export const registerUser = async (userData: UserData) => {
   try {
@@ -23,20 +24,13 @@ export const registerUser = async (userData: UserData) => {
 
 export const loginUser = async (credentials: Credentials) => {
   try {
-    const response = await fetch('http://localhost:3000/user/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(credentials),
-    });
+    const dataFromServer = await login(credentials);
 
-    if (!response.ok) {
-      throw new Error('Login failed');
+    if (!dataFromServer) {
+      throw new Error('User not found');
     }
 
-    const data = await response.json();
-    const { token } = data;
+    const { token } = dataFromServer;
 
     localStorage.setItem('token', token);
     console.log('User logged in with token:', token);
