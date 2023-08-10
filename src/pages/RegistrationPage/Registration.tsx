@@ -65,8 +65,7 @@ export const Registration: FC = () => {
     try {
       await registerUser({
         email: userEmail,
-        firstName: userName,
-        lastName: 'lastName',
+        username: userName,
         password: userPassword,
       });
 
