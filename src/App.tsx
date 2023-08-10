@@ -75,7 +75,7 @@ export const App = createBrowserRouter([
       },
       {
         path: 'login',
-        element: <LogIn/>,
+        element: <LogIn />,
       },
     ],
   },

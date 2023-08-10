@@ -62,9 +62,9 @@ export const ContactsPage: FC = () => {
         <h1>Looking for new Developers?</h1>
         <h2>We are your best choice!</h2>
         <p>
-        Our team consists of creative and self motivated full-stack developers who have created this service.
-        You can contact any of us using links below.
-        We are opened to any offers!
+          Our team consists of creative and self motivated full-stack developers
+          who have created this service. You can contact any of us using links
+          below. We are opened to any offers!
         </p>
       </div>
       <div className={styles.contactsContainer}>

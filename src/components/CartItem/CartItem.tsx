@@ -47,8 +47,7 @@ export const CartItem: React.FC<Props> = ({
 
         <Link
           to={`../${product.category}/${product.itemId}`}
-          className={styles.itemLink}
-        >
+          className={styles.itemLink}>
           <img
             src={normalizeImage(image)}
             className={styles.item__container_phone}

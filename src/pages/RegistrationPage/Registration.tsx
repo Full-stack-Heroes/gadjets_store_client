@@ -59,7 +59,6 @@ export const Registration: FC = () => {
         password: userPassword,
       });
       window.location.href = '/';
-
     } catch (error) {
       setError(`Registration failed: ${error}`);
     }
@@ -160,10 +159,7 @@ export const Registration: FC = () => {
         <div className={styles.log__text}>
           <p>
             Have an account? &nbsp;
-            <Link
-              className={styles.signup}
-              to="/login"
-            >
+            <Link className={styles.signup} to="/login">
               Log In
             </Link>
           </p>

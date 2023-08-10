@@ -16,12 +16,16 @@ export const LogIn: FC = () => {
   };
 
   const handleLogin = async () => {
-    await loginUser({
-      email: userLogin,
-      password: userParol,
-    });
+    try {
+      await loginUser({
+        email: userLogin,
+        password: userParol,
+      });
 
-    window.location.href = '/';
+      window.location.href = '/';
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleLogout = () => {
@@ -74,10 +78,7 @@ export const LogIn: FC = () => {
         <div className={styles.log__text}>
           <p className={styles.asd}>
             New with us? &nbsp;
-            <Link
-              to="/registration"
-              className={styles.signup}
-            >
+            <Link to="/registration" className={styles.signup}>
               Sign Up
             </Link>
           </p>

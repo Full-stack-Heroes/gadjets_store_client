@@ -19,24 +19,22 @@ export const BreadCrumbs: FC = () => {
   return (
     <div className={cn('container', 'BreadCrumbs')}>
       <Link to="/">
-        <img src={home} className={cn('home')}/>
+        <img src={home} className={cn('home')} />
       </Link>
       {breadcrumbs.map((breadcrumb, index) => (
         <span key={breadcrumb}>
           <span className={cn('arrow')}>
             <Arrow />
           </span>
-          {index === breadcrumbs.length - 1
-            ? (
-              <span className={cn('breadcrumb')}>{breadcrumb}</span>
-            ): (
-              <Link
-                to={`/${breadcrumbs[index]}`}
-                className={cn('breadcrumb', 'breadcrumb--active')}
-              >
-                {breadcrumb}
-              </Link>
-            )}
+          {index === breadcrumbs.length - 1 ? (
+            <span className={cn('breadcrumb')}>{breadcrumb}</span>
+          ) : (
+            <Link
+              to={`/${breadcrumbs[index]}`}
+              className={cn('breadcrumb', 'breadcrumb--active')}>
+              {breadcrumb}
+            </Link>
+          )}
         </span>
       ))}
     </div>

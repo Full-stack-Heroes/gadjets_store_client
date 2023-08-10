@@ -10,7 +10,7 @@ function request<T>(url: string, method: string = 'GET'): Promise<T> {
   const token = localStorage.getItem('token');
 
   const headers = new Headers({
-    Authorization: `Bearer ${token}`
+    Authorization: `Bearer ${token}`,
   });
 
   const options: RequestInit = { method, headers };

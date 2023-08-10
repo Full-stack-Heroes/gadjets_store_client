@@ -8,7 +8,7 @@ interface ProductState {
 }
 
 const initialState: ProductState = {
-  products: {count: 0, rows: []},
+  products: { count: 0, rows: [] },
   isLoading: false,
 };
 

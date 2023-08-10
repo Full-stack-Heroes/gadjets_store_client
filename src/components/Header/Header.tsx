@@ -52,6 +52,7 @@ export const Header: FC = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('token');
+    window.location.href = '/';
   };
 
   const handleResize = () => {

@@ -4,11 +4,19 @@ import styles from './Card.module.scss';
 import heart from '../../assets/icons/Heart.svg';
 import filledheart from '../../assets/icons/Heart_Filled.svg';
 import { Product } from '../../types/product';
-import { normalizeImage, normalizeMemory, normalizeRam, normalizeWatchBand } from '../../utils/helpers';
+import {
+  normalizeImage,
+  normalizeMemory,
+  normalizeRam,
+  normalizeWatchBand,
+} from '../../utils/helpers';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeFromCart } from '../../actions/cartActions';
-import { addToFavourites, removeFromFavourites } from '../../actions/favouriteActions';
+import {
+  addToFavourites,
+  removeFromFavourites,
+} from '../../actions/favouriteActions';
 import { RootState } from '../../store';
 
 interface Props {
@@ -16,10 +24,18 @@ interface Props {
 }
 
 export const Card: React.FC<Props> = ({ product }) => {
-  const products = useSelector((state: RootState) => state.cart.cartItems as Product[]);
-  const likedProducts = useSelector((state: RootState) => state.favorites.favoriteItems as Product[]);
-  const isProductInCart = products.some((item: Product) => item.itemId === product.itemId);
-  const isProductInFavourites = likedProducts.some((item: Product) => item.itemId === product.itemId);
+  const products = useSelector(
+    (state: RootState) => state.cart.cartItems as Product[],
+  );
+  const likedProducts = useSelector(
+    (state: RootState) => state.favorites.favoriteItems as Product[],
+  );
+  const isProductInCart = products.some(
+    (item: Product) => item.itemId === product.itemId,
+  );
+  const isProductInFavourites = likedProducts.some(
+    (item: Product) => item.itemId === product.itemId,
+  );
 
   const [productAdded, setProductAdded] = useState(isProductInCart);
   const [productLiked, setProductLiked] = useState(isProductInFavourites);
@@ -75,8 +91,7 @@ export const Card: React.FC<Props> = ({ product }) => {
       <Link
         draggable={false}
         to={productPageLink}
-        className={styles.card__product_name}
-      >
+        className={styles.card__product_name}>
         {name}
       </Link>
 
@@ -92,12 +107,7 @@ export const Card: React.FC<Props> = ({ product }) => {
         </p>
 
         <p className={styles.characteristic_left}>
-          <span>
-            {category === 'accessories'
-              ? 'Size:'
-              : 'Capacity:'
-            }
-          </span>
+          <span>{category === 'accessories' ? 'Size:' : 'Capacity:'}</span>
           <span className={styles.characteristic_right}>
             {category === 'accessories'
               ? normalizeWatchBand(capacity)
