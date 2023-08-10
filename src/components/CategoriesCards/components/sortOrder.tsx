@@ -28,7 +28,7 @@ export const SortOrder:FC<Props> = ({ className }) => {
       <SelectDropdown
         defaultValue={sortByVariants[0]}
         options={sortByVariants}
-        title="Sort by"
+        title="Order"
         onChange={handlePageChange}
       />
     </div>

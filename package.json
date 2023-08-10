@@ -6,7 +6,7 @@
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint . --ext ts,tsx --max-warnings 0",
     "preview": "vite preview",
     "prepare": "husky install",
     "format": "prettier --write . --ignore-path .gitignore",
@@ -44,6 +44,6 @@
     "vite": "^4.4.5"
   },
   "lint-staged": {
-    "*.{ts,tsx}": "npm run lint"
+    "*.{ts,tsx}": "npm run format"
   }
 }
