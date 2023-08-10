@@ -120,9 +120,13 @@
   font-weight: 800;
 }
 
- @media screen and (max-width: 640px) {
+ @media screen and (max-width: 639px) {
   .content {
     margin-bottom: 56px;
+  }
+
+  .cards__container {
+    grid-template-columns: 1fr;
   }
 
   .favourites__text{
@@ -131,5 +135,24 @@
 
   .favourites__links {
     margin-bottom: 24px;
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  .cards__container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 779px) {
+  .cards__container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 639px) {
+  .cards__container {
+    grid-template-columns: 1fr;
+    padding-bottom: 0;
   }
 }
