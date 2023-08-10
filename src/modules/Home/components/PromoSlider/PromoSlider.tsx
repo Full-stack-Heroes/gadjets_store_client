@@ -21,6 +21,8 @@ export const PromoSlider: FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [touchStartPositionX, setTouchStartPositionX] = useState<number>(0);
   const [touchEndPositionX, setTouchEndPositionX] = useState<number>(0);
+  const [isAutoScrolling, setIsAutoScrolling] = useState(true);
+  const autoScrollInterval = useRef<NodeJS.Timeout | null>(null);
   const sliderElement = useRef<HTMLDivElement | null>(null);
 
   const goToPrevious = () => {
@@ -60,9 +62,28 @@ export const PromoSlider: FC = () => {
   }, []);
 
   useEffect(() => {
+    const handleAutoScroll = () => {
+      if (!isAutoScrolling) {
+        return;
+      }
+
+      goToNext();
+    };
+
+    autoScrollInterval.current = setInterval(handleAutoScroll, 3000);
+
+    return () => {
+      if (autoScrollInterval.current !== null) {
+        clearInterval(autoScrollInterval.current);
+      }
+    };
+  }, [isAutoScrolling, goToNext]);
+
+  useEffect(() => {
     const handleTouchStart = (event: TouchEvent) => {
       setTouchStartPositionX(event.changedTouches[0].screenX);
     };
+
     const handleTouchEnd = (event: TouchEvent) => {
       setTouchEndPositionX(event.changedTouches[0].screenX);
 
@@ -84,14 +105,17 @@ export const PromoSlider: FC = () => {
         sliderElement.current.removeEventListener('touchend', handleTouchEnd);
       }
     };
-  }, [touchStartPositionX, touchEndPositionX, sliderElement]);
+  }, [sliderElement, isAutoScrolling, touchStartPositionX, touchEndPositionX]);
 
   return (
     <div className={cn('promo__container', 'slider')}>
       <div className={cn('slider__container')}>
         <button
           className={cn('slider__arrow', 'slider__arrow-left')}
-          onClick={goToPrevious}
+          onClick={() => {
+            setIsAutoScrolling(false);
+            goToPrevious();
+          }}
         >
           <img src={arrow} alt="left arrow for slider" />
         </button>
@@ -108,7 +132,10 @@ export const PromoSlider: FC = () => {
 
         <button
           className={cn('slider__arrow', 'slider__arrow-right')}
-          onClick={goToNext}
+          onClick={() => {
+            setIsAutoScrolling(false);
+            goToNext();
+          }}
         >
           <img src={arrow} alt="right arrow for slider" />
         </button>
@@ -118,7 +145,10 @@ export const PromoSlider: FC = () => {
         {slides.map((_slide, index) => (
           <div
             key={index}
-            onClick={() => goToSlide(index)}
+            onClick={() => {
+              goToSlide(index);
+              setIsAutoScrolling(false);
+            }}
             className={cn('slider__dot', { 'slider__dot-active': index === currentIndex })}
           >
           </div>
