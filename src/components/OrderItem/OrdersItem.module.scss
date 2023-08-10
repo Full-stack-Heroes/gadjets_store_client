@@ -124,13 +124,14 @@
     }
 
     &ArrowDesktop {
+      margin-top: 23px;
+      height: 16px;
       width: 16px;
       display: flex;
       align-items: center;
       color: $primary-color;
       transform: rotate(-90deg);
       transition: transform 0.2s ease-in-out;
-
       &Clicked {
         transform: rotate(90deg);
       }

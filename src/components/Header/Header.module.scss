@@ -53,7 +53,7 @@
 
   &_img {
     position: absolute;
-    left: 33%;
+    // left: 33%;
     transition: transform 0.3s ease-in-out;
 
     @include onDesktop {
@@ -103,25 +103,6 @@
   height: 4px;
   background-color: $primary;
   border-radius: 8px;
-}
-
-@media (max-width: 1199px) {
-  .container {
-    padding-left: 16px;
-  }
-
-  .header {
-    height: 48px;
-
-    &__logo {
-      width: 64px;
-      margin: 0 16px;
-    }
-  }
-
-  .service_btn {
-    width: 48px;
-  }
 }
 
 .burger_btn {
@@ -239,34 +220,6 @@
   }
 }
 
-@media (max-width: 1199px) {
-  .container {
-    padding-left: 16px;
-  }
-
-  .header {
-    height: 48px;
-
-    &__logo {
-      width: 64px;
-      margin: 0 16px;
-    }
-  }
-
-  .dropdown-content {
-    top: 48px;
-    width: 192px;
-  }
-
-  .service_btn {
-    width: 48px;
-
-    &_img {
-      position: relative;
-      width: 16px;
-    }
-  }
-}
 
 @media (max-width: 639px) {
   .container {
@@ -296,6 +249,36 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+}
+
+
+@media (max-width: 1199px) {
+  .container {
+    padding-left: 16px;
+  }
+
+  .header {
+    height: 48px;
+
+    &__logo {
+      width: 64px;
+      margin: 0 16px;
+    }
+  }
+
+  .dropdown-content {
+    top: 48px;
+    width: 192px;
+  }
+
+  .service_btn {
+    width: 48px;
+
+    &_img {
+      position: relative;
+      width: 16px;
+    }
   }
 }
 
