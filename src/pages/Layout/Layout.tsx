@@ -11,6 +11,7 @@ export const Layout: FC = () => {
     && location.pathname !== '/cart'
     && location.pathname !== '/registration'
     && location.pathname !== '/login'
+    // && location.pathname !== '/signin'
     && location.pathname !== '/favourites';
 
   return (

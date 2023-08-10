@@ -1,8 +1,9 @@
 import { FC, useState, ChangeEvent } from 'react';
-import styles from './SignIn.module.scss';
+import styles from './LogIn.module.scss';
 import { loginUser } from '../../utils/authentication';
+import { Link } from 'react-router-dom';
 
-export const SognIn: FC = () => {
+export const LogIn: FC = () => {
   const [userLogin, setUserLogin] = useState('');
   const [userParol, setUserParol] = useState('');
 
@@ -19,6 +20,8 @@ export const SognIn: FC = () => {
       email: userLogin,
       password: userParol,
     });
+
+    window.location.href = '/';
   };
 
   const handleLogout = () => {
@@ -71,9 +74,12 @@ export const SognIn: FC = () => {
         <div className={styles.log__text}>
           <p className={styles.asd}>
             New with us? &nbsp;
-            <a className={styles.signup}>
+            <Link
+              to="/registration"
+              className={styles.signup}
+            >
               Sign Up
-            </a>
+            </Link>
           </p>
         </div>
       </form>

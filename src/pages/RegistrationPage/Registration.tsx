@@ -1,7 +1,8 @@
 import { FC, ChangeEvent, useState } from 'react';
-import { registerUser } from '../../utils/authentication';
+import { registerUser, loginUser } from '../../utils/authentication';
 import { ErrorModal } from '../../components/ErrorModal/ErrorModal';
 import styles from './Reagistration.module.scss';
+import { Link } from 'react-router-dom';
 
 export const Registration: FC = () => {
   const [userName, setUserName] = useState('');
@@ -22,7 +23,7 @@ export const Registration: FC = () => {
     }
 
     if (userName.length < 4 || userName.length >= 32) {
-      setError('User Name must be at least 4 characters long and less than 32');
+      setError('Username must be at least 4 characters');
       return;
     }
 
@@ -33,7 +34,7 @@ export const Registration: FC = () => {
     }
 
     if (userPassword.length < 8 || userPassword.length >= 32) {
-      setError('Password must be at least 8 characters long and less than 32');
+      setError('Password must be at least 8 characters long');
       return;
     }
 
@@ -53,12 +54,12 @@ export const Registration: FC = () => {
         username: userName,
         password: userPassword,
       });
+      await loginUser({
+        email: userEmail,
+        password: userPassword,
+      });
+      window.location.href = '/';
 
-      // console.log('User registered successfully');
-      // setUserName('');
-      // setUserEmail('');
-      // setUserPassword('');
-      // setUserRepeatPassword('');
     } catch (error) {
       setError(`Registration failed: ${error}`);
     }
@@ -159,9 +160,12 @@ export const Registration: FC = () => {
         <div className={styles.log__text}>
           <p>
             Have an account? &nbsp;
-            <a className={styles.signup}>
+            <Link
+              className={styles.signup}
+              to="/login"
+            >
               Log In
-            </a>
+            </Link>
           </p>
         </div>
       </form>
