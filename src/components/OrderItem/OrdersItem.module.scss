@@ -34,6 +34,8 @@
     color: $primary-color;
     transform: scale(120%) rotate(-90deg);
 
+    transition: transform 0.2s ease-in-out;
+
     &Clicked {
       transform: scale(120%) rotate(90deg);
       right: 5px;
@@ -126,6 +128,7 @@
       align-items: center;
       color: $primary-color;
       transform: rotate(-90deg);
+      transition: transform 0.2s ease-in-out;
 
       &Clicked {
         transform: rotate(90deg);

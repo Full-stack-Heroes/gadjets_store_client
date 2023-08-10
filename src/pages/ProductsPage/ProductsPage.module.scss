@@ -37,12 +37,11 @@
     gap: 16px;
     flex-flow: row;
     justify-content: flex-start;
+    flex-wrap: wrap;
 
     margin-bottom: 24px;
 
     &Item {
-      max-width: 200px;
-
       @media screen and (max-width: 639px) {
         width: 100%;
         flex-shrink: 1;

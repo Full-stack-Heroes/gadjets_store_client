@@ -55,9 +55,12 @@
     }
   }
 
+  .imageContainer {
+    position: relative;
+  }
+
   .service {
     &__button {
-      position: relative;
       border: none;
       background: $white;
       width: 50%;
@@ -104,7 +107,7 @@
     }
 
     &__like {
-      box-shadow: 1px 0px 0px 1px $elements;
+      box-shadow: -1px 0px 0px 1px $elements;
     }
 
     &__cart {
