@@ -64,14 +64,19 @@ export const Card: React.FC<Props> = ({ product }) => {
 
   return (
     <div className={styles.card}>
-      <Link className={styles.card_link} to={productPageLink}>
+      <Link draggable={false} className={styles.card_link} to={productPageLink}>
         <img
           src={normalizeImage(image)}
           className={styles.card__product_image}
+          draggable={false}
         />
       </Link>
 
-      <Link to={productPageLink} className={styles.card__product_name}>
+      <Link
+        draggable={false}
+        to={productPageLink}
+        className={styles.card__product_name}
+      >
         {name}
       </Link>
 

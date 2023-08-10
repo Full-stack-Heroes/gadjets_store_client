@@ -31,7 +31,7 @@ const responsive = {
   largeMobile: {
     breakpoint: { max: 640, min: 400 },
     items: 1.5,
-    slidesToSlide: 5,
+    slidesToSlide: 1,
   },
   mobile: {
     breakpoint: { max: 400, min: 320 },
@@ -104,6 +104,7 @@ export const CardCarousel:FC<Props> = ({ products, title }) => {
         arrows={false}
         renderButtonGroupOutside={true}
         partialVisible={true}
+        infinite={true}
       >
         {products.map(product => (
           <Card product={product} key={product.id} />

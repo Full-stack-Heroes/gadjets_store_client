@@ -9,7 +9,6 @@ const sortByVariants = [
   {title: 'Year', value: 'year'},
   {title: 'Price', value: 'price'},
   {title: 'Screen', value: 'screen'},
-  {title: 'Capacity', value: 'capacity'},
 ];
 
 interface Props {
