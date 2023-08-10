@@ -6,7 +6,7 @@ import styles from './BurgerMenuOpened.module.scss';
 import { Link } from 'react-router-dom';
 import { NavigationLink } from '../NavigationLink';
 import classNames from 'classnames/bind';
-import { HeaderCounter } from '../../HeaderCounter/HeaderCounter';
+import { HeaderCounter } from '../HeaderCounter/HeaderCounter';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { Product } from '../../types/product';
@@ -30,6 +30,10 @@ export const BurgerMenuOpened: FC<BurgerMenuProps> = ({
   const products = useSelector(
     (state: RootState) => state.cart.cartItems as Product[],
   );
+
+  const countCartItems: number = products.reduce((totalQuantity, product) => {
+    return totalQuantity + (product.quantity || 0);
+  }, 0);
 
   const likedProducts = useSelector(
     (state: RootState) => state.favorites.favoriteItems as Product[],
@@ -83,7 +87,7 @@ export const BurgerMenuOpened: FC<BurgerMenuProps> = ({
           onClick={handleMenuClose}
         >
           <img src={like} alt="like button" className={cn('like')} />
-          <HeaderCounter products={likedProducts}/>
+          <HeaderCounter productsCount={likedProducts.length}/>
         </Link>
 
         <Link
@@ -94,7 +98,7 @@ export const BurgerMenuOpened: FC<BurgerMenuProps> = ({
           onClick={handleMenuClose}
         >
           <img src={cart} alt="cart button" className={cn('cart')} />
-          <HeaderCounter products={products}/>
+          <HeaderCounter productsCount={countCartItems}/>
         </Link>
       </div>
     </div>
