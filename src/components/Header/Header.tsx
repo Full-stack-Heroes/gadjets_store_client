@@ -12,7 +12,8 @@ import { BurgerMenuOpened } from '../BurgerMenuOpened';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { Product } from '../../types/product';
-import { HeaderCounter } from '../../HeaderCounter/HeaderCounter';
+import { HeaderCounter } from '../HeaderCounter/HeaderCounter';
+import { SearchBar } from '../Search/components/SearchBar/SearchBar';
 
 const cn = classNames.bind(styles);
 
@@ -20,6 +21,10 @@ export const Header: FC = () => {
   const products = useSelector(
     (state: RootState) => state.cart.cartItems as Product[],
   );
+
+  const countCartItems: number = products.reduce((totalQuantity, product) => {
+    return totalQuantity + (product.quantity || 0);
+  }, 0);
 
   const likedProducts = useSelector(
     (state: RootState) => state.favorites.favoriteItems as Product[],
@@ -81,6 +86,8 @@ export const Header: FC = () => {
         </div>
 
         <div className={cn('header__service')}>
+          <SearchBar />
+
           <NavLink
             to="/favourites"
             className={({ isActive }) =>
@@ -95,7 +102,7 @@ export const Header: FC = () => {
             />
 
             <div className={cn('headerCounter')}>
-              <HeaderCounter products={ likedProducts }/>
+              <HeaderCounter productsCount={ likedProducts.length }/>
             </div>
           </NavLink>
 
@@ -112,20 +119,20 @@ export const Header: FC = () => {
               className={cn('service_btn_img')}
             />
             <div className={cn('headerCounter')}>
-              <HeaderCounter products={ products }/>
+              <HeaderCounter productsCount={ countCartItems }/>
             </div>
           </NavLink>
+          <button
+            className={cn('burger_btn', { 'burger_btn-active': isMenuOpen })}
+            onClick={handleMenuClick}>
+            <img
+              src={isMenuOpen ? close : menu}
+              alt={isMenuOpen ? 'close button' : 'menu button'}
+              className={cn('burger_btn_img')}
+            />
+          </button>
         </div>
 
-        <button
-          className={cn('burger_btn', { 'burger_btn-active': isMenuOpen })}
-          onClick={handleMenuClick}>
-          <img
-            src={isMenuOpen ? close : menu}
-            alt={isMenuOpen ? 'close button' : 'menu button'}
-            className={cn('burger_btn_img')}
-          />
-        </button>
       </div>
 
       <BurgerMenuOpened

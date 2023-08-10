@@ -1,23 +1,22 @@
 import { FC, memo } from 'react';
 import styles from './HeaderCounter.module.scss';
 import classNames from 'classnames/bind';
-import { Product } from '.././types/product';
 
 interface Props {
-  products: Product[]
+  productsCount: number;
 }
 
-export const HeaderCounter: FC <Props> = memo(({ products }) => {
+export const HeaderCounter: FC <Props> = memo(({ productsCount }) => {
   const cn = classNames.bind(styles);
 
   return (
     <>
-      {products.length > 0 && (
+      {productsCount > 0 && (
         <div className={cn('countContainer')}>
           <div className={cn('numberOfItems', 'container')}>
             <div className="cart__products_counter">
               <span className="cart__products_counter-text">
-                {products.length < 100 ? products.length : '99+'}
+                {productsCount < 100 ? productsCount : '99+'}
               </span>
             </div>
           </div>
