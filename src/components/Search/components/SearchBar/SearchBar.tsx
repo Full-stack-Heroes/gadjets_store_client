@@ -23,7 +23,7 @@ export const SearchBar: FC = () => {
   }, [query]);
 
   useEffect(() => {
-    setSearchBarVisible(window.innerWidth >= 639);
+    setSearchBarVisible(window.innerWidth > 1199);
   }, []);
 
   const applyQuery = useCallback(
@@ -39,9 +39,12 @@ export const SearchBar: FC = () => {
     setShowSuggestions(true);
   };
 
-  const onSelected = (product: Product) => {
-    setQuery(product.name);
+  const onSelected = () => {
+    setQuery('');
     setShowSuggestions(false);
+    if (window.innerWidth <= 1199) {
+      setSearchBarVisible(false);
+    }
   };
 
   useEffect(() => {
