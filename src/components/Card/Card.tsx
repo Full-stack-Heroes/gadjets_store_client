@@ -48,7 +48,7 @@ export const Card: React.FC<Props> = ({ product }) => {
     if (!productAdded) {
       dispatch(addToCart(product));
     } else {
-      dispatch(removeFromCart(product.itemId));
+      dispatch(removeFromCart(product.id));
     }
 
     setProductAdded(!productAdded);

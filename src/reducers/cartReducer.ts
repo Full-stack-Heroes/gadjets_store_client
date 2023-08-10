@@ -3,6 +3,7 @@
 
 import { Product } from '../types/product';
 import { CartAction, CartActionTypes } from '../actions/cartActions';
+import { addToUserCart, removeFromUserCart } from '../api/users';
 
 interface CartItem extends Product {
   quantity: number;
@@ -19,6 +20,22 @@ const getCartItemsFromLocalStorage = (): CartItem[] => {
 
 const saveCartItemsToLocalStorage = (cartItems: CartItem[]): void => {
   localStorage.setItem('cartItems', JSON.stringify(cartItems));
+};
+
+const saveCartItemsToDB = async(id: number, quantity: number | undefined) => {
+  try {
+    await addToUserCart({ id, quantity });
+  } catch {
+    console.log('Error while saving item to cart');
+  }
+};
+
+const removeCartItemFromDB = async(id: number) => {
+  try {
+    await removeFromUserCart(id);
+  } catch {
+    console.log('Error while saving item to cart');
+  }
 };
 
 const initialState: CartState = {
@@ -40,6 +57,11 @@ const cartReducer = (state = initialState, action: CartAction): CartState => {
             : item,
         );
         saveCartItemsToLocalStorage(updatedCartItems);
+
+        const { id, quantity} = newProduct;
+
+        saveCartItemsToDB(id, quantity);
+
         return {
           ...state,
           cartItems: updatedCartItems,
@@ -51,6 +73,10 @@ const cartReducer = (state = initialState, action: CartAction): CartState => {
         };
         const updatedCartItems = [...state.cartItems, newItem];
         saveCartItemsToLocalStorage(updatedCartItems);
+
+        const { id, quantity} = newItem;
+        saveCartItemsToDB(id, quantity);
+
         return {
           ...state,
           cartItems: updatedCartItems,
@@ -59,9 +85,10 @@ const cartReducer = (state = initialState, action: CartAction): CartState => {
     case CartActionTypes.REMOVE_FROM_CART:
       const productIdToRemove = action.payload;
       const updatedCartItems = state.cartItems.filter(
-        (item) => item.itemId !== productIdToRemove,
+        (item) => item.id !== productIdToRemove,
       );
       saveCartItemsToLocalStorage(updatedCartItems);
+      removeCartItemFromDB(productIdToRemove);
       return {
         ...state,
         cartItems: updatedCartItems,

@@ -2,13 +2,13 @@ import { FC } from 'react';
 import './Cross.scss';
 
 interface Props {
-  handleRemoveFromCart: (itemId: string) => void;
-  itemId: string;
+  handleRemoveFromCart: (id: number) => void;
+  id: number;
 }
 
-export const Cross: FC<Props> = ({ handleRemoveFromCart, itemId }) => {
+export const Cross: FC<Props> = ({ handleRemoveFromCart, id }) => {
   return (
-    <button onClick={() => handleRemoveFromCart(itemId)}>
+    <button onClick={() => handleRemoveFromCart(id)}>
       <svg
         width="16"
         height="16"

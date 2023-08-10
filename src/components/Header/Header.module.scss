@@ -101,30 +101,6 @@
   border-radius: 8px;
 }
 
-@media (max-width: 1199px) {
-  .container {
-    padding-left: 16px;
-  }
-
-  .header {
-    height: 48px;
-
-    &__logo {
-      width: 64px;
-      margin: 0 16px;
-    }
-  }
-
-  .service_btn {
-    width: 48px;
-
-    &_img {
-      position: relative;
-      width: 16px;
-    }
-  }
-}
-
 .burger_btn {
   width: 48px;
   display: none;
@@ -150,14 +126,61 @@
 
 .dropdown-content {
   position: absolute;
-  top: 64px; /* Header height */
-  left: 0;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 10px;
+  row-gap: 10px;
+  top: 64px;
+  right: 0px;
+  width: 192px;
   background: $white;
   border-bottom: 1px solid $elements;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for styling */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 9999;
-  /* Other styling properties */
+
+  &--link {
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 18px;
+    color: $secondary;
+    transition: 0.3s;
+
+    &:hover {
+      transition: 0.3s;
+      color: $primary;
+    }
+  }
+}
+
+@media (max-width: 1199px) {
+  .container {
+    padding-left: 16px;
+  }
+
+
+  .header {
+    height: 48px;
+
+    &__logo {
+      width: 64px;
+      margin: 0 16px;
+    }
+  }
+
+  .dropdown-content {
+    top: 48px;
+    width: 192px;
+  }
+
+  .service_btn {
+    width: 48px;
+
+    &_img {
+      position: relative;
+      width: 16px;
+    }
+  }
 }
 
 @media (max-width: 639px) {
@@ -168,6 +191,10 @@
 
   .service_btn {
     display: none;
+  }
+
+  .dropdown-content {
+    width: 144px;
   }
 
   .nav {

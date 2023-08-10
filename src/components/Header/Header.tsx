@@ -10,9 +10,11 @@ import { Link, NavLink } from 'react-router-dom';
 import { NavigationLink } from '../NavigationLink';
 import classNames from 'classnames/bind';
 import { BurgerMenuOpened } from '../BurgerMenuOpened';
+import { removeAllFromCart } from '../../actions/cartActions'
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { Product } from '../../types/product';
+import { useDispatch } from 'react-redux';
 import { HeaderCounter } from '../HeaderCounter/HeaderCounter';
 import { SearchBar } from '../Search/components/SearchBar/SearchBar';
 
@@ -21,6 +23,8 @@ const cn = classNames.bind(styles);
 export const Header: FC = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const token = localStorage.getItem('token');
+
+  const dispatch = useDispatch();
 
   const products = useSelector(
     (state: RootState) => state.cart.cartItems as Product[],
@@ -52,7 +56,7 @@ export const Header: FC = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    window.location.href = '/';
+    dispatch(removeAllFromCart());
   };
 
   const handleResize = () => {
@@ -186,12 +190,29 @@ export const Header: FC = () => {
           {isDropdownOpen && (
             <div className={cn('dropdown-content')}>
               {token ? (
-                <button onClick={() => handleLogout()}>Log Out</button>
+                <button
+                  onClick={() => handleLogout()}
+                  className={cn('dropdown-content--link')}
+                >
+                  Log Out
+                </button>
               ) : (
                 <>
-                  <Link to="/login">Log In</Link>
+                  <Link
+                    to="/login"
+                    className={cn('dropdown-content--link')}
+                    onClick={() => setIsDropdownOpen(false)}
+                  >
+                    Log In
+                  </Link>
 
-                  <Link to="/Sign Un">Sign Up</Link>
+                  <Link
+                  to="/registration"
+                  className={cn('dropdown-content--link')}
+                  onClick={() => setIsDropdownOpen(false)}
+                  >
+                    Sign Up
+                  </Link>
                 </>
               )}
             </div>
