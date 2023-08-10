@@ -1,6 +1,5 @@
 @import './../../assets/variables/mediaQueries';
 
-
 @include onPhone {
   .countContainer {
     position: relative;
@@ -12,7 +11,7 @@
     height: 14px;
     width: 16px;
     padding: 7px 5px;
-    background-color: #4219D0;
+    background-color: #4219d0;
     border-radius: 50%;
     border: 1px solid #fff;
   }
@@ -25,7 +24,7 @@
 }
 
 .numberOfItems {
-  color: #FFF;
+  color: #fff;
   font-size: 11px;
   font-style: normal;
   font-weight: 700;
