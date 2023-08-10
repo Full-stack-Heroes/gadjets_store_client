@@ -21,27 +21,110 @@ export const Orders: FC = () => {
           OrderDate="09 08 2023"
           Status="Done✅"
           Amount={10000}
-          Items={['https://content2.rozetka.com.ua/goods/images/big_tile/284913550.jpg']}
+          Items={[
+            {
+              id: 23,
+              category: 'phones',
+              itemId: '2312',
+              name: 'Iphone 14',
+              fullPrice: 123,
+              price: 100,
+              screen: 65,
+              capacity: '233',
+              color: 'green',
+              ram: '12',
+              year: 1984,
+              image:
+                'https://content2.rozetka.com.ua/goods/images/big_tile/284913550.jpg',
+              quantity: 1,
+            },
+          ]}
         />
         <OrderItem
           Id="Id 2"
           OrderDate="09 08 2023"
           Status="Done✅"
           Amount={10000}
-          Items={['https://content2.rozetka.com.ua/goods/images/big_tile/284913568.jpg',
-            'https://content2.rozetka.com.ua/goods/images/big_tile/284913561.jpg']}
+          Items={[
+            {
+              id: 24,
+              category: 'phones',
+              itemId: '2314',
+              name: 'Iphone 14',
+              fullPrice: 123,
+              price: 100,
+              screen: 65,
+              capacity: '233',
+              color: 'green',
+              ram: '12',
+              year: 1984,
+              image:
+                'https://content2.rozetka.com.ua/goods/images/big_tile/284913568.jpg',
+              quantity: 1,
+            },
+            {
+              id: 25,
+              category: 'phones',
+              itemId: '2316',
+              name: 'Iphone 14 Pro Max',
+              fullPrice: 123,
+              price: 100,
+              screen: 65,
+              capacity: '233',
+              color: 'green',
+              ram: '12',
+              year: 1984,
+              image:
+                'https://content2.rozetka.com.ua/goods/images/big_tile/284913561.jpg',
+              quantity: 1,
+            },
+          ]}
         />
         <OrderItem
           Id="Id 3"
           OrderDate="09 08 2023"
           Status="Canceled❌"
           Amount={10000}
-          Items={['https://content2.rozetka.com.ua/goods/images/big_tile/284913560.jpg',
-            'https://content2.rozetka.com.ua/goods/images/big_tile/284913561.jpg',
-            'https://content2.rozetka.com.ua/goods/images/big_tile/284913561.jpg',
-            'https://content2.rozetka.com.ua/goods/images/big_tile/284913561.jpg',
-            'https://content2.rozetka.com.ua/goods/images/big_tile/284913561.jpg',
-            'https://content2.rozetka.com.ua/goods/images/big_tile/284913561.jpg']}
+          Items={[
+            {
+              id: 25,
+              category: 'phones',
+              itemId: '2315',
+              name: 'Iphone 14',
+              fullPrice: 123,
+              price: 100,
+              screen: 65,
+              capacity: '233',
+              color: 'green',
+              ram: '12',
+              year: 1984,
+              image:
+                'https://content2.rozetka.com.ua/goods/images/big_tile/284913560.jpg',
+              quantity: 1,
+            },
+            {
+              id: 26,
+              category: 'phones',
+              itemId: '2317',
+              name: 'Iphone 14 Pro Max',
+              fullPrice: 123,
+              price: 100,
+              screen: 65,
+              capacity: '233',
+              color: 'green',
+              ram: '12',
+              year: 1984,
+              image:
+                'https://content2.rozetka.com.ua/goods/images/big_tile/284913561.jpg',
+              quantity: 1,
+            },
+          ]}
+          // Items={['',
+          // 'https://content2.rozetka.com.ua/goods/images/big_tile/284913561.jpg',
+
+          // 'https://content2.rozetka.com.ua/goods/images/big_tile/284913561.jpg',
+          // 'https://content2.rozetka.com.ua/goods/images/big_tile/284913561.jpg',
+          // 'https://content2.rozetka.com.ua/goods/images/big_tile/284913561.jpg']}
         />
       </div>
     </section>

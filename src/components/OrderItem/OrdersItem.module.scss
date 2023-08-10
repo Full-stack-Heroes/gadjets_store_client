@@ -11,6 +11,7 @@
     background-color: #fff;
     border-radius: 16px;
     border: 1px solid $elements-color;
+    overflow: auto;
   }
 
   &Data {
@@ -31,7 +32,12 @@
     padding: 10px;
     margin: -10px;
     color: $primary-color;
-    transform: scale(120%) rotate(-90deg)
+    transform: scale(120%) rotate(-90deg);
+
+    &Clicked {
+      transform: scale(120%) rotate(90deg);
+      right: 5px;
+    }
   }
 
   &ArrowDesktop {
@@ -56,6 +62,13 @@
 
   }
 
+  &ItemFullInfo{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+  }
+
   &Image {
     width: 45px;
     padding: 5px;
@@ -77,6 +90,9 @@
     &Container {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 1fr auto;
+      gap: 16px;
+      overflow: hidden;
     }
 
     &Data {
@@ -100,6 +116,10 @@
       align-items: center;
       color: $primary-color;
       transform: rotate(-90deg);
+
+      &Clicked {
+        transform: rotate(90deg);
+      }
     }
   }
 }
