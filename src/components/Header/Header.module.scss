@@ -148,6 +148,18 @@
   }
 }
 
+.dropdown-content {
+  position: absolute;
+  top: 64px; /* Header height */
+  left: 0;
+  width: 100%;
+  background: $white;
+  border-bottom: 1px solid $elements;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for styling */
+  z-index: 9999;
+  /* Other styling properties */
+}
+
 @media (max-width: 639px) {
   .container {
     padding: 0;
