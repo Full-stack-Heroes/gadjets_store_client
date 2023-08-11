@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export const BASE_URL = 'http://localhost:3000';
+export const BASE_URL = 'https://gadjets-store-apu.onrender.com';
 
 type RequestMethod = 'GET' | 'POST' | 'DELETE';
 
