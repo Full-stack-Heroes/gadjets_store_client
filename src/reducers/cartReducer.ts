@@ -22,7 +22,7 @@ const saveCartItemsToLocalStorage = (cartItems: CartItem[]): void => {
   localStorage.setItem('cartItems', JSON.stringify(cartItems));
 };
 
-const saveCartItemsToDB = async(id: number, quantity: number | undefined) => {
+const saveCartItemsToDB = async (id: number, quantity: number | undefined) => {
   try {
     await addToUserCart({ id, quantity });
   } catch (error) {
@@ -30,7 +30,7 @@ const saveCartItemsToDB = async(id: number, quantity: number | undefined) => {
   }
 };
 
-const removeCartItemFromDB = async(id: number) => {
+const removeCartItemFromDB = async (id: number) => {
   try {
     await removeFromUserCart(id);
   } catch {
@@ -58,7 +58,7 @@ const cartReducer = (state = initialState, action: CartAction): CartState => {
         );
         saveCartItemsToLocalStorage(updatedCartItems);
 
-        const { id, quantity} = newProduct;
+        const { id, quantity } = newProduct;
 
         saveCartItemsToDB(id, quantity);
 
@@ -74,7 +74,7 @@ const cartReducer = (state = initialState, action: CartAction): CartState => {
         const updatedCartItems = [...state.cartItems, newItem];
         saveCartItemsToLocalStorage(updatedCartItems);
 
-        const { id, quantity} = newItem;
+        const { id, quantity } = newItem;
         saveCartItemsToDB(id, quantity);
 
         return {

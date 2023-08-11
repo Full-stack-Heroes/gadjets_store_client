@@ -23,19 +23,19 @@ export const registerUser = async (userData: UserData) => {
 };
 
 export const loginUser = async (credentials: Credentials) => {
-    const dataFromServer = await login(credentials);
+  const dataFromServer = await login(credentials);
 
-    if (!dataFromServer) {
-      throw new Error('User not found');
-    }
+  if (!dataFromServer) {
+    throw new Error('User not found');
+  }
 
-    const { token, cartData, favoritesData } = dataFromServer;
+  const { token, cartData, favoritesData } = dataFromServer;
 
-    console.log(cartData);
+  console.log(cartData);
 
-    localStorage.setItem('cartItems', JSON.stringify(cartData));
-    localStorage.setItem('favoriteItems', JSON.stringify(favoritesData));
+  localStorage.setItem('cartItems', JSON.stringify(cartData));
+  localStorage.setItem('favoriteItems', JSON.stringify(favoritesData));
 
-    localStorage.setItem('token', token);
-    console.log('User logged in with token:', token);
+  localStorage.setItem('token', token);
+  console.log('User logged in with token:', token);
 };

@@ -13,6 +13,7 @@ import { ProductPage } from './pages/ProductPage/ProductPage';
 import { Registration } from './pages/RegistrationPage/Registration';
 import { LogIn } from './pages/LogInPage/LogIn';
 import { PageToTop } from './utils/helpers';
+import { OrdersPage } from './pages/OrdersPage/OrdersPage';
 
 export const App = createBrowserRouter([
   {
@@ -76,6 +77,10 @@ export const App = createBrowserRouter([
       {
         path: 'login',
         element: <LogIn />,
+      },
+      {
+        path: 'orders',
+        element: <OrdersPage />,
       },
     ],
   },

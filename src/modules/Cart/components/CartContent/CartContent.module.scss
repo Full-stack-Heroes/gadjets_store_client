@@ -10,7 +10,6 @@
   display: flex;
   box-sizing: border-box;
   flex-direction: column;
-  max-width: 1200px;
   margin: 0 16px;
   transition: 0.5s;
 
@@ -62,7 +61,8 @@
 
 @media screen and (min-width: 1200px) {
   .cart {
-    margin: 0;
+    max-width: 1200px;
+    margin: 0 auto;
 
     &__container {
       flex-direction: row;

@@ -52,9 +52,13 @@
   text-decoration: none;
 
   &_img {
-    width: 20px;
-    height: 20px;
+    position: absolute;
+    // left: 33%;
     transition: transform 0.3s ease-in-out;
+
+    @include onDesktop {
+      left: 40%;
+    }
   }
 
   &:hover .service_btn_img {
@@ -216,11 +220,41 @@
   }
 }
 
+@media (max-width: 639px) {
+  .container {
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .service_btn {
+    display: none;
+  }
+
+  .dropdown-content {
+    width: 144px;
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .headerCounter {
+    position: absolute;
+    top: 25%;
+    right: 40%;
+  }
+
+  .burger_btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
 @media (max-width: 1199px) {
   .container {
     padding-left: 16px;
   }
-
 
   .header {
     height: 48px;
@@ -243,35 +277,6 @@
       position: relative;
       width: 16px;
     }
-  }
-}
-
-@media (max-width: 639px) {
-  .container {
-    padding: 0;
-    overflow: hidden;
-  }
-
-  .service_btn {
-    display: none;
-  }
-
-  .dropdown-content {
-    width: 144px;
-  }
-
-  .nav {
-    display: none;
-  }
-
-  .headerCounter {
-    display: none;
-  }
-
-  .burger_btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 }
 

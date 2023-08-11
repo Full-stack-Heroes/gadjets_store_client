@@ -1,6 +1,6 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { Card } from '../../components/Card/Card';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
 import home from '../../assets/icons/Home.svg';
 import heart from '../../assets/icons/favourites.png';
@@ -13,6 +13,14 @@ export const Favourites: FC = () => {
   const favouritesItems = useSelector(
     (state: RootState) => state.favorites.favoriteItems,
   );
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!localStorage.getItem('token')) {
+      navigate('/login');
+    }
+  }, []);
 
   const cn = classNames.bind(styles);
 

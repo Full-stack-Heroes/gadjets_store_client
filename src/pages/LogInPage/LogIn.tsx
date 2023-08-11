@@ -22,7 +22,7 @@ export const LogIn: FC = () => {
 
   const handleErrorClose = () => {
     setIsError('');
-  }
+  };
 
   const handleLogin = async () => {
     try {
@@ -33,8 +33,8 @@ export const LogIn: FC = () => {
 
       setIsLoggedIn(true);
     } catch (error: any) {
-      setIsError(error)
-      console.log('agfiuyhsgifudhliuhlsk')
+      setIsError(error);
+      console.log('agfiuyhsgifudhliuhlsk');
     }
   };
 
@@ -98,7 +98,9 @@ export const LogIn: FC = () => {
               })}>
               <img src={success} className={styles.errorModalContentImage} />
               <h2 className={styles.errorModalContentText}>Success!</h2>
-              <p className={styles.errorModalContentError}>You have successfully logged in!</p>
+              <p className={styles.errorModalContentError}>
+                You have successfully logged in!
+              </p>
               <button
                 className={styles.errorModalContentButton}
                 onClick={() => handleGoHome()}>
@@ -110,21 +112,25 @@ export const LogIn: FC = () => {
       )}
       {isError && (
         <>
-        <div className={styles.backdrop}></div>
-        <div className={styles.errorModal}>
-          <div
-            className={cn(styles.errorModalContent, {
-              [styles.errorModalContentActive]: isError,
-            })}>
-            <img src={errorImage} className={styles.errorModalContentImage} />
-            <h2 className={styles.errorModalContentText}>Error</h2>
-            <p className={styles.errorModalContentError}>Please, check your Email or Password again</p>
-            <button onClick={handleErrorClose} className={styles.errorModalContentButton}>
-              Close
-            </button>
+          <div className={styles.backdrop}></div>
+          <div className={styles.errorModal}>
+            <div
+              className={cn(styles.errorModalContent, {
+                [styles.errorModalContentActive]: isError,
+              })}>
+              <img src={errorImage} className={styles.errorModalContentImage} />
+              <h2 className={styles.errorModalContentText}>Error</h2>
+              <p className={styles.errorModalContentError}>
+                Please, check your Email or Password again
+              </p>
+              <button
+                onClick={handleErrorClose}
+                className={styles.errorModalContentButton}>
+                Close
+              </button>
+            </div>
           </div>
-        </div>
-      </>
+        </>
       )}
     </div>
   );

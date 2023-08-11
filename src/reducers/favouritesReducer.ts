@@ -25,7 +25,7 @@ const saveFavoriteItemsToLocalStorage = (
   localStorage.setItem('favoriteItems', JSON.stringify(favoriteItems));
 };
 
-const saveFavoritesItemsToDB = async(id: number) => {
+const saveFavoritesItemsToDB = async (id: number) => {
   try {
     await addToUserFavorites(id);
   } catch (error) {
@@ -33,7 +33,7 @@ const saveFavoritesItemsToDB = async(id: number) => {
   }
 };
 
-const removeFavoritesItemFromDB = async(id: number) => {
+const removeFavoritesItemFromDB = async (id: number) => {
   try {
     await removeFromUserFavorites(id);
   } catch {
@@ -60,7 +60,7 @@ const favoriteReducer = (
       if (!existingFavorite) {
         const updatedFavoriteItems = [...state.favoriteItems, newFavorite];
         saveFavoriteItemsToLocalStorage(updatedFavoriteItems);
-        saveFavoritesItemsToDB(newFavorite.id)
+        saveFavoritesItemsToDB(newFavorite.id);
         return {
           ...state,
           favoriteItems: updatedFavoriteItems,
@@ -75,7 +75,7 @@ const favoriteReducer = (
         (item) => item.id !== favoriteIdToRemove,
       );
       saveFavoriteItemsToLocalStorage(updatedFavoriteItems);
-      removeFavoritesItemFromDB(favoriteIdToRemove)
+      removeFavoritesItemFromDB(favoriteIdToRemove);
       return {
         ...state,
         favoriteItems: updatedFavoriteItems,

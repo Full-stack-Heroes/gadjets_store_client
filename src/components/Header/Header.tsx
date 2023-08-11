@@ -3,15 +3,16 @@ import styles from './Header.module.scss';
 import logo from '../../assets/images/Logo.svg';
 import like from '../../assets/icons/Heart.svg';
 import cart from '../../assets/icons/Cart.svg';
+import orders from '../../assets/icons/Orders.svg';
 import menu from '../../assets/icons/Menu.svg';
 import close from '../../assets/icons/Close.svg';
 import user from '../../assets/icons/User.svg';
 import success from '../../assets/icons/success.png';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { NavigationLink } from '../NavigationLink';
 import classNames from 'classnames/bind';
 import { BurgerMenuOpened } from '../BurgerMenuOpened';
-import { removeAllFromCart } from '../../actions/cartActions'
+import { removeAllFromCart } from '../../actions/cartActions';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { Product } from '../../types/product';
@@ -43,6 +44,8 @@ export const Header: FC = () => {
     (state: RootState) => state.favorites.favoriteItems as Product[],
   );
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -59,14 +62,15 @@ export const Header: FC = () => {
   const handleLogout = () => {
     localStorage.removeItem('token');
     dispatch(removeAllFromCart());
-    setIsLoggedOut(true)
+    setIsLoggedOut(true);
     setIsDropdownOpen(false);
     dispatch(removeAllFromFavourites());
+    navigate('/');
   };
 
   const handleCloseLogOut = () => {
     setIsLoggedOut(false);
-  }
+  };
 
   const handleResize = () => {
     setWindowWidth(window.innerWidth);
@@ -126,6 +130,20 @@ export const Header: FC = () => {
 
         <div className={cn('header__service')}>
           <SearchBar />
+
+          <NavLink
+            to="/orders"
+            className={({ isActive }) =>
+              cn('service_btn', {
+                active: isActive,
+              })
+            }>
+            <img
+              src={orders}
+              alt="orders button"
+              className={cn('service_btn_img')}
+            />
+          </NavLink>
 
           <NavLink
             to="/favourites"
@@ -201,8 +219,7 @@ export const Header: FC = () => {
               {token ? (
                 <button
                   onClick={() => handleLogout()}
-                  className={cn('dropdown-content--link')}
-                >
+                  className={cn('dropdown-content--link')}>
                   Log Out
                 </button>
               ) : (
@@ -210,16 +227,14 @@ export const Header: FC = () => {
                   <Link
                     to="/login"
                     className={cn('dropdown-content--link')}
-                    onClick={() => setIsDropdownOpen(false)}
-                  >
+                    onClick={() => setIsDropdownOpen(false)}>
                     Log In
                   </Link>
 
                   <Link
-                  to="/registration"
-                  className={cn('dropdown-content--link')}
-                  onClick={() => setIsDropdownOpen(false)}
-                  >
+                    to="/registration"
+                    className={cn('dropdown-content--link')}
+                    onClick={() => setIsDropdownOpen(false)}>
                     Sign Up
                   </Link>
                 </>
@@ -229,21 +244,28 @@ export const Header: FC = () => {
 
           {isLoggedout && (
             <>
-            <div className={styles.backdrop}></div>
-            <div className={styles.errorModal}>
-              <div
-                className={cn(styles.errorModalContent, {
-                  [styles.errorModalContentActive]: isLoggedout,
-                })}>
-                <img src={success} className={styles.errorModalContentImage} />
-                <h2 className={styles.errorModalContentText}>Success!</h2>
-                <p className={styles.errorModalContentError}>You have successfully logged out</p>
-                <button onClick={handleCloseLogOut} className={styles.errorModalContentButton}>
-                  Continue
-                </button>
+              <div className={styles.backdrop}></div>
+              <div className={styles.errorModal}>
+                <div
+                  className={cn(styles.errorModalContent, {
+                    [styles.errorModalContentActive]: isLoggedout,
+                  })}>
+                  <img
+                    src={success}
+                    className={styles.errorModalContentImage}
+                  />
+                  <h2 className={styles.errorModalContentText}>Success!</h2>
+                  <p className={styles.errorModalContentError}>
+                    You have successfully logged out
+                  </p>
+                  <button
+                    onClick={handleCloseLogOut}
+                    className={styles.errorModalContentButton}>
+                    Continue
+                  </button>
+                </div>
               </div>
-            </div>
-          </>
+            </>
           )}
 
           <button
