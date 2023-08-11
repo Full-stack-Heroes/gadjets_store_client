@@ -4,16 +4,23 @@ import styles from './HomeContent.module.scss';
 import { Categories } from '../../../../components/Categories/Categories';
 import { CardCarousel } from '../../../../components/CardCarousel/CardCarousel';
 import { getProducts } from '../../../../api/products';
+import { AddModal } from '../../../../components/CategoriesCards/AddModal/AddModal';
 import { Product } from '../../../../types/product';
 import { Loader } from '../../../../components/Loader/Loader';
 
 export const HomeContent: FC = () => {
   const cn = classNames.bind(styles);
   const [discountedProducts, setDiscountedProducts] = useState<Product[]>();
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [newProducts, setNewProducts] = useState<Product[]>();
   const locationToProduct = {
     discounted: 'products/discount',
     new: 'products/new',
+  };
+
+  const handleModalClose = () => {
+    setIsLoggedIn(true);
+    window.location.href = '/login';
   };
 
   const fetchData = useCallback(async () => {
@@ -39,7 +46,12 @@ export const HomeContent: FC = () => {
         {!newProducts ? (
           <Loader />
         ) : (
-          <CardCarousel products={newProducts} title="New models" />
+          <CardCarousel
+            products={newProducts}
+            title="New models"
+            setIsLoggedIn={setIsLoggedIn}
+            isLoggedIn={isLoggedIn}
+          />
         )}
       </div>
 
@@ -49,7 +61,19 @@ export const HomeContent: FC = () => {
         {!discountedProducts ? (
           <Loader />
         ) : (
-          <CardCarousel products={discountedProducts} title="Hot prices" />
+          <CardCarousel
+            products={discountedProducts}
+            title="Hot prices"
+            setIsLoggedIn={setIsLoggedIn}
+            isLoggedIn={isLoggedIn}
+          />
+        )}
+
+        {isLoggedIn && (
+          <AddModal
+            isLoggedIn={isLoggedIn}
+            handleModalClose={handleModalClose}
+          />
         )}
       </div>
     </div>

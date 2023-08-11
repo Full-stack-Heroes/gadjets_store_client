@@ -45,6 +45,7 @@ const ButtonGroup: FC = ({
   previous,
   carouselState,
 }: ButtonGroupProps) => {
+
   const currentSlide = carouselState?.currentSlide ?? 0;
   const isInitialSlide = currentSlide === 0;
 
@@ -84,9 +85,11 @@ const ButtonGroup: FC = ({
 interface Props {
   products: Product[];
   title: string;
+  setIsLoggedIn: (calue: boolean) => void;
+  isLoggedIn: boolean;
 }
 
-export const CardCarousel: FC<Props> = ({ products, title }) => {
+export const CardCarousel: FC<Props> = ({ products, title, setIsLoggedIn, isLoggedIn }) => {
   return (
     <div className={cn('CarouselContainer')}>
       <div className={cn('HeaderContainer')}>
@@ -104,7 +107,12 @@ export const CardCarousel: FC<Props> = ({ products, title }) => {
         partialVisible={true}
         infinite={true}>
         {products.map((product) => (
-          <Card product={product} key={product.id} />
+          <Card
+            product={product}
+            key={product.id}
+            setIsLoggedIn={setIsLoggedIn}
+            isLoggedIn={isLoggedIn}
+          />
         ))}
       </Carousel>
     </div>

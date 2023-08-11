@@ -185,11 +185,8 @@ export const Header: FC = () => {
           <NavLink
             to="#"
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            className={({ isActive }) =>
-              cn('service_btn', {
-                active: isActive,
-              })
-            }>
+            className={cn('service_btn')}
+          >
             <img
               src={user}
               alt="user button"
@@ -201,11 +198,8 @@ export const Header: FC = () => {
             <NavLink
               to="#"
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className={({ isActive }) =>
-                cn('burger_btn', {
-                  'burger_btn-active': isActive,
-                })
-              }>
+              className={cn('burger_btn')}
+              >
               <img
                 src={user}
                 alt="like button"

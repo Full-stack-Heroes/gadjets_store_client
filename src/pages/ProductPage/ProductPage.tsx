@@ -96,6 +96,8 @@ export const ProductPage: FC = () => {
             <CardCarousel
               products={recommendedProducts}
               title="You may also like"
+              isLoggedIn={isLoggedIn}
+              setIsLoggedIn={setIsLoggedIn}
             />
           )}
         </>
