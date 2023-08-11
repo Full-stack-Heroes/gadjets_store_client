@@ -45,6 +45,22 @@ export const Pagination: FC<Props> = ({
     scrollToTop();
   };
 
+  const getPageNumbersToShow = () => {
+    const pagesToShow = [];
+    
+    pagesToShow.push(currentPage);
+
+    for (let i = currentPage - 1; i >= Math.max(currentPage - 2, 1); i--) {
+      pagesToShow.unshift(i);
+    }
+
+    for (let i = currentPage + 1; i <= Math.min(currentPage + 2, pageCount); i++) {
+      pagesToShow.push(i);
+    }
+
+    return pagesToShow;
+  };
+
   return (
     <ul className={styles.pagination}>
       <li
@@ -60,7 +76,7 @@ export const Pagination: FC<Props> = ({
         <Arrow />
       </li>
 
-      {Array.from({ length: pageCount }, (_, index) => index + 1).map(
+      {getPageNumbersToShow().map(
         (page) => {
           const isPageSelected = currentPage === page;
           const isLastItem = page === pageCount;
