@@ -47,24 +47,26 @@ export const Orders: FC = () => {
         {isLoading && <Loader />}
 
         {userOrders ? (
-          userOrders.map((order) => (
-            <OrderItem
-              key={order.id}
-              Id={String(order.id)}
-              OrderDate={order.createdAt
-                .split('T')[0]
-                .split('-')
-                .reverse()
-                .join(' ')}
-              Status={order.status}
-              Amount={order.productsWithQuantity.reduce(
-                (accumulator: number, product) =>
-                  accumulator + Number(product.price) * product.quantity,
-                0,
-              )}
-              Items={order.productsWithQuantity}
-            />
-          ))
+          userOrders
+            .reverse()
+            .map((order) => (
+              <OrderItem
+                key={order.id}
+                Id={String(order.id)}
+                OrderDate={order.createdAt
+                  .split('T')[0]
+                  .split('-')
+                  .reverse()
+                  .join(' ')}
+                Status={order.status}
+                Amount={order.productsWithQuantity.reduce(
+                  (accumulator: number, product) =>
+                    accumulator + Number(product.price) * product.quantity,
+                  0,
+                )}
+                Items={order.productsWithQuantity}
+              />
+            ))
         ) : (
           <div className={cn('emptyContainer')}>
             <img src={cart} alt="" />

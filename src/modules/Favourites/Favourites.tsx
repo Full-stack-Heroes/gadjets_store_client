@@ -62,7 +62,7 @@ export const Favourites: FC = () => {
                 product={item}
                 key={item.id}
                 setIsLoggedIn={setIsLoggedIn}
-                isLoggedIn={isLoggedIn  }
+                isLoggedIn={isLoggedIn}
               />
             ))}
           </div>
