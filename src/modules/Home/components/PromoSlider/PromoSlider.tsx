@@ -95,13 +95,20 @@ export const PromoSlider: FC = () => {
     };
 
     if (sliderElement.current) {
-      sliderElement.current.addEventListener('touchstart', handleTouchStart, false);
+      sliderElement.current.addEventListener(
+        'touchstart',
+        handleTouchStart,
+        false,
+      );
       sliderElement.current.addEventListener('touchend', handleTouchEnd, false);
     }
 
     return () => {
       if (sliderElement.current) {
-        sliderElement.current.removeEventListener('touchstart', handleTouchStart);
+        sliderElement.current.removeEventListener(
+          'touchstart',
+          handleTouchStart,
+        );
         sliderElement.current.removeEventListener('touchend', handleTouchEnd);
       }
     };
@@ -115,19 +122,12 @@ export const PromoSlider: FC = () => {
           onClick={() => {
             setIsAutoScrolling(false);
             goToPrevious();
-          }}
-        >
+          }}>
           <img src={arrow} alt="left arrow for slider" />
         </button>
 
-        <div
-          className={cn('slider__slides')}
-          ref={sliderElement}
-        >
-          <ImageSlider
-            currentIndex={currentIndex}
-            slides={slides}
-          />
+        <div className={cn('slider__slides')} ref={sliderElement}>
+          <ImageSlider currentIndex={currentIndex} slides={slides} />
         </div>
 
         <button
@@ -135,8 +135,7 @@ export const PromoSlider: FC = () => {
           onClick={() => {
             setIsAutoScrolling(false);
             goToNext();
-          }}
-        >
+          }}>
           <img src={arrow} alt="right arrow for slider" />
         </button>
       </div>
@@ -149,9 +148,9 @@ export const PromoSlider: FC = () => {
               goToSlide(index);
               setIsAutoScrolling(false);
             }}
-            className={cn('slider__dot', { 'slider__dot-active': index === currentIndex })}
-          >
-          </div>
+            className={cn('slider__dot', {
+              'slider__dot-active': index === currentIndex,
+            })}></div>
         ))}
       </div>
     </div>

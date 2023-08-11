@@ -1,0 +1,142 @@
+@import '../../components/styles/Colors.module.scss';
+
+.Order {
+  &Container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+    background-color: #fff;
+    border-radius: 16px;
+    border: 1px solid $elements-color;
+    overflow: hidden;
+  }
+
+  &Data {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  &ServiceData {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &ArrowMobile {
+    position: relative;
+    display: inline-block;
+    padding: 10px;
+    margin: -10px;
+    color: $primary-color;
+    transform: scale(120%) rotate(-90deg);
+
+    transition: transform 0.2s ease-in-out;
+
+    &Clicked {
+      transform: scale(120%) rotate(90deg);
+      right: 5px;
+    }
+  }
+
+  &ArrowDesktop {
+    display: none;
+  }
+
+  &Products {
+    display: flex;
+    gap: 8px;
+  }
+
+  &ProductsCounter {
+    display: flex;
+    align-items: center;
+    width: 45px;
+    padding: 5px;
+    height: 70px;
+    font-size: 24px;
+    color: $secondary-color;
+    border: 1px solid var(--gray-elements, #e2e6e9);
+    border-radius: 16px;
+  }
+
+  &ItemFullInfo {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 12px;
+  }
+
+  &ItemQuantity {
+    text-align: center;
+  }
+
+  &ItemPrice {
+    text-align: center;
+  }
+
+  &Image {
+    object-fit: cover;
+    object-position: center;
+    padding: 5px;
+    height: 60px;
+    width: 50px;
+  }
+
+  &ServiceData {
+    color: $secondary-color;
+    margin-bottom: 5px;
+  }
+
+  &AmountText {
+    color: $secondary-color;
+  }
+}
+
+@media screen and (min-width: 640px) {
+  .Order {
+    &Container {
+      display: grid;
+      grid-template-columns: 1fr 1fr 2fr;
+      grid-template-rows: auto;
+      gap: 16px;
+      overflow: hidden;
+    }
+
+    &Data {
+      flex-direction: column;
+    }
+
+    &ArrowMobile {
+      display: none;
+    }
+
+    &ItemFullInfo {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    &Products {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      height: max-content;
+    }
+
+    &ArrowDesktop {
+      margin-top: 23px;
+      height: 16px;
+      width: 16px;
+      display: flex;
+      align-items: center;
+      color: $primary-color;
+      transform: rotate(-90deg);
+      transition: transform 0.2s ease-in-out;
+      &Clicked {
+        transform: rotate(90deg);
+      }
+    }
+  }
+}

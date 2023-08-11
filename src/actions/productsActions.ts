@@ -19,7 +19,9 @@ interface SetLoadingAction {
   payload: boolean;
 }
 
-export const setProducts = (products: productWithCounter): SetProductsAction => ({
+export const setProducts = (
+  products: productWithCounter,
+): SetProductsAction => ({
   type: ProductActionTypes.SET_PRODUCTS,
   payload: products,
 });

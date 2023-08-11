@@ -5,18 +5,18 @@ import styles from '../cards.module.scss';
 import classNames from 'classnames/bind';
 
 const showByPage = [
-  {title: '12', value: '12'},
-  {title: '24', value: '24'},
-  {title: '36', value: '36'},
+  { title: '12', value: '12' },
+  { title: '24', value: '24' },
+  { title: '36', value: '36' },
 ];
 
 interface Props {
-  className: string
+  className: string;
 }
 
 const cn = classNames.bind(styles);
 
-export const ShowByPage:FC<Props> = ({ className }) => {
+export const ShowByPage: FC<Props> = ({ className }) => {
   const queryUpdater = useQueryParamUpdater();
 
   const handlePageChange = (value: string) => {

@@ -10,7 +10,6 @@
   display: flex;
   box-sizing: border-box;
   flex-direction: column;
-  max-width: 1200px;
   margin: 0 16px;
   transition: 0.5s;
 
@@ -62,7 +61,8 @@
 
 @media screen and (min-width: 1200px) {
   .cart {
-    margin: 0;
+    max-width: 1200px;
+    margin: 0 auto;
 
     &__container {
       flex-direction: row;
@@ -102,10 +102,6 @@
     position: absolute;
     right: 10px;
     top: 10px;
-  }
-
-  &Image {
-    width: 48px;
   }
 
   &Thanks {
@@ -179,7 +175,6 @@
       box-shadow: 0px 3px 13px 0px rgba(23, 32, 49, 0.4);
     }
   }
-
 
   &BottomText {
     align-items: center;

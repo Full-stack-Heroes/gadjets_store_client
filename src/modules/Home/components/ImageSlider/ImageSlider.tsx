@@ -14,16 +14,14 @@ export const ImageSlider: FC<ImageSliderProps> = ({ slides, currentIndex }) => {
     <>
       <div className={cn('container__slider')}>
         <div
-          style={{transform: `translateX(-${100 * currentIndex}%)`}}
+          style={{ transform: `translateX(-${100 * currentIndex}%)` }}
           className={cn('slider')}>
           {slides.map((slide, index) => (
             <Link
               to="/phones/apple-iphone-14-256gb-purple"
               key={index}
               className={cn('slider__slide')}>
-              <img
-                className={cn('slider__image')}
-                src={slide}></img>
+              <img className={cn('slider__image')} src={slide}></img>
             </Link>
           ))}
         </div>

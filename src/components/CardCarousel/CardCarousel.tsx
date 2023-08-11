@@ -14,7 +14,7 @@ const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1200 },
     items: 4,
-    slidesToSlide: 2
+    slidesToSlide: 2,
   },
   tablet: {
     breakpoint: { max: 1199, min: 860 },
@@ -37,12 +37,15 @@ const responsive = {
     breakpoint: { max: 400, min: 320 },
     items: 1.1,
     slidesToSlide: 1,
-  }
+  },
 };
 
-const ButtonGroup:FC = (
-  { next, previous, carouselState }
-  : ButtonGroupProps) => {
+const ButtonGroup: FC = ({
+  next,
+  previous,
+  carouselState,
+}: ButtonGroupProps) => {
+
   const currentSlide = carouselState?.currentSlide ?? 0;
   const isInitialSlide = currentSlide === 0;
 
@@ -65,16 +68,14 @@ const ButtonGroup:FC = (
           'Button--disabled': isInitialSlide,
         })}
         aria-label="Go left"
-        onClick={handlePrevClick}
-      >
+        onClick={handlePrevClick}>
         <img src={Up} />
       </button>
 
       <button
         className={cn('Button', 'Button--right')}
         aria-label="Go right"
-        onClick={handleNextClick}
-      >
+        onClick={handleNextClick}>
         <img src={Up} />
       </button>
     </div>
@@ -82,19 +83,19 @@ const ButtonGroup:FC = (
 };
 
 interface Props {
-  products: Product[]
+  products: Product[];
   title: string;
+  setIsLoggedIn: (calue: boolean) => void;
+  isLoggedIn: boolean;
 }
 
-export const CardCarousel:FC<Props> = ({ products, title }) => {
+export const CardCarousel: FC<Props> = ({ products, title, setIsLoggedIn, isLoggedIn }) => {
   return (
     <div className={cn('CarouselContainer')}>
       <div className={cn('HeaderContainer')}>
         <h2 className={cn('Header')}>{title}</h2>
 
-        <div className={cn('NavButtons')}>
-
-        </div>
+        <div className={cn('NavButtons')}></div>
       </div>
 
       <Carousel
@@ -104,10 +105,14 @@ export const CardCarousel:FC<Props> = ({ products, title }) => {
         arrows={false}
         renderButtonGroupOutside={true}
         partialVisible={true}
-        infinite={true}
-      >
-        {products.map(product => (
-          <Card product={product} key={product.id} />
+        infinite={true}>
+        {products.map((product) => (
+          <Card
+            product={product}
+            key={product.id}
+            setIsLoggedIn={setIsLoggedIn}
+            isLoggedIn={isLoggedIn}
+          />
         ))}
       </Carousel>
     </div>

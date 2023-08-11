@@ -1,18 +1,17 @@
 @import './../../assets/variables/mediaQueries';
 
-
 @include onPhone {
   .countContainer {
-    position: relative;
-    bottom: 7px;
-    right: 7px;
+    position: absolute;
+    bottom: 60%;
+    left: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 14px;
+    height: 16px;
     width: 16px;
     padding: 7px 5px;
-    background-color: #4219D0;
+    background-color: #4219d0;
     border-radius: 50%;
     border: 1px solid #fff;
   }
@@ -20,12 +19,15 @@
 
 @include onTablet {
   .countContainer {
-    left: 66%;
+    left: 55%;
+    bottom: 50%;
+    height: 18px;
+    width: 18px;
   }
 }
 
 .numberOfItems {
-  color: #FFF;
+  color: #fff;
   font-size: 11px;
   font-style: normal;
   font-weight: 700;

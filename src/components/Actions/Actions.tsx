@@ -3,14 +3,24 @@ import styles from './Action.module.scss';
 import classNames from 'classnames/bind';
 import heart from '../../assets/icons/Heart.svg';
 import filledheart from '../../assets/icons/Heart_Filled.svg';
-import { generateId, linkByCapacity, linkByColor, normalizeMemory, normalizeRam, normalizeWatchBand } from '../../utils/helpers';
+import {
+  generateId,
+  linkByCapacity,
+  linkByColor,
+  normalizeMemory,
+  normalizeRam,
+  normalizeWatchBand,
+} from '../../utils/helpers';
 import { ProductDetails } from '../../types/productDetails';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store';
 import { Product } from '../../types/product';
 import { addToCart, removeFromCart } from '../../actions/cartActions';
 import { productColors } from '../styles/productColors';
-import { addToFavourites, removeFromFavourites } from '../../actions/favouriteActions';
+import {
+  addToFavourites,
+  removeFromFavourites,
+} from '../../actions/favouriteActions';
 import { Link } from 'react-router-dom';
 
 const cn = classNames.bind(styles);
@@ -18,15 +28,15 @@ const cn = classNames.bind(styles);
 interface Props {
   className: string | undefined;
   product: ProductDetails;
+  setIsLoggedIn: (value: boolean) => void;
 }
 
 interface CustomStyleProps extends React.CSSProperties {
   '--after-background-color'?: string;
 }
 
-export const Actions: FC<Props> = ({ className, product }) => {
+export const Actions: FC<Props> = ({ className, product, setIsLoggedIn }) => {
   const {
-    id,
     capacity,
     capacityAvailable,
     priceRegular,
@@ -40,8 +50,14 @@ export const Actions: FC<Props> = ({ className, product }) => {
     productItemInfo,
   } = product;
 
-  const productsInCart = useSelector((state: RootState) => state.cart.cartItems as Product[]);
-  const likedProducts = useSelector((state: RootState) => state.favorites.favoriteItems as Product[]);
+  const productsInCart = useSelector(
+    (state: RootState) => state.cart.cartItems as Product[],
+  );
+  const likedProducts = useSelector(
+    (state: RootState) => state.favorites.favoriteItems as Product[],
+  );
+
+  const token = localStorage.getItem('token');
 
   const dispatch = useDispatch();
 
@@ -53,19 +69,25 @@ export const Actions: FC<Props> = ({ className, product }) => {
     return likedProducts.some((item: Product) => item.itemId === product.id);
   };
 
-  const [isProductInCart, setIsProductInCart] = useState(checkIsProductInCard());
+  const [isProductInCart, setIsProductInCart] = useState(
+    checkIsProductInCard(),
+  );
   const [isProductLiked, setIsProductLiked] = useState(checkIsProductLiked());
   const buttonText = isProductInCart ? 'added' : 'add to cart';
   const buttonHeart = isProductLiked ? filledheart : heart;
 
   const handleProductAdded = () => {
-    if (!isProductInCart) {
-      dispatch(addToCart(productItemInfo));
-    } else {
-      dispatch(removeFromCart(id));
-    }
+    if (token) {
+      if (!isProductInCart) {
+        dispatch(addToCart(productItemInfo));
+      } else {
+        dispatch(removeFromCart(productItemInfo.id));
+      }
 
-    setIsProductInCart(prev => !prev);
+      setIsProductInCart((prev) => !prev);
+    } else {
+      setIsLoggedIn(true);
+    }
   };
 
   const handleProductLiked = () => {
@@ -75,7 +97,7 @@ export const Actions: FC<Props> = ({ className, product }) => {
       dispatch(removeFromFavourites(Number(product.productItemInfo.id)));
     }
 
-    setIsProductLiked(prev => !prev);
+    setIsProductLiked((prev) => !prev);
   };
 
   useEffect(() => {
@@ -96,9 +118,12 @@ export const Actions: FC<Props> = ({ className, product }) => {
             className={cn('Actions__color', {
               'Actions__color--active': color === colorAv,
             })}
-            style={{ '--after-background-color': String(productColors[colorAv]) } as CustomStyleProps}
-            key={generateId()}
-          ></Link>
+            style={
+              {
+                '--after-background-color': String(productColors[colorAv]),
+              } as CustomStyleProps
+            }
+            key={generateId()}></Link>
         ))}
       </div>
 
@@ -106,8 +131,7 @@ export const Actions: FC<Props> = ({ className, product }) => {
         <p className={cn('Actions__header')}>
           {productItemInfo.category === 'accessories'
             ? 'Select display size'
-            : 'Select capacity'
-          }
+            : 'Select capacity'}
         </p>
 
         {capacityAvailable.map((capacityAv) => (
@@ -119,8 +143,7 @@ export const Actions: FC<Props> = ({ className, product }) => {
             key={generateId()}>
             {productItemInfo.category === 'accessories'
               ? normalizeWatchBand(capacityAv)
-              : normalizeMemory(capacityAv)
-            }
+              : normalizeMemory(capacityAv)}
           </Link>
         ))}
       </div>
@@ -135,8 +158,7 @@ export const Actions: FC<Props> = ({ className, product }) => {
           className={cn('Button__add', {
             ['Button__add--active']: isProductInCart,
           })}
-          onClick={() => handleProductAdded()}
-        >
+          onClick={() => handleProductAdded()}>
           {buttonText}
         </button>
 
@@ -144,8 +166,7 @@ export const Actions: FC<Props> = ({ className, product }) => {
           className={cn('Button__like', {
             ['Button__like--active']: isProductLiked,
           })}
-          onClick={() => handleProductLiked()}
-        >
+          onClick={() => handleProductLiked()}>
           <img src={buttonHeart} />
         </button>
       </div>

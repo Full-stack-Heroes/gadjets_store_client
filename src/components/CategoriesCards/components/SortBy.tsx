@@ -1,4 +1,3 @@
-
 import { FC } from 'react';
 import { useQueryParamUpdater } from '../../../hooks/useQueryParamUpdater';
 import { SelectDropdown } from '../../SelectDropdown/SelectDropdown';
@@ -6,9 +5,9 @@ import classNames from 'classnames/bind';
 import styles from '../cards.module.scss';
 
 const sortByVariants = [
-  {title: 'Year', value: 'year'},
-  {title: 'Price', value: 'price'},
-  {title: 'Screen', value: 'screen'},
+  { title: 'Year', value: 'year' },
+  { title: 'Price', value: 'price' },
+  { title: 'Screen', value: 'screen' },
 ];
 
 interface Props {
@@ -17,7 +16,7 @@ interface Props {
 
 const cn = classNames.bind(styles);
 
-export const SortBy:FC<Props> = ({ className }) => {
+export const SortBy: FC<Props> = ({ className }) => {
   const queryUpdater = useQueryParamUpdater();
 
   const handlePageChange = (value: string) => {

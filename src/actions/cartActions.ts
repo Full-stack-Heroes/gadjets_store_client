@@ -14,7 +14,7 @@ interface AddToCartAction {
 
 interface RemoveFromCartAction {
   type: CartActionTypes.REMOVE_FROM_CART;
-  payload: string;
+  payload: number;
 }
 
 interface UpdateQuantityAction {
@@ -34,7 +34,7 @@ export const addToCart = (product: Product): AddToCartAction => ({
   payload: product,
 });
 
-export const removeFromCart = (productId: string): RemoveFromCartAction => ({
+export const removeFromCart = (productId: number): RemoveFromCartAction => ({
   type: CartActionTypes.REMOVE_FROM_CART,
   payload: productId,
 });
@@ -58,4 +58,4 @@ export type CartAction =
   | AddToCartAction
   | RemoveFromCartAction
   | UpdateQuantityAction
-  | RemoveAllFromCartAction
+  | RemoveAllFromCartAction;

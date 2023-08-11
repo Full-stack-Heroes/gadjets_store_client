@@ -11,7 +11,7 @@ import { updateQuantity } from '../../actions/cartActions';
 import { Link } from 'react-router-dom';
 interface Props {
   product: Product;
-  handleRemoveFromCart: (itemId: string) => void;
+  handleRemoveFromCart: (id: number) => void;
 }
 
 export const CartItem: React.FC<Props> = ({
@@ -35,20 +35,19 @@ export const CartItem: React.FC<Props> = ({
     }
   };
 
-  const { image, name, price, itemId, id } = product;
+  const { image, name, price, id } = product;
   const totalProductPrice = price * productQuantity;
 
   return (
     <div key={id} className={styles.item__container}>
       <div className={styles.item_phone_info}>
         <div className={styles.item__container_close}>
-          <Cross itemId={itemId} handleRemoveFromCart={handleRemoveFromCart} />
+          <Cross id={id} handleRemoveFromCart={handleRemoveFromCart} />
         </div>
 
         <Link
           to={`../${product.category}/${product.itemId}`}
-          className={styles.itemLink}
-        >
+          className={styles.itemLink}>
           <img
             src={normalizeImage(image)}
             className={styles.item__container_phone}

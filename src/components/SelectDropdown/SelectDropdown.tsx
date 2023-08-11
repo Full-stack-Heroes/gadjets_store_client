@@ -4,28 +4,31 @@ import { FC, useEffect, useRef, useState } from 'react';
 import { Arrow } from '../Arrow/Arrow';
 
 interface Props {
-  options: Option[],
-  onChange: (value: string) => void,
-  title: string,
-  defaultValue: Option,
+  options: Option[];
+  onChange: (value: string) => void;
+  title: string;
+  defaultValue: Option;
 }
 
 interface Option {
-  title: string,
-  value: string,
+  title: string;
+  value: string;
 }
 
 const cn = classNames.bind(styles);
 
-export const SelectDropdown:FC<Props> = (
-  {options, onChange, title, defaultValue}
-) => {
+export const SelectDropdown: FC<Props> = ({
+  options,
+  onChange,
+  title,
+  defaultValue,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentSelected, setCurrentSelected] = useState(defaultValue);
   const rootRef = useRef<HTMLDivElement>(null);
 
   const handleToggleDropdownMenu = () => {
-    setIsOpen(prev => !prev);
+    setIsOpen((prev) => !prev);
   };
 
   const handleOptionClick = (option: Option) => {
@@ -55,25 +58,28 @@ export const SelectDropdown:FC<Props> = (
       <div
         ref={rootRef}
         className={cn('SelectField', {
-          'SelectFieldActive': isOpen,
+          SelectFieldActive: isOpen,
         })}
-        onClick={handleToggleDropdownMenu}
-      >
+        onClick={handleToggleDropdownMenu}>
         <p className={cn('SelectFieldCurrent')}>{currentSelected.title}</p>
 
-        <div className={cn('SelectArrow', {
-          'SelectArrowOpen': isOpen
-        })}><Arrow /></div>
+        <div
+          className={cn('SelectArrow', {
+            SelectArrowOpen: isOpen,
+          })}>
+          <Arrow />
+        </div>
       </div>
 
       {isOpen && (
         <ul className={cn('OptionsList')}>
-          {options.map(option => (
+          {options.map((option) => (
             <li
               className={cn('OptionsItem')}
               key={option.title}
-              onClick={() => handleOptionClick(option)}
-            >{option.title}</li>
+              onClick={() => handleOptionClick(option)}>
+              {option.title}
+            </li>
           ))}
         </ul>
       )}

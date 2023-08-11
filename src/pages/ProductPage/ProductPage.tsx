@@ -9,6 +9,7 @@ import { getSpecsFromProductData } from '../../utils/helpers';
 import { ProductTechSpecs } from '../../components/ProductTechSpecs/ProductTechSpecs';
 import { BackLink } from '../../components/BackLink/BackLink';
 import { CardCarousel } from '../../components/CardCarousel/CardCarousel';
+import { AddModal } from '../../components/CategoriesCards/AddModal/AddModal';
 import { Product } from '../../types/product';
 import { Actions } from '../../components/Actions';
 import { About } from '../../components/About';
@@ -21,9 +22,15 @@ export const ProductPage: FC = () => {
   const [productInfo, setProductInfo] = useState<ProductDetails | null>(null);
   const [productImages, setProductImages] = useState<string[] | null>(null);
   const [recommendedProducts, setRecommendedProducts] = useState<Product[]>();
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const isLoading = !productInfo;
   const locationToProduct = location.pathname.slice(1);
   console.log(productImages);
+
+  const handleModalClose = () => {
+    setIsLoggedIn(true);
+    window.location.href = '/login';
+  };
 
   const fetchData = useCallback(async (path: string) => {
     try {
@@ -46,16 +53,20 @@ export const ProductPage: FC = () => {
     <div className={cn('container', 'ProductPage')}>
       <BackLink />
       {isLoading ? (
-        <Loader className={cn('ProductPageLoader')}/>
+        <Loader className={cn('ProductPageLoader')} />
       ) : (
         <>
           <h1 className={cn('ProductPage__header')}>{productInfo.name}</h1>
 
           <div className={cn('SectionContainer', 'PhoneDetails')}>
-            <ProductImageSelector images={productImages} className={cn('SectionContainer__item')} />
+            <ProductImageSelector
+              images={productImages}
+              className={cn('SectionContainer__item')}
+            />
             <Actions
               className={'SectionContainer__item'}
               product={productInfo}
+              setIsLoggedIn={setIsLoggedIn}
             />
           </div>
 
@@ -74,10 +85,19 @@ export const ProductPage: FC = () => {
             </div>
           </div>
 
+          {isLoggedIn && (
+            <AddModal
+              isLoggedIn={isLoggedIn}
+              handleModalClose={handleModalClose}
+            />
+          )}
+
           {recommendedProducts && (
             <CardCarousel
               products={recommendedProducts}
               title="You may also like"
+              isLoggedIn={isLoggedIn}
+              setIsLoggedIn={setIsLoggedIn}
             />
           )}
         </>
