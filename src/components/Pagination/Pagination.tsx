@@ -47,14 +47,18 @@ export const Pagination: FC<Props> = ({
 
   const getPageNumbersToShow = () => {
     const pagesToShow = [];
-    
+
     pagesToShow.push(currentPage);
 
     for (let i = currentPage - 1; i >= Math.max(currentPage - 2, 1); i--) {
       pagesToShow.unshift(i);
     }
 
-    for (let i = currentPage + 1; i <= Math.min(currentPage + 2, pageCount); i++) {
+    for (
+      let i = currentPage + 1;
+      i <= Math.min(currentPage + 2, pageCount);
+      i++
+    ) {
       pagesToShow.push(i);
     }
 
@@ -76,24 +80,22 @@ export const Pagination: FC<Props> = ({
         <Arrow />
       </li>
 
-      {getPageNumbersToShow().map(
-        (page) => {
-          const isPageSelected = currentPage === page;
-          const isLastItem = page === pageCount;
+      {getPageNumbersToShow().map((page) => {
+        const isPageSelected = currentPage === page;
+        const isLastItem = page === pageCount;
 
-          return (
-            <li
-              key={page}
-              onClick={() => handleChangePage(page)}
-              className={cn(styles.pagination__number, {
-                [styles.pagination__number_active]: isPageSelected,
-                [styles.pagination__number_last]: isLastItem,
-              })}>
-              {page}
-            </li>
-          );
-        },
-      )}
+        return (
+          <li
+            key={page}
+            onClick={() => handleChangePage(page)}
+            className={cn(styles.pagination__number, {
+              [styles.pagination__number_active]: isPageSelected,
+              [styles.pagination__number_last]: isLastItem,
+            })}>
+            {page}
+          </li>
+        );
+      })}
       <li
         className={cn(
           styles.pagination__number,
