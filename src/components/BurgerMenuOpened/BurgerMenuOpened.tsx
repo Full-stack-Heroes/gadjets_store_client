@@ -66,7 +66,8 @@ export const BurgerMenuOpened: FC<BurgerMenuProps> = ({
           to="/orders"
           className={cn('service__button', 'service__orders', {
             'service__button-active': isMenuOpen,
-          })}>
+          })}
+          onClick={handleMenuClose}>
           <img
             src={orders}
             alt="orders button"
