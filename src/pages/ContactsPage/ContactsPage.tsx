@@ -48,7 +48,7 @@ export const ContactsPage: FC = () => {
       dou: 'https://dou.ua/users/ivan-khoroshylov/',
     },
     {
-      photo: 'eugene.jpg',
+      photo: 'https://images.emojiterra.com/google/android-10/512px/1f60e.png',
       name: 'Pavlo Levchenko',
       linkedIn: 'https://www.linkedin.com/in/eugene-sherepa',
       github: 'https://github.com/hekaq',
