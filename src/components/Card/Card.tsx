@@ -67,13 +67,18 @@ export const Card: React.FC<Props> = ({
   };
 
   const handleProductLiked = () => {
-    if (!productLiked) {
-      dispatch(addToFavourites(product));
-    } else {
-      dispatch(removeFromFavourites(product.id));
+    if (token) {
+      if (!productLiked) {
+        dispatch(addToFavourites(product));
+      } else {
+        dispatch(removeFromFavourites(product.id));
+      }
+
+      setProductLiked(!productLiked);
+      return;
     }
 
-    setProductLiked(!productLiked);
+    setIsLoggedIn(!isLoggedIn);
   };
 
   const {

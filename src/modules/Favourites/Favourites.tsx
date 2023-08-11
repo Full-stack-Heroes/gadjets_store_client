@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Card } from '../../components/Card/Card';
 import { Link, useNavigate } from 'react-router-dom';
 import classNames from 'classnames';
@@ -6,10 +6,18 @@ import home from '../../assets/icons/Home.svg';
 import heart from '../../assets/icons/favourites.png';
 import { Arrow } from '../../components/Arrow/Arrow';
 import styles from './Favourites.module.scss';
+import { AddModal } from '../../components/CategoriesCards/AddModal/AddModal';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
 
 export const Favourites: FC = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+
+  const handleModalClose = () => {
+    setIsLoggedIn(true);
+    window.location.href = '/login';
+  };
+
   const favouritesItems = useSelector(
     (state: RootState) => state.favorites.favoriteItems,
   );
@@ -50,11 +58,20 @@ export const Favourites: FC = () => {
         <div className={styles.favorites__cards}>
           <div className={styles.cards__container}>
             {favouritesItems.map((item) => (
-              <Card product={item} key={item.id} />
+              <Card
+                product={item}
+                key={item.id}
+                setIsLoggedIn={setIsLoggedIn}
+                isLoggedIn={isLoggedIn  }
+              />
             ))}
           </div>
         </div>
       </div>
+
+      {isLoggedIn && (
+        <AddModal isLoggedIn={isLoggedIn} handleModalClose={handleModalClose} />
+      )}
     </section>
   ) : (
     <div className={styles.emptyContainer}>
