@@ -28,13 +28,14 @@ const cn = classNames.bind(styles);
 interface Props {
   className: string | undefined;
   product: ProductDetails;
+  setIsLoggedIn: (value: boolean) => void;
 }
 
 interface CustomStyleProps extends React.CSSProperties {
   '--after-background-color'?: string;
 }
 
-export const Actions: FC<Props> = ({ className, product }) => {
+export const Actions: FC<Props> = ({ className, product, setIsLoggedIn }) => {
   const {
     capacity,
     capacityAvailable,
@@ -56,6 +57,8 @@ export const Actions: FC<Props> = ({ className, product }) => {
     (state: RootState) => state.favorites.favoriteItems as Product[],
   );
 
+  const token = localStorage.getItem('token');
+
   const dispatch = useDispatch();
 
   const checkIsProductInCard = () => {
@@ -74,13 +77,17 @@ export const Actions: FC<Props> = ({ className, product }) => {
   const buttonHeart = isProductLiked ? filledheart : heart;
 
   const handleProductAdded = () => {
-    if (!isProductInCart) {
-      dispatch(addToCart(productItemInfo));
-    } else {
-      dispatch(removeFromCart(productItemInfo.id));
-    }
+    if (token) {
+      if (!isProductInCart) {
+        dispatch(addToCart(productItemInfo));
+      } else {
+        dispatch(removeFromCart(productItemInfo.id));
+      }
 
-    setIsProductInCart((prev) => !prev);
+      setIsProductInCart((prev) => !prev);
+    } else {
+      setIsLoggedIn(true);
+    }
   };
 
   const handleProductLiked = () => {

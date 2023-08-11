@@ -9,6 +9,7 @@ import { getSpecsFromProductData } from '../../utils/helpers';
 import { ProductTechSpecs } from '../../components/ProductTechSpecs/ProductTechSpecs';
 import { BackLink } from '../../components/BackLink/BackLink';
 import { CardCarousel } from '../../components/CardCarousel/CardCarousel';
+import { AddModal } from '../../components/CategoriesCards/AddModal/AddModal';
 import { Product } from '../../types/product';
 import { Actions } from '../../components/Actions';
 import { About } from '../../components/About';
@@ -21,9 +22,15 @@ export const ProductPage: FC = () => {
   const [productInfo, setProductInfo] = useState<ProductDetails | null>(null);
   const [productImages, setProductImages] = useState<string[] | null>(null);
   const [recommendedProducts, setRecommendedProducts] = useState<Product[]>();
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const isLoading = !productInfo;
   const locationToProduct = location.pathname.slice(1);
   console.log(productImages);
+
+  const handleModalClose = () => {
+    setIsLoggedIn(true);
+    window.location.href = '/login';
+  };
 
   const fetchData = useCallback(async (path: string) => {
     try {
@@ -59,6 +66,7 @@ export const ProductPage: FC = () => {
             <Actions
               className={'SectionContainer__item'}
               product={productInfo}
+              setIsLoggedIn={setIsLoggedIn}
             />
           </div>
 
@@ -76,6 +84,13 @@ export const ProductPage: FC = () => {
               <ProductTechSpecs specs={getSpecsFromProductData(productInfo)} />
             </div>
           </div>
+
+          {isLoggedIn && (
+            <AddModal
+              isLoggedIn={isLoggedIn}
+              handleModalClose={handleModalClose}
+            />
+          )}
 
           {recommendedProducts && (
             <CardCarousel

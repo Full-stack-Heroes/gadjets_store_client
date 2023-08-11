@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import cn from 'classnames';
 import styles from './Card.module.scss';
-import error from '../../assets/icons/error.png';
 import heart from '../../assets/icons/Heart.svg';
 import filledheart from '../../assets/icons/Heart_Filled.svg';
 import { Product } from '../../types/product';
@@ -22,9 +21,15 @@ import { RootState } from '../../store';
 
 interface Props {
   product: Product;
+  isLoggedIn: boolean;
+  setIsLoggedIn: (value: boolean) => void;
 }
 
-export const Card: React.FC<Props> = ({ product }) => {
+export const Card: React.FC<Props> = ({
+  product,
+  setIsLoggedIn,
+  isLoggedIn,
+}) => {
   const products = useSelector(
     (state: RootState) => state.cart.cartItems as Product[],
   );
@@ -41,16 +46,10 @@ export const Card: React.FC<Props> = ({ product }) => {
   const [productAdded, setProductAdded] = useState(isProductInCart);
   const [productLiked, setProductLiked] = useState(isProductInFavourites);
   const token = localStorage.getItem('token');
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const buttonText = productAdded ? 'added' : 'add to cart';
   const buttonHeart = productLiked ? filledheart : heart;
 
   const dispatch = useDispatch();
-
-  const handleModalClose = () => {
-    setIsLoggedIn(true);
-    window.location.href = '/login';
-  };
 
   const handleProductAdded = () => {
     if (token) {
@@ -61,9 +60,10 @@ export const Card: React.FC<Props> = ({ product }) => {
       }
 
       setProductAdded(!productAdded);
-    } else {
-      setIsLoggedIn(true);
+      return;
     }
+
+    setIsLoggedIn(!isLoggedIn);
   };
 
   const handleProductLiked = () => {
@@ -157,27 +157,6 @@ export const Card: React.FC<Props> = ({ product }) => {
           </button>
         </div>
       </div>
-      {isLoggedIn && (
-        <>
-          <div className={styles.modalOverlay}>
-            <div className={styles.errorModal}>
-              <div
-                className={cn(styles.errorModalContent, {
-                  [styles.errorModalContentActive]: error,
-                })}>
-                <img src={error} className={styles.errorModalContentImage} />
-                <h2 className={styles.errorModalContentText}>Error</h2>
-                <p className={styles.errorModalContentError}>{error}</p>
-                <button
-                  onClick={handleModalClose}
-                  className={styles.errorModalContentButton}>
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        </>
-      )}
     </>
   );
 };
