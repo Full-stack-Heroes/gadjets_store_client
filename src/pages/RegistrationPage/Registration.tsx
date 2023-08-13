@@ -55,7 +55,7 @@ export const Registration: FC = () => {
         password: userPassword,
       });
 
-      if (isRegistered.message = 'User created') {
+      if (isRegistered) {
         await loginUser({
           email: userEmail,
           password: userPassword,
