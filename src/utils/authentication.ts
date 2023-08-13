@@ -2,24 +2,21 @@ import { UserData, Credentials } from '../types/authentification';
 import { login } from '../api/users';
 
 export const registerUser = async (userData: UserData) => {
-  try {
-    const response = await fetch('http://localhost:3000/user/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(userData),
-    });
+  const response = await fetch('https://gadjets-store-apu.onrender.com/user/register', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(userData),
+  });
 
-    if (!response.ok) {
-      throw new Error('Registration failed');
-    }
+  const responseData = await response.json();
 
-    const data = await response.json();
-    console.log(data);
-  } catch (error) {
-    console.error(error);
+  if (!response.ok) {
+    throw new Error(responseData.message);
   }
+
+  return responseData.message;
 };
 
 export const loginUser = async (credentials: Credentials) => {

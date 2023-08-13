@@ -49,16 +49,19 @@ export const Registration: FC = () => {
     }
 
     try {
-      await registerUser({
+      const isRegistered = await registerUser({
         email: userEmail,
         username: userName,
         password: userPassword,
       });
-      await loginUser({
-        email: userEmail,
-        password: userPassword,
-      });
-      window.location.href = '/';
+
+      if (isRegistered) {
+        await loginUser({
+          email: userEmail,
+          password: userPassword,
+        });
+        window.location.href = '/';
+      }
     } catch (error) {
       setError(`Registration failed: ${error}`);
     }
