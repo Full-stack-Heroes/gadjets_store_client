@@ -48,11 +48,11 @@ export const ContactsPage: FC = () => {
       dou: 'https://dou.ua/users/ivan-khoroshylov/',
     },
     {
-      photo: 'https://images.emojiterra.com/google/android-10/512px/1f60e.png',
+      photo: 'https://avatars.githubusercontent.com/u/78237301?s=400&u=71c7756cb990cd42764feecc65c9f2024867cfaa&v=4',
       name: 'Pavlo Levchenko',
-      linkedIn: 'https://www.linkedin.com/in/eugene-sherepa',
+      linkedIn: 'https://www.linkedin.com/in/pavlo-levchenko-a80627243/',
       github: 'https://github.com/hekaq',
-      dou: 'https://dou.ua/users/eugene-sherepa',
+      dou: 'https://dou.ua/users/pavlo-levchenko-1/',
     },
   ];
 
