@@ -2,6 +2,8 @@
 
 [DEMO LINK](https://gadjets-store-client.vercel.app/)
 
+## Please wait a few minutes to wake up the database
+
 Welcome to the Gadgets Store, a cutting-edge online shopping experience built with the latest web technologies. This dynamic platform is developed using React, React Router, Redux, SCSS, TypeScript, and Node.js Express, ensuring a seamless and captivating shopping journey for tech enthusiasts.
 
 Key Features:
