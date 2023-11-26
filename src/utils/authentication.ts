@@ -2,7 +2,7 @@ import { UserData, Credentials } from '../types/authentification';
 import { login } from '../api/users';
 
 export const registerUser = async (userData: UserData) => {
-  const response = await fetch('https://gadjets-store-apu.onrender.com/user/register', {
+  const response = await fetch('http://localhost/api/user/register', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
