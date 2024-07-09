@@ -7,64 +7,26 @@ interface Contact {
   name: string;
   linkedIn: string;
   github: string;
-  dou: string;
 }
 
 export const ContactsPage: FC = () => {
   const contacts: Contact[] = [
     {
-      photo: 'https://avatars.githubusercontent.com/u/101824489?v=4',
-      name: 'Denys Didenko',
-      linkedIn: 'http://www.linkedin.com/in/denys-didenko',
-      github: 'https://github.com/DidenkoDenis306',
-      dou: 'https://dou.ua/users/eugene-sherepa',
-    },
-    {
       photo: 'https://avatars.githubusercontent.com/u/110284208?v=4',
       name: 'Eugene Sherepa',
-      linkedIn: 'https://www.linkedin.com/in/eugene-sherepa-964ba2283/',
+      linkedIn: 'https://www.linkedin.com/in/yevhenii-sherepa-964ba2283/',
       github: 'https://github.com/EugeneSherepa',
-      dou: 'https://dou.ua/users/eugene-sherepa/',
-    },
-    {
-      photo: 'https://avatars.githubusercontent.com/u/58422219?v=4',
-      name: 'Victor Panikar',
-      linkedIn: 'https://www.linkedin.com/in/viktor-panikar/',
-      github: 'https://github.com/PanyaPrimal',
-      dou: 'https://dou.ua/users/eugene-sherepa',
-    },
-    {
-      photo: 'https://avatars.githubusercontent.com/u/56607847?v=4',
-      name: 'Stepan Haida',
-      linkedIn: 'https://www.linkedin.com/in/stepan-haida-341117284/',
-      github: 'https://github.com/serentinos',
-      dou: 'https://dou.ua/users/eugene-sherepa',
-    },
-    {
-      photo: 'https://avatars.githubusercontent.com/u/66055069?v=4',
-      name: 'Ivan Khoroshylov',
-      linkedIn: 'https://www.linkedin.com/in/ivan-khoroshylov-4287481b0/',
-      github: 'https://github.com/ivankhrsh',
-      dou: 'https://dou.ua/users/ivan-khoroshylov/',
-    },
-    {
-      photo: 'https://avatars.githubusercontent.com/u/78237301?s=400&u=71c7756cb990cd42764feecc65c9f2024867cfaa&v=4',
-      name: 'Pavlo Levchenko',
-      linkedIn: 'https://www.linkedin.com/in/pavlo-levchenko-a80627243/',
-      github: 'https://github.com/hekaq',
-      dou: 'https://dou.ua/users/pavlo-levchenko-1/',
     },
   ];
 
   return (
     <>
       <div className={styles.text}>
-        <h1>Looking for new Developers?</h1>
-        <h2>We are your best choice!</h2>
+        <h1>Looking for new Developer?</h1>
         <p>
-          Our team consists of creative and self motivated full-stack developers
-          who have created this service. You can contact any of us using links
-          below. We are opened to any offers!
+          I am a creative and self motivated full-stack developer who have
+          created this service. You can contact me using links below. I am
+          opened to any offers!
         </p>
       </div>
       <div className={styles.contactsContainer}>
@@ -75,7 +37,6 @@ export const ContactsPage: FC = () => {
             <div className={styles.links}>
               <Link to={contact.linkedIn}>LinkedIn</Link>
               <Link to={contact.github}>GitHub</Link>
-              <Link to={contact.dou}>Dou</Link>
             </div>
           </div>
         ))}

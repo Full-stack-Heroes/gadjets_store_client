@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export const BASE_URL = 'http://localhost/api';
+export const BASE_URL = 'http://localhost:3000';
 
 type RequestMethod = 'GET' | 'POST' | 'DELETE';
 

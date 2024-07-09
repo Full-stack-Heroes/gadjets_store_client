@@ -2,7 +2,7 @@ import { UserData, Credentials } from '../types/authentification';
 import { login } from '../api/users';
 
 export const registerUser = async (userData: UserData) => {
-  const response = await fetch('http://localhost/api/user/register', {
+  const response = await fetch('http://localhost:3000/user/register', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
